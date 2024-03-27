@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Tiro Bangla';
+    src: url('./fonts/TiroBangla.woff2') format('woff2'),
+        url('./fonts/TiroBangla.woff') format('woff');
+}
+
+/* Apply the font family to your desired elements */
+body {
+    font-family: 'Tiro Bangla', sans-serif;
+}
+
+body {
+    background-image: url('gambar1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    size: 10%;
+}
+
+.card {
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Warna background dengan opasitas 80% */
+}
+
+.card-header {
+    background-color: rgba(248, 249, 250, 0.8);
+    /* Opacity 80% */
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
