@@ -50,7 +50,7 @@
             cursor: pointer;
         }
 
-        
+
     </style>
 </head>
 
@@ -67,7 +67,7 @@
 
         </nav>
     </header>
-
+    
 </body>
 
 </html>
