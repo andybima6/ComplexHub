@@ -247,6 +247,18 @@
 
         </li>
 
+        <li class="pointer mb3"><a href="#saran"
+                style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
+                <svg width="34" height="34" viewBox="0 0 34 32" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.3333 11.8335H10.35M17 11.8335H17.0167M23.6667 11.8335H23.6833M12 21.8335H5.33333C4.44928 21.8335 3.60143 21.4823 2.97631 20.8572C2.35119 20.2321 2 19.3842 2 18.5002V5.16683C2 4.28277 2.35119 3.43493 2.97631 2.80981C3.60143 2.18469 4.44928 1.8335 5.33333 1.8335H28.6667C29.5507 1.8335 30.3986 2.18469 31.0237 2.80981C31.6488 3.43493 32 4.28277 32 5.16683V18.5002C32 19.3842 31.6488 20.2321 31.0237 20.8572C30.3986 21.4823 29.5507 21.8335 28.6667 21.8335H20.3333L12 30.1668V21.8335Z"
+                        stroke="#2A424F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+                <span style="margin-left: 4px;">Saran
+                    Dan Pengaduan</span></a>
+        </li>
 
             </ul>
         </li>
