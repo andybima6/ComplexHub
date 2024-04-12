@@ -362,6 +362,17 @@
 </div>
 
 
+{{-- Content --}}
 
+<main class="max-width-6 mx-auto bg-white p2 " style="min-height: 100vh; background-color: #FBEEC1">
+</main>
+
+
+
+</body>
+
+
+
+</html>
 
 </html>
