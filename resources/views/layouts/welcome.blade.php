@@ -185,13 +185,28 @@
         </li>
 
 
+        <li class="pointer mb3">
+            <a href="#DataWarga"
+                style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M31 7.66667C31 11.35 24.2833 14.3333 16 14.3333C7.71667 14.3333 1 11.35 1 7.66667M31 7.66667C31 3.98333 24.2833 1 16 1C7.71667 1 1 3.98333 1 7.66667M31 7.66667V16ZM1 7.66667V16ZM16 22.6667C7.71667 22.6667 1 19.6833 1 16ZM1 16V24.3333C1 28.0167 7.71667 31 16 31M26 21V26ZM26 31V26ZM26 26H31ZM26 26H21Z"
+                        fill="#2A424F" />
+                    <path
+                        d="M31 7.66667C31 11.35 24.2833 14.3333 16 14.3333C7.71667 14.3333 1 11.35 1 7.66667M31 7.66667C31 3.98333 24.2833 1 16 1C7.71667 1 1 3.98333 1 7.66667M31 7.66667V16M1 7.66667V16M1 16C1 19.6833 7.71667 22.6667 16 22.6667M1 16V24.3333C1 28.0167 7.71667 31 16 31M26 21V26M26 26V31M26 26H31M26 26H21"
+                        stroke="#2A424F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+                <span style="margin-left: 10px;">Data Warga</span></a>
+        </li>
+
 
             </ul>
         </li>
 
 
 </div>
-
 
 
 </html>
