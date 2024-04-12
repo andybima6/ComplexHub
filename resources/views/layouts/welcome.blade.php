@@ -369,6 +369,10 @@
 
 
 
+{{-- JS --}}
+<script src='{{ asset('js/close.js') }}'></script>
+
+
 </body>
 
 
