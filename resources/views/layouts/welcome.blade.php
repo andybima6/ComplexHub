@@ -338,6 +338,23 @@
                         Destinasi</a>
                 </li>
 
+                <li class="pointer"
+                    style="position: absolute;
+                bottom: 30px;
+                left: 30px;"><a
+                        href="#logout"
+                        style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
+                        <svg width="34" height="32" viewBox="0 0 34 32" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M30.2353 16.1176H13.4706M26.7059 21.4118L32 16.1176L26.7059 10.8235M17.8824 7.29412V5.52941C17.8824 4.59335 17.5105 3.69563 16.8486 3.03374C16.1867 2.37185 15.289 2 14.3529 2H5.52941C4.59335 2 3.69563 2.37185 3.03374 3.03374C2.37185 3.69563 2 4.59335 2 5.52941V26.7059C2 27.6419 2.37185 28.5397 3.03374 29.2016C3.69563 29.8634 4.59335 30.2353 5.52941 30.2353H14.3529C15.289 30.2353 16.1867 29.8634 16.8486 29.2016C17.5105 28.5397 17.8824 27.6419 17.8824 26.7059V24.9412"
+                                stroke="#2A424F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                        <span style="margin-left: 4px;">Logout</span>
+                    </a>
+                </li>
+
             </ul>
         </li>
 
