@@ -371,6 +371,7 @@
 
 {{-- JS --}}
 <script src='{{ asset('js/close.js') }}'></script>
+<script src='{{ asset('js/dropDown.js') }}'></script>
 
 
 </body>
