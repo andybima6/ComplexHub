@@ -372,7 +372,7 @@
 {{-- JS --}}
 <script src='{{ asset('js/close.js') }}'></script>
 <script src='{{ asset('js/dropDown.js') }}'></script>
-
+<script src='{{ asset('js/sidebarAnimation.js') }}'></script>
 
 </body>
 
