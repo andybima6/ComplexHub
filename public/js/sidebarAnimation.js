@@ -14,3 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
 burger.onclick = function () {
     document.body.classList.remove("sidebar-active");
 };
+
+

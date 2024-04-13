@@ -6,176 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Template Simple Sidebar Menu → by InsertApps.com</title>
     <link rel="stylesheet" href="https://unpkg.com/ace-css/css/ace.min.css">
-    <style>
-        /*Additional Style */
-        /* ######## START FOCUS CSS CODE HERE */
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: #FBEEC1;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href = "{{ asset('css/template.css') }}">
 
-        .full-height {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex-grow: 1;
-            background-color: #FBEEC1;
-            margin-top: 110px;
-
-            overflow: auto;
-        }
-
-        .container {
-            background-color: #FBEEC1;
-            margin-top: 90px;
-            z-index: 999;
-        }
-
-        #sidenav {
-            max-height: 100vh;
-            height: 100vh;
-            max-width: 70vw;
-            min-width: 300px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            transition: all .3s ease-in-out;
-            transform: translate(-150%, 0px);
-            -webkit-transform: translate(-150%, 0px);
-            -ms-transform: translate(-150%, 0px);
-            background-color: #FBEEC1;
-            /* Ubah warna sidebar di sini */
-        }
-
-        #sidenav.active {
-            transition: all .3s ease-in-out;
-            transform: translate(0%, 0px);
-            -webkit-transform: translate(0%, 0px);
-            -ms-transform: translate(0%, 0px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
-        }
-
-        /* ######## END FOCUS CSS CODE HERE */
-        .burger {
-            height: 16px
-        }
-
-        .burger span {
-            display: block;
-            width: 20px;
-            height: 2px;
-            border-radius: 3px;
-        }
-
-        .pointer {
-            cursor: pointer;
-
-        }
-
-        .close {
-            width: 23px;
-            height: 23px;
-        }
-
-
-        .cross {
-            height: 23px;
-            width: 2px;
-            border-radius: 3px;
-        }
-
-        .cross.left {
-            transform: rotate(45deg);
-        }
-
-        .cross.right {
-            transform: rotate(-45deg);
-        }
-
-        .align-middle {
-            vertical-align: middle
-        }
-
-        .header-responsive {
-            transition: all 0.3s ease;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* Animasi perubahan ukuran */
-        }
-
-        /* CSS untuk header responsif saat sidebar aktif */
-        .sidebar-active .header-responsive {
-            width: calc(100% - var(--sidebar-width));
-            top: 0;
-            left: var(--sidebar-width);
-            height: var(--header-height);
-            line-height: var(--header-height);
-
-        }
-
-        :root {
-            --sidebar-width: 330px;
-            /* Sesuaikan dengan lebar sidebar */
-            --header-height: 70px;
-            /* Sesuaikan dengan tinggi header */
-        }
-
-        .sidebar-active main {
-            margin-left: var(--sidebar-width);
-
-        }
-
-        .sidebar-active .container {
-            z-index: 1;
-        }
-
-        .card {
-            position: absolute;
-            top: 50px;
-            /* Sesuaikan dengan tinggi header */
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 90%;
-            max-width: 85%;
-            /* Batasi lebar maksimum */
-            height: 80vh;
-            /* Tinggi sebesar 80% dari tinggi viewport */
-            background-color: #BC986A;
-            border-radius: 9px;
-            z-index: 999;
-        }
-
-        .header-responsive .card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 146px;
-            /* Atur tinggi sesuai kebutuhan */
-            z-index: 99;
-            background-color: #BC986A;
-            border-radius: 9px;
-        }
-
-
-        .complex {
-            margin-bottom: 60px;
-            margin-top: 60px;
-            margin-left: 25px;
-        }
-    </style>
 </head>
 
 <body>
@@ -191,7 +24,12 @@
             <p class ="inline-block btn p0 mr1">Halo,Andy</p>
             </ul>
         </nav>
-        <div class = "card"></div>
+        <div class="card">
+            <span id="card-title"></span>
+        </div>
+
+        </div>
+
     </header>
 
 
@@ -425,8 +263,6 @@
 
 
     {{-- Content --}}
-
-    {{-- <main class=" mx-auto p2 " style="min-height: 100vh; background-color: #FBEEC1;margin-top:30px;max-height: 100;"> --}}
     <main class=" mx-auto p2 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div class = "container" style="margin-top:100px;background-color: #FBEEC1;z-index:999"></div>
         <h1>aNDYY</h1>
@@ -438,7 +274,7 @@
     <script src='{{ asset('js/close.js') }}'></script>
     <script src='{{ asset('js/dropDown.js') }}'></script>
     <script src='{{ asset('js/sidebarAnimation.js') }}'></script>
-
+    <script src='{{ asset('js/judul.js') }}'></script>
 </body>
 
 
