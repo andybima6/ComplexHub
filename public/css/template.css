@@ -3,7 +3,7 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #FBEEC1;
+    background-color: #fbeec1;
 }
 
 .full-height {
@@ -14,13 +14,13 @@ html {
 
 main {
     flex-grow: 1;
-    background-color: #FBEEC1;
+    background-color: #fbeec1;
     margin-top: 110px;
     overflow: auto;
 }
 
 .container {
-    background-color: #FBEEC1;
+    background-color: #fbeec1;
     margin-top: 90px;
     z-index: 999;
 }
@@ -32,25 +32,25 @@ main {
     min-width: 300px;
     overflow-x: hidden;
     overflow-y: auto;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     transform: translate(-150%, 0px);
     -webkit-transform: translate(-150%, 0px);
     -ms-transform: translate(-150%, 0px);
-    background-color: #FBEEC1;
+    background-color: #fbeec1;
     /* Ubah warna sidebar di sini */
 }
 
 #sidenav.active {
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     transform: translate(0%, 0px);
     -webkit-transform: translate(0%, 0px);
     -ms-transform: translate(0%, 0px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* ######## END FOCUS CSS CODE HERE */
 .burger {
-    height: 16px
+    height: 16px;
 }
 
 .burger span {
@@ -62,14 +62,12 @@ main {
 
 .pointer {
     cursor: pointer;
-
 }
 
 .close {
     width: 23px;
     height: 23px;
 }
-
 
 .cross {
     height: 23px;
@@ -86,7 +84,7 @@ main {
 }
 
 .align-middle {
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .header-responsive {
@@ -102,24 +100,24 @@ main {
 
 /* CSS untuk header responsif saat sidebar aktif */
 .sidebar-active .header-responsive {
+
     width: calc(100% - var(--sidebar-width));
     top: 0;
     left: var(--sidebar-width);
     height: var(--header-height);
-    line-height: var(--header-height);
 
+    /* line-height: var(--header-height); */
 }
 
 :root {
-    --sidebar-width: 330px;
+    --sidebar-width: 352px;
     /* Sesuaikan dengan lebar sidebar */
-    --header-height: 70px;
+    --header-height: 120px;
     /* Sesuaikan dengan tinggi header */
 }
 
 .sidebar-active main {
     margin-left: var(--sidebar-width);
-
 }
 
 .sidebar-active .container {
@@ -140,7 +138,7 @@ main {
     /* Batasi lebar maksimum */
     height: 80vh;
     /* Tinggi sebesar 80% dari tinggi viewport */
-    background-color: #DAAD86;
+    background-color: #daad86;
     border-radius: 9px;
     z-index: 999;
 }
@@ -151,13 +149,15 @@ main {
     justify-content: space-between;
     width: 100%;
     height: 146px;
+    margin: auto;
     /* Atur tinggi sesuai kebutuhan */
-
-    background-color: #DAAD86;
+    background-color: #daad86;
     border-radius: 9px;
 }
 
-
+.sidebar-active .card {
+    width: 80%;
+}
 .complex {
     margin-bottom: 60px;
     margin-top: 60px;
@@ -165,14 +165,28 @@ main {
 }
 
 #card-title {
+    display: flex;
     font-size: 34px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600; /* Semi-bold */
     display: block;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 30px;
+}
+
+.pointer:hover svg path {
+    fill: #518AD8 !important;
+}
 
 
+
+.pointer:hover span {
+    color: #518AD8 !important;
+}
+
+.gambar{
+width: 8px;
+height: 8px;
 
 }
