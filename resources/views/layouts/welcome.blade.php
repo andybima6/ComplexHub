@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            background-color: #FBEEC1;
         }
 
         .full-height {
@@ -25,7 +26,8 @@
         main {
             flex-grow: 1;
             background-color: #FBEEC1;
-            margin-top: 30px;
+            margin-top: 110px;
+
             overflow: auto;
         }
 
@@ -117,10 +119,8 @@
             left: var(--sidebar-width);
             height: var(--header-height);
             line-height: var(--header-height);
-            transition: all 0.3s ease;
+
         }
-
-
 
         :root {
             --sidebar-width: 330px;
@@ -131,10 +131,49 @@
 
         .sidebar-active main {
             margin-left: var(--sidebar-width);
+
         }
 
         .sidebar-active .container {
             z-index: 1;
+        }
+
+        .card {
+            position: absolute;
+            top: 50px;
+            /* Sesuaikan dengan tinggi header */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 85%;
+            /* Batasi lebar maksimum */
+            height: 80vh;
+            /* Tinggi sebesar 80% dari tinggi viewport */
+            background-color: #BC986A;
+            border-radius: 9px;
+            z-index: 999;
+        }
+
+        .header-responsive .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 146px;
+            /* Atur tinggi sesuai kebutuhan */
+            z-index: 99;
+            background-color: #BC986A;
+            border-radius: 9px;
+        }
+
+
+        .complex {
+            margin-bottom: 60px;
+            margin-top: 60px;
+            margin-left: 25px;
         }
     </style>
 </head>
@@ -150,20 +189,20 @@
         </div>
         <nav class="ml-auto user">
             <p class ="inline-block btn p0 mr1">Halo,Andy</p>
-
             </ul>
         </nav>
+        <div class = "card"></div>
     </header>
 
 
     {{-- Sidebar --}}
-    <div id="sidenav" class="fixed z4 top-0 left-0 p2">
+    <div id="sidenav" class="fixed z4 top-0 left-0 p2 ">
         <div class="close flex items-center justify-center relative pointer mb2 right">
             <div class="absolute cross bg-black left"></div>
             <div class="absolute cross bg-black right"></div>
         </div>
 
-        <div class="flex items-center ">
+        <div class="flex items-center complex">
             <svg width="52" height="39" viewBox="0 0 52 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="4.12695" y1="19.5" x2="4.12695" y2="38.9925" stroke="#2A424F" stroke-width="4" />
                 <line y1="-2" x2="19.3393" y2="-2"
@@ -186,12 +225,12 @@
             </svg>
 
             <p id="sidebar-title" class="m5 bold"
-                style = "margin-left: 15px; color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
+                style = "margin-left: 15px; color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;text-align: center;">
                 ComplexHub</p>
 
         </div>
 
-        <hr>
+
 
         <ul class="list-reset">
             <li class="pointer mb3 ">
@@ -361,25 +400,24 @@
                             Destinasi</a>
                     </li>
 
-                    <li class="pointer"
-                        style="position: absolute;
-                bottom: 30px;
-                left: 30px;"><a
-                            href="#logout"
-                            style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
-                            <svg width="34" height="32" viewBox="0 0 34 32" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M30.2353 16.1176H13.4706M26.7059 21.4118L32 16.1176L26.7059 10.8235M17.8824 7.29412V5.52941C17.8824 4.59335 17.5105 3.69563 16.8486 3.03374C16.1867 2.37185 15.289 2 14.3529 2H5.52941C4.59335 2 3.69563 2.37185 3.03374 3.03374C2.37185 3.69563 2 4.59335 2 5.52941V26.7059C2 27.6419 2.37185 28.5397 3.03374 29.2016C3.69563 29.8634 4.59335 30.2353 5.52941 30.2353H14.3529C15.289 30.2353 16.1867 29.8634 16.8486 29.2016C17.5105 28.5397 17.8824 27.6419 17.8824 26.7059V24.9412"
-                                    stroke="#2A424F" stroke-width="3" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
 
-                            <span style="margin-left: 4px;">Logout</span>
-                        </a>
-                    </li>
 
                 </ul>
+            <li class="pointer" style="position: absolute;
+        bottom: 30px;
+        left: 30px;"><a
+                    href="#logout"
+                    style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
+                    <svg width="34" height="32" viewBox="0 0 34 32" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M30.2353 16.1176H13.4706M26.7059 21.4118L32 16.1176L26.7059 10.8235M17.8824 7.29412V5.52941C17.8824 4.59335 17.5105 3.69563 16.8486 3.03374C16.1867 2.37185 15.289 2 14.3529 2H5.52941C4.59335 2 3.69563 2.37185 3.03374 3.03374C2.37185 3.69563 2 4.59335 2 5.52941V26.7059C2 27.6419 2.37185 28.5397 3.03374 29.2016C3.69563 29.8634 4.59335 30.2353 5.52941 30.2353H14.3529C15.289 30.2353 16.1867 29.8634 16.8486 29.2016C17.5105 28.5397 17.8824 27.6419 17.8824 26.7059V24.9412"
+                            stroke="#2A424F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                    <span style="margin-left: 4px;">Logout</span>
+                </a>
+            </li>
             </li>
 
 
@@ -390,7 +428,7 @@
 
     {{-- <main class=" mx-auto p2 " style="min-height: 100vh; background-color: #FBEEC1;margin-top:30px;max-height: 100;"> --}}
     <main class=" mx-auto p2 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-        <div class = "container" style="margin-top:90px;background-color: #FBEEC1;z-index:999"></div>
+        <div class = "container" style="margin-top:100px;background-color: #FBEEC1;z-index:999"></div>
         <h1>aNDYY</h1>
     </main>
 
