@@ -9,5 +9,5 @@ Route::get('/welcome', function () {
     return view('layouts.welcome');
 });
 
-Route::get('/usulanKegiatan', [kegiatanController::class,'index']);
+Route::get('/daftar-kegiatan', [KegiatanController::class, 'index'])->name('daftar-kegiatan');
 Route::get('/dashboard', [dashboardController::class,'index']);
