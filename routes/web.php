@@ -11,3 +11,4 @@ Route::get('/welcome', function () {
 
 Route::get('/daftar-kegiatan', [KegiatanController::class, 'index'])->name('daftar-kegiatan');
 Route::get('/dashboard', [dashboardController::class,'index']);
+Route::get('/RT.usulanKegiatanRT', [dashboardController::class,'index']);
