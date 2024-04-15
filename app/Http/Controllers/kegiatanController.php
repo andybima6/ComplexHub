@@ -7,24 +7,31 @@ use Illuminate\Support\Facades\Gate;
 
 class KegiatanController extends Controller
 {
-    public function index()
+    public function indexRT()
     {
         $user = auth()->user();
 
         $breadcrumb = (object)[
             'title' => 'Daftar Kegiatan',
         ];
-        return view ('RT.usulanKegiatanRT',['breadcrumb'=>$breadcrumb]);
-        // Menentukan tampilan berdasarkan peran pengguna
-        // if (Gate::allows('is-rt', $user)) {
-        //     return view('RT.usulanKegiatanRT', ['breadcrumb' => $breadcrumb]);
-        // } elseif (Gate::allows('is-rw', $user)) {
-        //     return view('RW.usulanKegiatanRW', ['breadcrumb' => $breadcrumb]);
-        // } elseif (Gate::allows('is-penduduk', $user)) {
-        //     return view('Penduduk.usulanKegiatanPenduduk', ['breadcrumb' => $breadcrumb]);
-        // } else {
-        //     // Handle jika pengguna tidak memiliki peran yang sesuai
-        //     abort(403, 'Unauthorized');
-        }
+        return view('RT.usulanKegiatanRT', ['breadcrumb' => $breadcrumb]);
     }
+    public function indexRW()
+    {
+        $user = auth()->user();
 
+        $breadcrumb = (object)[
+            'title' => 'Daftar Kegiatan',
+        ];
+        return view('RW.usulanKegiatanRW', ['breadcrumb' => $breadcrumb]);
+    }
+    public function indexPenduduk()
+    {
+        $user = auth()->user();
+
+        $breadcrumb = (object)[
+            'title' => 'Daftar Kegiatan',
+        ];
+        return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb]);
+    }
+}
