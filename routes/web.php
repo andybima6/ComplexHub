@@ -23,4 +23,6 @@ Route::group(['prefix' => 'usulan'], function(){
 
 Route::group(['prefix' => 'usulan'], function(){
     Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk']);
+=======
+
 });
