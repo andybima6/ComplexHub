@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://unpkg.com/ace-css/css/ace.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href = "{{ asset('css/template.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
     @vite('resources/css/app.css')
 </head>
 
@@ -26,6 +28,7 @@
     <script src='{{ asset('js/dropDown.js') }}'></script>
     <script src='{{ asset('js/sidebarAnimation.js') }}'></script>
     <script src='{{ asset('js/judul.js') }}'></script>
+    <script src='{{ asset('js/popUp.js') }}'></script>
 </body>
 
 
