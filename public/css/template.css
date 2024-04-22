@@ -235,3 +235,31 @@ img{
     text-decoration: none;
     cursor: pointer;
   }
+  ::placeholder {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /* Regular */
+
+}
+
+.garis{
+    position: relative;
+    top: 540px;
+}
+
+.button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 34px;
+    border-radius: 10px;
+    background-color: #2F80ED;
+}
+.svg-style {
+    margin-left: 10px;
+    margin-top: 2px;
+    width: 25px;
+    height: 24px;
+    fill: white;
+}
