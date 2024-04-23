@@ -272,6 +272,7 @@ img{
     gap: 10px;
 }
 
+
 /* Atur ukuran elemen dalam grid */
 .header {
     grid-row: 1 / 2;

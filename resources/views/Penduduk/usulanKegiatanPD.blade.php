@@ -81,12 +81,14 @@
                         style="overflow: scroll; height: 950px; border-radius: 16px; width: 100%; margin-bottom: 0px;"></img>
                     <span id="closeModal" class="close" class="flex justify-center"
                         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: white; font-family: 'Poppins', sans-serif; font-weight: 300; width: 80%; max-width: 2000px;">Pengajuan
-                        kegiatan oleh penduduk di tingkat RW dan RT dapat mengoptimalkan partisipasi penduduk dalam pembangunan
+                        kegiatan oleh penduduk di tingkat RW dan RT dapat mengoptimalkan partisipasi penduduk dalam
+                        pembangunan
                         lingkungan serta mempercepat respons dan koordinasi dari pihak berwenang.</span>
                 </div>
 
 
-                <table id="tabelUsulan" class="rounded-md relative p-16 top-52 left-16 bg-white mr-28"style="display:none;z-indeks:10;position: absolute; top: 45%; left: 8%; z-index: 0;background-color:white;">
+                <table id="tabelUsulan"
+                    class="rounded-md relative p-16 top-52 left-16 bg-white mr-28"style="display:none;z-indeks:10;position: absolute; top: 45%; left: 8%; z-index: 0;background-color:white;">
                     <thead>
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/6">No</th>
@@ -111,34 +113,37 @@
                             <td class="border px-4 py-2 text-center">comment kegiatan 3</td>
                             <td class="border px-4 py-2 text-center">RT</td>
                             <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
-                                <button class="" style="width:55px;height:34px;border-radius:10px;background-color:#2F80ED; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
+                                <button class=""
+                                    style="width:55px;height:34px;border-radius:10px;background-color:#2F80ED; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Show
                                 </button>
-                                <button class="" style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
+                                <button class="editbutton"
+                                    style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
                                 <div id="myModalEdit" class="modal">
                                     <!-- Modal content -->
-                                    <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
+                                    <div class="modal-content absolute inset-0"
+                                        style="background-color:#FFFFFF;border-radius:15px;">
                                         <span id="closeModalEdit" class="close">&times;</span>
-                                        <div class="relative top-6 left-8 "
+                                        <div class="relative top-4 left-2 "
                                             style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                                             Edit Usulan Kegiatan</div>
-                                        <hr class="relative top-8" style="border-width: 3px;">
-                                        <input id="editNamaKegiatan" class="relative top-20 left-10"
+                                        <hr class="relative top-8 righ-12" style="border-width: 3px;">
+                                        <input id="editNamaKegiatan" class="relative top-20"
                                             style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                                             type="text" placeholder="Nama Kegiatan">
 
-                                        <input id="editKeterangan" class="relative top-28 left-10"
+                                        <input id="editKeterangan" class="relative top-28"
                                             style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                                             type="text" placeholder="Keterangan">
 
-                                        <label for="editFileInput" class="relative top-36 left-10"
+                                        <label for="editFileInput" class="relative top-36 left-10 ml-2"
                                             style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
                                             Document</label>
                                         <input id="editFileInput" style="display: none;" type="file">
 
-                                        <input id="editLingkup" class="relative top-44 left-10"
+                                        <input id="editLingkup" class="relative top-44"
                                             style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                                             type="text" placeholder="Lingkup">
 
@@ -161,7 +166,8 @@
                                     </div>
                                 </div>
 
-                                <button class="" style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
+                                <button class=""
+                                    style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
                             </td>
@@ -172,5 +178,31 @@
                 </table>
         </main>
 
-       
+        <script>
+            // Ambil modal edit
+            var modalEdit = document.getElementById('myModalEdit');
+
+            // Ambil tombol edit
+            var editButton = document.getElementsByClassName('editbutton')[0];
+
+            // Ambil span elemen untuk menutup modal
+            var closeModalEdit = document.getElementById('closeModalEdit');
+
+            // Ketika tombol edit diklik, tampilkan modal
+            editButton.onclick = function() {
+                modalEdit.style.display = 'block';
+            }
+
+            // Ketika tombol tutup di dalam modal diklik, sembunyikan modal
+            closeModalEdit.onclick = function() {
+                modalEdit.style.display = 'none';
+            }
+
+            // Ketika user mengklik di luar modal, sembunyikan modal
+            window.onclick = function(event) {
+                if (event.target == modalEdit) {
+                    modalEdit.style.display = 'none';
+                }
+            }
+        </script>
     @endsection

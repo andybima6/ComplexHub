@@ -1,3 +1,4 @@
+
 var selectedRow; // tambahkan variabel selectedRow di luar fungsi
 
 function editData(rowId) {
@@ -20,7 +21,7 @@ function editData(rowId) {
 
 document.addEventListener("DOMContentLoaded", function() {
     // Menambahkan event listener untuk tombol "Edit" pada tiap baris tabel
-    var editButtons = document.querySelectorAll(".editButton");
+    var editButtons = document.querySelectorAll(".editbutton");
     editButtons.forEach(function(button, index) {
         button.addEventListener("click", function() {
             editData(index);
