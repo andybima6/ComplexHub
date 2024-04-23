@@ -12,7 +12,7 @@ class DataKkController extends Controller
     // Menampilkan semua data KK
     public function index()
     {
-        $kks = dataKk::all();
+        $kks = DataKk::all();
         $breadcrumb = (object) [
             'title' => 'Daftar Data KK'
         ];
