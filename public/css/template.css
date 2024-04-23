@@ -263,3 +263,34 @@ img{
     height: 24px;
     fill: white;
 }
+
+/* CSS untuk layout responsif */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+}
+
+
+/* Atur ukuran elemen dalam grid */
+.header {
+    grid-row: 1 / 2;
+}
+
+.content {
+    grid-row: 2 / 3;
+}
+
+.footer {
+    grid-row: 3 / 4;
+}
+
+/* Media queries untuk layout pada layar berukuran kecil */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    /* tambahkan aturan CSS lainnya sesuai kebutuhan */
+}
