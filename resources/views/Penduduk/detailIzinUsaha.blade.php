@@ -3,7 +3,7 @@
 <div class="container">
     <div class="flex justify-center items-center h-screen">
         <div class="flex flex-col items-center py-5" style="max-width: none; width: 100%;">
-            <div class="rounded-md relative p-8 mt-1 mb-8 mx-auto" style="background-color: white; width: 95%; height: 100%; position: relative; border-radius: 16px;">
+            <div class="rounded-md relative p-8 mb-8 mx-auto" style="background-color: white; max-width: 3000px; width: 90%; height: 500px; position: relative; border-radius: 16px;">
                 <p class="text-start font-semibold text-xl mb-4">Detail Izin Usaha</p>
                 <hr class="mb-4">
                 <div class="mb-4">
