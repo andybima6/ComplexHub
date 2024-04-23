@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('nik')->unique();
+            $table->unsignedBigInteger('rt_id');
+            $table->foreign('rt_id')->references('id')->on('rt')->onDelete('cascade');
             $table->unsignedBigInteger('data_kks_id');
             $table->foreign('data_kks_id')->references('id')->on('data_kks')->onDelete('cascade');
             $table->enum('gender',['Perempuan','Laki-laki']);

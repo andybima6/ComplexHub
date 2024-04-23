@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dataKk;
+use App\Models\DataKk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class DataKkController extends Controller
@@ -33,24 +34,33 @@ class DataKkController extends Controller
         // Validasi data yang dikirim oleh user
         $request->validate([
             'kepala_keluarga' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'no_kk' => 'required|string|max:16',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
+            'rt_id' => 'required',
             'status_ekonomi' => 'required|in:Mampu,Tidak Mampu',
         ]);
-
+    
         // Mengunggah file gambar
-        $imagePath = $request->file('image')->store('kk_images');
-
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $filename = $img->getClientOriginalName();
+            $img->storeAs('public/foto_rumah', $filename); // Simpan gambar ke dalam direktori public/foto_rumah
+        } else {
+            return redirect()->back()->withInput()->withErrors(['image' => 'Gambar tidak ditemukan.']);
+        }
+    
         // Membuat objek KK baru
-        dataKk::create([
+        $kk = dataKk::create([
             'kepala_keluarga' => $request->kepala_keluarga,
-            'image' => $imagePath,
             'no_kk' => $request->no_kk,
+            'image' => $filename,
+            'rt_id' => $request->rt_id,
             'status_ekonomi' => $request->status_ekonomi,
         ]);
-
+    
         return redirect()->route('kk.index')->with('success', 'Data KK berhasil ditambahkan');
     }
+    
 
     // Menampilkan detail KK
     public function show($id)
@@ -58,7 +68,7 @@ class DataKkController extends Controller
         $kk = DataKk::findOrFail($id);
         $breadcrumb = (object) ['title' => 'Detail Data KK', 'route' => 'kk.show', 'id' => $id]; // membuat objek $breadcrumb
 
-    return view('kk.show', compact('kk', 'breadcrumb'));
+        return view('kk.show', compact('kk', 'breadcrumb'));
     }
 
     // Menampilkan form untuk mengedit KK
@@ -80,14 +90,30 @@ class DataKkController extends Controller
         $request->validate([
             'kepala_keluarga' => 'required|string|max:255',
             'no_kk' => 'required|string|max:16',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072', // Ubah menjadi nullable agar tidak selalu dianggap wajib
+            'rt_id' => 'required',
             'status_ekonomi' => 'required|in:Mampu,Tidak Mampu',
         ]);
 
         $kk = DataKk::findOrFail($id);
+        
+        // Memeriksa apakah file gambar diunggah, jika ya, proses gambar baru
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $filename = $img->getClientOriginalName();
+            $kk->image = $filename;
+            $img->storeAs('public/foto_rumah', $filename); // Simpan gambar baru ke dalam direktori public/foto_rumah
+            
+            // Hapus gambar lama jika ada
+            if ($kk->image) {
+                Storage::delete('public/foto_rumah/' . $kk->image);
+            }
+        }
 
         $kk->update([
             'kepala_keluarga' => $request->kepala_keluarga,
             'no_kk' => $request->no_kk,
+            'rt_id' => $request->rt_id,
             'status_ekonomi' => $request->status_ekonomi,
         ]);
 

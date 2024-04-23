@@ -49,11 +49,11 @@ class PendudukController extends Controller
         return view('penduduks\]edit', compact('penduduks', 'breadcrumb'));
     }
 
-    public function update(Request $request, Penduduk $penduduk)
-    {
-        $penduduk->update($request->all());
-        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diperbarui.');
-    }
+        public function update(Request $request, Penduduk $penduduk)
+        {
+            $penduduk->update($request->all());
+            return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diperbarui.');
+        }
 
     public function destroy(Penduduk $penduduk)
     {

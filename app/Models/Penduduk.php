@@ -11,6 +11,7 @@ class Penduduk extends Model
         'nama',
         'nik',
         'kk_id',
+        'rt_id',
         'gender',
         'usia',
         'tmp_lahir',

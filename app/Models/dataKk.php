@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DataKk extends Model
 {
     use HasFactory;
-
+    protected $table = 'kk';
     protected $fillable = [
-        'kepala_keluarga', // tambahkan properti kepala_keluarga ke fillable
+        'kepala_keluarga',
         'image',
         'no_kk',
         'rt_id',
