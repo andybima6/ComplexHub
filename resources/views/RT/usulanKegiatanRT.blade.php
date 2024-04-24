@@ -63,6 +63,7 @@
                         <td class="border px-4 py-2 text-center">comment kegiatan 2</td>
                         <div class="justify-end flex itemms-center">
                         <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
+                            <a href="{{ route('detailKegiatanRT') }}">
                             <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -77,6 +78,7 @@
                                 </svg>
 
                             </button>
+                        </a>
                             <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -109,6 +111,7 @@
                         </td>
                         <td class="border px-4 py-2 text-center">comment kegiatan 2</td>
                         <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
+                            <a href="{{ route('detailKegiatanRT') }}">
                             <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -123,6 +126,7 @@
                                 </svg>
 
                             </button>
+                            </a>
                             <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -154,6 +158,7 @@
                         </td>
                         <td class="border px-4 py-2 text-center">comment kegiatan 3</td>
                         <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
+                            <a href="{{ route('detailKegiatanRT') }}">
                             <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -168,6 +173,7 @@
                                 </svg>
 
                             </button>
+                            </a>
                             <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
