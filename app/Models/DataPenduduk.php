@@ -4,19 +4,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataKk extends Model
+class DataPenduduk extends Model
 {
     use HasFactory;
 
-    protected $table = 'data_kk';
+    protected $table = 'data_penduduk';
 
     public function rt()
     {
         return $this->belongsTo(DataRt::class, 'rt_id');
     }
 
-    public function penduduk()
+    public function kk()
     {
-        return $this->hasMany(DataPenduduk::class, 'data_kk_id');
+        return $this->belongsTo(DataKk::class, 'data_kk_id');
     }
 }

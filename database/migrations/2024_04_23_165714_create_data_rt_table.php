@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRtTable extends Migration
+class CreateDataRtTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRtTable extends Migration
      */
     public function up()
     {
-        Schema::create('rt', function (Blueprint $table) {
+        Schema::create('data_rt', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('rt');
@@ -32,6 +32,6 @@ class CreateRtTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rt');
+        Schema::dropIfExists('data_rt');
     }
-};
+}
