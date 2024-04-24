@@ -3,9 +3,7 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UmkmController;
-use App\Http\Controllers\DataKkController;
 use App\Http\Controllers\kegiatanController;
-use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\dashboardController;
 
 Route::get('/welcome', function () {
