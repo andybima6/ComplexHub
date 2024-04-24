@@ -3,129 +3,100 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataKk;
+use App\Models\DataPenduduk;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-
 
 class DataKkController extends Controller
 {
-    // Menampilkan semua data KK
     public function index()
     {
-        $kks = DataKk::all();
-        $breadcrumb = (object) [
-            'title' => 'Daftar Data KK'
-        ];
-        return view('kk.index', compact('kks', 'breadcrumb'));
+        $dataKk = DataKk::all();
+        return view('data_kk.index', compact('dataKk'));
     }
 
-    // Menampilkan form untuk membuat KK baru
     public function create()
     {
-        $breadcrumb = (object) [
-            'title' => 'Tambah Data KK'
-        ];
-        return view('kk.create', compact('breadcrumb'));
+        // Menampilkan form pembuatan data KK
+        return view('data_kk.create');
     }
 
-    // Menyimpan KK baru ke dalam database
     public function store(Request $request)
+{
+    // Validasi data yang dikirim dari form
+    $validatedData = $request->validate([
+        'kepala_keluarga' => 'required|string|max:255',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'no_kk' => 'required|string|max:16|unique:data_kk,no_kk',
+        'penduduk' => 'required|array|min:1',
+        'penduduk.*.nama' => 'required|string|max:255',
+        'penduduk.*.nik' => 'required|string|max:16|unique:penduduk,nik',
+        'penduduk.*.gender' => 'required|in:Perempuan,Laki-laki',
+        'penduduk.*.usia' => 'required|string|max:3',
+        'penduduk.*.tmp_lahir' => 'required|string|max:255',
+        'penduduk.*.tgl_lahir' => 'required|date',
+        'penduduk.*.agama' => 'required|string|in:Islam,Katolik,Protestan,Konghucu,Buddha,Hindu',
+        'penduduk.*.alamat' => 'required|string|max:255',
+        'penduduk.*.status_pernikahan' => 'required|string|in:Kawin,Belum Kawin,Cerai',
+        'penduduk.*.status_keluarga' => 'required|string|in:Kepala Rumah Tangga,Isteri,Anak,Lainnya',
+        'penduduk.*.pekerjaan' => 'required|string|max:255',
+    ]);
+
+    // Simpan data KK baru
+    $dataKk = DataKk::create([
+        'kepala_keluarga' => $validatedData['kepala_keluarga'],
+        'image' => $request->file('image')->store('images'),
+        'no_kk' => $validatedData['no_kk'],
+    ]);
+
+    // Simpan data penduduk yang terkait dengan KK baru
+    foreach ($validatedData['penduduk'] as $pendudukData) {
+        $penduduk = new DataPenduduk($pendudukData);
+        $dataKk->penduduk()->save($penduduk);
+    }
+
+    // Redirect ke halaman index KK setelah berhasil menyimpan
+    return redirect()->route('data_kk.index')->with('success', 'Data KK berhasil disimpan');
+}
+
+
+    public function show(DataKk $dataKk)
     {
-        // Validasi data yang dikirim oleh user
-        $request->validate([
-            'kepala_keluarga' => 'required|string|max:255',
-            'no_kk' => 'required|string|max:16',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
-            'rt_id' => 'required',
-            'status_ekonomi' => 'required|in:Mampu,Tidak Mampu',
-        ]);
-    
-        // Mengunggah file gambar
-        if ($request->hasFile('image')) {
-            $img = $request->file('image');
-            $filename = $img->getClientOriginalName();
-            $img->storeAs('public/foto_rumah', $filename); // Simpan gambar ke dalam direktori public/foto_rumah
-        } else {
-            return redirect()->back()->withInput()->withErrors(['image' => 'Gambar tidak ditemukan.']);
-        }
-    
-        // Membuat objek KK baru
-        $kk = dataKk::create([
-            'kepala_keluarga' => $request->kepala_keluarga,
-            'no_kk' => $request->no_kk,
-            'image' => $filename,
-            'rt_id' => $request->rt_id,
-            'status_ekonomi' => $request->status_ekonomi,
-        ]);
-    
-        return redirect()->route('kk.index')->with('success', 'Data KK berhasil ditambahkan');
+        return view('data_kk.show', compact('dataKk'));
     }
-    
 
-    // Menampilkan detail KK
-    public function show($id)
+    public function edit(DataKk $dataKk)
     {
-        $kk = DataKk::findOrFail($id);
-        $breadcrumb = (object) ['title' => 'Detail Data KK', 'route' => 'kk.show', 'id' => $id]; // membuat objek $breadcrumb
-
-        return view('kk.show', compact('kk', 'breadcrumb'));
+        // Menampilkan form pengeditan data KK
+        return view('data_kk.edit', compact('dataKk'));
     }
 
-    // Menampilkan form untuk mengedit KK
-    public function edit($id)
-    {   
-        $kk = DataKk::findOrFail($id);
-        $breadcrumb = (object)[
-        'title' => 'Edit Data KK',
-        'route' => 'kk.edit',
-        'id' => $id
-    ];
+    public function update(Request $request, DataKk $dataKk)
+{
+    // Validasi data yang dikirim dari form
+    $validatedData = $request->validate([
+        'kepala_keluarga' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'no_kk' => 'required|string|max:16|unique:data_kk,no_kk,' . $dataKk->id,
+    ]);
 
-    return view('kk.edit', compact('kk', 'breadcrumb'));
-    }
+    // Perbarui data KK
+    $dataKk->update([
+        'kepala_keluarga' => $validatedData['kepala_keluarga'],
+        'image' => $request->hasFile('image') ? $request->file('image')->store('images') : $dataKk->image,
+        'no_kk' => $validatedData['no_kk'],
+    ]);
 
-    // Menyimpan perubahan KK ke dalam database
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'kepala_keluarga' => 'required|string|max:255',
-            'no_kk' => 'required|string|max:16',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072', // Ubah menjadi nullable agar tidak selalu dianggap wajib
-            'rt_id' => 'required',
-            'status_ekonomi' => 'required|in:Mampu,Tidak Mampu',
-        ]);
+    // Redirect ke halaman index KK setelah berhasil memperbarui
+    return redirect()->route('data_kk.index')->with('success', 'Data KK berhasil diperbarui');
+}
 
-        $kk = DataKk::findOrFail($id);
-        
-        // Memeriksa apakah file gambar diunggah, jika ya, proses gambar baru
-        if ($request->hasFile('image')) {
-            $img = $request->file('image');
-            $filename = $img->getClientOriginalName();
-            $kk->image = $filename;
-            $img->storeAs('public/foto_rumah', $filename); // Simpan gambar baru ke dalam direktori public/foto_rumah
-            
-            // Hapus gambar lama jika ada
-            if ($kk->image) {
-                Storage::delete('public/foto_rumah/' . $kk->image);
-            }
-        }
+public function destroy(DataKk $dataKk)
+{
+    // Hapus data KK
+    $dataKk->delete();
 
-        $kk->update([
-            'kepala_keluarga' => $request->kepala_keluarga,
-            'no_kk' => $request->no_kk,
-            'rt_id' => $request->rt_id,
-            'status_ekonomi' => $request->status_ekonomi,
-        ]);
+    // Redirect ke halaman index KK setelah berhasil menghapus
+    return redirect()->route('data_kk.index')->with('success', 'Data KK berhasil dihapus');
+}
 
-        return redirect()->route('kk.index')->with('success', 'Data KK berhasil diperbarui');
-    }
-
-    // Menghapus KK dari database
-    public function destroy($id)
-    {
-        $kk = DataKk::findOrFail($id);
-        $kk->delete();
-
-        return redirect()->route('kk.index')->with('success', 'Data KK berhasil dihapus');
-    }
 }

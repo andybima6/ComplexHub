@@ -1,10 +1,9 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateDataPendudukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +12,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('penduduks', function (Blueprint $table) {
+        Schema::create('penduduk', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('nik')->unique();
             $table->unsignedBigInteger('rt_id');
-            $table->foreign('rt_id')->references('id')->on('rt')->onDelete('cascade');
-            $table->unsignedBigInteger('data_kks_id');
-            $table->foreign('data_kks_id')->references('id')->on('data_kks')->onDelete('cascade');
+            $table->foreign('rt_id')->references('id')->on('data_rt')->onDelete('cascade');
+            $table->unsignedBigInteger('data_kk_id');
+            $table->foreign('data_kk_id')->references('id')->on('data_kk')->onDelete('cascade');
             $table->enum('gender',['Perempuan','Laki-laki']);
             $table->string('usia');
             $table->string('tmp_lahir');
@@ -41,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penduduks');
+        Schema::dropIfExists('penduduk');
     }
-};
+}
