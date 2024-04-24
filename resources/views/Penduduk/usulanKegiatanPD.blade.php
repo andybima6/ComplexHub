@@ -86,7 +86,7 @@
                         lingkungan serta mempercepat respons dan koordinasi dari pihak berwenang.</span>
                 </div>
 
-
+                {{-- Table Tambah --}}
                 <table id="tabelUsulan"
                     class="rounded-md relative p-16 top-52 left-16 bg-white mr-28"style="display:none;z-indeks:10;position: absolute; top: 45%; left: 8%; z-index: 0;background-color:white;">
                     <thead>
@@ -113,10 +113,13 @@
                             <td class="border px-4 py-2 text-center">comment kegiatan 3</td>
                             <td class="border px-4 py-2 text-center">RT</td>
                             <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
-                                <button class=""
+                                <button
                                     style="width:55px;height:34px;border-radius:10px;background-color:#2F80ED; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
+                                    <a href = "{{ route('detailKegiatanPD') }}">
                                     Show
+                                </a>
                                 </button>
+
                                 <button class="editbutton"
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
@@ -156,13 +159,14 @@
                                                 Close</p>
                                         </div>
 
+                                        <a href="{{ route('tambahKegiatanPD') }}">
                                         <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
                                             style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
                                             <button id="editSaveButton" class="relative left-4"
                                                 style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
                                                 onclick="saveEditData()">Save</button>
-
-                                        </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -176,6 +180,7 @@
                         <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
                     </tbody>
                 </table>
+            </div>
         </main>
 
         <script>

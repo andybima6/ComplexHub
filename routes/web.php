@@ -30,25 +30,29 @@ Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
 
 
+// Kegiatan
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/RT/usulanKegiatanRT', [kegiatanController::class,'indexRT']);
+    Route::get('/RT/usulanKegiatanRT', [kegiatanController::class,'indexRT'])->name( 'usulanKegiatanRT' );
+    Route::get('/RT/detailKegiatanRT', [kegiatanController::class, 'indexDetailIzinRT'])->name( 'detailKegiatanRT' );
+
 });
 
 
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/RW/usulanKegiatanRW', [kegiatanController::class,'indexRW']);
+    Route::get('/RW/usulanKegiatanRW', [kegiatanController::class,'indexRW'])->name( 'usulanKegiatanRW' );
+    Route::get('/RW/detailKegiatanRW', [kegiatanController::class, 'indexDetailIzinRW'])->name( 'detailKegiatanRW' );
 });
 
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk']);
-
-
+    Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk'])->name( 'usulanKegiatanPD' );;
+    Route::get('/Penduduk/detailKegiatanPD', [kegiatanController::class, 'indexDetailIzinPenduduk'])->name( 'detailKegiatanPD' );
+    Route::get('/Penduduk/tambahKegiatanPD', [kegiatanController::class, 'indexTambahIzinPenduduk'])->name( 'tambahKegiatanPD' );
 });
 
 //UMKM
-Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT'); 
-Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT'); 
-Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW'); 
+Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
+Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT');
+Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW');
 Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dataUsahaRW');
 Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'indexIzinPenduduk'])->name('izinUsahaPenduduk');
 Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name( 'dataUsahaPenduduk' );
