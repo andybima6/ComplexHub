@@ -90,6 +90,8 @@ header .addMemberBtn button, .popup header .closeBtn, .popup footer .submitBtn{
 .container table{
     border-collapse: collapse;
     text-align: left;
+    background-color: white;
+    color: #fff;
 }
 
 table .heading{

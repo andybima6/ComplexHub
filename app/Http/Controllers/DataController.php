@@ -34,4 +34,14 @@ class DataController extends Controller
             ];
             return view('warga', ['breadcrumb' => $breadcrumb]);
         }
+
+        public function saranPage()
+        {
+            $user = auth()->user();
+
+            $breadcrumb = (object)[
+                'title' => 'Saran dan Pengaduan',
+            ];
+            return view('saran', ['breadcrumb' => $breadcrumb]);
+        }
 }

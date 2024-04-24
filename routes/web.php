@@ -27,7 +27,7 @@ Route::get('/dashboard', [dashboardController::class,'index']);
 Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
 Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
-
+Route::get('/saran', [DataController::class, 'saranPage'])->name('saran.page');
 
 Route::group(['prefix' => 'usulan'], function(){
     Route::get('/RT/usulanKegiatanRT', [kegiatanController::class,'indexRT']);
