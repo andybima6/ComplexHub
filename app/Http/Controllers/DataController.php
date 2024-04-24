@@ -12,7 +12,8 @@ class DataController extends Controller
             $user = auth()->user();
 
             $breadcrumb = (object)[
-                'title' => 'Data RT',
+                'title' => 'Pendataan',
+                'subtitle' => 'Data RT',
             ];
             return view('rt', ['breadcrumb' => $breadcrumb]);
         }
@@ -21,7 +22,8 @@ class DataController extends Controller
             $user = auth()->user();
 
             $breadcrumb = (object)[
-                'title' => 'Data Kartu Keluarga',
+                'title' => 'Pendataan',
+                'subtitle' => 'Data Kartu Keluarga',
             ];
             return view('kk', ['breadcrumb' => $breadcrumb]);
         }
@@ -30,7 +32,8 @@ class DataController extends Controller
             $user = auth()->user();
 
             $breadcrumb = (object)[
-                'title' => 'Data Warga',
+                'title' => 'Pendataan',
+                'subtitle' => 'Data Warga',
             ];
             return view('warga', ['breadcrumb' => $breadcrumb]);
         }
@@ -41,7 +44,19 @@ class DataController extends Controller
 
             $breadcrumb = (object)[
                 'title' => 'Saran dan Pengaduan',
+                'subtitle' => 'Saran dan Pengaduan',
             ];
             return view('saran', ['breadcrumb' => $breadcrumb]);
+        }
+
+        public function detailsaranPage()
+        {
+            $user = auth()->user();
+
+            $breadcrumb = (object)[
+                'title' => 'Saran dan Pengaduan',
+                'subtitle' => 'Detail Saran dan Pengaduan',
+            ];
+            return view('detailSaran', ['breadcrumb' => $breadcrumb]);
         }
 }
