@@ -15,12 +15,8 @@
 
 <body>
     @include('layouts.header')
-
     @include('layouts.sidebar')
-
     @yield('content')
-
-
 
     {{-- JS --}}
     <script src='{{ asset('js/close.js') }}'></script>
@@ -33,5 +29,5 @@
 
     
 </body>
- 
+
 </head>
