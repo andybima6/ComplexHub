@@ -45,6 +45,7 @@ body{
     outline: none;
     transition: 0.3s;
     cursor: pointer;
+    color: black;
 }
 
 
@@ -73,7 +74,6 @@ body{
 
 header .addMemberBtn button, .popup header .closeBtn, .popup footer .submitBtn{
     padding: 9px 14px;
-    background: white;
     font-size: 16px;
     cursor: pointer;
     pointer-events: auto;
@@ -90,6 +90,8 @@ header .addMemberBtn button, .popup header .closeBtn, .popup footer .submitBtn{
 .container table{
     border-collapse: collapse;
     text-align: left;
+    background-color: white;
+    color: black;
 }
 
 table .heading{
@@ -283,7 +285,7 @@ table tr .empty{
 }
 
 .popup form{
-    background-color: #fff;
+    background-color: white;
     padding: 10px 20px;
     display: flex;
     align-items: flex-start;
