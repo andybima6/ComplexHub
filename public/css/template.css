@@ -191,3 +191,106 @@ img{
     border-radius: 50%;
     margin-right: 8px;
 }
+
+.sidebar-active .bgusulan {
+    margin-left: 250px;
+    margin-right: 240px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Pop Up */
+.modal {
+    display: none; /* Sembunyikan modal secara default */
+    position: fixed; /* Tetapkan posisi modal */
+    z-index: 1; /* Menetapkan z-index agar modal muncul di atas konten */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Tambahkan scroll jika konten terlalu panjang */
+    background-color: rgb(0,0,0); /* Warna latar belakang gelap */
+    background-color: rgba(0,0,0,0.4); /* Warna latar belakang gelap dengan opasitas */
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Menempatkan modal di tengah layar */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 845px;
+    height: 950px;
+    position: relative; /* Penting untuk menetapkan posisi relatif */
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  ::placeholder {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /* Regular */
+
+}
+
+.garis{
+    position: relative;
+    top: 540px;
+}
+
+.button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 34px;
+    border-radius: 10px;
+    background-color: #2F80ED;
+}
+.svg-style {
+    margin-left: 10px;
+    margin-top: 2px;
+    width: 25px;
+    height: 24px;
+    fill: white;
+}
+
+/* CSS untuk layout responsif */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+}
+
+
+/* Atur ukuran elemen dalam grid */
+.header {
+    grid-row: 1 / 2;
+}
+
+.content {
+    grid-row: 2 / 3;
+}
+
+.footer {
+    grid-row: 3 / 4;
+}
+
+/* Media queries untuk layout pada layar berukuran kecil */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    /* tambahkan aturan CSS lainnya sesuai kebutuhan */
+}
