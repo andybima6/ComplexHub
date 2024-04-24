@@ -15,12 +15,8 @@
 
 <body>
     @include('layouts.header')
-
     @include('layouts.sidebar')
-
     @yield('content')
-
-
 
     {{-- JS --}}
     <script src='{{ asset('js/close.js') }}'></script>
@@ -31,5 +27,5 @@
     <script src='{{ asset('js/editPopUpKegiatan.js') }}'></script>
     <script src='{{ asset('js/tambahKegiatanPopup.js') }}'></script>
 </body>
- 
+
 </head>
