@@ -109,11 +109,55 @@
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
-
                                 <button class=""
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
-                                </button>
+                                </button>   
+                                <div id="myModalEdit" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content absolute inset-0"
+                                        style="background-color:#FFFFFF;border-radius:15px;">
+                                        <span id="closeModalEdit" class="close">&times;</span>
+                                        <div class="relative top-4 left-2 "
+                                            style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
+                                            Edit Usulan Kegiatan</div>
+                                        <hr class="relative top-8 righ-12" style="border-width: 3px;">
+                                        <input id="editNamaKegiatan" class="relative top-20"
+                                            style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                                            type="text" placeholder="Nama Kegiatan">
+
+                                        <input id="editKeterangan" class="relative top-28"
+                                            style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                                            type="text" placeholder="Keterangan">
+
+                                        <label for="editFileInput" class="relative top-36 left-10 ml-2"
+                                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
+                                            Document</label>
+                                        <input id="editFileInput" style="display: none;" type="file">
+
+                                        <input id="editLingkup" class="relative top-44"
+                                            style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                                            type="text" placeholder="Lingkup">
+
+                                        <hr class="garis" style="border-width: 3px;">
+
+                                        <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
+                                            style="background-color: #777777;width:69px;height:43px;border-radius:5px">
+                                            <p
+                                                style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500">
+                                                Close</p>
+                                        </div>
+
+
+                                            <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
+                                                style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
+                                                <button id="editSaveButton" class="relative left-4"
+                                                    style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
+                                                    onclick="saveEditData()">Save</button>
+                                            </div>
+
+                                    </div>
+
                             </td>
                         </tr>
                         <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
@@ -121,12 +165,52 @@
                 </table>
             </div>
     </main>
+    <div id="myModalEdit" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content absolute inset-0"
+            style="background-color:#FFFFFF;border-radius:15px;">
+            <span id="closeModalEdit" class="close">&times;</span>
+            <div class="relative top-4 left-2 "
+                style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
+                Edit Usulan Kegiatan</div>
+            <hr class="relative top-8 righ-12" style="border-width: 3px;">
+            <input id="editNamaKegiatan" class="relative top-20"
+                style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                type="text" placeholder="Nama Kegiatan">
 
+            <input id="editKeterangan" class="relative top-28"
+                style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                type="text" placeholder="Keterangan">
+
+            <label for="editFileInput" class="relative top-36 left-10 ml-2"
+                style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
+                Document</label>
+            <input id="editFileInput" style="display: none;" type="file">
+
+            <input id="editLingkup" class="relative top-44"
+                style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                type="text" placeholder="Lingkup">
+
+            <hr class="garis" style="border-width: 3px;">
+
+            <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
+                style="background-color: #777777;width:69px;height:43px;border-radius:5px">
+                <p
+                    style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500">
+                    Close</p>
+            </div>
+
+
+                <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
+                    style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
+                    <button id="editSaveButton" class="relative left-4"
+                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
+                        onclick="saveEditData()">Save</button>
+                </div>
+
+        </div>
     <script>
-        // Fungsi untuk melakukan redirect ke halaman tambahkegiatanPD
-        function redirectToTambahKegiatanPD() {
-            window.location.href = "{{ route('tambahkegiatanPD') }}";
-        }
+
 
         // Event listener untuk tombol "Save"
         document.getElementById("saveButton").addEventListener("click", function() {

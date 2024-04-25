@@ -46,10 +46,11 @@ Route::group(['prefix' => 'usulan'], function(){
 });
 
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk'])->name( 'usulanKegiatanPD' );;
-    Route::get('/Penduduk/detailKegiatanPD', [kegiatanController::class, 'indexDetailIzinPenduduk'])->name( 'detailKegiatanPD' );
-    Route::get('/Penduduk/tambahKegiatanPD', [kegiatanController::class, 'indexTambahIzinPenduduk'])->name( 'tambahKegiatanPD' );
+    Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk'])->name('usulanKegiatanPD');
+    Route::get('/Penduduk/detailKegiatanPD', [kegiatanController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
+    Route::get('/Penduduk/tambahKegiatanPD', [kegiatanController::class, 'indexTambahIzinPenduduk'])->name('tambahKegiatanPD');
 });
+
 
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');

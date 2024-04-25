@@ -175,15 +175,11 @@ main {
     margin-left: 30px;
 }
 
-.pointer:hover svg path {
-    fill: #518AD8 !important;
-}
 
 
 
-.pointer:hover span {
-    color: #518AD8 !important;
-}
+
+
 
 img{
     width: 50px;
