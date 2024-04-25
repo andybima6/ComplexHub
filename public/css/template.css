@@ -194,10 +194,17 @@ img{
 
 .sidebar-active .bgusulan {
     margin-left: 250px;
+    width: auto;
+    transition: margin-left 0.3s ease;
+
+}
+
+
+.sidebar-active .tabelUsulan {
+    margin-left: 250px;
     margin-right: 240px;
     transition: margin-left 0.3s ease;
 }
-
 /* Pop Up */
 .modal {
     display: none; /* Sembunyikan modal secara default */

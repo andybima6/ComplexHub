@@ -1,4 +1,5 @@
 @extends('layouts.welcome')
+
 @section('content')
     <main style="overflow-y: auto;">
         <div class="md:justify-between mt-20 py-24 flex">
@@ -11,8 +12,6 @@
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
                         01
-
-                        <!-- tambahkan opsi lainnya sesuai kebutuhan -->
                     </a>
                 </div>
                 </p>
@@ -71,9 +70,10 @@
             </div>
 
             {{-- Table Tambah --}}
-            <div class="absolute inset-x-0  p-16  left-16 bg-white mr-28 rounded-lg" style = "top:45%">
+            <div class="tabelUsulan absolute inset-x-0  p-16  left-56 bg-white mr-28 rounded-lg "
+                style = "top:45%;width:80%">
                 <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Izin Usaha RT :</p>
-                <table class="tabelUsulan md:table-fixed w-full">
+                <table class=" md:table-fixed w-full">
                     <thead>
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/6">No</th>
@@ -99,61 +99,16 @@
                             <td class="border px-4 py-2 text-center">RT</td>
                             <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
                                 <a href="{{ route('detailKegiatanPD') }}">
-                                <button class=""
-                                    style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
-                                    show
-                                </button>
-                            </a>
+                                    <button class=""
+                                        style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
+                                        show
+                                    </button>
+                                </a>
 
                                 <button class="editbutton"
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
-
-                                <div id="myModalEdit" class="modal">
-                                    <!-- Modal content -->
-                                    <div class="modal-content absolute inset-0"
-                                        style="background-color:#FFFFFF;border-radius:15px;">
-                                        <span id="closeModalEdit" class="close">&times;</span>
-                                        <div class="relative top-4 left-2 "
-                                            style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
-                                            Edit Usulan Kegiatan</div>
-                                        <hr class="relative top-8 righ-12" style="border-width: 3px;">
-                                        <input id="editNamaKegiatan" class="relative top-20"
-                                            style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                                            type="text" placeholder="Nama Kegiatan">
-
-                                        <input id="editKeterangan" class="relative top-28"
-                                            style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                                            type="text" placeholder="Keterangan">
-
-                                        <label for="editFileInput" class="relative top-36 left-10 ml-2"
-                                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
-                                            Document</label>
-                                        <input id="editFileInput" style="display: none;" type="file">
-
-                                        <input id="editLingkup" class="relative top-44"
-                                            style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                                            type="text" placeholder="Lingkup">
-
-                                        <hr class="garis" style="border-width: 3px;">
-
-                                        <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
-                                            style="background-color: #777777;width:69px;height:43px;border-radius:5px">
-                                            <p
-                                                style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500">
-                                                Close</p>
-                                        </div>
-
-                                        <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
-                                            style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
-                                            <button id="editSaveButton" class="relative left-4"
-                                                style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
-                                                onclick="saveEditData()">Save</button>
-
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <button class=""
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
@@ -161,15 +116,23 @@
                                 </button>
                             </td>
                         </tr>
-
                         <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
                     </tbody>
                 </table>
             </div>
-
     </main>
 
     <script>
+        // Fungsi untuk melakukan redirect ke halaman tambahkegiatanPD
+        function redirectToTambahKegiatanPD() {
+            window.location.href = "{{ route('tambahkegiatanPD') }}";
+        }
+
+        // Event listener untuk tombol "Save"
+        document.getElementById("saveButton").addEventListener("click", function() {
+            // Panggil fungsi redirect setelah tombol "Save" diklik
+            redirectToTambahKegiatanPD();
+        });
         // Ambil modal edit
         var modalEdit = document.getElementById('myModalEdit');
 
