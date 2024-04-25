@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="wrapper">
@@ -75,7 +75,7 @@
                 <label for="tampilkanSandi" style="margin-right: auto;">
                     <input type="checkbox" id="tampilkanSandi" style="accent-color: green;">
                     <p style="font-size: 13px; font-family: 'Times New Roman', Times, serif; display: inline-block; margin-left: 5px;">Tampilkan Kata Sandi</p>
-                  </label> 
+                  </label>
                 <button type="submit">Login</button>
             </form>
         </div>

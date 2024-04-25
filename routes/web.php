@@ -7,6 +7,9 @@ use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\DataRtController;
 use App\Http\Controllers\kegiatanController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\RedirectController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -60,3 +63,29 @@ Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dat
 Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'indexIzinPenduduk'])->name('izinUsahaPenduduk');
 Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name( 'dataUsahaPenduduk' );
 Route::get('/Penduduk/detailIzinUsaha', [UmkmController::class, 'indexDetailIzinPenduduk'])->name( 'detailIzinUsaha' );
+
+
+//  jika user belum login
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::post('/', [AuthController::class, 'dologin']);
+
+});
+
+// untuk superadmin dan pegawai
+Route::group(['middleware' => ['auth', 'checkrole:1,2']], function() {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/redirect', [RedirectController::class, 'cek']);
+});
+
+
+// untuk superadmin
+Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
+    Route::get('/rt', [DataRtController::class, 'index']);
+});
+
+// untuk pegawai
+Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
+    Route::get('/pegawai', [DataPendudukController::class, 'index']);
+
+});
