@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -59,4 +60,23 @@ class DataController extends Controller
             ];
             return view('detailSaran', ['breadcrumb' => $breadcrumb]);
         }
+
+        public function tanggapanPage()
+{
+    // Mendapatkan user yang sedang login
+    $user = auth()->user();
+
+    // Membuat objek breadcrumb
+    $breadcrumb = (object) [
+        'title' => 'Saran dan Pengaduan',
+        'subtitle' => 'Tanggapan',
+    ];
+
+    return view('tanggapan', ['breadcrumb' => $breadcrumb]);
+        
+}
+
+
+
+
 }

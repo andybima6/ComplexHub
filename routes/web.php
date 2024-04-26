@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\DestinasiController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -33,7 +35,7 @@ Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
 Route::get('/saran', [DataController::class, 'saranPage'])->name('saran.page');
 Route::get('/detailSaran', [DataController::class, 'detailsaranPage'])->name('detailsaran.page');
-Route::get('/detailSaran/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
+Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
 
 // Kegiatan
 Route::group(['prefix' => 'usulan'], function(){
@@ -90,4 +92,25 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
     Route::get('/pegawai', [DataPendudukController::class, 'index']);
 
+});
+
+<<<<<<< HEAD
+// Destinasi Wisata
+Route::group(['prefix' => 'destinasi'], function(){
+    Route::get('/RW/destinasiwisataRW', [DestinasiController::class,'indexRW']);
+});
+
+Route::group(['prefix' => 'destinasi'], function(){
+    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class,'indexDestinasi']);
+=======
+Route::group(['prefix' => 'iuran'], function () {
+    Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
+
+});
+
+
+Route::group(['prefix' => 'pengeluaran'], function () {
+    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+
+>>>>>>> 6776efec34a37921a1c2ff22eeeac245323cf7a8
 });
