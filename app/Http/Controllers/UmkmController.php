@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Umkm;
 use Illuminate\Http\Request;
 
 class UmkmController extends Controller
@@ -76,5 +77,27 @@ class UmkmController extends Controller
             'deskripsiUsaha' => 'required',
             'fotoProduk' => 'required',
         ]);
+    }
+
+    public function edit($id) {
+        $umkm = Umkm::find($id);
+        return view('Penduduk.izinUsahaPenduduk', compact('umkm'));
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'namaLengkap' => 'required',
+            'NIK' => 'required',
+            'namaUsaha' => 'required',
+            'deskripsiUsaha' => 'required',
+            'fotoProduk' => 'required',
+        ]);
+        Umkm::find($id)->update($request->all());
+        return redirect()->route('Penduduk.izinUsahaPenduduk')->with('success', 'Data berhasil diperbaruhi');
+    }
+
+    public function destroy($id) {
+        Umkm::destroy($id);
+        return redirect()->route('Penduduk/izinUsahaPenduduk')->with('success', 'Data berhasil dihapus');
     }
 }
