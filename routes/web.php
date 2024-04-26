@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
@@ -87,5 +88,16 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
 // untuk pegawai
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
     Route::get('/pegawai', [DataPendudukController::class, 'index']);
+
+});
+
+Route::group(['prefix' => 'iuran'], function () {
+    Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
+
+});
+
+
+Route::group(['prefix' => 'pengeluaran'], function () {
+    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
 
 });
