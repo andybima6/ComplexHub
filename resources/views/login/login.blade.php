@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.rtl.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-grid.rtl.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.rtl.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-reboot.rtl.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilities.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilities.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilities.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilities.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilities.rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilities.rtl.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilites.rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap-utilites.rtl.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.rtl.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login/bootstrap.rtl.min.css.map') }}">
+   
+
+
+
 </head>
+
 <body>
     <div class="wrapper">
         <form action="#">
@@ -82,4 +120,5 @@
     </div> -->
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -37,10 +37,12 @@ Route::get('/detailSaran/tanggapan', [DataController::class, 'tanggapanPage'])->
 
 // Kegiatan
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/RT/usulanKegiatanRT', [kegiatanController::class,'indexRT'])->name( 'usulanKegiatanRT' );
-    Route::get('/RT/detailKegiatanRT', [kegiatanController::class, 'indexDetailIzinRT'])->name( 'detailKegiatanRT' );
-
+    Route::get('/RT/usulanKegiatanRT', [KegiatanController::class,'indexRT'])->name('usulanKegiatanRT');
+    Route::get('/RT/detailKegiatanRT', [KegiatanController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
+    Route::delete('/RT/deleteKegiatanRT/{id}', [KegiatanController::class, 'deleteKegiatanRT'])->name('deleteKegiatanRT');
+    Route::post('/RT/rejectKegiatanRT/{id}', [KegiatanController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 });
+
 
 
 Route::group(['prefix' => 'usulan'], function(){
