@@ -5,6 +5,7 @@
                 <h1>{{ $breadcrumb->title }} <span style="font-size: 20px; font-weight: normal;">&gt;</span></h1> 
                 <h2 style="font-size: 20px;">{{ $breadcrumb->subtitle }}</h2>
             </div>
+
         </div>
     </div>
 </section>

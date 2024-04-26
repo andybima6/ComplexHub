@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\DestinasiController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -88,4 +89,13 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
     Route::get('/pegawai', [DataPendudukController::class, 'index']);
 
+});
+
+// Destinasi Wisata
+Route::group(['prefix' => 'destinasi'], function(){
+    Route::get('/RW/destinasiwisataRW', [DestinasiController::class,'indexRW']);
+});
+
+Route::group(['prefix' => 'destinasi'], function(){
+    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class,'indexDestinasi']);
 });
