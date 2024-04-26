@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
@@ -33,7 +34,7 @@ Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
 Route::get('/saran', [DataController::class, 'saranPage'])->name('saran.page');
 Route::get('/detailSaran', [DataController::class, 'detailsaranPage'])->name('detailsaran.page');
-Route::get('/detailSaran/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
+Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
 
 // Kegiatan
 Route::group(['prefix' => 'usulan'], function(){
@@ -87,5 +88,16 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
 // untuk pegawai
 Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
     Route::get('/pegawai', [DataPendudukController::class, 'index']);
+
+});
+
+Route::group(['prefix' => 'iuran'], function () {
+    Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
+
+});
+
+
+Route::group(['prefix' => 'pengeluaran'], function () {
+    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
 
 });

@@ -24,7 +24,7 @@
                         <td class="border px-4 py-2 text-center" style="color: black">Saya ingin melaporkan adanya kebisingan di malam hari yang mengganggu ketenangan warga sekitar.</td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset('lampiran/bukti_kebisingan.jpg') }}" alt="Bukti Kebisingan">
+                                <img src="{{ asset('img/pic1.jpg') }}" alt="Bukti Kebisingan">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">
@@ -48,6 +48,14 @@
                                 </svg>                               
                             </button>
                         </td>
+                        <!-- saran.blade.php -->
+
+@if(Session::has('success'))
+<div class="bg-green-200 p-4 mb-4 rounded-lg">
+    {{ Session::get('success') }}
+</div>
+@endif
+
                     
                     </tr>
                 </tbody>
