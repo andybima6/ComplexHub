@@ -94,23 +94,23 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
 
 });
 
-<<<<<<< HEAD
+
 // Destinasi Wisata
 Route::group(['prefix' => 'destinasi'], function(){
     Route::get('/RW/destinasiwisataRW', [DestinasiController::class,'indexRW']);
 });
 
-Route::group(['prefix' => 'destinasi'], function(){
-    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class,'indexDestinasi']);
-=======
+Route::group(['prefix' => 'destinasi'], function () {
+    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    
+});
+
 Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 
 });
 
-
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
 
->>>>>>> 6776efec34a37921a1c2ff22eeeac245323cf7a8
 });
