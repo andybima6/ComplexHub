@@ -112,7 +112,7 @@
                                 <button class=""
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
-                                </button>   
+                                </button>
                                 <div id="myModalEdit" class="modal">
                                     <!-- Modal content -->
                                     <div class="modal-content absolute inset-0"
