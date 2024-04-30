@@ -8,6 +8,7 @@ class DataPenduduk extends Model
 {
     use HasFactory;
 
+
     protected $table = 'data_penduduk';
 
     public function rt()

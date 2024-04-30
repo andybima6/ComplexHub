@@ -28,33 +28,38 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content absolute inset-0 mt-56"
+                <form method="post" action="{{ route('tambahKegiatanPD') }}" class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
+                    @csrf
                     <span id="closeModal" class="close">&times;</span>
                     <div class="relative top-6 left-8 "
                         style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                         Tambah Usulan Kegiatan</div>
                     <hr class="relative top-8" style="border-width: 3px;">
-                    <input id="namaKegiatan" class="relative top-20 left-10"
+                    <input id="namaKegiatan" name="name" class="relative top-20 left-10"
                         style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                         type="text" placeholder="Nama Kegiatan">
 
-                    <input id="keterangan" class="relative top-28 left-10"
+                    <input id="keterangan" name="description" class="relative top-28 left-10"
                         style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                         type="text" placeholder="Keterangan">
 
-                    <label for="fileInput" class="relative top-36 left-10"
+                    <input id="document" name="document" class="relative top-28 left-10"
+                        style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                        type="text" placeholder="Document">
+
+                    {{-- <label for="fileInput" name="document" class="relative top-36 left-10"
                         style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
                         Document</label>
-                    <input id="fileInput" style="display: none;" type="file">
+                    <input id="fileInput" style="display: none;" type="file"> --}}
 
-                    <select id="lingkup" class="relative top-44 left-10"
+                    <select id="lingkup" name="rt_id" class="relative top-44 left-10"
                         style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                        <option value="rt">RT</option>
-                        <option value="rw">RW</option>
+                        <option value="1">RT 001</option>
+                        <option value="2">RT 002</option>
                     </select>
 
-                    <hr class="garis" style="border-width: 3px;">
+                    
 
                     <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
                         style="background-color: #777777;width:69px;height:43px;border-radius:5px">

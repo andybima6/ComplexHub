@@ -20,6 +20,7 @@ class ActivitySeeder extends Seeder
             'document' => 'path/to/document1.jpg',
             'comment' => 'Comment kegiatan 1',
             'status' => 'pending',
+            'rt_id' => 1,
         ]);
 
         Activity::create([
@@ -28,6 +29,7 @@ class ActivitySeeder extends Seeder
             'document' => 'path/to/document2.jpg',
             'comment' => 'Comment kegiatan 2',
             'status' => 'pending',
+            'rt_id' => 2,
         ]);
 
         // Tambahkan data kegiatan lainnya sesuai kebutuhan

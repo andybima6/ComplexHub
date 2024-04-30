@@ -17,6 +17,6 @@ class Activity extends Model
 
     public function rt()
     {
-        return $this->belongsTo(DataRt::class);
+        return $this->belongsTo(DataRt::class, 'rt_id');
     }
 }

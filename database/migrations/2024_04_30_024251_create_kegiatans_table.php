@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('comment')->nullable();
             $table->string('status');
             $table->unsignedBigInteger('rt_id')->nullable();
-            // $table->foreign('rt_id')->references('id')->on('rts');
+            // $table->foreign('rt_id')->references('id')->on('data_rt');
             $table->timestamps();
         });
     }

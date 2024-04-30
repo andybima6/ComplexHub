@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activity; // Import model Kegiatan
+use App\Models\DataRt;
 use Illuminate\Support\Facades\Gate;
 
 class ActivityController extends Controller
@@ -63,7 +64,7 @@ class ActivityController extends Controller
 
         return view('RW.detailKegiatanRW', ['breadcrumb' => $breadcrumb]);
     }
-    public function indexDetailIzinPenduduk()
+    public function indexDetailIzinPenduduk($id)
     {
         $breadcrumb = (object)[
             'title' => 'Kegiatan',
@@ -71,16 +72,40 @@ class ActivityController extends Controller
         ];
 
         // $activity = Activity::where()
-
-        return view('Penduduk.detailKegiatanPD', ['breadcrumb' => $breadcrumb]);
+        $activity = Activity::findOrFail($id);
+        return view('penduduk.detailKegiatanPD', compact('activity'));
     }
-    public function indexTambahIzinPenduduk()
+    public function indexTambahIzinPenduduk(Request $request)
     {
         $breadcrumb = (object)[
             'title' => 'Kegiatan',
             'subtitle' => '',
         ];
 
-        return view('Penduduk.tambahEditKegiatanPD', ['breadcrumb' => $breadcrumb]);
+        $rtId = 1;
+        $rt = DataRt::with(['activities'])->findOrFail($rtId);
+        $activities = $rt->activities;
+        // $rt = $request->user()->rt
+
+        return view('Penduduk.tambahEditKegiatanPD', compact('activities', 'breadcrumb'));
+    }
+
+    public function storeKegiatan(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'rt_id' => 'required|exists:data_rt,id',
+            'document' => 'string',
+        ]);
+        $activity = new Activity($request->only(['name', 'description', 'rt_id', 'document']));
+        $activity->status = 'pending';
+        $activity->save();
+        return redirect(route('tambahEditKegiatanPD'));
+    }
+    public function showKegiatan($id)
+    {
+        $activity = Activity::findOrFail($id);
+        return view('penduduk.detailKegiatanPD', compact('activity'));
     }
 }

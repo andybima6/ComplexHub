@@ -27,7 +27,7 @@
     <script src='{{ asset('js/editPopUpKegiatan.js') }}'></script>
     <script src='{{ asset('js/tambahKegiatanPopup.js') }}'></script>
 
-    
+
 </body>
 
 </head>

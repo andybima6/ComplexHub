@@ -56,6 +56,7 @@ Route::group(['prefix' => 'usulan'], function(){
 Route::group(['prefix' => 'usulan'], function(){
     Route::get('/Penduduk/usulanKegiatanPD', [ActivityController::class, 'indexPenduduk'])->name('usulanKegiatanPD');
     Route::get('/Penduduk/detailKegiatanPD', [ActivityController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
+    Route::post('/Penduduk/tambahKegiatanPD', [ActivityController::class, 'storeKegiatan'])->name('tambahKegiatanPD');
     Route::get('/Penduduk/tambahEditKegiatanPD', [ActivityController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD');
 
 });

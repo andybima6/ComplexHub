@@ -14,13 +14,13 @@ class CreateDataRtTable extends Migration
     public function up()
     {
         Schema::create('data_rt', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('nama');
-            $table->string('rt');
+            $table->string('rt')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('periode_awal');
-            $table->string('periode_akhir');
+            $table->string('periode_awal')->nullable();
+            $table->string('periode_akhir')->nullable();
             $table->timestamps();
         });
     }
