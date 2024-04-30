@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kegiatan extends Model
+class Activity extends Model
 {
     protected $fillable = [
-        'nama_kegiatan',
-        'keterangan',
+        'name',
+        'description',
         'document',
         'comment',
         'status',
@@ -17,6 +17,6 @@ class Kegiatan extends Model
 
     public function rt()
     {
-        return $this->belongsTo(Rt::class);
+        return $this->belongsTo(DataRt::class);
     }
 }

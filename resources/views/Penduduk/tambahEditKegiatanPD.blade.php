@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 
 @section('content')
-    <main style="overflow-y: auto;">
+    <main style="overflow-y: auto; min-height: 100vh;">
         <div class="md:justify-between mt-20 py-24 flex">
             <div class="md:ml-52 mt-4 md:mt-0 relative"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
@@ -149,12 +149,12 @@
                                         </div>
 
 
-                                            <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
-                                                style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
-                                                <button id="editSaveButton" class="relative left-4"
-                                                    style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
-                                                    onclick="saveEditData()">Save</button>
-                                            </div>
+                                        <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
+                                            style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
+                                            <button id="editSaveButton" class="relative left-4"
+                                                style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
+                                                onclick="saveEditData()">Save</button>
+                                        </div>
 
                                     </div>
 
@@ -167,8 +167,7 @@
     </main>
     <div id="myModalEdit" class="modal">
         <!-- Modal content -->
-        <div class="modal-content absolute inset-0"
-            style="background-color:#FFFFFF;border-radius:15px;">
+        <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
             <span id="closeModalEdit" class="close">&times;</span>
             <div class="relative top-4 left-2 "
                 style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
@@ -201,46 +200,44 @@
             </div>
 
 
-                <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
-                    style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
-                    <button id="editSaveButton" class="relative left-4"
-                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
-                        onclick="saveEditData()">Save</button>
-                </div>
+            <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
+                style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
+                <button id="editSaveButton" class="relative left-4"
+                    style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
+                    onclick="saveEditData()">Save</button>
+            </div>
 
         </div>
-    <script>
+        <script>
+            // Event listener untuk tombol "Save"
+            document.getElementById("saveButton").addEventListener("click", function() {
+                // Panggil fungsi redirect setelah tombol "Save" diklik
+                redirectToTambahKegiatanPD();
+            });
+            // Ambil modal edit
+            var modalEdit = document.getElementById('myModalEdit');
 
+            // Ambil tombol edit
+            var editButton = document.getElementsByClassName('editbutton')[0];
 
-        // Event listener untuk tombol "Save"
-        document.getElementById("saveButton").addEventListener("click", function() {
-            // Panggil fungsi redirect setelah tombol "Save" diklik
-            redirectToTambahKegiatanPD();
-        });
-        // Ambil modal edit
-        var modalEdit = document.getElementById('myModalEdit');
+            // Ambil span elemen untuk menutup modal
+            var closeModalEdit = document.getElementById('closeModalEdit');
 
-        // Ambil tombol edit
-        var editButton = document.getElementsByClassName('editbutton')[0];
+            // Ketika tombol edit diklik, tampilkan modal
+            editButton.onclick = function() {
+                modalEdit.style.display = 'block';
+            }
 
-        // Ambil span elemen untuk menutup modal
-        var closeModalEdit = document.getElementById('closeModalEdit');
-
-        // Ketika tombol edit diklik, tampilkan modal
-        editButton.onclick = function() {
-            modalEdit.style.display = 'block';
-        }
-
-        // Ketika tombol tutup di dalam modal diklik, sembunyikan modal
-        closeModalEdit.onclick = function() {
-            modalEdit.style.display = 'none';
-        }
-
-        // Ketika user mengklik di luar modal, sembunyikan modal
-        window.onclick = function(event) {
-            if (event.target == modalEdit) {
+            // Ketika tombol tutup di dalam modal diklik, sembunyikan modal
+            closeModalEdit.onclick = function() {
                 modalEdit.style.display = 'none';
             }
-        }
-    </script>
-@endsection
+
+            // Ketika user mengklik di luar modal, sembunyikan modal
+            window.onclick = function(event) {
+                if (event.target == modalEdit) {
+                    modalEdit.style.display = 'none';
+                }
+            }
+        </script>
+    @endsection

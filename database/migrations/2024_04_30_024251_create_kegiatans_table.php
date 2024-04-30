@@ -11,23 +11,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatans', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kegiatan');
-            $table->string('keterangan');
-            $table->string('document');
-            $table->string('comment');
+            $table->string('name');
+            $table->string('description');
+            $table->string('document')->nullable();
+            $table->string('comment')->nullable();
             $table->string('status');
-            $table->unsignedBigInteger('rt_id');
-            $table->foreign('rt_id')->references('id')->on('rts');
+            $table->unsignedBigInteger('rt_id')->nullable();
+            // $table->foreign('rt_id')->references('id')->on('rts');
             $table->timestamps();
         });
     }
-    /** 
+    /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('kegiatans');
+        Schema::dropIfExists('activities');
     }
 };

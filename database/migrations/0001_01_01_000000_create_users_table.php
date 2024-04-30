@@ -43,8 +43,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('kks');
+        Schema::dropIfExists('penduduk');
+        Schema::dropIfExists('data_kk');
+        Schema::dropIfExists('data_rt');
+        Schema::dropIfExists('kegiatans');
+        Schema::dropIfExists('sessions');
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
     }
 };

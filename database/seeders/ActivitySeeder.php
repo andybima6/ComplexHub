@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Kegiatan; // Pastikan model Kegiatan di-import
+use App\Models\Activity; // Pastikan model Kegiatan di-import
 
-class KegiatanSeeder extends Seeder
+class ActivitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,17 +14,17 @@ class KegiatanSeeder extends Seeder
      */
     public function run()
     {
-        Kegiatan::create([
-            'nama' => 'Kegiatan 1',
-            'keterangan' => 'Keterangan kegiatan 1',
+        Activity::create([
+            'name' => 'Kegiatan 1',
+            'description' => 'Keterangan kegiatan 1',
             'document' => 'path/to/document1.jpg',
             'comment' => 'Comment kegiatan 1',
             'status' => 'pending',
         ]);
 
-        Kegiatan::create([
-            'nama' => 'Kegiatan 2',
-            'keterangan' => 'Keterangan kegiatan 2',
+        Activity::create([
+            'name' => 'Kegiatan 2',
+            'description' => 'Keterangan kegiatan 2',
             'document' => 'path/to/document2.jpg',
             'comment' => 'Comment kegiatan 2',
             'status' => 'pending',

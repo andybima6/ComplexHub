@@ -41,112 +41,112 @@
                 Usaha RT :</p>
             <table class="md:table-fixed w-full">
                 <thead>
-                    <tr>
-                        <th class="border px-4 py-2 text-center w-1/6">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Nama Kegiatan</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Keterangan</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Document</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Comment</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border px-4 py-2 text-center">2</td>
-                        <td class="border px-4 py-2 text-center">nama kegiatan 2</td>
-                        <td class="border px-4 py-2 text-center">keterangan kegiatan 2</td>
-                        <td class="border px-4 py-2 text-center">
-                            <div class="flex justify-center">
-                                <img src="{{ asset('img/cosplay.png') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="border px-4 py-2 text-center">comment kegiatan 2</td>
-                        <div class="justify-end flex itemms-center">
-                        <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
-                            <a href="{{ route('detailKegiatanRT') }}">
-                            <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
-                                <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
+                        <tr>
+                            <th class="border px-4 py-2 text-center w-1/6">No</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Nama Kegiatan</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Keterangan</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Document</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Comment</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2 text-center">2</td>
+                            <td class="border px-4 py-2 text-center">nama kegiatan 2</td>
+                            <td class="border px-4 py-2 text-center">keterangan kegiatan 2</td>
+                            <td class="border px-4 py-2 text-center">
+                                <div class="flex justify-center">
+                                    <img src="{{ asset('img/cosplay.png') }}" alt="">
+                                </div>
+                            </td>
+                            <td class="border px-4 py-2 text-center">comment kegiatan 2</td>
+                            <div class="justify-end flex itemms-center">
+                            <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
+                                <a href="{{ route('detailKegiatanRT') }}">
+                                <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
+                                    <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
 
-                            </button>
-                        </a>
-                            <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
-                                <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-
-                            </button>
-                            <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
-                                <svg style="margin-left: 12px;margin-top:2px" width="19" height="13" viewBox="0 0 19 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-
-                            </button>
-                        </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2 text-center">2</td>
-                        <td class="border px-4 py-2 text-center">nama kegiatan 2</td>
-                        <td class="border px-4 py-2 text-center">keterangan kegiatan 2</td>
-                        <td class="border px-4 py-2 text-center">
-                            <div class="flex justify-center">
-                                <img src="{{ asset('img/cosplay.png') }}" alt="">
-                            </div>
-                        </td>
-                        <td class="border px-4 py-2 text-center">comment kegiatan 2</td>
-                        <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
-                            <a href="{{ route('detailKegiatanRT') }}">
-                            <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
-                                <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-
-                            </button>
+                                </button>
                             </a>
-                            <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
-                                <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
+                                <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
+                                    <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
 
-                            </button>
-                            <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
-                                <svg style="margin-left: 12px;margin-top:2px" width="19" height="13" viewBox="0 0 19 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
+                                </button>
+                                <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
+                                    <svg style="margin-left: 12px;margin-top:2px" width="19" height="13" viewBox="0 0 19 13" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
 
-                            </button>
-                        </td>
-                    </tr>
+                                </button>
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2 text-center">2</td>
+                            <td class="border px-4 py-2 text-center">nama kegiatan 2</td>
+                            <td class="border px-4 py-2 text-center">keterangan kegiatan 2</td>
+                            <td class="border px-4 py-2 text-center">
+                                <div class="flex justify-center">
+                                    <img src="{{ asset('img/cosplay.png') }}" alt="">
+                                </div>
+                            </td>
+                            <td class="border px-4 py-2 text-center">comment kegiatan 2</td>
+                            <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
+                                <a href="{{ route('detailKegiatanRT') }}">
+                                <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
+                                    <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                </button>
+                                </a>
+                                <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
+                                    <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                </button>
+                                <button class="" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
+                                    <svg style="margin-left: 12px;margin-top:2px" width="19" height="13" viewBox="0 0 19 13" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                </button>
+                            </td>
+                        </tr>
                     <tr>
                         <td class="border px-4 py-2 text-center">3</td>
                         <td class="border px-4 py-2 text-center">nama kegiatan 3</td>

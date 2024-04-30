@@ -28,7 +28,8 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
+                <div class="modal-content absolute inset-0 mt-56"
+                    style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     <span id="closeModal" class="close">&times;</span>
                     <div class="relative top-6 left-8 "
                         style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
@@ -47,9 +48,11 @@
                         Document</label>
                     <input id="fileInput" style="display: none;" type="file">
 
-                    <input id="lingkup" class="relative top-44 left-10"
-                        style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                        type="text" placeholder="Lingkup">
+                    <select id="lingkup" class="relative top-44 left-10"
+                        style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                        <option value="rt">RT</option>
+                        <option value="rw">RW</option>
+                    </select>
 
                     <hr class="garis" style="border-width: 3px;">
 

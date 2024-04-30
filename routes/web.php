@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\DataRtController;
-use App\Http\Controllers\kegiatanController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
@@ -38,25 +38,25 @@ Route::get('/saran', [DataController::class, 'saranPage'])->name('saran.page');
 Route::get('/detailSaran', [DataController::class, 'detailsaranPage'])->name('detailsaran.page');
 Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
 
-// Kegiatan
+// Activity
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/RT/usulanKegiatanRT', [KegiatanController::class,'indexRT'])->name('usulanKegiatanRT');
+    Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
 
-    Route::get('/RT/detailKegiatanRT', [KegiatanController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
-    Route::delete('/RT/deleteKegiatanRT/{id}', [KegiatanController::class, 'deleteKegiatanRT'])->name('deleteKegiatanRT');
-    Route::post('/RT/rejectKegiatanRT/{id}', [KegiatanController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
+    Route::get('/RT/detailKegiatanRT', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
+    Route::delete('/RT/deleteKegiatanRT/{id}', [ActivityController::class, 'deleteKegiatanRT'])->name('deleteKegiatanRT');
+    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 });
 
 
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/RW/usulanKegiatanRW', [kegiatanController::class,'indexRW'])->name( 'usulanKegiatanRW' );
-    Route::get('/RW/detailKegiatanRW', [kegiatanController::class, 'indexDetailIzinRW'])->name( 'detailKegiatanRW' );
+    Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
+    Route::get('/RW/detailKegiatanRW', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
 });
 
 Route::group(['prefix' => 'usulan'], function(){
-    Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk'])->name('usulanKegiatanPD');
-    Route::get('/Penduduk/detailKegiatanPD', [kegiatanController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
-    Route::get('/Penduduk/tambahEditKegiatanPD', [kegiatanController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD');
+    Route::get('/Penduduk/usulanKegiatanPD', [ActivityController::class, 'indexPenduduk'])->name('usulanKegiatanPD');
+    Route::get('/Penduduk/detailKegiatanPD', [ActivityController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
+    Route::get('/Penduduk/tambahEditKegiatanPD', [ActivityController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD');
 
 });
 

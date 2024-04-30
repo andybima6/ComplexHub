@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kegiatan; // Import model Kegiatan
+use App\Models\Activity; // Import model Kegiatan
 use Illuminate\Support\Facades\Gate;
 
-class KegiatanController extends Controller
+class ActivityController extends Controller
 {
     public function indexRT()
     {
@@ -16,7 +16,7 @@ class KegiatanController extends Controller
             'title' => 'Daftar Kegiatan',
             'subtitle' => '',
         ];
-        $kegiatans = Kegiatan::all(); // Mengambil semua data kegiatan dari model Kegiatan
+        $kegiatans = Activity::all(); // Mengambil semua data kegiatan dari model Kegiatan
 
         return view('RT.usulanKegiatanRT', ['breadcrumb' => $breadcrumb], compact('kegiatans'));
     }
@@ -70,6 +70,8 @@ class KegiatanController extends Controller
             'subtitle' => '',
         ];
 
+        // $activity = Activity::where()
+
         return view('Penduduk.detailKegiatanPD', ['breadcrumb' => $breadcrumb]);
     }
     public function indexTambahIzinPenduduk()
@@ -81,5 +83,4 @@ class KegiatanController extends Controller
 
         return view('Penduduk.tambahEditKegiatanPD', ['breadcrumb' => $breadcrumb]);
     }
-   
 }
