@@ -93,7 +93,7 @@
 
     <script>
         function redirectToTambahKegiatanPD() {
-            window.location.href = "{{ route('tambahKegiatanPD') }}";
+            window.location.href = "{{ route('tambahEditKegiatanPD') }}";
         }
 
         // Ambil modal edit

@@ -79,27 +79,7 @@ class KegiatanController extends Controller
             'subtitle' => '',
         ];
 
-        return view('Penduduk.tambahKegiatanPD', ['breadcrumb' => $breadcrumb]);
+        return view('Penduduk.tambahEditKegiatanPD', ['breadcrumb' => $breadcrumb]);
     }
-    public function rejectKegiatan(Request $request, $id)
-    {
-        $request->validate([
-            'alasan' => 'required|string|max:255',
-        ]);
-
-        $kegiatan = Kegiatan::findOrFail($id);
-        $kegiatan->status = 'rejected';
-        $kegiatan->comment = $request->alasan;
-        $kegiatan->save();
-
-        // Redirect or return response as needed
-    }
-    public function acceptKegiatan(Request $request, $id)
-    {
-        $kegiatan = Kegiatan::findOrFail($id);
-        $kegiatan->status = 'accepted';
-        $kegiatan->save();
-
-        // Redirect or return response as needed
-    }
+   
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\RTController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -55,11 +56,11 @@ Route::group(['prefix' => 'usulan'], function(){
 Route::group(['prefix' => 'usulan'], function(){
     Route::get('/Penduduk/usulanKegiatanPD', [kegiatanController::class,'indexPenduduk'])->name('usulanKegiatanPD');
     Route::get('/Penduduk/detailKegiatanPD', [kegiatanController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
-    Route::get('/Penduduk/tambahKegiatanPD', [kegiatanController::class, 'indexTambahIzinPenduduk'])->name('tambahKegiatanPD');
+    Route::get('/Penduduk/tambahEditKegiatanPD', [kegiatanController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD');
 
 });
 
-
+Route::resource('rts', RTController::class);
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
 Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT');

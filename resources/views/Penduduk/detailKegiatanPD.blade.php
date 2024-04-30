@@ -27,7 +27,7 @@
                     <p class="font-medium">Penduduk</p>
                 </div>
                 <div class="absolute bottom-0 right-32  h-8 w-16 right-0 mb-4">
-                    <button type="button" class=" bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2"><a href="{{ route('tambahKegiatanPD') }}" style="text-decoration:none">Kembali</a></button>
+                    <button type="button" class=" bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2"><a href="{{ route('tambahEditKegiatanPD') }}" style="text-decoration:none">Kembali</a></button>
                 </div>
             </div>
         </div>
