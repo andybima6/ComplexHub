@@ -1,17 +1,5 @@
 @extends('layouts.welcome')
 
-@php
-    function getActivityDetailJson($activity) {
-        return json_encode([
-            'id' => $activity->id,
-            'name' => $activity->name,
-            'description' => $activity->description,
-            'status' => $activity->status,
-            'document' => $activity->document,
-            'rt_id' => $activity->rt_id,
-        ]);
-    }
-@endphp
 @section('content')
     <main style="overflow-y: auto; min-height: 100vh;">
         <div class="md:justify-between mt-20 py-24 flex">
@@ -39,53 +27,50 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <form method="post" action="{{ route('tambahKegiatanPD') }}" class="modal-content absolute inset-0 mt-56"
+                <form method="post" action="{{ route('tambahEditKegiatanPD') }}" class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
                     <span id="closeModal" class="close">&times;</span>
-                    <div class="relative top-6 left-8 "
+                    <div class="relative  w-fit py-2 "
                         style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                         Tambah Usulan Kegiatan</div>
-                    <hr class="relative top-8" style="border-width: 3px;">
-                    <input id="namaKegiatan" name="name" class="relative top-20 left-10"
-                        style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                        type="text" placeholder="Nama Kegiatan">
+                    <hr class="relative " style="border-width: 3px;">
 
-                    <input id="keterangan" name="description" class="relative top-28 left-10"
-                        style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                        type="text" placeholder="Keterangan">
+                    <div class="flex flex-col gap-4 my-8">
+                        <input type="hidden" name="id" value="">
+                        <input id="editNamaKegiatan" name="name" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                            type="text" placeholder="Nama Kegiatan">
 
-                    <input id="document" name="document" class="relative top-28 left-10"
-                        style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                        type="text" placeholder="Document">
+                        <textarea id="editKeterangan" rows="10" name="description" class="relative"
+                            style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                            type="text" placeholder="Keterangan"></textarea>
 
-                    {{-- <label for="fileInput" name="document" class="relative top-36 left-10"
-                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
-                        Document</label>
-                    <input id="fileInput" style="display: none;" type="file"> --}}
+                        <label for="editFileInput" class="relative max-w-full"
+                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
+                            Upload Document
+                        </label>
+                        <input id="editFileInput" name="document" style="display: none;" type="file">
 
-                    <select id="lingkup" name="rt_id" class="relative top-44 left-10"
-                        style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                        <option value="1">RT 001</option>
-                        <option value="2">RT 002</option>
-                    </select>
-
-
-
-                    <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
-                        style="background-color: #777777;width:69px;height:43px;border-radius:5px">
-                        <p
-                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500">
-                            Close</p>
+                        <select id="lingkup" name="rt_id" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                            <option value="1">RT 001</option>
+                            <option value="2">RT 002</option>
+                        </select>
                     </div>
 
-                    <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
-                        style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
-                        {{-- <button id="saveButton" class="relative left-4"
-                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
-                            onclick="redirectToTambahKegiatanPD()">Save</button> --}}
+
+                    <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
+                        <button type="button" data-close-modal="editActivityModal" class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                            Close
+                        </button>
+                        <button id="editSaveButton" type="submit" class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                            Save
+                        </button>
                     </div>
-                </form>
+
+                </div>
+            </form>
 
             </div>
         </div>
@@ -115,21 +100,26 @@
                             <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
                             <td class="border px-4 py-2 text-center">{{ $activity->description }}</td>
                             <td class="border px-4 py-2 text-center">
-                                <div class="flex justify-center">
-                                    <img src="{{ asset('img/cosplay.png') }}" alt="">
-                                </div>
+                                @if($activity->document)
+                                <a href="{{ $activity->document }}" target="_blank" ref="noopener noreferrer" class="flex justify-center items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-5 h-5 fill-red-500"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+                                    Lihat dokumen
+                                </a>
+                                @else
+                                Tidak Ada File
+                                @endif
                             </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
                             <td class="border px-4 py-2 text-center">{{ $activity->rt->rt ?: '-' }}</td>
-                            <td class="border px-4 py-2 text-center grid grid-cols-3 gap-0">
-                                <a href="{{ route('detailKegiatanPD') }}">
+                            <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
+                                <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
+                                    <div>
                                     <button class=""
                                         style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                         show
                                     </button>
                                 </a>
-                                <button
-                                    data-edit='{{ getActivityDetailJson($activity) }}'
+                                <button data-edit='{{ getActivityDetailJson($activity) }}'
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
@@ -137,9 +127,10 @@
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
+                            </div>
                             </td>
                         </tr>
-                        @endforeach
+                    @endforeach
 
 
 
@@ -148,47 +139,47 @@
             </table>
         </div>
 
-        <form id="myModalEdit" class="modal" style="display: none">
+        <form id="editActivityModal" class="modal" action="{{ route('updateKegiatan') }}" method="post" enctype="multipart/form-data" style="display: none">
             <!-- Modal content -->
+            @csrf
             <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
-                <span id="closeModalEdit" class="close">&times;</span>
-                <div class="relative top-4 left-2 "
+                <span data-close-modal="editActivityModal" class="close" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
+                <div class="relative w-fit py-3"
                     style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                     Edit Usulan Kegiatan</div>
-                <hr class="relative top-8 righ-12" style="border-width: 3px;">
-                <input type="hidden" name="id" value="">
-                <input id="editNamaKegiatan" name="name" class="relative top-20"
-                    style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                    type="text" placeholder="Nama Kegiatan">
+                <hr class="relative" style="border-width: 3px;">
 
-                <input id="editKeterangan" name="description" class="relative top-28"
-                    style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                    type="text" placeholder="Keterangan">
+                <div class="flex flex-col gap-4 my-8">
+                    <input type="hidden" name="id" value="">
+                    <input id="editNamaKegiatan" name="name" class="relative"
+                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                        type="text" placeholder="Nama Kegiatan">
 
-                <label for="editFileInput" class="relative top-36 left-10 ml-2"
-                    style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
-                    Document</label>
-                <input id="editFileInput" name="document" style="display: none;" type="file">
+                    <textarea id="editKeterangan" rows="10" name="description" class="relative"
+                        style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                        type="text" placeholder="Keterangan"></textarea>
 
-                <input id="editLingkup" name="scope" class="relative top-44"
-                    style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                    type="text" placeholder="Lingkup">
+                    <label for="editFileInput" class="relative max-w-full"
+                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
+                        Upload Document
+                    </label>
+                    <input id="editFileInput" name="document" style="display: none;" type="file">
 
-                <hr class="garis" style="border-width: 3px;">
-
-                <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
-                    style="background-color: #777777;width:69px;height:43px;border-radius:5px">
-                    <p
-                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500">
-                        Close</p>
+                    <select id="lingkup" name="rt_id" class="relative"
+                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                        <option value="1">RT 001</option>
+                        <option value="2">RT 002</option>
+                    </select>
                 </div>
 
 
-                <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
-                    style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
-                    <button id="editSaveButton" class="relative left-4"
-                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
-                        onclick="saveEditData()">Save</button>
+                <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
+                    <button type="button" data-close-modal="editActivityModal" class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        Close
+                    </button>
+                    <button id="editSaveButton" type="submit" cl~ass="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        Save
+                    </button>
                 </div>
 
             </div>
@@ -202,19 +193,19 @@
         //     redirectToTambahKegiatanPD();
         // });
         // Ambil modal edit
-        var modalEdit = document.getElementById('myModalEdit');
+        var modalEdit = document.getElementById('editActivityModal');
 
         // Ambil tombol edit
         // var editButton = document.getElementsByClassName('editbutton')[0];
         document.querySelectorAll('[data-edit]').forEach(element => {
-            element.addEventListener('click', function(e){
+            element.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 modalEdit.style.display = 'block';
                 const data = JSON.parse(element.dataset.edit)
                 // Auto Fill
                 for (let key in data) {
-                    const input = document.querySelector(`#myModalEdit [name="${key}"]`);
+                    const input = document.querySelector(`#editActivityModal [name="${key}"]:not([type="file"])`);
                     if (input) {
                         input.value = data[key]
                     }
@@ -222,16 +213,19 @@
             });
         });
 
-        // Ambil span elemen untuk menutup modal
-        var closeModalEdit = document.getElementById('closeModalEdit');
+        // Ambil data elemen query untuk menutup modal
+        document.querySelectorAll('[data-close-modal]').forEach(element => {
+            element.addEventListener('click', () => {
+                const modalId = element.dataset.closeModal;
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            })
+        })
+
 
         // Ketika tombol edit diklik, tampilkan modal
-
-        // Ketika tombol tutup di dalam modal diklik, sembunyikan modal
-        closeModalEdit.onclick = function() {
-            modalEdit.style.display = 'none';
-        }
-
         // Ketika user mengklik di luar modal, sembunyikan modal
         window.onclick = function(event) {
             if (event.target == modalEdit) {

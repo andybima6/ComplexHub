@@ -32,53 +32,52 @@
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
                     <span id="closeModal" class="close">&times;</span>
-                    <div class="relative top-6 left-8 "
+                    <div class="relative  w-fit py-2 "
                         style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                         Tambah Usulan Kegiatan</div>
-                    <hr class="relative top-8" style="border-width: 3px;">
-                    <input id="namaKegiatan" name="name" class="relative top-20 left-10"
-                        style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                        type="text" placeholder="Nama Kegiatan">
+                    <hr class="relative " style="border-width: 3px;">
 
-                    <input id="keterangan" name="description" class="relative top-28 left-10"
-                        style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                        type="text" placeholder="Keterangan">
+                    <div class="flex flex-col gap-4 my-8">
+                        <input type="hidden" name="id" value="">
+                        <input id="editNamaKegiatan" name="name" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                            type="text" placeholder="Nama Kegiatan">
 
-                    <input id="document" name="document" class="relative top-28 left-10"
-                        style="width: 90%; height: 144px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                        type="text" placeholder="Document">
+                        <textarea id="editKeterangan" rows="10" name="description" class="relative"
+                            style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                            type="text" placeholder="Keterangan"></textarea>
 
-                    {{-- <label for="fileInput" name="document" class="relative top-36 left-10"
-                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">Upload
-                        Document</label>
-                    <input id="fileInput" style="display: none;" type="file"> --}}
+                        <label for="editFileInput" class="relative max-w-full"
+                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
+                            Upload Document
+                        </label>
+                        <input id="editFileInput" name="document" style="display: none;" type="file">
 
-                    <select id="lingkup" name="rt_id" class="relative top-44 left-10"
-                        style="width: 90%; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                        <option value="1">RT 001</option>
-                        <option value="2">RT 002</option>
-                    </select>
-
-                    
-
-                    <div class="absolute bottom-4 right-44 h-16 w-16 text-align-center justify-center"
-                        style="background-color: #777777;width:69px;height:43px;border-radius:5px">
-                        <p
-                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500">
-                            Close</p>
-                    </div>
-
-                    <div class="absolute bottom-4 right-24 h-16 w-16 text-align-center justify-center"
-                        style="background-color: #27AE60;width:69px;height:43px;border-radius:5px">
-                        <button id="saveButton" class="relative left-4"
-                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400;display: flex; align-items: center; justify-content: center;color:#FFFFFF;margin-top:10px;font-weight:500"
-                            onclick="redirectToTambahKegiatanPD()">Save</button>
+                        <select id="lingkup" name="rt_id" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                            <option value="1">RT 001</option>
+                            <option value="2">RT 002</option>
+                        </select>
                     </div>
 
 
+                    <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
+                        <button type="button" data-close-modal="editActivityModal"
+                            class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                            Close
+                        </button>
+                        <a href="{{ route('tambahEditKegiatanPD') }}"> <button id="editSaveButton" type="submit"
+                                class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                                Save
+                            </button></a>
 
-                </div>
+                    </div>
+
             </div>
+            </form>
+
+        </div>
+        </div>
         </div>
 
 

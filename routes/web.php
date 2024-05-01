@@ -18,7 +18,7 @@ Route::get('/welcome', function () {
     return view('layouts.welcome');
 });
 
-Route::get('/dashboard', [dashboardController::class,'index']);
+Route::get('/dashboard', [dashboardController::class, 'index']);
 // Route::get('/RT.usulanKegiatanRT', [dashboardController::class,'index']);
 
 // Data rt
@@ -39,7 +39,7 @@ Route::get('/detailSaran', [DataController::class, 'detailsaranPage'])->name('de
 Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
 
 // Activity
-Route::group(['prefix' => 'usulan'], function(){
+Route::group(['prefix' => 'usulan'], function () {
     Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
 
     Route::get('/RT/detailKegiatanRT', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
@@ -48,17 +48,19 @@ Route::group(['prefix' => 'usulan'], function(){
 });
 
 
-Route::group(['prefix' => 'usulan'], function(){
+Route::group(['prefix' => 'usulan'], function () {
     Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
     Route::get('/RW/detailKegiatanRW', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
 });
 
-Route::group(['prefix' => 'usulan'], function(){
+Route::group(['prefix' => 'usulan'], function () {
     Route::get('/Penduduk/usulanKegiatanPD', [ActivityController::class, 'indexPenduduk'])->name('usulanKegiatanPD');
-    Route::get('/Penduduk/detailKegiatanPD', [ActivityController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
+    Route::get('/Penduduk/detailKegiatanPD/{id}', [ActivityController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
     Route::post('/Penduduk/tambahKegiatanPD', [ActivityController::class, 'storeKegiatan'])->name('tambahKegiatanPD');
     Route::get('/Penduduk/tambahEditKegiatanPD', [ActivityController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD');
+    Route::post('/Penduduk/detailKegiatanPD', [ActivityController::class, 'updateKegiatan'])->name('updateKegiatan');
 
+    // Route::get('/Penduduk/detailKegiatanPD{id}','ActivityController@indexDetailIzinPenduduk');
 });
 
 Route::resource('rts', RTController::class);
@@ -68,52 +70,47 @@ Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dat
 Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW');
 Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dataUsahaRW');
 Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'indexIzinPenduduk'])->name('izinUsahaPenduduk');
-Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name( 'dataUsahaPenduduk' );
-Route::get('/Penduduk/detailIzinUsaha', [UmkmController::class, 'indexDetailIzinPenduduk'])->name( 'detailIzinUsaha' );
+Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name('dataUsahaPenduduk');
+Route::get('/Penduduk/detailIzinUsaha', [UmkmController::class, 'indexDetailIzinPenduduk'])->name('detailIzinUsaha');
 
 
 //  jika user belum login
-Route::group(['middleware' => 'guest'], function() {
+Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/', [AuthController::class, 'dologin']);
-
 });
 
 // untuk superadmin dan pegawai
-Route::group(['middleware' => ['auth', 'checkrole:1,2']], function() {
+Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/redirect', [RedirectController::class, 'cek']);
 });
 
 
 // untuk superadmin
-Route::group(['middleware' => ['auth', 'checkrole:1']], function() {
+Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/rt', [DataRtController::class, 'index']);
 });
 
 // untuk pegawai
-Route::group(['middleware' => ['auth', 'checkrole:2']], function() {
+Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/pegawai', [DataPendudukController::class, 'index']);
-
 });
 
 
 // Destinasi Wisata
-Route::group(['prefix' => 'destinasi'], function(){
-    Route::get('/RW/destinasiwisataRW', [DestinasiController::class,'indexRW']);
+Route::group(['prefix' => 'destinasi'], function () {
+    Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW']);
 });
 
-Route::group(['prefix' => 'destinasi'], function(){
-    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class,'indexDestinasi']);
+Route::group(['prefix' => 'destinasi'], function () {
+    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
 });
 Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
-
 });
 
 
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
-
-
 });

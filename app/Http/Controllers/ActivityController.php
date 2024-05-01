@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Activity; // Import model Kegiatan
 use App\Models\DataRt;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 
 class ActivityController extends Controller
 {
@@ -73,7 +75,7 @@ class ActivityController extends Controller
 
         // $activity = Activity::where()
         $activity = Activity::findOrFail($id);
-        return view('penduduk.detailKegiatanPD', compact('activity'));
+        return view('Penduduk.detailKegiatanPD', compact('activity', 'breadcrumb'));
     }
     public function indexTambahIzinPenduduk(Request $request)
     {
@@ -96,16 +98,35 @@ class ActivityController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'rt_id' => 'required|exists:data_rt,id',
-            'document' => 'string',
+            'document' => 'nullable|file',
         ]);
         $activity = new Activity($request->only(['name', 'description', 'rt_id', 'document']));
         $activity->status = 'pending';
         $activity->save();
         return redirect(route('tambahEditKegiatanPD'));
     }
-    public function showKegiatan($id)
+
+    public function updateKegiatan(Request $request)
     {
-        $activity = Activity::findOrFail($id);
-        return view('penduduk.detailKegiatanPD', compact('activity'));
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'rt_id' => 'required|exists:data_rt,id',
+            'document' => 'nullable|file',
+            'id' => 'required|exists:activities',
+        ]);
+
+        $activity = Activity::findOrFail($request->post('id'));
+
+
+        $activity->name = $request->name;
+        $activity->description = $request->description;
+        $activity->rt_id = $request->rt_id;
+
+        // Masukkan dokumen jika ada
+        $activity->document = uploadDocument($request->file('document'), $activity->document);
+        $activity->save();
+
+        return redirect(route('tambahEditKegiatanPD'));
     }
 }
