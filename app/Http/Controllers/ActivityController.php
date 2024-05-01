@@ -77,6 +77,7 @@ class ActivityController extends Controller
         $activity = Activity::findOrFail($id);
         return view('Penduduk.detailKegiatanPD', compact('activity', 'breadcrumb'));
     }
+    // Show
     public function indexTambahIzinPenduduk(Request $request)
     {
         $breadcrumb = (object)[
@@ -126,6 +127,26 @@ class ActivityController extends Controller
         // Masukkan dokumen jika ada
         $activity->document = uploadDocument($request->file('document'), $activity->document);
         $activity->save();
+
+        return redirect(route('tambahEditKegiatanPD'));
+    }
+    public function deleteKegiatan(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:activities',
+        ]);
+
+        $activity = Activity::findOrFail($request->id);
+
+        // Hapus dokumen terkait jika ada
+        if ($activity->document) {
+            $deletePath = public_path($activity->document);
+            if (file_exists($deletePath)) {
+                File::delete($deletePath);
+            }
+        }
+
+        $activity->delete();
 
         return redirect(route('tambahEditKegiatanPD'));
     }

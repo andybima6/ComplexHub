@@ -66,10 +66,11 @@
                             class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Close
                         </button>
-                        <a href="{{ route('tambahEditKegiatanPD') }}"> <button id="editSaveButton" type="submit"
-                                class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        <a href="{{ route('tambahEditKegiatanPD') }}" class="block">
+                            <button id="editSaveButton" type="button" class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                                 Save
-                            </button></a>
+                            </button>
+                        </a>
 
                     </div>
 
@@ -128,5 +129,6 @@
                 modalEdit.style.display = 'none';
             }
         }
+
     </script>
 @endsection

@@ -27,7 +27,8 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <form method="post" action="{{ route('tambahEditKegiatanPD') }}" class="modal-content absolute inset-0 mt-56"
+                <form method="POST" action="{{ route('tambahEditKegiatanPD') }}"
+                    class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
                     <span id="closeModal" class="close">&times;</span>
@@ -61,18 +62,20 @@
 
 
                     <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                        <button type="button" data-close-modal="editActivityModal" class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        <button type="button" data-close-modal="editActivityModal"
+                            class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Close
                         </button>
-                        <button id="editSaveButton" type="submit" class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        <button id="editSaveButton" type="submit"
+                            class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Save
                         </button>
                     </div>
 
-                </div>
+            </div>
             </form>
 
-            </div>
+        </div>
         </div>
         </div>
 
@@ -100,13 +103,18 @@
                             <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
                             <td class="border px-4 py-2 text-center">{{ $activity->description }}</td>
                             <td class="border px-4 py-2 text-center">
-                                @if($activity->document)
-                                <a href="{{ $activity->document }}" target="_blank" ref="noopener noreferrer" class="flex justify-center items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-5 h-5 fill-red-500"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
-                                    Lihat dokumen
-                                </a>
+                                @if ($activity->document)
+                                    <a href="{{ $activity->document }}" target="_blank" rel="noopener noreferrer"
+                                        class="flex justify-center items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                            class="w-5 h-5 fill-red-500">
+                                            <path
+                                                d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                                        </svg>
+                                        Lihat dokumen
+                                    </a>
                                 @else
-                                Tidak Ada File
+                                    Tidak Ada File
                                 @endif
                             </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
@@ -114,36 +122,38 @@
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
                                 <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
                                     <div>
-                                    <button class=""
-                                        style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
-                                        show
-                                    </button>
+                                        <button class=""
+                                            style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
+                                            show
+                                        </button>
                                 </a>
                                 <button data-edit='{{ getActivityDetailJson($activity) }}'
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
-                                <button class=""
+                                <button onclick="deleteActivity({{ $activity->id }})"
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
-                            </div>
-                            </td>
-                        </tr>
-                    @endforeach
+        </div>
+        </td>
+        </tr>
+        @endforeach
 
 
 
-                    <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
-                </tbody>
-            </table>
+        <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
+        </tbody>
+        </table>
         </div>
 
-        <form id="editActivityModal" class="modal" action="{{ route('updateKegiatan') }}" method="post" enctype="multipart/form-data" style="display: none">
+        <form id="editActivityModal" class="modal" action="{{ route('updateKegiatan') }}" method="post"
+            enctype="multipart/form-data" style="display: none">
             <!-- Modal content -->
             @csrf
             <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
-                <span data-close-modal="editActivityModal" class="close" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
+                <span data-close-modal="editActivityModal" class="close"
+                    style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
                 <div class="relative w-fit py-3"
                     style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                     Edit Usulan Kegiatan</div>
@@ -174,12 +184,15 @@
 
 
                 <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                    <button type="button" data-close-modal="editActivityModal" class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                    <button type="button" data-close-modal="editActivityModal"
+                        class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-50 transition ease-in-out delay-150 flex items-center justify-center text-base text-white font-medium">
                         Close
                     </button>
-                    <button id="editSaveButton" type="submit" cl~ass="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                    <button id="editSaveButton" type="submit"
+                        class="px-4 py-2 text-center rounded-md bg-green-500 hover:bg-green-600 transition ease-in-out delay-150 flex items-center justify-center text-base text-white font-medium">
                         Save
                     </button>
+
                 </div>
 
             </div>
@@ -205,7 +218,8 @@
                 const data = JSON.parse(element.dataset.edit)
                 // Auto Fill
                 for (let key in data) {
-                    const input = document.querySelector(`#editActivityModal [name="${key}"]:not([type="file"])`);
+                    const input = document.querySelector(
+                        `#editActivityModal [name="${key}"]:not([type="file"])`);
                     if (input) {
                         input.value = data[key]
                     }
@@ -230,6 +244,33 @@
         window.onclick = function(event) {
             if (event.target == modalEdit) {
                 modalEdit.style.display = 'none';
+            }
+        }
+
+        // Hapus Data Kegiatan
+        function deleteActivity(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
+                fetch('{{ route('hapusKegiatanPD') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            id: id
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle response data
+                        console.log(data);
+                        // Reload halaman setelah menghapus kegiatan
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        // Handle errors
+                        console.error(error);
+                    });
             }
         }
     </script>
