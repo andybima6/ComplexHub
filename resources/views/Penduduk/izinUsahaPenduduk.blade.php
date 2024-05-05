@@ -23,16 +23,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($izinUsaha as $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: black">1</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Miguel Santoso</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Mi Amor Bakery</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Kami menjual aneka ragam kue, dari kue basah hingga kue kering</td>
-                        <td class="border px-4 py-2 text-center" style="color: black"><i>Izin telah disetujui oleh ketua RT</i></td>
-                        <td class="border px-4 py-2 text-center" style="color: black"><i>Izin telah disetujui oleh ketua RW</i></td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black"><i>{{ $izin->status_rt }}</i></td>
+                        <td class="border px-4 py-2 text-center" style="color: black"><i>{{ $izin->status_rw }}</i></td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kopikap.jpg') }}" alt="">
+                                <img src="{{ asset($izin->foto_produk) }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">
@@ -65,7 +66,8 @@
                                 </svg>                                   
                             </button>
                         </td>
-                    </tr>
+                    </tr>                        
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -77,15 +79,16 @@
         <div class="bg-white rounded-md p-8" style="border-radius: 16px; width: 400px;">
             <h2 class="text-lg font-semibold mb-4">Form Ajukan Izin</h2>
             <hr>
-            <form>
+            <form id="izinForm" action="{{ route('storeIzin') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="mt-4 mb-4">
                     <label for="namaLengkap" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
                     <input type="text" id="namaLengkap" name="namaLengkap" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
                 </div>
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <label for="NIK" class="block text-sm font-medium text-gray-700">NIK</label>
                     <input type="text" id="NIK" name="NIK" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6">
-                </div>
+                </div> --}}
                 <div class="mb-4">
                     <label for="namaUsaha" class="block text-sm font-medium text-gray-700">Nama Usaha</label>
                     <input type="text" id="namaUsaha" name="namaUsaha" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">

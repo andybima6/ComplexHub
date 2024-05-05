@@ -11,7 +11,7 @@
                         <p class="text-white" >Kami menjual aneka ragam kue, dari kue basah hingga kue kering</p>
                         <br>
                         <p class="text-white">Jl. Bandara Palmerah 11</p>
-                    </div>
+                    </div>  
                 </div>
                 <div class="rounded-md relative p-8 mb-8 mx-auto" style="background-color: rgba(0, 0, 0, 0.7); background-image: url('{{ asset('img/homestay.jpg') }}'); max-width: 3000px; width: 90%; height: 500px; position: relative; border-radius: 16px;">
                     <div class="absolute inset-0 bg-black opacity-50" style="border-radius:16px"></div>
