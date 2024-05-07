@@ -21,15 +21,11 @@ Route::get('/welcome', function () {
 Route::get('/dashboard', [dashboardController::class, 'index']);
 // Route::get('/RT.usulanKegiatanRT', [dashboardController::class,'index']);
 
-// Data rt
-// Route::get('/data_rt', [DataRtController::class, 'index'])->name('data_rt.index');
-// Route::get('/data_rt/create', [DataRtController::class, 'create'])->name('data_rt.create');
-// Route::post('/data_rt', [DataRtController::class, 'store'])->name('data_rt.store');
-// Route::get('/data_rt/{dataRt}', [DataRtController::class, 'show'])->name('data_rt.show');
-// Route::get('/data_rt/{dataRt}/edit', [DataRtController::class, 'edit'])->name('data_rt.edit');
-// Route::put('/data_rt/{dataRt}', [DataRtController::class, 'update'])->name('data_rt.update');
-// Route::delete('/data_rt/{dataRt}', [DataRtController::class, 'destroy'])->name('data_rt.destroy');
-
+//Data rt
+// Jika views ada di dalam direktori 'data_kk'
+Route::get('/data_rt', function () {
+    return view('data_rt.index');
+})->name('data_kk.rt.index');
 
 Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
 Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
@@ -65,7 +61,7 @@ Route::group(['prefix' => 'usulan'], function () {
     // Route::get('/Penduduk/detailKegiatanPD{id}','ActivityController@indexDetailIzinPenduduk');
 });
 
-Route::resource('rts', RTController::class);
+Route::resource('rts', DataRtController::class);
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
 Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT');
