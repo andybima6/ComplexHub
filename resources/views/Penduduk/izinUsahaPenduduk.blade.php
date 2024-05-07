@@ -82,24 +82,25 @@
             <form id="izinForm" action="{{ route('storeIzin') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mt-4 mb-4">
-                    <label for="namaLengkap" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                    <input type="text" id="namaLengkap" name="namaLengkap" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
+                    <label for="nama_warga" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="nama_warga" name="nama_warga" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
                 </div>
                 {{-- <div class="mb-4">
                     <label for="NIK" class="block text-sm font-medium text-gray-700">NIK</label>
                     <input type="text" id="NIK" name="NIK" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6">
                 </div> --}}
                 <div class="mb-4">
-                    <label for="namaUsaha" class="block text-sm font-medium text-gray-700">Nama Usaha</label>
-                    <input type="text" id="namaUsaha" name="namaUsaha" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
+                    <label for="nama_usaha" class="block text-sm font-medium text-gray-700">Nama Usaha</label>
+                    <input type="text" id="nama_usaha" name="nama_usaha" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
                 </div>
                 <div class="mb-4">
-                    <label for="deskripsiUsaha" class="block text-sm font-medium text-gray-700">Deskripsi Usaha</label>
-                    <textarea id="deskripsiUsaha" name="deskripsiUsaha" rows="4" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"></textarea>
+                    <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi Usaha</label>
+                    <textarea id="deskripsi" name="deskripsi" rows="4" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="fotoProduk" class="block text-sm font-medium text-gray-700">Foto Produk</label>
-                    <input type="file" id="fotoProduk" name="fotoProduk" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6">
+                    <label for="foto_produk" class="block text-sm font-medium text-gray-700">Foto Produk</label>
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                    <input type="file" id="foto_produk" name="foto_produk" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" onchange="previewImage()">
                 </div>
                 <div class="text-right">
                     <button type="button" id="closePopupBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2">Batal</button>
@@ -123,10 +124,10 @@
     // Menampilkan pop up form dengan data lama saat tombol "Edit" diklik
     document.getElementById('editIzin').addEventListener('click', function() {
     // Mendapatkan elemen-elemen form
-    var namaLengkapInput = document.getElementById('namaLengkap');
-    var NIKInput = document.getElementById('NIK');
-    var namaUsahaInput = document.getElementById('namaUsaha');
-    var deskripsiUsahaInput = document.getElementById('deskripsiUsaha');
+    var nama_wargaInput = document.getElementById('nama_warga');
+    var nama_usahaInput = document.getElementById('nama_usaha');
+    var deskripsiInput = document.getElementById('deskripsi');
+    var foto_produkInput = document.getElementById('foto_produk');
     var popupForm = document.getElementById('popupForm');
     var formTitle = document.querySelector('#popupForm h2');
 
@@ -141,6 +142,20 @@
 
     // Menampilkan pop up form
     popupForm.classList.remove('hidden');
+
+    function previewImage() {
+      const image = document.querySelector('#foto_produk');
+      const imgPreview = document.querySelector('.img-preview');
+
+      imgPreview.style.display = 'block';
+
+      const  oFReader = new FileReader();
+      oFReader.readAsDataURL(image.files[0]);
+
+      oFReader.onload = function(oFREvent) {
+        imgPreview.src = oFREvent.target.result;
+      }
+    }
 });
 
 

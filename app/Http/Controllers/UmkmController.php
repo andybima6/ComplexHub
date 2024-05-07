@@ -85,17 +85,21 @@ class UmkmController extends Controller
 
     public function storeIzin(Request $request) {
         $validateData = $request->validate([
-            'namaLengkap' => 'required',
-            'namaUsaha' => 'required',
-            'deskripsiUsaha' => 'required',
-            'fotoProduk' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'nama_warga' => 'required',
+            'nama_usaha' => 'required',
+            'deskripsi' => 'required',
+            'foto_produk' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        // if($request->file('fotoProduk')) {
+        //     $validateData['fotoProduk'] = $request->file('fotoProduk')->store('foto-produk');
+        // }
+
         Umkm::create([
-            'nama' => $validateData['namaLengkap'],
-            'namaUsaha' => $validateData['namaUsaha'],
-            'deskripsiUsaha' => $validateData['deskripsiUsaha'],
-            'fotoProduk' => $request->file('fotoProduk')->store('foto_produk'),
+            'nama_warga' => $validateData['nama_warga'],
+            'nama_usaha' => $validateData['nama_usaha'],
+            'deskripsi' => $validateData['deskripsi'],
+            'foto_produk' => $request->file('foto_produk')->store('foto-produk'),
         ]);
 
         return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil disimpan');
