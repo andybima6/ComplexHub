@@ -27,7 +27,7 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <form method="POST" action="{{ route('tambahEditKegiatanPD') }}"
+                <form method="POST" action="{{ route('tambahKegiatanPD') }}" enctype="multipart/form-data"
                     class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
@@ -47,11 +47,11 @@
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                             type="text" placeholder="Keterangan"></textarea>
 
-                        <label for="editFileInput" class="relative max-w-full"
+                        <label for="addFileInput" class="relative max-w-full"
                             style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
                             Upload Document
                         </label>
-                        <input id="editFileInput" name="document" style="display: none;" type="file">
+                        <input id="addFileInput" name="document" style="display: none;" type="file">
 
                         <select id="lingkup" name="rt_id" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
@@ -98,8 +98,9 @@
                 <tbody id="tabelBody">
 
                     @foreach ($activities as $index => $activity)
-                        <tr>
-                            <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
+                        <tr data-id="{{ $activity->id }}">
+                            <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
+                            </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
                             <td class="border px-4 py-2 text-center">{{ $activity->description }}</td>
                             <td class="border px-4 py-2 text-center">
@@ -131,7 +132,7 @@
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
-                                <button onclick="deleteActivity({{ $activity->id }})"
+                                <button onclick="deleteActivity({{ $activity->id }}, {{ $index + 1 }})"
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
@@ -206,7 +207,8 @@
         //     redirectToTambahKegiatanPD();
         // });
         // Ambil modal edit
-        var modalEdit = document.getElementById('editActivityModal');
+        const modalEdit = document.getElementById('editActivityModal');
+        const totalData = {{ count($activities) }};
 
         // Ambil tombol edit
         // var editButton = document.getElementsByClassName('editbutton')[0];
@@ -248,7 +250,8 @@
         }
 
         // Hapus Data Kegiatan
-        function deleteActivity(id) {
+        function deleteActivity(id, index) {
+
             if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
                 fetch('{{ route('hapusKegiatanPD') }}', {
                         method: 'POST',
@@ -262,10 +265,15 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // Handle response data
-                        console.log(data);
-                        // Reload halaman setelah menghapus kegiatan
-                        window.location.reload();
+                        // Hapus baris pada tabel
+                        document.querySelector(`tr[data-id="${id}"]`)?.remove();
+                        for (let i = index; i <= totalData; i++) {
+                            const element = document.querySelector(`td[data-number="${i}"]`);
+                            if (!element) {
+                                continue;
+                            }
+                            element.innerText = `${parseInt(element.innerText, 10) - 1}`;
+                        }
                     })
                     .catch(error => {
                         // Handle errors
