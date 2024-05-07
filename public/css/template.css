@@ -201,6 +201,10 @@ img{
     margin-right: 240px;
     transition: margin-left 0.3s ease;
 }
+.sidebar-active .detail{
+    margin-left: 20%;
+    transition: margin-left 0.3s ease;
+}
 /* Pop Up */
 .modal {
     display: none; /* Sembunyikan modal secara default */
