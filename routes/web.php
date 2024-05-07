@@ -104,14 +104,18 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
 Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW']);
 });
-
 Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/bobotdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
 });
+
+// Iuran
 Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 });
-
 
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
