@@ -91,14 +91,14 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 
 
 // untuk superadmin
-Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
-    Route::get('/rt', [DataRtController::class, 'index']);
-});
+// Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
+//     Route::get('/rt', [DataRtController::class, 'index']);
+// });
 
 // untuk pegawai
-Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
-    Route::get('/pegawai', [DataPendudukController::class, 'index']);
-});
+// Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
+//     Route::get('/pegawai', [DataPendudukController::class, 'index']);
+// });
 
 
 // Destinasi Wisata
