@@ -9,24 +9,17 @@
                 <thead>
                     <tr>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Pelapor</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Judul</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Isi</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Lampiran</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Tanggal</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Bidang</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Isi Laporan</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: black">1</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Miguel Santoso</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Bising di Malam Hari</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Saya ingin melaporkan adanya kebisingan di malam hari yang mengganggu ketenangan warga sekitar.</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">
-                            <div class="flex justify-center">
-                                <img src="{{ asset('img/pic1.jpg') }}" alt="Bukti Kebisingan">
-                            </div>
-                        </td>
+
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <button class="btn-detail bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px"><a href="{{ url('/detailSaran') }}">
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,29 +27,23 @@
                                     <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg></a>       
+                                </svg></a>
                             </button>
                             <button class="btn-tolak bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded ml-2" style="border-radius: 10px">
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                                
+                                </svg>
                             </button>
                             <button class="btn-acc bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded ml-2" style="border-radius: 10px">
                                 <svg width="25" height="24" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                               
+                                </svg>
                             </button>
                         </td>
-                        <!-- saran.blade.php -->
 
-@if(Session::has('success'))
-<div class="bg-green-200 p-4 mb-4 rounded-lg">
-    {{ Session::get('success') }}
-</div>
-@endif
 
-                    
+
                     </tr>
                 </tbody>
             </table>
