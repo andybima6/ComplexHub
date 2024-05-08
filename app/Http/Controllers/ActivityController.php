@@ -170,7 +170,7 @@ class ActivityController extends Controller
                 'message' => 'Kegiatan tidak ditemukan.'
             ], 404);
         }
-
+        
         $activity->status = 'rejected';
         $activity->save();
 

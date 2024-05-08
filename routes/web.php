@@ -13,6 +13,7 @@ use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\RTController;
+use App\Http\Controllers\SaranController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -21,21 +22,16 @@ Route::get('/welcome', function () {
 Route::get('/dashboard', [dashboardController::class, 'index']);
 // Route::get('/RT.usulanKegiatanRT', [dashboardController::class,'index']);
 
-// Data rt
-// Route::get('/data_rt', [DataRtController::class, 'index'])->name('data_rt.index');
-// Route::get('/data_rt/create', [DataRtController::class, 'create'])->name('data_rt.create');
-// Route::post('/data_rt', [DataRtController::class, 'store'])->name('data_rt.store');
-// Route::get('/data_rt/{dataRt}', [DataRtController::class, 'show'])->name('data_rt.show');
-// Route::get('/data_rt/{dataRt}/edit', [DataRtController::class, 'edit'])->name('data_rt.edit');
-// Route::put('/data_rt/{dataRt}', [DataRtController::class, 'update'])->name('data_rt.update');
-// Route::delete('/data_rt/{dataRt}', [DataRtController::class, 'destroy'])->name('data_rt.destroy');
-
+//Data rt
+// Jika views ada di dalam direktori 'data_kk'
+Route::get('/data_rt', function () {
+    return view('data_rt.index');
+})->name('data_kk.rt.index');
 
 Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
 Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
-Route::get('/saran', [DataController::class, 'saranPage'])->name('saran.page');
-Route::get('/detailSaran', [DataController::class, 'detailsaranPage'])->name('detailsaran.page');
+
 Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tanggapan.page');
 
 // Activity
@@ -61,12 +57,33 @@ Route::group(['prefix' => 'usulan'], function () {
     Route::get('/Penduduk/tambahEditKegiatanPD', [ActivityController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD'); //tampilan
     Route::post('/Penduduk/detailKegiatanPD', [ActivityController::class, 'updateKegiatan'])->name('updateKegiatan'); // update
     Route::post('/Penduduk/hapusKegiatanPD', [ActivityController::class, 'deleteKegiatan'])->name('hapusKegiatanPD');
-    // dekete
+    // dekele
 
     // Route::get('/Penduduk/detailKegiatanPD{id}','ActivityController@indexDetailIzinPenduduk');
 });
 
+
+// Saran Dan Pengaduan
+Route::group(['prefix' => 'saran'], function () {
+    Route::get('/RW/saranRW', [SaranController::class, 'indexRW'])->name('saranRW');
+    Route::get('/RW/detailSaranRW/', [SaranController::class, 'detailsaranPage'])->name('detailSaranRW');
+});
+
+Route::group(['prefix' => 'saran'], function () {
+    Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
+    Route::get('/RT/detailSaranRT', [SaranController::class, 'detailsaranPage'])->name('detailSaranRW');
+});
+
+Route::group(['prefix' => 'saran'], function () {
+    Route::get('/Penduduk/saranPD', [SaranController::class, 'indexPD'])->name('saranPD');
+    Route::get('/Penduduk/detailSaranPD', [SaranController::class, 'detailsaranPage'])->name('detailSaranPD');
+    Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeKegiatan'])->name('tambahSaranPD');
+});
+
+
+Route::resource('rts', DataRtController::class);
 // Route::resource('rts', RTController::class);
+
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
 Route::get('/RT/detailIzinUsahaRT/{id}', [UmkmController::class, 'indexDetailIzinRT'])->name('detailIzinUsahaRT');
