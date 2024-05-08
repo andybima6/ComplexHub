@@ -77,10 +77,10 @@ class SaranController extends Controller
             'rt_id' => 'required|exists:data_rt,id',
 
         ]);
-        $suggestion = new suggestion($request->only(['name', 'tanggal','field','laporan', 'rt_id']));
+        $suggestions = new suggestion($request->only(['name', 'tanggal','field','laporan', 'rt_id']));
 
-        $suggestion->status = 'pending';
-        $suggestion->save();
+        $suggestions->status = 'pending';
+        $suggestions->save();
         return redirect(route('saranPD'));
     }
 }

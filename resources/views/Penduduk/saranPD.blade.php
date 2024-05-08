@@ -61,7 +61,7 @@
 
 
                     <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                        <button type="button" data-close-modal="editActivityModal"
+                        <button type="button" data-close-modal="editSaranModal"
                             class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Close
                         </button>
@@ -98,11 +98,11 @@
                         <tr data-id="{{ $suggestion->id }}">
                             <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
                             </td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->description }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->name }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->description }}</td>
                             <td class="border px-4 py-2 text-center">
-                                @if ($activity->document)
-                                    <a href="{{ $activity->document }}" target="_blank" rel="noopener noreferrer"
+                                @if ($suggestion->document)
+                                    <a href="{{ $suggestion->document }}" target="_blank" rel="noopener noreferrer"
                                         class="flex justify-center items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
                                             class="w-5 h-5 fill-red-500">
@@ -115,21 +115,21 @@
                                     Tidak Ada File
                                 @endif
                             </td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->rt->rt ?: '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->status }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->rt->rt ?: '-' }}</td>
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
-                                <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
+                                <a href="{{ route('detailSaranPD', ['id' => $suggestion->id]) }}">
                                     <div>
                                         <button class=""
                                             style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                             show
                                         </button>
                                 </a>
-                                <button data-edit='{{ getActivityDetailJson($activity) }}'
+                                <button data-edit='{{ getSaranDetailJson($suggestion) }}'
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
-                                <button onclick="deleteActivity({{ $activity->id }}, {{ $index + 1 }})"
+                                <button onclick="deleteSaran({{ $suggestion->id }}, {{ $index + 1 }})"
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
@@ -144,12 +144,12 @@
             </table>
         </div>
 
-        <form id="editActivityModal" class="modal" action="{{ route('updateKegiatan') }}" method="post"
+        <form id="editSaranModal" class="modal" action="{{ route('updateKegiatan') }}" method="post"
             enctype="multipart/form-data" style="display: none">
             <!-- Modal content -->
             @csrf
             <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
-                <span data-close-modal="editActivityModal" class="close"
+                <span data-close-modal="editSaranModal" class="close"
                     style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
                 <div class="relative w-fit py-3"
                     style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
@@ -180,7 +180,7 @@
 
 
                 <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                    <button type="button" data-close-modal="editActivityModal"
+                    <button type="button" data-close-modal="editSaranModal"
                         class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                         Close
                     </button>
@@ -200,9 +200,9 @@
         //     // Panggil fungsi redirect setelah tombol "Save" diklik
         //     redirectToTambahKegiatanPD();
         // });
-        // Ambil modal edit
-        const modalEdit = document.getElementById('editActivityModal');
-        const totalData = {{ count($activities) }};
+        // // Ambil modal edit
+        // const modalEdit = document.getElementById('editSaranModal');
+        // const totalData = {{ $suggestion ? count($suggestion) : 0 }};
 
         // Ambil tombol edit
         // var editButton = document.getElementsByClassName('editbutton')[0];
@@ -215,7 +215,7 @@
                 // Auto Fill
                 for (let key in data) {
                     const input = document.querySelector(
-                        `#editActivityModal [name="${key}"]:not([type="file"])`);
+                        `#editSaranModal [name="${key}"]:not([type="file"])`);
                     if (input) {
                         input.value = data[key]
                     }
@@ -244,7 +244,7 @@
         }
 
         // Hapus Data Kegiatan
-        function deleteActivity(id, index) {
+        function deleteSaran(id, index) {
 
             if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
                 fetch('{{ route('hapusKegiatanPD') }}', {
