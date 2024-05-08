@@ -8,19 +8,19 @@
                 <hr class="mb-4">
                 <div class="mb-4">
                     <label for="namaLengkap" class="block text-lg font-bold text-gray-700">Nama :</label>
-                    <p class="font-medium">Miguel Santoso</p>
+                    <p class="font-medium">{{ $izinUsaha->nama_warga }}</p>
                 </div>
                 <div class="mb-4">
                     <label for="namaUsaha" class="block text-lg font-bold text-gray-700">Nama Usaha : </label>
-                    <p class="font-medium">Mi Amor Bakery</p>
+                    <p class="font-medium">{{ $izinUsaha->nama_usaha }}</p>
                 </div>
                 <div class="mb-4">
                     <label for="deskripsiUsaha" class="block text-lg font-bold text-gray-700">Deskripsi :</label>
-                    <p class="font-medium">Kami menjual aneka ragam kue, dari kue basah hingga kue kering. Menerima pesanan.</p>
+                    <p class="font-medium">{{ $izinUsaha->deskripsi }}</p>
                 </div>
                 <div class="mb-4">
                     <label for="fotoProduk" class="block text-lg font-bold text-gray-700">Foto Produk :</label>
-                    <img src="{{ asset('/img/kopikap.jpg') }}" alt="">
+                    <img src="{{ asset('storage/' . $izinUsaha->foto_produk) }}" alt="">
                 </div>
                 <div class="mb-4 flex justify-end">
                     <a href="{{ route('izinUsahaPenduduk') }}" style="text-decoration:none"><button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2">Kembali</button></a>

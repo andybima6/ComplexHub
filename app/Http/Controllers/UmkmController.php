@@ -65,13 +65,14 @@ class UmkmController extends Controller
         return view('Penduduk.dataUsahaPenduduk', ['breadcrumb' => $breadcrumb]);
     }
 
-    public function indexDetailIzinPenduduk() {
+    public function indexDetailIzinPenduduk($id) {
+        $izinUsaha = Umkm::findOrFail($id);
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Detail Izin Usaha Penduduk',
         ];
 
-        return view('Penduduk.detailIzinUsaha', ['breadcrumb' => $breadcrumb]);
+        return view('Penduduk.detailIzinUsaha', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function showUmkm() {
@@ -106,20 +107,88 @@ class UmkmController extends Controller
     }
 
     public function edit($id) {
+        $breadcrumb = (object)[
+            'title' => 'UMKM',
+            'subtitle' => 'Edit Izin Usaha Penduduk',
+        ];
         $umkm = Umkm::find($id);
-        return view('Penduduk.izinUsahaPenduduk', compact('umkm'));
+        return view('Penduduk.editIzinUsaha', compact('umkm'), ['breadcrumb' => $breadcrumb]);
     }
+
+    // public function update(Request $request, $id) {
+    //     $request->validate([
+    //         'namaLengkap' => 'required',
+    //         'namaUsaha' => 'required',
+    //         'deskripsiUsaha' => 'required',
+    //         'fotoProduk' => 'required',
+    //     ]);
+    //     Umkm::find($id)->update($request->all());
+    //     return redirect()->route('Penduduk.izinUsahaPenduduk')->with('success', 'Data berhasil diperbaruhi');
+    // }
+
+    // public function update(Request $request, $id) {
+    //     $request->validate([
+    //         'nama_warga' => 'required',
+    //         'nama_usaha' => 'required',
+    //         'deskripsi' => 'required',
+    //         'foto_produk' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    //     ]);
+    
+    //     $umkm = Umkm::findOrFail($id);
+    
+    //     // Periksa apakah ada file foto produk yang diunggah
+    //     if ($request->hasFile('foto_produk')) {
+    //         // Hapus foto produk yang lama jika ada
+    //         if (Storage::exists($umkm->foto_produk)) {
+    //             Storage::delete($umkm->foto_produk);
+    //         }
+    
+    //         // Simpan foto produk yang baru
+    //         $umkm->foto_produk = $request->file('foto_produk')->store('foto-produk');
+    //     }
+    
+    //     // Update data umkm
+    //     $umkm->nama_warga = $request->nama_warga;
+    //     $umkm->nama_usaha = $request->nama_usaha;
+    //     $umkm->deskripsi = $request->deskripsi;
+    //     $umkm->save();
+    
+    //     return redirect()->route('Penduduk.izinUsahaPenduduk')->with('success', 'Data berhasil diperbarui');
+    // }
 
     public function update(Request $request, $id) {
         $request->validate([
-            'namaLengkap' => 'required',
-            'namaUsaha' => 'required',
-            'deskripsiUsaha' => 'required',
-            'fotoProduk' => 'required',
+            'nama_warga' => 'required',
+            'nama_usaha' => 'required',
+            'deskripsi' => 'required',
+            'foto_produk' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // pastikan untuk validasi file gambar
         ]);
-        Umkm::find($id)->update($request->all());
-        return redirect()->route('Penduduk.izinUsahaPenduduk')->with('success', 'Data berhasil diperbaruhi');
+    
+        // Cek apakah ada file gambar yang diunggah
+        if ($request->hasFile('foto_produk')) {
+            // Simpan file gambar yang diunggah ke penyimpanan yang diinginkan
+            $imagePath = $request->file('foto_produk')->store('public/images');
+            
+            // Mengambil nama file gambar untuk disimpan di database
+            $fileName = basename($imagePath);
+        } else {
+            // Jika tidak ada file gambar yang diunggah, gunakan nama file gambar yang lama
+            $fileName = $request->oldFotoProduk;
+        }
+    
+        // Update data Umkm
+        $umkm = Umkm::findOrFail($id);
+        $umkm->nama_warga = $request->nama_warga;
+        $umkm->nama_usaha = $request->nama_usaha;
+        $umkm->deskripsi = $request->deskripsi;
+        $umkm->foto_produk = $fileName; // nama file gambar yang baru atau yang lama
+        $umkm->save();
+    
+        // Redirect kembali ke halaman izinUsahaPenduduk dengan pesan sukses
+        return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil diperbarui');
     }
+    
+    
 
     public function updateStatus(Request $request, $id) {
         if (Auth::user()->role !== 'RT' && Auth::user()->role !== 'RW') {
@@ -140,6 +209,11 @@ class UmkmController extends Controller
 
     public function destroy($id) {
         Umkm::destroy($id);
-        return redirect()->route('Penduduk/izinUsahaPenduduk')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('/Penduduk/izinUsahaPenduduk/{id}')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function getDataById($id) {
+        $izinUsaha = Umkm::findOrFail($id);
+        return response()->json($izinUsaha);
     }
 }
