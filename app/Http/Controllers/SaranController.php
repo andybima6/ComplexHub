@@ -122,4 +122,76 @@ class SaranController extends Controller
             'success' => true,
         ]);
     }
+
+
+    public function rejectSaranRW($id)
+    {
+        $suggestion = suggestion::find($id);
+
+        if (!$suggestion) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $suggestion->status = 'rejected';
+        $suggestion->save();
+
+        return redirect(route('saranRW'));
+
+    }
+
+    public function accSaranRW($id)
+    {
+        $suggestion = suggestion::find($id);
+
+        if (!$suggestion) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $suggestion->status = 'accepted';
+        $suggestion->save();
+
+        return redirect(route('saranRW'));
+
+    }
+    public function rejectSaranRT($id)
+    {
+        $suggestion = suggestion::find($id);
+
+        if (!$suggestion) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $suggestion->status = 'rejected';
+        $suggestion->save();
+
+        return redirect(route('saranRT'));
+
+    }
+
+    public function accSaranRT($id)
+    {
+        $suggestion = suggestion::find($id);
+
+        if (!$suggestion) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $suggestion->status = 'accepted';
+        $suggestion->save();
+
+        return redirect(route('saranRT'));
+
+    }
 }
