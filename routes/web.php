@@ -112,10 +112,10 @@ Route::group(['prefix' => 'destinasi'], function () {
 });
 Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
-    Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexDestinasi']);
-    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexDestinasi']);
-    Route::get('/Destinasi/bobotdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
-    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexkriteria']);
+    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexpenilaian']);
+    Route::get('/Destinasi/bobotdestinasiRW', [DestinasiController::class, 'indexbobot']);
+    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking']);
 });
 
 // Iuran
