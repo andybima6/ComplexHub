@@ -20,12 +20,7 @@
                         <td class="px-4 py-2" style="color: black;">Saya ingin melaporkan adanya kebisingan di malam hari yang mengganggu ketenangan warga sekitar.</td>
                     </tr>
                     <tr>
-                        <td class="font-bold px-4 py-2" style="color: black;">Lampiran:</td>
-                        <td class="px-4 py-2">
-                            <div class="flex justify-center mt-2">
-                                <img src="{{ asset('lampiran/bukti_kebisingan.jpg') }}" alt="Bukti Kebisingan" style="max-width: 400px;">
-                            </div>
-                        </td>
+                       
                     </tr>
                     <tr>
                         <td class="font-bold px-4 py-2" style="color: black;">Status:</td>
@@ -37,7 +32,7 @@
                 <a href="{{ url('/tanggapan') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2" style="border-radius: 10px;">Tanggapi</a>
                 <a href="{{ url('/saran') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" style="border-radius: 10px;">Tutup</a>
             </div>
-            
+
         </div>
     </main>
 @endsection

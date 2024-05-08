@@ -81,7 +81,7 @@ class SaranController extends Controller
         ];
 
         // $activity = Activity::where()
-        $suggestions = suggestion::findOrFail($id);
-        return view('Penduduk.detailSaranPD', compact('suggestions', 'breadcrumb'));
+        $suggestion = suggestion::findOrFail($id);
+        return view('Penduduk.detailSaranPD', compact('suggestion', 'breadcrumb'));
     }
 }
