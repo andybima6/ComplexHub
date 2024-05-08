@@ -104,6 +104,10 @@ Route::post('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'storeIzin'])
 Route::delete('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'destroy'])->name('destroy');
 Route::get('/Penduduk/izinUsahaPenduduk/{id}/edit', [UmkmController::class, 'edit'])->name('editIzinUsaha');
 Route::put('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'update'])->name('updateIzin');
+Route::post('/Penduduk/accIzinRT/{id}', [UmkmController::class, 'accIzinRT'])->name('accIzinRT');
+Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
+Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
 
 //  jika user belum login

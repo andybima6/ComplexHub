@@ -248,11 +248,43 @@ class UmkmController extends Controller
 
     public function destroy($id) {
         Umkm::destroy($id);
-        return redirect()->route('/Penduduk/izinUsahaPenduduk/{id}')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('destroy')->with('success', 'Data berhasil dihapus');
     }
 
     public function getDataById($id) {
         $izinUsaha = Umkm::findOrFail($id);
         return response()->json($izinUsaha);
+    }
+
+    public function accIzinRT($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rt = 'disetujui';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRT'));
+    }
+
+    public function accIzinRW($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rw = 'disetujui';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRW'));
+    }
+
+    public function tolakIzinRT($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rt = 'izin ditolak';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRT'));
+    }
+
+    public function tolakIzinRW($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rw = 'izin ditolak';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRW'));
     }
 }
