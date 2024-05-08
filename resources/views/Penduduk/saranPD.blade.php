@@ -134,7 +134,7 @@
             </table>
         </div>
 
-        <form id="editSaranModal" class="modal" action="{{ route('updateKegiatan') }}" method="post"
+        <form id="editSaranModal" class="modal" action="{{ route('updateSaranPD') }}" method="post"
             enctype="multipart/form-data" style="display: none">
             <!-- Modal content -->
             @csrf
@@ -191,7 +191,9 @@
         //     redirectToTambahKegiatanPD();
         // });
         // Ambil modal edit
-        x
+        const modalEdit = document.getElementById('editSaranModal');
+        const totalData = {{ count($suggestions) }};
+
 
         // Ambil tombol edit
         // var editButton = document.getElementsByClassName('editbutton')[0];

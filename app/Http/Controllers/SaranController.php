@@ -80,8 +80,31 @@ class SaranController extends Controller
             'subtitle' => 'Detail Pengaduan',
         ];
 
-        // $activity = Activity::where()
+        // $suggestion = Activity::where()
         $suggestion = suggestion::findOrFail($id);
         return view('Penduduk.detailSaranPD', compact('suggestion', 'breadcrumb'));
+    }
+    public function updateSaran(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:suggestions',
+            'name' => 'required|string',
+            'tanggal' => 'required|date',
+            'field' => 'required|string',
+            'laporan' => 'required|string',
+            'rt_id' => 'required|exists:data_rt,id',
+        ]);
+
+        $suggestion = suggestion::findOrFail($request->post('id'));
+
+
+        $suggestion->name = $request->name;
+        $suggestion->tanggal = $request->tanggal;
+        $suggestion->field = $request->field;
+        $suggestion->Laporan = $request->Laporan;
+        $suggestion->rt_id = $request->rt_id;
+        $suggestion->save();
+
+        return redirect(route('saranPD'));
     }
 }
