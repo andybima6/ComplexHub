@@ -27,31 +27,34 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <form method="POST" action="{{ route('tambahKegiatanPD') }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data"
                     class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
                     <span id="closeModal" class="close">&times;</span>
                     <div class="relative  w-fit py-2 "
                         style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
-                        Tambah Usulan Kegiatan</div>
+                        Tambah Saran Pengaduan</div>
                     <hr class="relative " style="border-width: 3px;">
 
                     <div class="flex flex-col gap-4 my-8">
                         <input type="hidden" name="id" value="">
+                        <input id="editNamaKegiatan" name="tanggal" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                            type="date" placeholder="tanggal">
+
                         <input id="editNamaKegiatan" name="name" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                            type="text" placeholder="Nama Kegiatan">
+                            type="text" placeholder="name">
 
-                        <textarea id="editKeterangan" rows="10" name="description" class="relative"
+                        <input id="editKeterangan" name="field" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                            type="text" placeholder="Keterangan"></textarea>
+                            type="text" placeholder="Bidang">
 
-                        <label for="addFileInput" class="relative max-w-full"
-                            style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
-                            Upload Document
-                        </label>
-                        <input id="addFileInput" name="document" style="display: none;" type="file">
+                        <textarea id="editKeterangan" rows="10" name="laporan" class="relative"
+                            style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                            type="text" placeholder="Isi Laporan"></textarea>
+
 
                         <select id="lingkup" name="rt_id" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
@@ -62,7 +65,7 @@
 
 
                     <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                        <button type="button" data-close-modal="editActivityModal"
+                        <button type="button" data-close-modal="editSaranModal"
                             class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Close
                         </button>
@@ -75,106 +78,93 @@
             </div>
             </form>
 
-        </div>
-        </div>
-        </div>
 
 
-        {{-- Table Tambah --}}
-        <div class="tabelUsulan absolute inset-x-0  p-16  left-56 bg-white mr-28 rounded-lg " style = "top:45%;width:80%">
-            <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Izin Kegiatan Penduduk :</p>
-            <table class=" md:table-fixed w-full">
-                <thead>
-                    <tr>
-                        <th class="border px-4 py-2 text-center w-1/6">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Nama Kegiatan</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Keterangan</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Document</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Status</th>
-                        <th class="border px-2 py-2 text-center w-1/6">Lingkup</th>
-                        <th class="border px-24 py-2 text-center w-1/6">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="tabelBody">
-
-                    @foreach ($activities as $index => $activity)
-                        <tr data-id="{{ $activity->id }}">
+            {{-- Table Tambah --}}
+            <div class="tabelUsulan absolute inset-x-0  p-16  left-56 bg-white mr-28 rounded-lg "
+                style = "top:45%;width:80%">
+                <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Saran Pengajuan Penduduk :</p>
+                <table class=" md:table-fixed w-full">
+                    <thead>
+                        <tr>
+                            <th class="border px-4 py-2 text-center w-1/6">No</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Tanggal</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Nama</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Bidang </th>
+                            <th class="border px-4 py-2 text-center w-1/6">Laporan</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Status</th>
+                            <th class="border px-24 py-2 text-center w-1/6">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelBody">
+                        <tr>
+                            @foreach ($suggestions as $index => $suggestion)
+                        <tr data-id="{{ $suggestion->id }}">
                             <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
                             </td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->description }}</td>
-                            <td class="border px-4 py-2 text-center">
-                                @if ($activity->document)
-                                    <a href="{{ $activity->document }}" target="_blank" rel="noopener noreferrer"
-                                        class="flex justify-center items-center gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
-                                            class="w-5 h-5 fill-red-500">
-                                            <path
-                                                d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                                        </svg>
-                                        Lihat dokumen
-                                    </a>
-                                @else
-                                    Tidak Ada File
-                                @endif
-                            </td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->rt->rt ?: '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->tanggal }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->name }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->field }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->Laporan }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->status }}</td>
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
-                                <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
+                                <a href="{{ route('detailSaranPD', ['id' => $suggestion->id]) }}">
                                     <div>
                                         <button class=""
                                             style="width:55px;height:34px;border-radius:10px;background-color:blue; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                             show
                                         </button>
                                 </a>
-                                <button data-edit='{{ getActivityDetailJson($activity) }}'
+                                <button data-edit='{{ getSaranDetailJson($suggestion) }}'
                                     style="width:55px;height:34px;border-radius:10px;background-color:#E2B93B; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Edit
                                 </button>
-                                <button onclick="deleteActivity({{ $activity->id }}, {{ $index + 1 }})"
+                                <button onclick="deleteSaran({{ $suggestion->id }}, {{ $index + 1 }})"
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
+
+            </div>
+            </td>
+            </tr>
+            @endforeach
+
+            </tr>
+            <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
+            </tbody>
+            </table>
         </div>
-        </td>
-        </tr>
-        @endforeach
 
-
-
-        <!-- Data akan ditambahkan disini setelah tombol Save ditekan -->
-        </tbody>
-        </table>
-        </div>
-
-        <form id="editActivityModal" class="modal" action="{{ route('updateKegiatan') }}" method="post"
+        <form id="editSaranModal" class="modal" action="{{ route('updateSaranPD') }}" method="post"
             enctype="multipart/form-data" style="display: none">
             <!-- Modal content -->
             @csrf
             <div class="modal-content absolute inset-0" style="background-color:#FFFFFF;border-radius:15px;">
-                <span data-close-modal="editActivityModal" class="close"
+                <span data-close-modal="editSaranModal" class="close"
                     style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
                 <div class="relative w-fit py-3"
                     style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
-                    Edit Usulan Kegiatan</div>
+                    Edit Saran Pengaduan</div>
                 <hr class="relative" style="border-width: 3px;">
 
                 <div class="flex flex-col gap-4 my-8">
                     <input type="hidden" name="id" value="">
+                    <input id="editNamaKegiatan" name="tanggal" class="relative"
+                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                        type="date" placeholder="tanggal">
+
                     <input id="editNamaKegiatan" name="name" class="relative"
                         style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                        type="text" placeholder="Nama Kegiatan">
+                        type="text" placeholder="name">
 
-                    <textarea id="editKeterangan" rows="10" name="description" class="relative"
+                    <input name="field" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                        type="text" placeholder="Keterangan"></textarea>
+                        type="text" placeholder="Bidang">
 
-                    <label for="editFileInput" class="relative max-w-full"
-                        style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
-                        Upload Document
-                    </label>
-                    <input id="editFileInput" name="document" style="display: none;" type="file">
+                    <textarea rows="10" name="laporan" class="relative"
+                        style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
+                        type="text" placeholder="Isi Laporan"></textarea>
+
 
                     <select id="lingkup" name="rt_id" class="relative"
                         style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
@@ -185,15 +175,14 @@
 
 
                 <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                    <button type="button" data-close-modal="editActivityModal"
-                        class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-50 transition ease-in-out delay-150 flex items-center justify-center text-base text-white font-medium">
+                    <button type="button" data-close-modal="editSaranModal"
+                        class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                         Close
                     </button>
                     <button id="editSaveButton" type="submit"
-                        class="px-4 py-2 text-center rounded-md bg-green-500 hover:bg-green-600 transition ease-in-out delay-150 flex items-center justify-center text-base text-white font-medium">
+                        class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                         Save
                     </button>
-
                 </div>
 
             </div>
@@ -207,8 +196,9 @@
         //     redirectToTambahKegiatanPD();
         // });
         // Ambil modal edit
-        const modalEdit = document.getElementById('editActivityModal');
-        const totalData = {{ count($activities) }};
+        const modalEdit = document.getElementById('editSaranModal');
+        const totalData = {{ count($suggestions) }};
+
 
         // Ambil tombol edit
         // var editButton = document.getElementsByClassName('editbutton')[0];
@@ -221,7 +211,7 @@
                 // Auto Fill
                 for (let key in data) {
                     const input = document.querySelector(
-                        `#editActivityModal [name="${key}"]:not([type="file"])`);
+                        `#editSaranModal [name="${key}"]:not([type="file"])`);
                     if (input) {
                         input.value = data[key]
                     }
@@ -250,36 +240,35 @@
         }
 
         // Hapus Data Kegiatan
-        function deleteActivity(id, index) {
-
-            if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
-                fetch('{{ route('hapusKegiatanPD') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            id: id
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Hapus baris pada tabel
-                        document.querySelector(`tr[data-id="${id}"]`)?.remove();
-                        for (let i = index; i <= totalData; i++) {
-                            const element = document.querySelector(`td[data-number="${i}"]`);
-                            if (!element) {
-                                continue;
-                            }
-                            element.innerText = `${parseInt(element.innerText, 10) - 1}`;
-                        }
-                    })
-                    .catch(error => {
-                        // Handle errors
-                        console.error(error);
-                    });
+        function deleteSaran(id, index) {
+    if (confirm('Apakah Anda yakin ingin menghapus Pengaduan ini?')) {
+        fetch('{{ route('deleteSaranPD') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hapus baris pada tabel
+            document.querySelector(`tr[data-id="${id}"]`).remove();
+            for (let i = index; i <= totalData; i++) {
+                const element = document.querySelector(`td[data-number="${i}"]`);
+                if (element) {
+                    element.innerText = parseInt(element.innerText, 10) - 1;
+                }
             }
-        }
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
+    }
+}
+
     </script>
 @endsection

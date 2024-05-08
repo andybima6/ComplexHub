@@ -20,13 +20,13 @@ class DataRt extends Model
         return $this->hasMany(Activity::class, 'rt_id');
     }
 
-    public function penduduk()
+    public function DataPenduduk()
     {
-        return $this->hasMany(DataPenduduk::class, 'rt_id');
+        return $this->hasMany(DataPenduduk::class, 'data_rt');
     }
 
-    public function dataKk()
+    public function DataKk()
     {
-        return $this->hasMany(DataKk::class, 'rt_id');
+        return $this->hasMany(DataKk::class, 'data_rt');
     }
 }
