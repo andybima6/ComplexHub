@@ -26,7 +26,7 @@
                     <div class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
                         style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                         <selected class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                            <option value="01">01</option>
+                            <option value="{{ count($izinUsaha) }}">{{ count($izinUsaha) }}</option>
                             {{-- <option value="02">02</option>
                             <option value="03">03</option> --}}
                         </selected>
@@ -52,19 +52,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($izinUsaha as $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: black">1</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Miguel Santoso</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Mi Amor Bakery</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Kami menjual aneka ragam kue, dari kue basah hingga kue kering</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kopikap.jpg') }}" alt="">
+                                <img src="{{ asset($izin->foto_produk) }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">Izin telah di setujui</td>
                         
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -18,14 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($izinUsaha as $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: black">1</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Miguel Santoso</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Mi Amor Bakery</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Kami menjual aneka ragam kue, dari kue basah hingga kue kering</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kopikap.jpg') }}" alt="">
+                                <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black"><i>Izin telah disetujui oleh ketua RT</i></td>
@@ -52,6 +53,7 @@
                         </td>
                         
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
