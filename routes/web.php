@@ -38,9 +38,8 @@ Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tangga
 Route::group(['prefix' => 'usulan'], function () {
     Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
     Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
-    Route::delete('/RT/deleteKegiatanRT/{id}', [ActivityController::class, 'deleteKegiatanRT'])->name('deleteKegiatanRT');
-    Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatan'])->name('accKegiatanRT');
-    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatan'])->name('rejectKegiatanRT');
+    Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
+    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 });
 
 
@@ -48,6 +47,8 @@ Route::group(['prefix' => 'usulan'], function () {
 Route::group(['prefix' => 'usulan'], function () {
     Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
     Route::get('/RW/detailKegiatanRW/{id}', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
+    Route::post('/Penduduk/accKegiatanRW/{id}', [ActivityController::class, 'accKegiatanRW'])->name('accKegiatanRW');
+    Route::post('/Penduduk/rejectKegiatanRW/{id}', [ActivityController::class, 'rejectKegiatanRW'])->name('rejectKegiatanRW');
 });
 
 Route::group(['prefix' => 'usulan'], function () {
@@ -78,7 +79,8 @@ Route::group(['prefix' => 'saran'], function () {
     Route::get('/Penduduk/saranPD', [SaranController::class, 'indexPD'])->name('saranPD');
     Route::get('/Penduduk/detailSaranPD/{id}', [SaranController::class, 'ShowPenduduk'])->name('detailSaranPD');
     Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeSaran'])->name('tambahSaranPD');
-    Route::post('/Penduduk/updateSaranPD', [SaranController::class, 'updateSaran'])->name('updateSaranPD');
+    Route::post('/Penduduk/updateSaranPD', [SaranController::class, 'updateSaranPD'])->name('updateSaranPD');
+    Route::post('/Penduduk/deleteSaranPD', [SaranController::class, 'deleteSaranPD'])->name('deleteSaranPD');
 });
 
 

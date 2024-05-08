@@ -46,9 +46,10 @@ if (!function_exists('getSaranDetailJson')) {
     {
         return json_encode([
             'id' => $suggestion->id,
+            'tanggal' => $suggestion->tanggal,
             'name' => $suggestion->name,
             'field' => $suggestion->field,
-            'laporan' => $suggestion->laporan,
+            'laporan' => $suggestion->Laporan,
             'status' => $suggestion->status,
             'rt_id' => $suggestion->rt_id,
         ]);

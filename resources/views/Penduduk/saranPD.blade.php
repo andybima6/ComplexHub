@@ -43,7 +43,7 @@
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                             type="date" placeholder="tanggal">
 
-                            <input id="editNamaKegiatan" name="name" class="relative"
+                        <input id="editNamaKegiatan" name="name" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                             type="text" placeholder="name">
 
@@ -123,6 +123,7 @@
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
+
             </div>
             </td>
             </tr>
@@ -152,11 +153,15 @@
                         style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                         type="date" placeholder="tanggal">
 
-                    <input  name="field" class="relative"
+                    <input id="editNamaKegiatan" name="name" class="relative"
+                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                        type="text" placeholder="name">
+
+                    <input name="field" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                         type="text" placeholder="Bidang">
 
-                    <textarea  rows="10" name="laporan" class="relative"
+                    <textarea rows="10" name="laporan" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                         type="text" placeholder="Isi Laporan"></textarea>
 
@@ -236,35 +241,34 @@
 
         // Hapus Data Kegiatan
         function deleteSaran(id, index) {
-
-            if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
-                fetch('{{ route('hapusKegiatanPD') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            id: id
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Hapus baris pada tabel
-                        document.querySelector(`tr[data-id="${id}"]`)?.remove();
-                        for (let i = index; i <= totalData; i++) {
-                            const element = document.querySelector(`td[data-number="${i}"]`);
-                            if (!element) {
-                                continue;
-                            }
-                            element.innerText = `${parseInt(element.innerText, 10) - 1}`;
-                        }
-                    })
-                    .catch(error => {
-                        // Handle errors
-                        console.error(error);
-                    });
+    if (confirm('Apakah Anda yakin ingin menghapus Pengaduan ini?')) {
+        fetch('{{ route('deleteSaranPD') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hapus baris pada tabel
+            document.querySelector(`tr[data-id="${id}"]`).remove();
+            for (let i = index; i <= totalData; i++) {
+                const element = document.querySelector(`td[data-number="${i}"]`);
+                if (element) {
+                    element.innerText = parseInt(element.innerText, 10) - 1;
+                }
             }
-        }
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
+    }
+}
+
     </script>
 @endsection
