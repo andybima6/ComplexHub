@@ -57,12 +57,13 @@ class UmkmController extends Controller
     }
 
     public function indexDataPenduduk() {
+        $izinUsaha = Umkm::all();
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Data Usaha Penduduk',
         ];
 
-        return view('Penduduk.dataUsahaPenduduk', ['breadcrumb' => $breadcrumb]);
+        return view('Penduduk.dataUsahaPenduduk', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function indexDetailIzinPenduduk($id) {
@@ -73,6 +74,16 @@ class UmkmController extends Controller
         ];
 
         return view('Penduduk.detailIzinUsaha', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
+    }
+
+    public function indexDetailIzinRT($id) {
+        $izinUsaha = Umkm::findOrFail($id);
+        $breadcrumb = (object)[
+            'title' => 'UMKM',
+            'subtitle' => 'Detail Izin Usaha Penduduk',
+        ];
+
+        return view('RT.detailIzinUsahaRT', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function showUmkm() {

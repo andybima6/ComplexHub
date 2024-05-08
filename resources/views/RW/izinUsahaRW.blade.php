@@ -26,7 +26,7 @@
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset($izin->foto_produk) }}" alt="">
+                                <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black"><i>Izin telah disetujui oleh ketua RT</i></td>
