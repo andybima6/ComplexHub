@@ -76,8 +76,8 @@ Route::group(['prefix' => 'saran'], function () {
 
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/Penduduk/saranPD', [SaranController::class, 'indexPD'])->name('saranPD');
-    Route::get('/Penduduk/detailSaranPD', [SaranController::class, 'detailsaranPage'])->name('detailSaranPD');
-    Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeKegiatan'])->name('tambahSaranPD');
+    Route::get('/Penduduk/detailSaranPD/{id}', [SaranController::class, 'ShowPenduduk'])->name('detailSaranPD');
+    Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeSaran'])->name('tambahSaranPD');
 });
 
 

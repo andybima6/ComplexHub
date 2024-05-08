@@ -40,3 +40,17 @@ if (!function_exists('uploadDocument')) {
         return $prev;
     }
 }
+
+if (!function_exists('getSaranDetailJson')) {
+    function getSaranDetailJson($suggestion)
+    {
+        return json_encode([
+            'id' => $suggestion->id,
+            'name' => $suggestion->name,
+            'field' => $suggestion->field,
+            'laporan' => $suggestion->laporan,
+            'status' => $suggestion->status,
+            'rt_id' => $suggestion->rt_id,
+        ]);
+    }
+}

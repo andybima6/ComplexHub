@@ -42,17 +42,6 @@ class SaranController extends Controller
         return view('Penduduk.saranPD', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb'));
     }
 
-    // public function detailsaranPage()
-    // {
-    //     $user = auth()->user();
-
-    //     $breadcrumb = (object)[
-    //         'title' => 'Saran dan Pengaduan',
-    //         'subtitle' => 'Detail Saran dan Pengaduan',
-    //     ];
-    //     return view('detailSaran', ['breadcrumb' => $breadcrumb]);
-    // }
-
     // public function tanggapanPage()
     // {
     //     // Mendapatkan user yang sedang login
@@ -82,5 +71,17 @@ class SaranController extends Controller
         $suggestions->status = 'pending';
         $suggestions->save();
         return redirect(route('saranPD'));
+    }
+
+    public function ShowPenduduk($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Saran Pengaduan',
+            'subtitle' => 'Detail Pengaduan',
+        ];
+
+        // $activity = Activity::where()
+        $suggestions = suggestion::findOrFail($id);
+        return view('Penduduk.detailSaranPD', compact('suggestions', 'breadcrumb'));
     }
 }
