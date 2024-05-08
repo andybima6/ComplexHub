@@ -81,7 +81,7 @@
     
     
     <!-- Pop up form -->
-    <div id="popupForm" class="fixed top-20 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+    <div id="popupFormAjukan" class="fixed top-20 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
         <div class="bg-white rounded-md p-8" style="border-radius: 16px; width: 400px;">
             <h2 class="text-lg font-semibold mb-4">Form Ajukan Izin</h2>
             <hr>
@@ -91,10 +91,6 @@
                     <label for="nama_warga" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
                     <input type="text" id="nama_warga" name="nama_warga" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
                 </div>
-                {{-- <div class="mb-4">
-                    <label for="NIK" class="block text-sm font-medium text-gray-700">NIK</label>
-                    <input type="text" id="NIK" name="NIK" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6">
-                </div> --}}
                 <div class="mb-4">
                     <label for="nama_usaha" class="block text-sm font-medium text-gray-700">Nama Usaha</label>
                     <input type="text" id="nama_usaha" name="nama_usaha" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
@@ -153,91 +149,14 @@
     <script>
         // Menampilkan pop up form saat tombol "Ajukan Izin" diklik
         document.getElementById('ajukanIzinBtn').addEventListener('click', function() {
-            document.getElementById('popupForm').classList.remove('hidden');
+            document.getElementById('popupFormAjukan').classList.remove('hidden');
     });
 
     // Menyembunyikan pop up form saat tombol "Tutup" diklik
     document.getElementById('closePopupBtn').addEventListener('click', function() {
-        document.getElementById('popupForm').classList.add('hidden');
+        document.getElementById('popupFormAjukan').classList.add('hidden');
     });
 
-    // Menampilkan pop up form dengan data lama saat tombol "Edit" diklik
-    document.getElementById('editIzin').addEventListener('click', function() {
-    // Mendapatkan elemen-elemen form
-    var nama_wargaInput = document.getElementById('nama_warga');
-    var nama_usahaInput = document.getElementById('nama_usaha');
-    var deskripsiInput = document.getElementById('deskripsi');
-    var foto_produkInput = document.getElementById('foto_produk');
-    var popupForm = document.getElementById('popupForm');
-    var formTitle = document.querySelector('#popupForm h2');
-
-    // Mengubah judul form menjadi "Form Edit Izin Usaha"
-    formTitle.textContent = 'Form Edit Izin Usaha';
-
-    Mengisi nilai input dengan data lama (contoh)
-    nama_wargaInput.value = "Nama warga Lama";
-    // NIKInput.value = "NIK Lama";
-    nama_usahaInput.value = "Nama Usaha Lama";
-    deskripsiInput.value = "Deskripsi Usaha Lama";
-    // Mendapatkan data lama dari server melalui AJAX
-    // var izinId = this.getAttribute('data-id');
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('GET', '/Penduduk/izinUsahaPenduduk/' + izinId, true);
-    // xhr.onreadystatechange = function() {
-    //     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    //         var data = JSON.parse(xhr.responseText);
-    //         // Mengisi nilai input dengan data yang diterima
-    //         editNama_wargaInput.value = data.nama_warga;
-    //         editNama_usahaInput.value = data.nama_usaha;
-    //         editDeskripsiInput.value = data.deskripsi;
-    //         // Tampilkan pop up form edit
-    //         editPopupForm.classList.remove('hidden');
-    //     }
-    // };
-    // xhr.send();
-});
-
-// Tombol untuk menutup pop up form edit
-document.getElementById('closeEditPopupBtn').addEventListener('click', function() {
-    document.getElementById('editPopupForm').classList.add('hidden');
-});
-
-    // Menampilkan pop up form
-    popupForm.classList.remove('hidden');
-
-    function previewImage() {
-      const image = document.querySelector('#foto_produk');
-      const imgPreview = document.querySelector('.img-preview');
-
-      imgPreview.style.display = 'block';
-
-      const  oFReader = new FileReader();
-      oFReader.readAsDataURL(image.files[0]);
-
-      oFReader.onload = function(oFREvent) {
-        imgPreview.src = oFREvent.target.result;
-      }
-    }
-
-    document.getElementById('editIzin').addEventListener('click', function() {
-    var izinId = this.getAttribute('data-id');
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/Penduduk/izinUsahaPenduduk/' + izinId, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            // Mengisi nilai input dengan data yang diterima
-            nama_wargaInput.value = data.nama_warga;
-            nama_usahaInput.value = data.nama_usaha;
-            deskripsiInput.value = data.deskripsi;
-            // Tampilkan popup form
-            popupForm.classList.remove('hidden');
-        }
-    };
-    xhr.send();
-});
-
-});
 
 
 </script>
