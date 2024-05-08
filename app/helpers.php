@@ -17,6 +17,7 @@ if (!function_exists('getActivityDetailJson')) {
     }
 }
 
+// Upload gambar di tabel
 if (!function_exists('uploadDocument')) {
     function uploadDocument($file, $prev = null)
     {

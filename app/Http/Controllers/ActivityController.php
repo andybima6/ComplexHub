@@ -17,11 +17,11 @@ class ActivityController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Daftar Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
-        $kegiatans = Activity::all(); // Mengambil semua data kegiatan dari model Kegiatan
+        $activities = Activity::all(); // Mengambil semua data kegiatan dari model Kegiatan
 
-        return view('RT.usulanKegiatanRT', ['breadcrumb' => $breadcrumb], compact('kegiatans'));
+        return view('RT.usulanKegiatanRT', ['breadcrumb' => $breadcrumb], compact('activities'));
     }
 
     // Metode lainnya...
@@ -33,9 +33,11 @@ class ActivityController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Daftar Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
-        return view('RW.usulanKegiatanRW', ['breadcrumb' => $breadcrumb]);
+        $activities = Activity::all(); // Mengambil semua data kegiatan dari model Kegiatan
+
+        return view('RW.usulanKegiatanRW', ['breadcrumb' => $breadcrumb], compact('activities'));
     }
     public function indexPenduduk()
     {
@@ -43,46 +45,51 @@ class ActivityController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Daftar Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
         return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb]);
     }
 
-    public function indexDetailIzinRT()
+    public function indexDetailIzinRT($id)
     {
+
         $breadcrumb = (object)[
             'title' => 'Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
-
-        return view('RT.detailKegiatanRT', ['breadcrumb' => $breadcrumb]);
+        $activity = Activity::findOrFail($id);
+        return view('RT.detailKegiatanRT', compact('activity', 'breadcrumb'));
     }
-    public function indexDetailIzinRW()
+
+    public function indexDetailIzinRW($id)
     {
+        $user = auth()->user();
         $breadcrumb = (object)[
             'title' => 'Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
-
-        return view('RW.detailKegiatanRW', ['breadcrumb' => $breadcrumb]);
+        $activity = Activity::findOrFail($id);
+        return view('RW.detailKegiatanRW', compact('activity', 'breadcrumb'));
     }
     public function indexDetailIzinPenduduk($id)
     {
         $breadcrumb = (object)[
             'title' => 'Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
 
         // $activity = Activity::where()
         $activity = Activity::findOrFail($id);
         return view('Penduduk.detailKegiatanPD', compact('activity', 'breadcrumb'));
     }
+
+
     // Show
     public function indexTambahIzinPenduduk(Request $request)
     {
         $breadcrumb = (object)[
             'title' => 'Kegiatan',
-            'subtitle' => '',
+            'subtitle' => 'Usulan Kegiatan',
         ];
 
         $rtId = 1;
@@ -101,7 +108,8 @@ class ActivityController extends Controller
             'rt_id' => 'required|exists:data_rt,id',
             'document' => 'nullable|file',
         ]);
-        $activity = new Activity($request->only(['name', 'description', 'rt_id', 'document']));
+        $activity = new Activity($request->only(['name', 'description', 'rt_id']));
+        $activity->document = uploadDocument($request->file('document'), $activity->document);
         $activity->status = 'pending';
         $activity->save();
         return redirect(route('tambahEditKegiatanPD'));
@@ -148,6 +156,45 @@ class ActivityController extends Controller
 
         $activity->delete();
 
-        return redirect(route('tambahEditKegiatanPD'));
+        return response()->json([
+            'success' => true,
+        ]);
     }
+    public function rejectKegiatan($id)
+    {
+        $activity = Activity::find($id);
+
+        if (!$activity) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $activity->status = 'rejected';
+        $activity->save();
+
+        return redirect(route('usulanKegiatanRT'));
+
+    }
+
+    public function accKegiatan($id)
+    {
+        $activity = Activity::find($id);
+
+        if (!$activity) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $activity->status = 'accepted';
+        $activity->save();
+
+        return redirect(route('usulanKegiatanRT'));
+
+    }
+
+
 }
