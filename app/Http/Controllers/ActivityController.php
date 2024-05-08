@@ -160,33 +160,41 @@ class ActivityController extends Controller
             'success' => true,
         ]);
     }
-    public function rejectKegiatan(Request $request,$id)
+    public function rejectKegiatan($id)
     {
-        $request->validate([
-            'id' => 'required|exists:activities',
-        ]);
+        $activity = Activity::find($id);
 
-        $activity = Activity::findOrFail($request->id);
+        if (!$activity) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
         $activity->status = 'rejected';
         $activity->save();
 
-        return response()->json([
-            'success' => true,
-        ]);
+        return redirect(route('usulanKegiatanRT'));
+
     }
 
-    public function accKegiatan(Request $request, $id)
+    public function accKegiatan($id)
     {
-        $request->validate([
-            'id' => 'required|exists:activities',
-        ]);
+        $activity = Activity::find($id);
 
-        $activity = Activity::findOrFail($request->id);
+        if (!$activity) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
         $activity->status = 'accepted';
         $activity->save();
 
-        return response()->json([
-            'success' => true,
-        ]);
+        return redirect(route('usulanKegiatanRT'));
+
     }
+
+
 }

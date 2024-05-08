@@ -54,7 +54,7 @@
                 <tbody>
                     @foreach ($activities as $index => $activity)
                         <tr>
-                        <tr data-id="{{ $activity->id }}">
+                      
                             <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
                             </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
@@ -94,9 +94,11 @@
                                             </svg>
                                         </button>
                                     </a>
+                                    <!-- Form untuk menolak kegiatan -->
                                     <form action="{{ route('rejectKegiatanRT', ['id' => $activity->id]) }}" method="POST">
                                         @csrf
-                                        <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
+                                        <button type="submit"
+                                            style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
                                             <svg style="margin-left: 10px;margin-top:2px" width="25" height="24"
                                                 viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2"
@@ -106,9 +108,12 @@
                                             </svg>
                                         </button>
                                     </form>
+
+                                    <!-- Form untuk menerima kegiatan -->
                                     <form action="{{ route('accKegiatanRT', ['id' => $activity->id]) }}" method="POST">
                                         @csrf
-                                        <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
+                                        <button type="submit"
+                                            style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
                                             <svg style="margin-left: 12px;margin-top:2px" width="19" height="13"
                                                 viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2"
@@ -116,6 +121,7 @@
                                             </svg>
                                         </button>
                                     </form>
+
                                 </div>
                             </td>
 

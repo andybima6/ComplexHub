@@ -62,15 +62,24 @@ Route::group(['prefix' => 'usulan'], function () {
     // Route::get('/Penduduk/detailKegiatanPD{id}','ActivityController@indexDetailIzinPenduduk');
 });
 
+<<<<<<< HEAD
 Route::resource('rts', DataRtController::class);
+=======
+// Route::resource('rts', RTController::class);
+>>>>>>> 3a338190dd83759e37766839c5adc79e49ff96f0
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
+Route::get('/RT/detailIzinUsahaRT/{id}', [UmkmController::class, 'indexDetailIzinRT'])->name('detailIzinUsahaRT');
 Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT');
 Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW');
 Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dataUsahaRW');
-Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'indexIzinPenduduk'])->name('izinUsahaPenduduk');
+Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'showUmkm'])->name('izinUsahaPenduduk');
 Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name('dataUsahaPenduduk');
-Route::get('/Penduduk/detailIzinUsaha', [UmkmController::class, 'indexDetailIzinPenduduk'])->name('detailIzinUsaha');
+Route::get('/Penduduk/detailIzinUsaha/{id}', [UmkmController::class, 'indexDetailIzinPenduduk'])->name('detailIzinUsaha');
+Route::post('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'storeIzin'])->name('storeIzin');
+Route::delete('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'destroy'])->name('destroy');
+Route::get('/Penduduk/izinUsahaPenduduk/{id}/edit', [UmkmController::class, 'edit'])->name('editIzinUsaha');
+Route::put('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'update'])->name('updateIzin');
 
 
 //  jika user belum login
@@ -101,14 +110,18 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW']);
 });
-
 Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/bobotdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
+    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
 });
+
+// Iuran
 Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 });
-
 
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
