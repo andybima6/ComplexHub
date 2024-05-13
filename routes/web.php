@@ -67,14 +67,14 @@ Route::group(['prefix' => 'usulan'], function () {
 // Saran Dan Pengaduan
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/RW/saranRW', [SaranController::class, 'indexRW'])->name('saranRW');
-    Route::get('/RW/detailSaranRW/', [SaranController::class, 'detailsaranPage'])->name('detailSaranRW');
+    Route::get('/RW/detailSaranRW/{id}', [SaranController::class, 'showRW'])->name('detailSaranRW');
     Route::post('/Penduduk/accSaranRW/{id}', [SaranController::class, 'accSaranRW'])->name('accSaranRW');
     Route::post('/Penduduk/rejectSaranRW/{id}', [SaranController::class, 'rejectSaranRW'])->name('rejectSaranRW');
 });
 
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
-    Route::get('/RT/detailSaranRT', [SaranController::class, 'detailsaranPage'])->name('detailSaranRW');
+    Route::get('/RT/detailSaranRT/{id}', [SaranController::class, 'showRT'])->name('detailSaranRT');
     Route::post('/Penduduk/accSaranRT/{id}', [SaranController::class, 'accSaranRT'])->name('accSaranRT');
     Route::post('/Penduduk/rejectSaranRT/{id}', [SaranController::class, 'rejectSaranRT'])->name('rejectSaranRT');
 });

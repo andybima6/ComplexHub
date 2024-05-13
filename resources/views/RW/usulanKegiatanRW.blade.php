@@ -22,11 +22,14 @@
                 <p class="w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
                     style="font-size: 60px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     Total Kegiatan :
-                <div class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
+                    <div class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
                     style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <div class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                        03
+                        {{ str_pad(count($activities), 2, '0', STR_PAD_LEFT) }}
                     </div>
+                </div>
+
+                
                 </div>
                 </p>
             </div>

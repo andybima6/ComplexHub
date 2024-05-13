@@ -1,38 +1,43 @@
 @extends('layouts.welcome')
 @section('content')
-    {{-- Content --}}
-    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
-            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Detail Saran dan Pengaduan:</p>
-            <hr class="mb-6">
-            <table class="table-auto w-full">
-                <tbody>
-                    <tr>
-                        <td class="font-bold px-4 py-2" style="color: black;">Nama Pelapor:</td>
-                        <td class="px-4 py-2" style="color: black;">Miguel Santoso</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold px-4 py-2" style="color: black;">Judul:</td>
-                        <td class="px-4 py-2" style="color: black;">Bising di Malam Hari</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold px-4 py-2" style="color: black;">Isi:</td>
-                        <td class="px-4 py-2" style="color: black;">Saya ingin melaporkan adanya kebisingan di malam hari yang mengganggu ketenangan warga sekitar.</td>
-                    </tr>
-                    <tr>
-                       
-                    </tr>
-                    <tr>
-                        <td class="font-bold px-4 py-2" style="color: black;">Status:</td>
-                        <td class="px-4 py-2" style="color: black;">Belum Ditanggapi</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="mt-6">
-                <a href="{{ url('/tanggapan') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2" style="border-radius: 10px;">Tanggapi</a>
-                <a href="{{ url('/saran') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" style="border-radius: 10px;">Tutup</a>
+    <main class="detail h-dvh w-3/4 mx-auto relative top-36">
+        <div class="relative p-12 bg-white rounded-lg">
+            <p class="text-start font-semibold text-xl mb-4">Detail Saran Kegiatan</p>
+            <hr class="mb-4 mr-6">
+
+            <div class="mb-4">
+
+
+                <label for="" class="block text-lg font-bold text-gray-700">Nama :</label>
+                <p class="font-medium">{{ $suggestion->name }}</p>
+            </div>
+            <div class="mb-4">
+                <label for="" class="block text-lg font-bold text-gray-700">Tanggal :</label>
+                <p class="font-medium">{{ $suggestion->Tanggal }}</p>
             </div>
 
+            <div class="mb-4">
+                <label for="" class="block text-lg font-bold text-gray-700">Bidang :</label>
+                <p class="font-medium">{{ $suggestion->field }}</p>
+            </div>
+
+            <div class="mb-4">
+                <label for="" class="block text-lg font-bold text-gray-700">Bidang :</label>
+                <p class="font-medium">{{ $suggestion->Laporan }}</p>
+            </div>
+
+            <div class="mb-4">
+                <label for="" class="block text-lg font-bold text-gray-700">Status :</label>
+                <p class="font-medium">{{ $suggestion->status }}</p>
+            </div>
+
+            <div class="absolute right-16 bottom-4 ">
+                <button type="button"
+                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2">
+                    <a href="{{ route('saranRT') }}" style="text-decoration:none">Kembali</a>
+                </button>
+            </div>
         </div>
+
     </main>
 @endsection

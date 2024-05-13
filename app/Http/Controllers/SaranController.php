@@ -194,4 +194,27 @@ class SaranController extends Controller
         return redirect(route('saranRT'));
 
     }
+    public function ShowRT($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Kegiatan',
+            'subtitle' => 'Usulan Kegiatan',
+        ];
+
+
+        $suggestion = suggestion::findOrFail($id);
+        return view('rt.detailSaranRT', compact('suggestion', 'breadcrumb'));
+    }
+
+    public function ShowRW($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Kegiatan',
+            'subtitle' => 'Usulan Kegiatan',
+        ];
+
+
+        $suggestion = suggestion::findOrFail($id);
+        return view('rw.detailSaranRW', compact('suggestion', 'breadcrumb'));
+    }
 }

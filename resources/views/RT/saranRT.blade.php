@@ -2,6 +2,20 @@
 @section('content')
     {{-- Content --}}
     <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+        <div class="md:w-2/5 h-96 rounded-md md:relative md:mr-16 mt-8 md:mt-0"
+        style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
+        <p class="w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
+            style="font-size: 60px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
+            Total Pengaduan :
+        <div class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
+            style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
+            <div class="bg-transparent border-white outline-none text-white w-full md:w-auto">
+                {{ str_pad(count($suggestions), 2, '0', STR_PAD_LEFT) }}
+            </div>
+        </div>
+        </p>
+    </div>
+    </div>
         <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
             <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Saran dan Pengaduan RT:</p>
             <hr class="mb-6">
