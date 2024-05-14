@@ -49,7 +49,7 @@
                     <th>Usia</th>
                     <th>RT-</th>
                     <th>Pekerjaan</th>
-                    <th>Gaji</th>
+                    <th>Alamat</th>
                     <th>Awal Jabatan</th>
                     <th>Email</th>
                     <th>No. Telpon</th>
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="form_control">
-                                <label for="salary">Gaji:</label>
+                                <label for="salary">Alamat:</label>
                                 <input type="text" name="" id="salary" required>
                             </div>
                         </div>

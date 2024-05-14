@@ -62,12 +62,11 @@ Route::group(['prefix' => 'usulan'], function () {
     // Route::get('/Penduduk/detailKegiatanPD{id}','ActivityController@indexDetailIzinPenduduk');
 });
 
-<<<<<<< HEAD
+
 // Route::resource('rts', DataRtController::class);
-// =======
 // // Route::resource('rts', RTController::class);
 // >>>>>>> 3a338190dd83759e37766839c5adc79e49ff96f0
-=======
+
 
 // Saran Dan Pengaduan
 Route::group(['prefix' => 'saran'], function () {
@@ -90,7 +89,6 @@ Route::group(['prefix' => 'saran'], function () {
 Route::resource('rts', DataRtController::class);
 // Route::resource('rts', RTController::class);
 
->>>>>>> 09772b86516c93e53e5cbbbe3602febd3457711b
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
 Route::get('/RT/detailIzinUsahaRT/{id}', [UmkmController::class, 'indexDetailIzinRT'])->name('detailIzinUsahaRT');
