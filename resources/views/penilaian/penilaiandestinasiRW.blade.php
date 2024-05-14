@@ -2,6 +2,26 @@
 @section('content')
     {{-- Content --}}
     <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0">
+        <title>Navbar, Tabel</title>
+        <style>
+            #navbar {
+                text-align: center;
+            }
+            #navbar a {
+                display: inline-block;
+                padding: 10px 20px;
+                text-decoration: none;
+                font-size: 24px;
+                font-weight: 600;
+            }
+        </style>
+        
         <nav id="navbar">
             <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
             <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}">Alternatif</a>
