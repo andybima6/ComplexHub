@@ -17,7 +17,7 @@ class DataRt extends Model
 
     public function activities()
     {
-        return $this->hasMany(Activity::class, 'data_rt');
+        return $this->hasMany(Activity::class, 'rt_id');
     }
 
     public function DataPenduduk()

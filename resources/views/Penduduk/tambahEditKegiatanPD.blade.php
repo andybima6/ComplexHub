@@ -82,7 +82,7 @@
 
         {{-- Table Tambah --}}
         <div class="tabelUsulan absolute inset-x-0  p-16  left-56 bg-white mr-28 rounded-lg " style = "top:45%;width:80%">
-            <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Izin Usaha RT :</p>
+            <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Izin Kegiatan Penduduk :</p>
             <table class=" md:table-fixed w-full">
                 <thead>
                     <tr>

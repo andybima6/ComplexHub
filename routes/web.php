@@ -38,9 +38,8 @@ Route::get('/tanggapan', [DataController::class, 'tanggapanPage'])->name('tangga
 Route::group(['prefix' => 'usulan'], function () {
     Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
     Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
-    Route::delete('/RT/deleteKegiatanRT/{id}', [ActivityController::class, 'deleteKegiatanRT'])->name('deleteKegiatanRT');
-    Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatan'])->name('accKegiatanRT');
-    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatan'])->name('rejectKegiatanRT');
+    Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
+    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 });
 
 
@@ -48,6 +47,8 @@ Route::group(['prefix' => 'usulan'], function () {
 Route::group(['prefix' => 'usulan'], function () {
     Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
     Route::get('/RW/detailKegiatanRW/{id}', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
+    Route::post('/Penduduk/accKegiatanRW/{id}', [ActivityController::class, 'accKegiatanRW'])->name('accKegiatanRW');
+    Route::post('/Penduduk/rejectKegiatanRW/{id}', [ActivityController::class, 'rejectKegiatanRW'])->name('rejectKegiatanRW');
 });
 
 Route::group(['prefix' => 'usulan'], function () {
@@ -71,18 +72,24 @@ Route::group(['prefix' => 'usulan'], function () {
 // Saran Dan Pengaduan
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/RW/saranRW', [SaranController::class, 'indexRW'])->name('saranRW');
-    Route::get('/RW/detailSaranRW/', [SaranController::class, 'detailsaranPage'])->name('detailSaranRW');
+    Route::get('/RW/detailSaranRW/{id}', [SaranController::class, 'showRW'])->name('detailSaranRW');
+    Route::post('/Penduduk/accSaranRW/{id}', [SaranController::class, 'accSaranRW'])->name('accSaranRW');
+    Route::post('/Penduduk/rejectSaranRW/{id}', [SaranController::class, 'rejectSaranRW'])->name('rejectSaranRW');
 });
 
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
-    Route::get('/RT/detailSaranRT', [SaranController::class, 'detailsaranPage'])->name('detailSaranRW');
+    Route::get('/RT/detailSaranRT/{id}', [SaranController::class, 'showRT'])->name('detailSaranRT');
+    Route::post('/Penduduk/accSaranRT/{id}', [SaranController::class, 'accSaranRT'])->name('accSaranRT');
+    Route::post('/Penduduk/rejectSaranRT/{id}', [SaranController::class, 'rejectSaranRT'])->name('rejectSaranRT');
 });
 
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/Penduduk/saranPD', [SaranController::class, 'indexPD'])->name('saranPD');
-    Route::get('/Penduduk/detailSaranPD', [SaranController::class, 'detailsaranPage'])->name('detailSaranPD');
-    Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeKegiatan'])->name('tambahSaranPD');
+    Route::get('/Penduduk/detailSaranPD/{id}', [SaranController::class, 'ShowPenduduk'])->name('detailSaranPD');
+    Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeSaran'])->name('tambahSaranPD');
+    Route::post('/Penduduk/updateSaranPD', [SaranController::class, 'updateSaranPD'])->name('updateSaranPD');
+    Route::post('/Penduduk/deleteSaranPD', [SaranController::class, 'deleteSaranPD'])->name('deleteSaranPD');
 });
 
 
@@ -102,6 +109,10 @@ Route::post('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'storeIzin'])
 Route::delete('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'destroy'])->name('destroy');
 Route::get('/Penduduk/izinUsahaPenduduk/{id}/edit', [UmkmController::class, 'edit'])->name('editIzinUsaha');
 Route::put('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'update'])->name('updateIzin');
+Route::post('/Penduduk/accIzinRT/{id}', [UmkmController::class, 'accIzinRT'])->name('accIzinRT');
+Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
+Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
 
 //  jika user belum login
@@ -136,7 +147,6 @@ Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
     Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexkriteria']);
     Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexpenilaian']);
-    Route::get('/Destinasi/bobotdestinasiRW', [DestinasiController::class, 'indexbobot']);
     Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking']);
 });
 

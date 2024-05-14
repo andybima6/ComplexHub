@@ -160,7 +160,7 @@ class ActivityController extends Controller
             'success' => true,
         ]);
     }
-    public function rejectKegiatan($id)
+    public function rejectKegiatanRT($id)
     {
         $activity = Activity::find($id);
 
@@ -170,7 +170,7 @@ class ActivityController extends Controller
                 'message' => 'Kegiatan tidak ditemukan.'
             ], 404);
         }
-        
+
         $activity->status = 'rejected';
         $activity->save();
 
@@ -178,7 +178,7 @@ class ActivityController extends Controller
 
     }
 
-    public function accKegiatan($id)
+    public function accKegiatanRT($id)
     {
         $activity = Activity::find($id);
 
@@ -195,6 +195,40 @@ class ActivityController extends Controller
         return redirect(route('usulanKegiatanRT'));
 
     }
+    public function rejectKegiatanRW($id)
+    {
+        $activity = Activity::find($id);
 
+        if (!$activity) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $activity->status = 'rejected';
+        $activity->save();
+
+        return redirect(route('usulanKegiatanRW'));
+
+    }
+
+    public function accKegiatanRW($id)
+    {
+        $activity = Activity::find($id);
+
+        if (!$activity) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Kegiatan tidak ditemukan.'
+            ], 404);
+        }
+
+        $activity->status = 'accepted';
+        $activity->save();
+
+        return redirect(route('usulanKegiatanRW'));
+
+    }
 
 }

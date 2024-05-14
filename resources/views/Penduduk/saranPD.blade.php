@@ -27,7 +27,7 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <form method="POST" action="{{ route('tambahKegiatanPD') }}" enctype="multipart/form-data"
+                <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data"
                     class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
@@ -42,6 +42,10 @@
                         <input id="editNamaKegiatan" name="tanggal" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                             type="date" placeholder="tanggal">
+
+                        <input id="editNamaKegiatan" name="name" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                            type="text" placeholder="name">
 
                         <input id="editKeterangan" name="field" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
@@ -79,7 +83,7 @@
             {{-- Table Tambah --}}
             <div class="tabelUsulan absolute inset-x-0  p-16  left-56 bg-white mr-28 rounded-lg "
                 style = "top:45%;width:80%">
-                <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Izin Usaha RT :</p>
+                <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Saran Pengajuan Penduduk :</p>
                 <table class=" md:table-fixed w-full">
                     <thead>
                         <tr>
@@ -98,25 +102,11 @@
                         <tr data-id="{{ $suggestion->id }}">
                             <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
                             </td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->tanggal }}</td>
                             <td class="border px-4 py-2 text-center">{{ $suggestion->name }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $suggestion->description }}</td>
-                            <td class="border px-4 py-2 text-center">
-                                @if ($suggestion->document)
-                                    <a href="{{ $suggestion->document }}" target="_blank" rel="noopener noreferrer"
-                                        class="flex justify-center items-center gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
-                                            class="w-5 h-5 fill-red-500">
-                                            <path
-                                                d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                                        </svg>
-                                        Lihat dokumen
-                                    </a>
-                                @else
-                                    Tidak Ada File
-                                @endif
-                            </td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->field }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->Laporan }}</td>
                             <td class="border px-4 py-2 text-center">{{ $suggestion->status }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $suggestion->rt->rt ?: '-' }}</td>
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
                                 <a href="{{ route('detailSaranPD', ['id' => $suggestion->id]) }}">
                                     <div>
@@ -133,6 +123,7 @@
                                     style="width:55px;height:34px;border-radius:10px;background-color:#EB5757; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white;">
                                     Delete
                                 </button>
+
             </div>
             </td>
             </tr>
@@ -144,7 +135,7 @@
             </table>
         </div>
 
-        <form id="editSaranModal" class="modal" action="{{ route('updateKegiatan') }}" method="post"
+        <form id="editSaranModal" class="modal" action="{{ route('updateSaranPD') }}" method="post"
             enctype="multipart/form-data" style="display: none">
             <!-- Modal content -->
             @csrf
@@ -162,11 +153,15 @@
                         style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                         type="date" placeholder="tanggal">
 
-                    <input id="editKeterangan" name="field" class="relative"
+                    <input id="editNamaKegiatan" name="name" class="relative"
+                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
+                        type="text" placeholder="name">
+
+                    <input name="field" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                         type="text" placeholder="Bidang">
 
-                    <textarea id="editKeterangan" rows="10" name="laporan" class="relative"
+                    <textarea rows="10" name="laporan" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                         type="text" placeholder="Isi Laporan"></textarea>
 
@@ -200,9 +195,10 @@
         //     // Panggil fungsi redirect setelah tombol "Save" diklik
         //     redirectToTambahKegiatanPD();
         // });
-        // // Ambil modal edit
-        // const modalEdit = document.getElementById('editSaranModal');
-        // const totalData = {{ $suggestion ? count($suggestion) : 0 }};
+        // Ambil modal edit
+        const modalEdit = document.getElementById('editSaranModal');
+        const totalData = {{ count($suggestions) }};
+
 
         // Ambil tombol edit
         // var editButton = document.getElementsByClassName('editbutton')[0];
@@ -245,35 +241,34 @@
 
         // Hapus Data Kegiatan
         function deleteSaran(id, index) {
-
-            if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
-                fetch('{{ route('hapusKegiatanPD') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            id: id
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Hapus baris pada tabel
-                        document.querySelector(`tr[data-id="${id}"]`)?.remove();
-                        for (let i = index; i <= totalData; i++) {
-                            const element = document.querySelector(`td[data-number="${i}"]`);
-                            if (!element) {
-                                continue;
-                            }
-                            element.innerText = `${parseInt(element.innerText, 10) - 1}`;
-                        }
-                    })
-                    .catch(error => {
-                        // Handle errors
-                        console.error(error);
-                    });
+    if (confirm('Apakah Anda yakin ingin menghapus Pengaduan ini?')) {
+        fetch('{{ route('deleteSaranPD') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hapus baris pada tabel
+            document.querySelector(`tr[data-id="${id}"]`).remove();
+            for (let i = index; i <= totalData; i++) {
+                const element = document.querySelector(`td[data-number="${i}"]`);
+                if (element) {
+                    element.innerText = parseInt(element.innerText, 10) - 1;
+                }
             }
-        }
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
+    }
+}
+
     </script>
 @endsection

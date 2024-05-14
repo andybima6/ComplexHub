@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class UmkmController extends Controller
 {
@@ -95,6 +96,28 @@ class UmkmController extends Controller
         return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
 
+    // public function storeIzin(Request $request) {
+    //     $validateData = $request->validate([
+    //         'nama_warga' => 'required',
+    //         'nama_usaha' => 'required',
+    //         'deskripsi' => 'required',
+    //         'foto_produk' => 'image|mimes:jpeg,png,jpg|max:2048',
+    //     ]);
+
+    //     // if($request->file('fotoProduk')) {
+    //     //     $validateData['fotoProduk'] = $request->file('fotoProduk')->store('foto-produk');
+    //     // }
+
+    //     Umkm::create([
+    //         'nama_warga' => $validateData['nama_warga'],
+    //         'nama_usaha' => $validateData['nama_usaha'],
+    //         'deskripsi' => $validateData['deskripsi'],
+    //         'foto_produk' => $request->file('foto_produk')->store('foto-produk'),
+    //     ]);
+
+    //     return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil disimpan');
+    // }
+
     public function storeIzin(Request $request) {
         $validateData = $request->validate([
             'nama_warga' => 'required',
@@ -102,18 +125,23 @@ class UmkmController extends Controller
             'deskripsi' => 'required',
             'foto_produk' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
-
-        // if($request->file('fotoProduk')) {
-        //     $validateData['fotoProduk'] = $request->file('fotoProduk')->store('foto-produk');
-        // }
-
+    
+        // Periksa apakah file gambar telah diunggah sebelum menyimpannya
+        if ($request->hasFile('foto_produk')) {
+            $foto_produk = $request->file('foto_produk')->store('foto-produk');
+        } else {
+            $foto_produk = null; // Atau sesuaikan dengan logika bisnis Anda
+        }
+    
+        // Simpan data izin usaha ke dalam database menggunakan model Umkm
         Umkm::create([
             'nama_warga' => $validateData['nama_warga'],
             'nama_usaha' => $validateData['nama_usaha'],
             'deskripsi' => $validateData['deskripsi'],
-            'foto_produk' => $request->file('foto_produk')->store('foto-produk'),
+            'foto_produk' => $foto_produk, // Simpan nama file gambar jika ada, atau null jika tidak
         ]);
-
+    
+        // Redirect pengguna ke rute yang sesuai setelah data berhasil disimpan
         return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil disimpan');
     }
 
@@ -220,11 +248,43 @@ class UmkmController extends Controller
 
     public function destroy($id) {
         Umkm::destroy($id);
-        return redirect()->route('/Penduduk/izinUsahaPenduduk/{id}')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('destroy')->with('success', 'Data berhasil dihapus');
     }
 
     public function getDataById($id) {
         $izinUsaha = Umkm::findOrFail($id);
         return response()->json($izinUsaha);
+    }
+
+    public function accIzinRT($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rt = 'disetujui';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRT'));
+    }
+
+    public function accIzinRW($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rw = 'disetujui';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRW'));
+    }
+
+    public function tolakIzinRT($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rt = 'izin ditolak';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRT'));
+    }
+
+    public function tolakIzinRW($id) {
+        $izinUsaha = Umkm::find($id);
+
+        $izinUsaha->status_rw = 'izin ditolak';
+        $izinUsaha->save();
+        return redirect(route('izinUsahaRW'));
     }
 }

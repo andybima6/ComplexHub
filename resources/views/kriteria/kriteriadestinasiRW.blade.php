@@ -25,10 +25,9 @@
 <body>
 <nav id="navbar">
     <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
-    <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}">Alternatif</a>
     <a href="{{ url('destinasi/Destinasi/kriteriadestinasiRW') }}">Kriteria</a>
+    <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}">Alternatif</a>
     <a href="{{ url('destinasi/Destinasi/penilaiandestinasiRW') }}">Penilaian</a>
-    <a href="{{ url('destinasi/Destinasi/bobotdestinasiRW') }}">Bobot</a>
     <a href="{{ url('destinasi/Destinasi/rankingdestinasiRW') }}">Ranking</a>
 </nav>
 
