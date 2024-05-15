@@ -19,8 +19,38 @@ Route::get('/welcome', function () {
     return view('layouts.welcome');
 });
 
+
+
+
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('/proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Rute yang hanya bisa diakses oleh RT
+Route::group(['middleware' => ['auth', 'role:1']], function () {
+    Route::get('/rt', function () {
+        return view('RT.dashboardRT');
+    });
+});
+
+// Rute yang hanya bisa diakses oleh RW
+Route::group(['middleware' => ['auth', 'role:2']], function () {
+    Route::get('/rw', function () {
+        return view('RW.dashboardRW');
+    });
+});
+
+// Rute yang hanya bisa diakses oleh PD
+Route::group(['middleware' => ['auth', 'role:3']], function () {
+    Route::get('/pd', function () {
+        return view('Penduduk.dashboardPD');
+    });
+});
+
+
 Route::get('/dashboard', [dashboardController::class, 'index']);
-// Route::get('/RT.usulanKegiatanRT', [dashboardController::class,'index']);
 
 //Data rt
 // Jika views ada di dalam direktori 'data_kk'
