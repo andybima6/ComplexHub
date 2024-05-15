@@ -19,6 +19,9 @@ Route::get('/welcome', function () {
     return view('layouts.welcome');
 });
 
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
 
 
@@ -146,16 +149,16 @@ Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW']
 
 
 //  jika user belum login
-Route::group(['middleware' => 'guest'], function () {
-    Route::get('/', [AuthController::class, 'login'])->name('login');
-    Route::post('/', [AuthController::class, 'dologin']);
-});
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::get('/', [AuthController::class, 'login'])->name('login');
+//     Route::post('/', [AuthController::class, 'dologin']);
+// });
 
-// untuk superadmin dan pegawai
-Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/redirect', [RedirectController::class, 'cek']);
-});
+// // untuk superadmin dan pegawai
+// Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
+//     Route::post('/logout', [AuthController::class, 'logout']);
+//     Route::get('/redirect', [RedirectController::class, 'cek']);
+// });
 
 
 // untuk superadmin

@@ -37,22 +37,26 @@
                         <input type="password" name="password" id="password" placeholder="Password" required>
                     </div>
                     <div class="input-block">
-                        <label for="confirmPassword" class="input-label">Confirm Password</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+                        <label for="password_confirmation" class="input-label">Confirm Password</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
                     </div>
                     <div class="input-block">
                         <label for="role_name" class="input-label">Role</label>
-                        <select  name="role_name" id="role_name" placeholder="Role" required></select>
+                        <select name="role_name" id="role_name" required>
+                            @foreach($id as $role)
+                                <option value="{{ $role->id }}">{{ $role->role_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                  
+                    <a href="{{ route('login') }}">
                     <div class="modal-buttons">
                         <button type="submit" class="input-button">Register</button>
                     </div>
+                </a>
                 </form>
             </div>
             <div class="modal-right">
-                <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
-                    alt="">
+                <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80" alt="">
             </div>
             <button class="icon-button close-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
