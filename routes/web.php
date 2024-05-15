@@ -94,6 +94,11 @@ Route::group(['prefix' => 'usulan'], function () {
 });
 
 
+// Route::resource('rts', DataRtController::class);
+// // Route::resource('rts', RTController::class);
+// >>>>>>> 3a338190dd83759e37766839c5adc79e49ff96f0
+
+
 // Saran Dan Pengaduan
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/RW/saranRW', [SaranController::class, 'indexRW'])->name('saranRW');
