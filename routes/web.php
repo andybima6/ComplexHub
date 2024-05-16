@@ -11,6 +11,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\IuranWargaController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -99,5 +100,8 @@ Route::group(['prefix' => 'iuran'], function () {
 
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
-
+    Route::get('/RT/cekdataRT', [iuranController::class, 'cekdataRT'])->name('cekdataRT');
 });
+
+Route::get('/warga/iuran', [IuranWargaController::class, 'index'])->name('warga.index');
+Route::get('/warga/iuran/form', [IuranWargaController::class, 'form'])->name('warga.form');

@@ -139,7 +139,7 @@
                             fill="#2A424F" />
                     </svg>
                     <a  href="{{ url('/pengeluaran/RT/pengeluaranRT') }}"
-                        style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Pengeluaran</a>
+                        style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Iuran</a>
                 </li>
             </ul>
 
