@@ -54,13 +54,13 @@ class AuthController extends Controller
             $user = Auth::user();
 
             // cek lagi jika level user admin maka arahkan ke halaman admin
-            if ($user->roles_id == '1') {
+            if ($user->role_id == '1') {
                 return redirect()->intended('rt');
             }
             // tapi jika level usernya user biasa maka arahkan kehalaman user
-            else if ($user->roles_id == '2') {
+            else if ($user->role_id == '2') {
                 return redirect()->intended('rw');
-            } else if ($user->roles_id == '3') {
+            } else if ($user->role_id == '3') {
                 return redirect()->intended('pd');
             }
             // jika belum ada role maka ke halaman /
@@ -68,10 +68,11 @@ class AuthController extends Controller
         }
         // jika tidak ada data user yang valid maka kembalikan lagi ke halaman login
         // pastikan kirim pesar error juga kalau login gagal yaa...
-        return redirect('login')
+        return redirect('/')
             ->withInput()
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
+
 
     public function register()
     {
