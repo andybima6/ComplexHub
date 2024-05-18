@@ -20,7 +20,10 @@ Route::get('/welcome', function () {
     return view('layouts.welcome');
 });
 
-Route::get('/landingPage', [LandingPageController::class, 'index'])->name('landingPage');
+// Route::get('/login', function () {
+//     return view('login');
+// });
+
 
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
@@ -30,21 +33,32 @@ Route::post('/proses_register', [AuthController::class, 'proses_register'])->nam
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rute yang hanya bisa diakses oleh RT
-Route::group(['middleware' => ['auth', 'role:1']], function () {
+Route::group(['middleware' => ['auth', 'role_id:1']], function () {
     Route::get('/rt', function () {
+
         return view('RT.dashboardRT');
+
     });
+    Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
+    Route::get('/RT/detailSaranRT/{id}', [SaranController::class, 'showRT'])->name('detailSaranRT');
+    Route::post('/Penduduk/accSaranRT/{id}', [SaranController::class, 'accSaranRT'])->name('accSaranRT');
+    Route::post('/Penduduk/rejectSaranRT/{id}', [SaranController::class, 'rejectSaranRT'])->name('rejectSaranRT');
+    Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
+    Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
+    Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
+    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 });
 
 // Rute yang hanya bisa diakses oleh RW
-Route::group(['middleware' => ['auth', 'role:2']], function () {
+Route::group(['middleware' => ['auth', 'role_id:2']], function () {
     Route::get('/rw', function () {
         return view('RW.dashboardRW');
     });
+ 
 });
 
 // Rute yang hanya bisa diakses oleh PD
-Route::group(['middleware' => ['auth', 'role:3']], function () {
+Route::group(['middleware' => ['auth', 'role_id:3']], function () {
     Route::get('/pd', function () {
         return view('Penduduk.dashboardPD');
     });
@@ -147,16 +161,16 @@ Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW']
 
 
 //  jika user belum login
-Route::group(['middleware' => 'guest'], function () {
-    Route::get('/', [AuthController::class, 'login'])->name('login');
-    Route::post('/', [AuthController::class, 'dologin']);
-});
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::get('/', [AuthController::class, 'login'])->name('login');
+//     Route::post('/', [AuthController::class, 'dologin']);
+// });
 
-// untuk superadmin dan pegawai
-Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/redirect', [RedirectController::class, 'cek']);
-});
+// // untuk superadmin dan pegawai
+// Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
+//     Route::post('/logout', [AuthController::class, 'logout']);
+//     Route::get('/redirect', [RedirectController::class, 'cek']);
+// });
 
 
 // untuk superadmin

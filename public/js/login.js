@@ -30,3 +30,17 @@ document.onkeydown = evt => {
   evt = evt || window.event;
   evt.keyCode === 27 ? closeModal() : false;
 };
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const passwordInput = document.querySelector("#password");
+    const confirmPasswordInput = document.querySelector("#password_confirmation");
+
+    form.addEventListener("submit", function (event) {
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            event.preventDefault();
+            alert("Passwords do not match!");
+        }
+    });
+});

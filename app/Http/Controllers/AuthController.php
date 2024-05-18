@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\Authenticatable;
-
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AuthController extends Controller
 {
@@ -54,13 +54,13 @@ class AuthController extends Controller
             $user = Auth::user();
 
             // cek lagi jika level user admin maka arahkan ke halaman admin
-            if ($user->roles_id == '1') {
+            if ($user->role_id == '1') {
                 return redirect()->intended('rt');
             }
             // tapi jika level usernya user biasa maka arahkan kehalaman user
-            else if ($user->roles_id == '2') {
+            else if ($user->role_id == '2') {
                 return redirect()->intended('rw');
-            } else if ($user->roles_id == '3') {
+            } else if ($user->role_id == '3') {
                 return redirect()->intended('pd');
             }
             // jika belum ada role maka ke halaman /
@@ -68,10 +68,11 @@ class AuthController extends Controller
         }
         // jika tidak ada data user yang valid maka kembalikan lagi ke halaman login
         // pastikan kirim pesar error juga kalau login gagal yaa...
-        return redirect('login')
+        return redirect('/')
             ->withInput()
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
+
 
     public function register()
     {
@@ -83,38 +84,36 @@ class AuthController extends Controller
     // aksi form register
     public function proses_register(Request $request)
     {
-        // kita buat validasi untuk proses register
-        // validasinya yaitu semua field wajid diisi
-        // validasi username harus unique atau tidak boleh ada duplicate username
+        // Buat validasi
         $validator = Validator::make($request->all(), [
-            'role_name' => 'required',
-
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role_name' => 'required|exists:roles,id',
         ]);
 
-        // kalau gagal kembali ke halaman registrasi dengan menampilkan pesan error
+        // Jika validasi gagal, kembali ke halaman registrasi dengan pesan error
         if ($validator->fails()) {
             return redirect('/register')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        // ambil level_id dari level_code_nama yang dipilih
-        $role_id = $request->input('role_nama');
-
-        // hash password
+        // Hash password
         $password = Hash::make($request->password);
 
-        // masukkan semua data pada request ke table user
+        // Buat user baru
         User::create([
-            'name' => $request->input('nama'),
-            'email' => $request->input('username'),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
             'password' => $password,
-            'role_id' => $role_id,
+            'role_id' => $request->input('role_name'),
         ]);
 
-        // kalau berhasil arahkan ke halaman login
+        // Redirect ke halaman login
         return redirect()->route('login');
     }
+
 
     public function logout(Request $request)
     {
