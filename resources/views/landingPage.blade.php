@@ -36,7 +36,7 @@
         <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Saran</p>
     </div>
     <div class="btn btn-primary" style="background-color: #385668; border-radius: 40px;">
-        <button style="color: #FBEEC1">Masuk</button>
+        <a href="{{ route('login') }}"><button style="color: #FBEEC1">Masuk</button></a>
     </div>
 </header>
 <main>
