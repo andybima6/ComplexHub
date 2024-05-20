@@ -1,18 +1,21 @@
 @extends('layouts.body')
 <style>
-    .menu p.active {
+    .menu a.active {
             color: black;
         }
-        .menu p:hover:not(.active) {
+        .menu a:hover:not(.active) {
             color: #555; /* Slightly darker grey for hover on non-active items */
         }
-        .menu p {
+        .menu a {
             margin: 0 15px;
             font-size: 24px;
             cursor: pointer;
             color: #888; /* Default color for non-active items */
             transition: color 0.3s;
         }
+        header .menu p.active {
+    color: black;
+}
 </style>
 
 <header class="px-9 py-10" style="display: flex; align-items: center; justify-content: space-between;">
@@ -29,11 +32,11 @@
         <line y1="36.9922" x2="50" y2="36.9922" stroke="#385668" stroke-width="4"/>
     </svg>
     <div class="menu" style="display: flex; justify-content: center; flex-grow: 1;">
-        <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Beranda</p>
-        <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Tentang</p>
-        <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">UMKM</p>
-        <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">FAQ</p>
-        <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Saran</p>
+        <a class="active" style="margin: 0 15px; font-size:24px; color: #888;" href="#container">Beranda</a>
+        <a class="active" style="margin: 0 15px; font-size:24px; color: #888;" href="#what-is-complexhub">Tentang</a>
+        <a class="active" style="margin: 0 15px; font-size:24px; color: #888;" href="#umkm">UMKM</a>
+        {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">FAQ</p> --}}
+        {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Saran</p> --}}
     </div>
     <div class="btn btn-primary" style="background-color: #385668; border-radius: 40px;">
         <a href="{{ route('login') }}"><button style="color: #FBEEC1">Masuk</button></a>
@@ -52,9 +55,60 @@
         </div>
         <div class="image" style="flex: 1; background-image: url('img/gambar landingPage.jpg'); background-size: cover; background-position: right; border-top-left-radius: 100px; border-bottom-right-radius: 100px;"></div>
     </div>
+
+    <section id="what-is-complexhub" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 40px 20px; text-align: center;">
+        <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">Apa Itu ComplexHub?</h2>
+        <hr style="width: 50%; border: 1px solid #385668; margin: 20px 0;">
+        <p style="font-size: 20px; color: black; margin-bottom: 20px; padding-left:15%; padding-right:15%;">ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
+        {{-- <button style="padding: 10px 20px; border-radius: 5px; background-color: #3b4d61; color: #FBEEC1; font-weight: 600;">Baca lebih lanjut</button> --}}
+    </section>    
+
+    <section id="umkm" style="margin: 40px 20px;">
+        <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">UMKM</h2>
+        <p style="font-size: 20px; text-align:center; color: grey;">Informasi seputar UMKM yang ada di RW 08 Cemorokandang</p>
+        <div class="umkm-container" style="display: flex; overflow-x: auto; gap: 20px; padding: 20px;">
+            <!-- Example UMKM Items -->
+            @foreach ($izinUsaha as $izin)
+            <div class="umkm-item" style="flex: 0 0 auto; width: 200px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
+                <div class="umkm-image" style="width: 100%; height: 150px; background-color: #ddd;"><img src="{{ asset($izin->foto_produk) }}" alt=""></div>
+                <h3 style="font-size: 18px; color: #333; margin-top: 10px;">{{ $izin->nama_usaha }}</h3>
+                <p style="font-size: 14px; color: #666;">{{ $izin->deskripsi }}</p>
+            </div>
+            @endforeach
+            <!-- Add more UMKM items as needed -->
+        </div>
+    </section>
+
+    <footer style="background-color: #2b3e50; color: #FBEEC1; padding: 40px 20px;">
+        <div class="footer-container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div class="footer-column" style="flex: 1; margin: 10px; min-width: 200px;">
+                <h3 style="font-size: 36px; color: #FBEEC1; font-weight: 600; font-family: 'Poppins', sans-serif;">ComplexHub</h3>
+                <p>RW 08 Kelurahan Cemorokandang<br>Kota Malang, Jawa Timur</p>
+                <p><strong>Telepon:</strong> +62 896 8053 3168<br><strong>Email:</strong> ComplexHub@gmail.com</p>
+                {{-- <div class="social-icons" style="margin-right: 10px;">
+                    <a href="#"><img src="facebook-icon.png" alt="Facebook" style="color: #FBEEC1; text-decoration: none; display: block; margin: 5px 0;"></a>
+                    <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                </div> --}}
+            </div>
+            {{-- <div class="footer-column">
+                <h3>Link</h3>
+                <a href="#">Beranda</a>
+                <a href="#">Tentang</a>
+                <a href="#">UMKM</a>
+                <a href="#">FAQ</a>
+                <a href="#">Kontak</a>
+            </div> --}}
+            <div class="footer-column" style="flex: 1; margin: 10px; min-width: 200px;">
+                <h3>Tentang Website</h3>
+                <p>ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // Ambil semua elemen menu
-        const menuItems = document.querySelectorAll('.menu p');
+        const menuItems = document.querySelectorAll('.menu a');
 
         // Tambahkan event listener untuk setiap item
         menuItems.forEach(item => {
