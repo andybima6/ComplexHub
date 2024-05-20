@@ -43,24 +43,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isRt()
-    {
-        return $this->role_id === 1; // Assuming RT role ID is 1
-    }
-
-    public function isRw()
-    {
-        return $this->role_id === 2; // Assuming RW role ID is 2
-    }
-
-    public function isPd()
-    {
-        return $this->role_id === 3; // Assuming Penduduk role ID is 3
-    }
-
-    // inverse one to Many ke tabel role
-    public function role() {
-        return $this->belongsTo(Role::class, 'role_id');
-    }
 
 }
