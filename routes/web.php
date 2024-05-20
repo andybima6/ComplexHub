@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth', 'role_id:2']], function () {
     Route::get('/rw', function () {
         return view('RW.dashboardRW');
     });
- 
+    
 });
 
 // Rute yang hanya bisa diakses oleh PD
