@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\SaranController;
 
