@@ -81,10 +81,20 @@ class UmkmController extends Controller
         $izinUsaha = Umkm::findOrFail($id);
         $breadcrumb = (object)[
             'title' => 'UMKM',
-            'subtitle' => 'Detail Izin Usaha Penduduk',
+            'subtitle' => 'Detail Izin Usaha Warga',
         ];
 
         return view('RT.detailIzinUsahaRT', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
+    }
+
+    public function indexDetailIzinRW($id) {
+        $izinUsaha = Umkm::findOrFail($id);
+        $breadcrumb = (object)[
+            'title' => 'UMKM',
+            'subtitle' => 'Detail Izin Usaha Warga',
+        ];
+
+        return view('RW.detailIzinUsahaRW', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function showUmkm() {

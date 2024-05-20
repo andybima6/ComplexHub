@@ -144,6 +144,7 @@ Route::resource('rts', DataRtController::class);
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
 Route::get('/RT/detailIzinUsahaRT/{id}', [UmkmController::class, 'indexDetailIzinRT'])->name('detailIzinUsahaRT');
+Route::get('/RW/detailIzinUsahaRW/{id}', [UmkmController::class, 'indexDetailIzinRW'])->name('detailIzinUsahaRW');
 Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT');
 Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW');
 Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dataUsahaRW');
