@@ -47,7 +47,7 @@ class DataController extends Controller
                 'title' => 'Pendataan',
                 'subtitle' => 'Data Kartu Keluarga',
             ];
-            return view('kk', ['breadcrumb' => $breadcrumb]);
+            return view('data', ['breadcrumb' => $breadcrumb]);
         }
         public function wargaPage()
         {

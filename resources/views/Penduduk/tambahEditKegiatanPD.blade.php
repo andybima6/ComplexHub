@@ -55,8 +55,8 @@
 
                         <select id="lingkup" name="rt_id" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                            <option value="1">RT 001</option>
-                            <option value="2">RT 002</option>
+                            <option value="1">RT & RW</option>
+
                         </select>
                     </div>
 
@@ -119,7 +119,7 @@
                                 @endif
                             </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->rt->rt ?: '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $activity->rt->rt ?: 'RT Dan RW ' }}</td>
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
                                 <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
                                     <div>
@@ -176,11 +176,7 @@
                     </label>
                     <input id="editFileInput" name="document" style="display: none;" type="file">
 
-                    <select id="lingkup" name="rt_id" class="relative"
-                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                        <option value="1">RT 001</option>
-                        <option value="2">RT 002</option>
-                    </select>
+
                 </div>
 
 

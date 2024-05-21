@@ -4,18 +4,16 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
-use App\Http\Controllers\DataRtController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\SaranController;
-use App\Http\Controllers\IuranWargaController;
-use App\Http\Controllers\IuranController;
+use App\Http\Controllers\DataKartuKeluargaController;
+use App\Http\Controllers\AnggotaKeluargaController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -80,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
         Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
         Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
+
+        Route::get('/RT/dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -98,6 +98,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+
+        Route::get('/RW/dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {
@@ -125,18 +127,35 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+
+        Route::get('/Penduduk/dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...
 });
 Route::get('/', [LandingPageController::class, 'index']);
-Route::get('/dashboard', [dashboardController::class, 'index']);
+
 
 //Data rt
-// Jika views ada di dalam direktori 'data_kk'
-Route::get('/data_rt', function () {
-    return view('data_rt.index');
-})->name('data_kk.rt.index');
+// // Jika views ada di dalam direktori 'data_kk'
+// Route::get('/data_rt', function () {
+//     return view('data_rt.index');
+// })->name('data_kk.rt.index');
+
+//pendataan
+Route::resource('rts', RTController::class);
+Route::resource('data_kartu_keluargas', DataKartuKeluargaController::class);
+Route::get('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas/create', [DataKartuKeluargaController::class, 'createAnggota'])->name('data_kartu_keluargas.create_anggota');
+Route::post('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas', [DataKartuKeluargaController::class, 'storeAnggota'])->name('data_kartu_keluargas.store_anggota');
+Route::get('/data_kartu_keluargas/{dataKartuKeluarga}', [DataKartuKeluargaController::class, 'show'])->name('data_kartu_keluargas.show');
+
+Route::get('/anggota_keluargas/create/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'create'])->name('createAnggota');
+Route::post('/anggota_keluargas/store/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'store'])->name('storeAnggota');
+Route::get('/anggota_keluargas/edit/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'edit'])->name('editAnggota');
+Route::put('/anggota_keluargas/update/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'update'])->name('updateAnggota');
+Route::delete('/anggota_keluargas/destroy/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'destroy'])->name('destroyAnggota');
+Route::post('/anggota_keluargas', [AnggotaKeluargaController::class, 'store'])->name('store_anggota_keluarga');
+
 
 Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
 Route::get('/rw', [DataController::class, 'rwPage'])->name('rw.page');
@@ -176,11 +195,6 @@ Route::group(['prefix' => 'usulan'], function () {
 });
 
 
-// Route::resource('rts', DataRtController::class);
-// // Route::resource('rts', RTController::class);
-// >>>>>>> 3a338190dd83759e37766839c5adc79e49ff96f0
-
-
 // Saran Dan Pengaduan
 Route::group(['prefix' => 'saran'], function () {
     Route::get('/RW/saranRW', [SaranController::class, 'indexRW'])->name('saranRW');
@@ -204,9 +218,6 @@ Route::group(['prefix' => 'saran'], function () {
     Route::post('/Penduduk/deleteSaranPD', [SaranController::class, 'deleteSaranPD'])->name('deleteSaranPD');
 });
 
-
-Route::resource('rts', DataRtController::class);
-// Route::resource('rts', RTController::class);
 
 //UMKM
 Route::get('/RT/izinUsahaRT', [UmkmController::class, 'indexIzinRT'])->name('izinUsahaRT');
