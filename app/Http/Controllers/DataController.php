@@ -16,7 +16,7 @@ class DataController extends Controller
                 'title' => 'Pendataan',
                 'subtitle' => 'Data RT',
             ];
-            return view('RT.dashboardRT', ['breadcrumb' => $breadcrumb]);
+            return view('rt', ['breadcrumb' => $breadcrumb]);
         }
 
         public function rwPage()
@@ -27,7 +27,7 @@ class DataController extends Controller
                 'title' => 'Pendataan',
                 'subtitle' => 'Data RW',
             ];
-            return view('RW.dashboardRW', ['breadcrumb' => $breadcrumb]);
+            return view('rt', ['breadcrumb' => $breadcrumb]);
         }
         public function pdPage()
         {

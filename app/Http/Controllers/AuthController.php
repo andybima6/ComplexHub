@@ -49,7 +49,7 @@ class AuthController extends Controller
                 return redirect()->intended('pd');
 
             }
-            
+
             // jika belum ada role maka ke halaman /
             return redirect()->intended('/');
         }
@@ -76,7 +76,6 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role_name' => 'required|exists:roles,id',
         ]);
 
         // Jika validasi gagal, kembali ke halaman registrasi dengan pesan error
@@ -89,17 +88,21 @@ class AuthController extends Controller
         // Hash password
         $password = Hash::make($request->password);
 
-        // Buat user baru
+        // Ambil ID role "penduduk"
+        $pendudukRole = Role::where('role_name', 'penduduk')->first();
+
+        // Buat user baru dengan role "penduduk"
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => $password,
-            'role_id' => $request->input('role_name'),
+            'role_id' => $pendudukRole->id, // Set role_id ke ID role "penduduk"
         ]);
 
         // Redirect ke halaman login
         return redirect()->route('login');
     }
+
 
 
     public function logout(Request $request)

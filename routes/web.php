@@ -79,6 +79,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
         Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
         Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
+
+        Route::get('/RT/dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -97,6 +99,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+
+        Route::get('/RW/dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {
@@ -124,12 +128,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+
+        Route::get('/Penduduk/dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...
 });
 Route::get('/', [LandingPageController::class, 'index']);
-Route::get('/dashboard', [dashboardController::class, 'index']);
+
 
 //Data rt
 // Jika views ada di dalam direktori 'data_kk'

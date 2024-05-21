@@ -37,7 +37,7 @@
 
     <ul class="list-reset ">
         <li class="pointer mb3">
-            <a class = "w-100 flex" href="{{ auth()->user()->role_id == 1 ? url('/RT/dashboardRT') : (auth()->user()->role_id == 2 ? url('/RW/dashboardRW') : url('/PD/dashboardPD')) }}"
+            <a class = "w-100 flex" href="{{ auth()->user()->role_id == 1 ? url('/RT/dashboardRT') : (auth()->user()->role_id == 2 ? url('/RW/dashboardRW') : url('/Penduduk/dashboardPD')) }}"
                 style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
                 <svg class="pointer" width="30" height="30" viewBox="0 0 30 30" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
