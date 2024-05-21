@@ -23,7 +23,7 @@
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Nama Pelajar</th>
+									<th scope="col">Nama Warga</th>
 									<th scope="col">Total Bayar</th>
 									<th scope="col">Tanggal</th>
 									<th scope="col">Dicatat Oleh</th>
@@ -49,9 +49,7 @@
                     <tr>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Bukti</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
                     </tr>
                 </thead>
