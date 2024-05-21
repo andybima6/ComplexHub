@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Template Simple Sidebar Menu → by InsertApps.com</title>
+    <title>ComplexHub</title>
     <link rel="stylesheet" href="https://unpkg.com/ace-css/css/ace.min.css">
-    <style>
-        /*Additional Style */
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href = "{{ asset('css/template.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
 
-        /* ######## START FOCUS CSS CODE HERE */
+    <style>
         #sidenav {
             max-height: 100vh;
             height: 100vh;
@@ -33,7 +34,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
         }
 
-        /* ######## END FOCUS CSS CODE HERE */
 
         .burger {
             height: 16px
@@ -49,25 +49,47 @@
         .pointer {
             cursor: pointer;
         }
-
-
     </style>
+
+    @vite('resources/css/app.css')
+
 </head>
 
 <body>
-    {{-- Header --}}
+    @include('layouts.header')
+    @include('layouts.sidebar')
+    @yield('content')
 
-     <header class="px2 py3 m0 flex items-center white" style="background-color: #8D8741">
-        <div class="burger pointer flex flex-column justify-between mr2">
-            <span class="bg-white"></span>
-            <span class="bg-white"></span>
-            <span class="bg-white"></span>
-        </div>
-        <nav class="ml-auto">
+    {{-- JS --}}
+    <script src='{{ asset('js/close.js') }}'></script>
+    <script src='{{ asset('js/dropDown.js') }}'></script>
+    <script src='{{ asset('js/sidebarAnimation.js') }}'></script>
+    <script src='{{ asset('js/judul.js') }}'></script>
+    <script src='{{ asset('js/popUp.js') }}'></script>
+    <script src='{{ asset('js/editPopUpKegiatan.js') }}'></script>
+    <script src='{{ asset('js/tambahKegiatanPopup.js') }}'></script>
+    <script>
+        window.onload = function() {
+            document.querySelectorAll('input[type="file"]').forEach(element => {
+                element.addEventListener('change', (e) => {
+                    const files = e.target.files;
+                    const id = element.id;
+                    const label = document.querySelector('label[for="' + id + '"]');
 
-        </nav>
+                    if (files.length && label) {
+                        const filename = Array.from(files).map(f => f.name).join(', ');
+                        label.innerText = filename;
+                    } else if (label) {
+                        label.innerText = '';
+                    }
+                });
+            })
+        }
+    </script>
+
+    </nav>
     </header>
-    
+
 </body>
 
-</html>
+</head>

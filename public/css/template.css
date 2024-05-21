@@ -1,0 +1,303 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #fbeec1;
+}
+
+.full-height {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+    background-color: #fbeec1;
+    margin-top: 110px;
+    overflow: auto;
+}
+
+.container {
+    background-color: #fbeec1;
+    margin-top: 90px;
+    z-index: 999;
+}
+
+#sidenav {
+    max-height: 100vh;
+    height: 100vh;
+    max-width: 70vw;
+    min-width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+    transform: translate(-150%, 0px);
+    -webkit-transform: translate(-150%, 0px);
+    -ms-transform: translate(-150%, 0px);
+    background-color: #fbeec1;
+    /* Ubah warna sidebar di sini */
+}
+
+#sidenav.active {
+    transition: all 0.3s ease-in-out;
+    transform: translate(0%, 0px);
+    -webkit-transform: translate(0%, 0px);
+    -ms-transform: translate(0%, 0px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ######## END FOCUS CSS CODE HERE */
+.burger {
+    height: 16px;
+}
+
+.burger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 3px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.close {
+    width: 23px;
+    height: 23px;
+}
+
+.cross {
+    height: 23px;
+    width: 2px;
+    border-radius: 3px;
+}
+
+.cross.left {
+    transform: rotate(45deg);
+}
+
+.cross.right {
+    transform: rotate(-45deg);
+}
+
+.align-middle {
+    vertical-align: middle;
+}
+
+.header-responsive {
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Animasi perubahan ukuran */
+}
+
+/* CSS untuk header responsif saat sidebar aktif */
+.sidebar-active .header-responsive {
+
+    width: calc(100% - var(--sidebar-width));
+    top: 0;
+    left: var(--sidebar-width);
+    height: var(--header-height);
+
+    /* line-height: var(--header-height); */
+}
+
+:root {
+    --sidebar-width: 352px;
+    /* Sesuaikan dengan lebar sidebar */
+    --header-height: 120px;
+    /* Sesuaikan dengan tinggi header */
+}
+
+.sidebar-active main {
+    margin-left: var(--sidebar-width);
+}
+
+.sidebar-active .container {
+    z-index: 1;
+}
+
+.card {
+    position: absolute;
+    top: 50px;
+    /* Sesuaikan dengan tinggi header */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 85%;
+    /* Batasi lebar maksimum */
+    height: 80vh;
+    /* Tinggi sebesar 80% dari tinggi viewport */
+    background-color: #daad86;
+    border-radius: 9px;
+    z-index: 999;
+}
+
+.header-responsive .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 146px;
+    margin: auto;
+    /* Atur tinggi sesuai kebutuhan */
+    background-color: #daad86;
+    border-radius: 9px;
+}
+
+.sidebar-active .card {
+    width: 80%;
+}
+.complex {
+    margin-bottom: 60px;
+    margin-top: 60px;
+    margin-left: 25px;
+}
+
+#card-title {
+    display: flex;
+    font-size: 34px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600; /* Semi-bold */
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+
+
+
+
+
+
+img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.sidebar-active .bgusulan {
+    margin-left: 250px;
+    width: auto;
+    transition: margin-left 0.3s ease;
+
+}
+
+
+.sidebar-active .tabelUsulan {
+    margin-left: 250px;
+    margin-right: 240px;
+    transition: margin-left 0.3s ease;
+}
+.sidebar-active .detail{
+    margin-left: 20%;
+    transition: margin-left 0.3s ease;
+}
+/* Pop Up */
+.modal {
+    display: none; /* Sembunyikan modal secara default */
+    position: fixed; /* Tetapkan posisi modal */
+    z-index: 1000; /* Menetapkan z-index agar modal muncul di atas konten */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Tambahkan scroll jika konten terlalu panjang */
+    background-color: rgb(0,0,0); /* Warna latar belakang gelap */
+    background-color: rgba(0,0,0,0.4); /* Warna latar belakang gelap dengan opasitas */
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Menempatkan modal di tengah layar */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 845px;
+    height: 950px;
+    position: relative; /* Penting untuk menetapkan posisi relatif */
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  ::placeholder {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /* Regular */
+
+}
+
+.garis{
+    position: relative;
+    top: 540px;
+}
+
+.button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 34px;
+    border-radius: 10px;
+    background-color: #2F80ED;
+}
+.svg-style {
+    margin-left: 10px;
+    margin-top: 2px;
+    width: 25px;
+    height: 24px;
+    fill: white;
+}
+
+/* CSS untuk layout responsif */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+}
+
+
+/* Atur ukuran elemen dalam grid */
+.header {
+    grid-row: 1 / 2;
+}
+
+.content {
+    grid-row: 2 / 3;
+}
+
+.footer {
+    grid-row: 3 / 4;
+}
+
+/* Media queries untuk layout pada layar berukuran kecil */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    /* tambahkan aturan CSS lainnya sesuai kebutuhan */
+}
