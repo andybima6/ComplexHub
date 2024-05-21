@@ -40,14 +40,7 @@
                         <label for="password_confirmation" class="input-label">Confirm Password</label>
                         <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
                     </div>
-                    <div class="input-block">
-                        <label for="role_name" class="input-label">Role</label>
-                        <select name="role_name" id="role_name" required>
-                            @foreach($id as $role)
-                                <option value="{{ $role->id }}">{{ $role->role_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                 
                     <a href="{{ route('login') }}">
                     <div class="modal-buttons">
                         <button type="submit" class="input-button">Register</button>
