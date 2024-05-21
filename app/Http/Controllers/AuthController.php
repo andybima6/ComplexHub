@@ -17,22 +17,6 @@ class AuthController extends Controller
 {
     public function index()
     {
-        // kita ambil data user lalu simpan pada variabel $user
-        $user = Auth::user();
-
-        // kondisi jika usernya ada
-        if ($user) {
-            // jika usernya memiliki roles
-            if ($user->roles_id == '1') {
-                return redirect()->intended('rt');
-            }
-            // jika usernya memiliki roles
-            else if ($user->roles_id == '2') {
-                return redirect()->intended('rw');
-            } else if ($user->roles_id == '3') {
-                return redirect()->intended('pd');
-            }
-        }
         return view('login');
     }
 
@@ -60,9 +44,12 @@ class AuthController extends Controller
             // tapi jika level usernya user biasa maka arahkan kehalaman user
             else if ($user->role_id == '2') {
                 return redirect()->intended('rw');
+
             } else if ($user->role_id == '3') {
                 return redirect()->intended('pd');
+
             }
+            
             // jika belum ada role maka ke halaman /
             return redirect()->intended('/');
         }

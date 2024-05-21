@@ -12,7 +12,7 @@ class DataRtController extends Controller
         $breadcrumb = (object) ['title' => 'Data RT'];
 
 
-        $dataRt = DataRt::with(['activities'])->get();
+        $dataeb = DataRt::with(['activities'])->get();
         return view('data_rt.index', compact('dataRt', 'breadcrumb'));
     }
 

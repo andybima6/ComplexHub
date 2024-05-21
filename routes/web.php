@@ -33,37 +33,101 @@ Route::post('/proses_register', [AuthController::class, 'proses_register'])->nam
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rute yang hanya bisa diakses oleh RT
-Route::group(['middleware' => ['auth', 'role_id:1']], function () {
-    Route::get('/rt', function () {
+// Route::group(['middleware' => ['auth', 'role_id:1']], function () {
+//     Route::get('/rt', function () {
 
-        return view('RT.dashboardRT');
+//         return view('RT.dashboardRT');
 
+//     });
+//     Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
+//     Route::get('/RT/detailSaranRT/{id}', [SaranController::class, 'showRT'])->name('detailSaranRT');
+//     Route::post('/Penduduk/accSaranRT/{id}', [SaranController::class, 'accSaranRT'])->name('accSaranRT');
+//     Route::post('/Penduduk/rejectSaranRT/{id}', [SaranController::class, 'rejectSaranRT'])->name('rejectSaranRT');
+//     Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
+//     Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
+//     Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
+//     Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
+// });
+
+// // Rute yang hanya bisa diakses oleh RW
+// Route::group(['middleware' => ['auth', 'role_id:2']], function () {
+//     Route::get('/rw', function () {
+//         return view('RW.dashboardRW');
+//     });
+
+// });
+
+// // Rute yang hanya bisa diakses oleh PD
+// Route::group(['middleware' => ['auth', 'role_id:3']], function () {
+//     Route::get('/pd', function () {
+//         return view('Penduduk.dashboardPD');
+//     });
+// });
+
+
+use App\Http\Middleware\RoleMiddleware;
+
+Route::middleware(['auth'])->group(function () {
+    // Rute yang dapat diakses oleh semua pengguna yang telah terautentikasi
+
+    Route::middleware(RoleMiddleware::class . ':1')->group(function () {
+        Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
+        Route::get('/RT/detailSaranRT/{id}', [SaranController::class, 'showRT'])->name('detailSaranRT');
+        Route::post('/Penduduk/accSaranRT/{id}', [SaranController::class, 'accSaranRT'])->name('accSaranRT');
+        Route::post('/Penduduk/rejectSaranRT/{id}', [SaranController::class, 'rejectSaranRT'])->name('rejectSaranRT');
+        Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
+        Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
+        Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
+        Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
     });
-    Route::get('/RT/saranRT', [SaranController::class, 'indexRT'])->name('saranRT');
-    Route::get('/RT/detailSaranRT/{id}', [SaranController::class, 'showRT'])->name('detailSaranRT');
-    Route::post('/Penduduk/accSaranRT/{id}', [SaranController::class, 'accSaranRT'])->name('accSaranRT');
-    Route::post('/Penduduk/rejectSaranRT/{id}', [SaranController::class, 'rejectSaranRT'])->name('rejectSaranRT');
-    Route::get('/RT/usulanKegiatanRT', [ActivityController::class, 'indexRT'])->name('usulanKegiatanRT');
-    Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
-    Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
-    Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
-});
 
-// Rute yang hanya bisa diakses oleh RW
-Route::group(['middleware' => ['auth', 'role_id:2']], function () {
-    Route::get('/rw', function () {
-        return view('RW.dashboardRW');
+    Route::middleware(RoleMiddleware::class . ':2')->group(function () {
+        Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
+        Route::get('/RW/detailKegiatanRW/{id}', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
+        Route::post('/Penduduk/accKegiatanRW/{id}', [ActivityController::class, 'accKegiatanRW'])->name('accKegiatanRW');
+        Route::post('/Penduduk/rejectKegiatanRW/{id}', [ActivityController::class, 'rejectKegiatanRW'])->name('rejectKegiatanRW');
+
+        Route::get('/RW/saranRW', [SaranController::class, 'indexRW'])->name('saranRW');
+        Route::get('/RW/detailSaranRW/{id}', [SaranController::class, 'showRW'])->name('detailSaranRW');
+        Route::post('/Penduduk/accSaranRW/{id}', [SaranController::class, 'accSaranRW'])->name('accSaranRW');
+        Route::post('/Penduduk/rejectSaranRW/{id}', [SaranController::class, 'rejectSaranRW'])->name('rejectSaranRW');
+
+        Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW');
+        Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dataUsahaRW');
+        Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
+        Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+        Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
     });
-    
-});
 
-// Rute yang hanya bisa diakses oleh PD
-Route::group(['middleware' => ['auth', 'role_id:3']], function () {
-    Route::get('/pd', function () {
-        return view('Penduduk.dashboardPD');
+    Route::middleware(RoleMiddleware::class . ':3')->group(function () {
+        Route::get('/Penduduk/usulanKegiatanPD', [ActivityController::class, 'indexPenduduk'])->name('usulanKegiatanPD');
+        Route::get('/Penduduk/detailKegiatanPD/{id}', [ActivityController::class, 'indexDetailIzinPenduduk'])->name('detailKegiatanPD');
+        Route::post('/Penduduk/tambahKegiatanPD', [ActivityController::class, 'storeKegiatan'])->name('tambahKegiatanPD'); //tambah
+        Route::get('/Penduduk/tambahEditKegiatanPD', [ActivityController::class, 'indexTambahIzinPenduduk'])->name('tambahEditKegiatanPD'); //tampilan
+        Route::post('/Penduduk/detailKegiatanPD', [ActivityController::class, 'updateKegiatan'])->name('updateKegiatan'); // update
+        Route::post('/Penduduk/hapusKegiatanPD', [ActivityController::class, 'deleteKegiatan'])->name('hapusKegiatanPD');
+
+        Route::get('/Penduduk/saranPD', [SaranController::class, 'indexPD'])->name('saranPD');
+        Route::get('/Penduduk/detailSaranPD/{id}', [SaranController::class, 'ShowPenduduk'])->name('detailSaranPD');
+        Route::post('/Penduduk/tambahSaranPD', [SaranController::class, 'storeSaran'])->name('tambahSaranPD');
+        Route::post('/Penduduk/updateSaranPD', [SaranController::class, 'updateSaranPD'])->name('updateSaranPD');
+        Route::post('/Penduduk/deleteSaranPD', [SaranController::class, 'deleteSaranPD'])->name('deleteSaranPD');
+
+        Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'showUmkm'])->name('izinUsahaPenduduk');
+        Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name('dataUsahaPenduduk');
+        Route::get('/Penduduk/detailIzinUsaha/{id}', [UmkmController::class, 'indexDetailIzinPenduduk'])->name('detailIzinUsaha');
+        Route::post('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'storeIzin'])->name('storeIzin');
+        Route::delete('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'destroy'])->name('destroy');
+        Route::get('/Penduduk/izinUsahaPenduduk/{id}/edit', [UmkmController::class, 'edit'])->name('editIzinUsaha');
+        Route::put('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'update'])->name('updateIzin');
+        Route::post('/Penduduk/accIzinRT/{id}', [UmkmController::class, 'accIzinRT'])->name('accIzinRT');
+        Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
+        Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+        Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
     });
-});
 
+    // Rute lainnya...
+});
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/dashboard', [dashboardController::class, 'index']);
 
@@ -74,6 +138,8 @@ Route::get('/data_rt', function () {
 })->name('data_kk.rt.index');
 
 Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
+Route::get('/rw', [DataController::class, 'rwPage'])->name('rw.page');
+Route::get('/pd', [DataController::class, 'pdPage'])->name('pd.page');
 Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
 

@@ -16,9 +16,9 @@ class RoleMiddleware
      * @param  string  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $user)
     {
-        if (Auth::check() && Auth::user()->roles_id == $role) {
+        if (Auth::check() && Auth::user()->role_id == $user) {
             return $next($request);
         }
         return redirect('/login')->withErrors('Anda tidak memiliki akses.');
