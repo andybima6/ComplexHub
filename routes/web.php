@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
@@ -15,6 +14,8 @@ use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\IuranWargaController;
+use App\Http\Controllers\IuranController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -267,12 +268,16 @@ Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 });
 
-Route::group(['prefix' => 'pengeluaran'], function () {
-    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+Route::group(['prefix' => 'RT'], function () {
+    Route::get('/iuranRT', [IuranController::class, 'indexiuranRT'])->name('pengeluaranRT');
 });
 
 Route::group(['prefix' => 'warga'], function () {
     // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
-    Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
-    Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
+    Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
+    Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
+    Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
+
+
 });
