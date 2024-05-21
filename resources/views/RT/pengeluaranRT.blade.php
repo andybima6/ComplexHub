@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <a href="{{ route('cekdataRT') }}">
+    {{-- <a href="{{ route('cekdataRT') }}"> --}}
     <div class="box4">
         <button class="button">Cek Data</button>
     </div>

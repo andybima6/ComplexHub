@@ -20,7 +20,23 @@ class iuranController extends Controller
             'title' => 'Iuran',
             'subtitle' => '',
         ];
-        return view('RT/pengeluaranRT', ['breadcrumb' => $breadcrumb]);
+        return view('RT.pengeluaranRT', ['breadcrumb' => $breadcrumb]);
+    }
+    public function pengeluaranindexWarga()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Iuran',
+            'subtitle' => '',
+        ];
+        return view('warga/index', ['breadcrumb' => $breadcrumb]);
+    }
+    public function formWarga()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Iuran',
+            'subtitle' => '',
+        ];
+        return view('warga.form', ['breadcrumb' => $breadcrumb]);
     }
     public function cekdataRT()
     {

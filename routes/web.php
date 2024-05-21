@@ -277,3 +277,9 @@ Route::group(['prefix' => 'iuran'], function () {
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
 });
+
+Route::group(['prefix' => 'warga'], function () {
+    // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+    Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
+});
