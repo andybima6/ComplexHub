@@ -22,7 +22,14 @@
 
             <p class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
             <br>
-            <p class="inline-block btn p0 mr0">RT 10</p>
+            <p class="inline-block btn p0 mr0">
+                @if(auth()->user()->role_id == 1)
+                    RT {{ auth()->user()->rt }}
+                @elseif(auth()->user()->role_id == 2)
+                    RW {{ auth()->user()->rw }}
+                @else
+                    PD
+                @endif
         </nav>
 
 
