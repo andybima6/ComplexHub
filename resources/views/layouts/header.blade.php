@@ -1,4 +1,3 @@
-
     {{-- Header --}}
     <header class="header-responsive px2 py3 m0 flex items-center fixed-top" style="background-color: #8D8741">
         <div class="burger pointer flex flex-column justify-between mr2">

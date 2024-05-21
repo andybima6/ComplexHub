@@ -16,7 +16,28 @@ class DataController extends Controller
                 'title' => 'Pendataan',
                 'subtitle' => 'Data RT',
             ];
-            return view('rt', ['breadcrumb' => $breadcrumb]);
+            return view('RT.dashboardRT', ['breadcrumb' => $breadcrumb]);
+        }
+
+        public function rwPage()
+        {
+            $user = auth()->user();
+
+            $breadcrumb = (object)[
+                'title' => 'Pendataan',
+                'subtitle' => 'Data RW',
+            ];
+            return view('RW.dashboardRW', ['breadcrumb' => $breadcrumb]);
+        }
+        public function pdPage()
+        {
+            $user = auth()->user();
+
+            $breadcrumb = (object)[
+                'title' => 'Pendataan',
+                'subtitle' => 'Data Kartu Keluarga',
+            ];
+            return view('Penduduk.dashboardPD', ['breadcrumb' => $breadcrumb]);
         }
         public function kkPage()
         {
@@ -73,7 +94,7 @@ class DataController extends Controller
     ];
 
     return view('tanggapan', ['breadcrumb' => $breadcrumb]);
-        
+
 }
 
 
