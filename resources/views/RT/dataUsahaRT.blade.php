@@ -14,7 +14,6 @@
                             <option value="01">01</option>
                             {{-- <option value="02">02</option>
                             <option value="03">03</option> --}}
-                            <!-- tambahkan opsi lainnya sesuai kebutuhan -->
                         </selected>
                     </div>
                 </p>
@@ -26,11 +25,11 @@
                     Total UMKM :
                     <div class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
                         style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                        <select class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                        </select>
+                        <selected class="bg-transparent border-white outline-none text-white w-full md:w-auto">
+                            <option value="{{ count($izinUsaha) }}">{{ count($izinUsaha) }}</option>
+                            {{-- <option value="02">02</option>
+                            <option value="03">03</option> --}}
+                        </selected>
                     </div>
                 </p>
             </div>
@@ -39,33 +38,35 @@
 
 
 
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: #659DBD">
-            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: white;">Daftar Izin Usaha RT :</p>
+        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
+            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
             <table class="md:table-fixed w-full">
                 <thead>
                     <tr>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Nama Warga</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Nama Usaha</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Deskripsi</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Foto Produk</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Status</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($izinUsaha as $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: white">1</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">Miguel Santoso</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">Mi Amor Bakery</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">Kami menjual aneka ragam kue, dari kue basah hingga kue kering</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kopikap.jpg') }}" alt="">
+                                <img src="{{ asset($izin->foto_produk) }}" alt="">
                             </div>
                         </td>
-                        <td class="border px-4 py-2 text-center" style="color: white">Izin telah di setujui</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">Izin telah di setujui</td>
                         
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

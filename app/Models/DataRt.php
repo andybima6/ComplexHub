@@ -15,13 +15,18 @@ class DataRt extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function penduduk()
+    public function activities()
     {
-        return $this->hasMany(DataPenduduk::class, 'rt_id');
+        return $this->hasMany(Activity::class, 'rt_id');
     }
 
-    public function dataKk()
+    public function DataPenduduk()
     {
-        return $this->hasMany(DataKk::class, 'rt_id');
+        return $this->hasMany(DataPenduduk::class, 'data_rt');
+    }
+
+    public function DataKk()
+    {
+        return $this->hasMany(DataKk::class, 'data_rt');
     }
 }

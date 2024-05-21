@@ -201,11 +201,15 @@ img{
     margin-right: 240px;
     transition: margin-left 0.3s ease;
 }
+.sidebar-active .detail{
+    margin-left: 20%;
+    transition: margin-left 0.3s ease;
+}
 /* Pop Up */
 .modal {
     display: none; /* Sembunyikan modal secara default */
     position: fixed; /* Tetapkan posisi modal */
-    z-index: 1; /* Menetapkan z-index agar modal muncul di atas konten */
+    z-index: 1000; /* Menetapkan z-index agar modal muncul di atas konten */
     left: 0;
     top: 0;
     width: 100%;

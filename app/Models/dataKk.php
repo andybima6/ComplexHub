@@ -12,7 +12,7 @@ class DataKk extends Model
 
     public function rt()
     {
-        return $this->belongsTo(DataRt::class, 'rt_id');
+        return $this->belongsTo(DataRt::class, 'data_rt_id');
     }
 
     public function penduduk()

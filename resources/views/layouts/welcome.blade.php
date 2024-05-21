@@ -27,8 +27,26 @@
     <script src='{{ asset('js/popUp.js') }}'></script>
     <script src='{{ asset('js/editPopUpKegiatan.js') }}'></script>
     <script src='{{ asset('js/tambahKegiatanPopup.js') }}'></script>
+    <script>
+        window.onload = function () {
+            document.querySelectorAll('input[type="file"]').forEach(element => {
+                element.addEventListener('change', (e) => {
+                    const files = e.target.files;
+                    const id = element.id;
+                    const label = document.querySelector('label[for="' + id + '"]');
 
-    
+                    if (files.length && label) {
+                        const filename = Array.from(files).map(f => f.name).join(', ');
+                        label.innerText = filename;
+                    } else if(label) {
+                        label.innerText = '';
+                    }
+                });
+            })
+        }
+    </script>
+
+
 </body>
 
 </head>
