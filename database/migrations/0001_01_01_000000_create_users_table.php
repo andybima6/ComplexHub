@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('role_id');
             $table->integer('rt');
+            $table->integer('rw');
             $table->rememberToken();
             $table->timestamps();
 

@@ -53,11 +53,7 @@
                         </label>
                         <input id="editFileInput" name="document" style="display: none;" type="file">
 
-                        <select id="lingkup" name="rt_id" class="relative"
-                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                            <option value="1">RT 001</option>
-                            <option value="2">RT 002</option>
-                        </select>
+                        
                     </div>
 
 
