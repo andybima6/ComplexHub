@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Iuran;
 use Illuminate\Http\Request;
 
 class IuranWargaController extends Controller
@@ -14,6 +15,7 @@ class IuranWargaController extends Controller
         ];
         return view('warga/index', ['breadcrumb' => $breadcrumb]);
     }
+
     public function form()
     {
         $breadcrumb = (object) [
@@ -21,5 +23,15 @@ class IuranWargaController extends Controller
             'subtitle' => '',
         ];
         return view('warga/form', ['breadcrumb' => $breadcrumb]);
+    }
+
+    public function history()
+    {
+        $iuran = Iuran::all();
+        $breadcrumb = (object) [
+            'title' => 'History',
+            'subtitle' => '',
+        ];
+        return view('warga/history', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 }
