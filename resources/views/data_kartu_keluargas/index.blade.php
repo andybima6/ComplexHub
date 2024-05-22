@@ -11,9 +11,10 @@
                     <th class="border px-4 py-2 text-center" style="color: black">ID</th>
                     <th class="border px-4 py-2 text-center" style="color: black">Kepala Keluarga</th>
                     <th class="border px-4 py-2 text-center" style="color: black">No KK</th>
+                    <th class="border px-4 py-2 text-center" style="color: black">Alamat</th>
                     <th class="border px-4 py-2 text-center" style="color: black">RT</th>
                     <th class="border px-4 py-2 text-center" style="color: black">Status Ekonomi</th>
-                    <th class="border px-4 py-2 text-center" style="color: black">Action</th>
+                    <th class="border px-4 py-2 text-center" style="color: black">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,16 +23,47 @@
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $kk->id }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $kk->kepala_keluarga }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $kk->no_kk }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $kk->alamat }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $kk->rt->rt }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $kk->status_ekonomi }}</td>
                     <td class="border px-4 py-2 text-center">
-                        <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="btn btn-info">Detail</a>
-                        <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="btn btn-warning">Edit</a>
+                        
                         <form id="delete-form-{{ $kk->id }}" action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="btn btn-danger">Hapus</button>
+                            
                         </form>
+                        <div class="flex justify-center items-center gap-2 mt-2">
+                            <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}">
+                                <button style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
+                                    <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </a>
+                            <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}">
+                                <button style="width:45px;height:34px;border-radius:10px;background-color:#e7ee1d">
+                                    <svg style="margin-left: 12px;margin-top:2px" width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </a>
+                            <form action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
+                                    <svg style="margin-left: 10px;margin-top:2px" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>                        
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

@@ -35,7 +35,8 @@ class DataKartuKeluargaController extends Controller
             'no_kk' => 'required',
             'rt_id' => 'required',
             'status_ekonomi' => 'required',
-            'foto_kartu_keluarga' => 'required|image'
+            'foto_kartu_keluarga' => 'required|image',
+            'alamat' => 'required', // Add 'alamat' to the validation rules
         ]);
 
         $imageName = null;
@@ -51,6 +52,7 @@ class DataKartuKeluargaController extends Controller
             'rt_id' => $request->rt_id,
             'status_ekonomi' => $request->status_ekonomi,
             'foto_kartu_keluarga' => $imageName,
+            'alamat' => $request->alamat, // Add 'alamat' to the data creation
         ]);
 
         return redirect()->route('data_kartu_keluargas.index')->with('success', 'Data Kartu Keluarga created successfully.');
@@ -84,7 +86,8 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => 'required',
             'no_kk' => 'required',
             'rt_id' => 'required',
-            'status_ekonomi' => 'required'
+            'status_ekonomi' => 'required',
+            'alamat' => 'required', // Add 'alamat' to the validation rules
         ]);
 
         $imageName = $dataKartuKeluarga->foto_kartu_keluarga;
@@ -100,6 +103,7 @@ class DataKartuKeluargaController extends Controller
             'rt_id' => $request->rt_id,
             'status_ekonomi' => $request->status_ekonomi,
             'foto_kartu_keluarga' => $imageName,
+            'alamat' => $request->alamat, // Add 'alamat' to the data update
         ]);
 
         return redirect()->route('data_kartu_keluargas.index')->with('success', 'Data Kartu Keluarga updated successfully.');
@@ -125,21 +129,30 @@ class DataKartuKeluargaController extends Controller
 
     public function storeAnggota(Request $request, DataKartuKeluarga $dataKartuKeluarga)
     {
+        dd($dataKartuKeluarga->id);
+
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'nik' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
-            'hubungan_keluarga' => 'required|string|max:255',
-            'status_perkawinan' => 'required|string|in:Menikah,Belum Menikah', // Menambahkan validasi status perkawinan
+        'kk_id' => 'required', // Pastikan kk_id ada dalam validasi
+        'nama' => 'required|string|max:255',
+        'nik' => 'required|string|max:255',
+        'alamat' => 'required|string',
+        'tanggal_lahir' => 'required|date',
+        'hubungan_keluarga' => 'required|string|in:Ibu,Ayah,Anak',
+        'status_perkawinan' => 'required|string|in:Menikah,Belum Menikah',
+        'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
+        'golongan_darah' => 'required|string|in:A,B,AB,O',
         ]);
 
         $dataKartuKeluarga->anggotaKeluargas()->create([
-            'nama' => $request->nama,
-            'nik' => $request->nik,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'hubungan_keluarga' => $request->hubungan_keluarga,
-            'status_perkawinan' => $request->status_perkawinan, // Menambahkan status perkawinan
-            'kk_id' => $dataKartuKeluarga->id,
+        'kk_id' => $request->kk_id,
+        'nama' => $request->nama,
+        'nik' => $request->nik,
+        'alamat' => $request->alamat,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'hubungan_keluarga' => $request->hubungan_keluarga,
+        'status_perkawinan' => $request->status_perkawinan,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'golongan_darah' => $request->golongan_darah,
         ]);
 
         return redirect()->route('data_kartu_keluargas.show', $dataKartuKeluarga)->with('success', 'Anggota keluarga berhasil ditambahkan.');

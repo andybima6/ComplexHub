@@ -31,23 +31,30 @@ public function store(Request $request)
         'kk_id' => 'required', // Pastikan kk_id ada dalam validasi
         'nama' => 'required|string|max:255',
         'nik' => 'required|string|max:255',
+        'alamat' => 'required|string',
         'tanggal_lahir' => 'required|date',
-        'hubungan_keluarga' => 'required|string|max:255',
+        'hubungan_keluarga' => 'required|string|in:Ibu,Ayah,Anak',
         'status_perkawinan' => 'required|string|in:Menikah,Belum Menikah',
+        'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
+        'golongan_darah' => 'required|string|in:A,B,AB,O',
     ]);
 
     // Menyimpan anggota keluarga dengan menyertakan kk_id
-    AnggotaKeluarga::create([
+    $anggotaKeluarga = AnggotaKeluarga::create([
         'kk_id' => $request->kk_id,
         'nama' => $request->nama,
         'nik' => $request->nik,
+        'alamat' => $request->alamat,
         'tanggal_lahir' => $request->tanggal_lahir,
         'hubungan_keluarga' => $request->hubungan_keluarga,
         'status_perkawinan' => $request->status_perkawinan,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'golongan_darah' => $request->golongan_darah,
     ]);
 
     return redirect()->route('data_kartu_keluargas.show', $request->kk_id)->with('success', 'Anggota Keluarga created successfully.');
 }
+
 
     public function edit(DataKartuKeluarga $dataKartuKeluarga, AnggotaKeluarga $anggotaKeluarga)
     {
@@ -61,9 +68,13 @@ public function store(Request $request)
     public function update(Request $request, DataKartuKeluarga $dataKartuKeluarga, AnggotaKeluarga $anggotaKeluarga)
     {
         $request->validate([
+            'nik' => 'required|string|size:16',
             'nama' => 'required|string|max:255',
+            'alamat' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'hubungan_keluarga' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
+            'golongan_darah' => 'required|string|in:A,B,AB,O',
         ]);
 
         $anggotaKeluarga->update($request->all());
