@@ -14,13 +14,14 @@ class Iuran extends Model
     protected $fillable = [
         'rt_id',
         'periode',
+        'keterangan',
         'total',
         'bukti',
     ];
 
-    protected $attributes = [
-        'keterangan' => 'Pending'
-    ];
+    // protected $attributes = [
+    //     'keterangan' => 'Pending'
+    // ];
     public function rt()
     {
         return $this->belongsTo(DataRt::class, 'rt_id');

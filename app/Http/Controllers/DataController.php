@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
+use App\Models\Umkm;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -12,24 +14,29 @@ class DataController extends Controller
     public function rtPage()
         {
             $user = auth()->user();
+        $suggestions = suggestion::all();
+        $izinUsaha = Umkm::all();
+        $activities = Activity::all();
 
             $breadcrumb = (object)[
                 'title' => 'Pendataan',
                 'subtitle' => 'Data RT',
             ];
-            return view('RT.dashboardRT', ['breadcrumb' => $breadcrumb]);
+        return view('RT.dashboardRT', compact('suggestions', 'izinUsaha', 'activities'), ['breadcrumb' => $breadcrumb]);
         }
 
         public function rwPage()
         {
             $user = auth()->user();
             $suggestions = suggestion::all();
+        $izinUsaha = Umkm::all();
+        $activities = Activity::all();
 
             $breadcrumb = (object)[
                 'title' => 'Pendataan',
                 'subtitle' => 'Data RW',
             ];
-            return view('RW.dashboardRW', compact('suggestions'), ['breadcrumb' => $breadcrumb]);
+        return view('RW.dashboardRW', compact('suggestions', 'izinUsaha', 'activities'), ['breadcrumb' => $breadcrumb]);
         }
         public function pdPage()
         {

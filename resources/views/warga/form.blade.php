@@ -5,19 +5,40 @@
     <button class="custom-button">Form Input Iuran</button>
     <br><br>
     <div class="form-container">
-        <form action="{{ route('storeIuran') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('storeIuran') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <label for="periode">Periode:</label>
-            <input type="date" id="periode" name="periode" required>
+            <div class="form-group">
+                <label for="periode">Periode:</label>
+                <input type="date" id="periode" name="periode" required>
+            </div>
 
-            <label for="total">Total:</label>
-            <input type="number" id="total" name="total" placeholder="Nominal" required>
+            <div class="form-group">
+                <label for="total">Total:</label>
+                <input type="number" id="total" name="total" placeholder="Nominal" required>
+            </div>
+            <div class="form-group">
+                <label for="keterangan">Keterangan:</label>
+                <input type="text" id="keterangan" name="keterangan" required>
+            </div>
 
-            <label for="bukti">Bukti:</label>
-            <input type="file" id="bukti" name="bukti" required>
+            <div class="form-group">
+                <label for="bukti">Bukti:</label>
+                <input type="file" id="bukti" name="bukti" required>
+            </div>
 
-            <button type="submit" onclick="return confirmSubmit()">Kirim</button>
+
+            <div class="form-group">
+                <label for="rt_id">Lingkup:</label>
+                <select id="rt_id" name="rt_id" required>
+                    <option value="1">RT & RW</option>
+                    <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" onclick="return confirmSubmit()">Kirim</button>
+            </div>
         </form>
     </div>
     <script>

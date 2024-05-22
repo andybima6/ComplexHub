@@ -289,8 +289,9 @@ Route::group(['prefix' => 'warga'], function () {
     // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
     Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
     Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
+    Route::post('/warga/form', [IuranController::class, 'storeIuran'])->name('storeIuran');
     Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('wargaHistory');
-    Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
+    Route::post('/warga/iuran/store', [IuranController::class, 'storeIuran'])->name('store');
     Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
     Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
 
