@@ -12,8 +12,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\PenilaianController;
+use App\Models\Kriteria;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -136,14 +140,24 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 
 // Destinasi Wisata
 Route::group(['prefix' => 'destinasi'], function () {
-    Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW']);
+    Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW'])->name('RW.destinasiwisataRW');
+    Route::get('/Destinasi/berandadestinasiRW', [DestinasiController::class, 'indexberanda'])->name('RW.berandadestinasiRW');
+    Route::get('/Destinasi/alternatifdestinasiRW', [AlternatifController::class, 'index'])->name('Destinasi.alternatifdestinasiRW');
+    Route::get('/Destinasi/kriteriadestinasiRW', [KriteriaController::class, 'index'])->name('kriteria.kriteriadestinasiRW');
+    Route::get('/kriteria/create/{nama}', [KriteriaController::class, 'create'])->name('kriteria.create');
+
+    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexpenilaian'])->name('penilaian.penilaiandestinasiRW');
+    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking'])->name('ranking.rankingdestinasiRW');
 });
-Route::group(['prefix' => 'destinasi'], function () {
-    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
-    Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexkriteria']);
-    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexpenilaian']);
-    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking']);
-});
+Route::resource('kriteria', KriteriaController::class);
+Route::get('/kriteria/{nama}/create', [KriteriaController::class, 'create'])->name('kriterias.create');
+Route::post('/kriteria/{nama}/kriteria', [KriteriaController::class, 'storeKriteria'])->name('kriteria.');
+Route::get('/kriteria/{nama}', [KriteriaController::class, 'show'])->name('kriteria.show');
+
+Route::resource('alternatif', AlternatifController::class);
+Route::get('/alternatif/{nama wisata}/create', [AlternatifController::class, 'create'])->name('alternatifs.create');
+Route::post('/alternatif/{nama wisata}/alternatif', [AlternatifController::class, 'storeAlternatif'])->name('alternatif.');
+Route::get('/alternatif/{nama wisata}', [AlternatifController::class, 'show'])->name('alternatif.show');
 
 // Iuran
 Route::group(['prefix' => 'iuran'], function () {
@@ -153,3 +167,5 @@ Route::group(['prefix' => 'iuran'], function () {
 Route::group(['prefix' => 'pengeluaran'], function () {
     Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
 });
+
+

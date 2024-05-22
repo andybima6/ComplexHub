@@ -13,17 +13,30 @@ class DestinasiController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Pemilihan Destinasi Wisata',
-            'subtitle' => 'Metode 1 (Satu)'
+            'subtitle' => 'dengan Metode Sistem Pengambilan Keputusan'
         ];
         return view('RW.destinasiwisataRW', ['breadcrumb' => $breadcrumb]);
     }
+
+    public function indexberanda()
+    {
+    $user = auth()->user();
+
+    $breadcrumb = (object)[
+        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
+        'subtitle' => 'Daftar Destinasi Wisata',
+    ];
+
+    return view('RW.berandadestinasiRW', ['breadcrumb' => $breadcrumb]);
+    }
+
     public function indexDestinasi()
     {
     $user = auth()->user();
 
     $breadcrumb = (object)[
         'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
-        'subtitle' => 'Data Alternatif',
+        'subtitle' => 'Daftar Alternatif Destinasi Wisata',
     ];
 
     return view('Destinasi.alternatifdestinasiRW', ['breadcrumb' => $breadcrumb]);
@@ -41,17 +54,17 @@ class DestinasiController extends Controller
     return view('kriteria.kriteriadestinasiRW', ['breadcrumb' => $breadcrumb]);
     }
 
-    public function indexbobot()
-    {
-    $user = auth()->user();
+    // public function indexbobot()
+    // {
+    // $user = auth()->user();
 
-    $breadcrumb = (object)[
-        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
-        'subtitle' => 'Ubah Bobot Kriteria',
-    ];
+    // $breadcrumb = (object)[
+    //     'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
+    //     'subtitle' => 'Ubah Bobot Kriteria',
+    // ];
 
-    return view('bobot.bobotdestinasiRW', ['breadcrumb' => $breadcrumb]);
-    }
+    // return view('bobot.bobotdestinasiRW', ['breadcrumb' => $breadcrumb]);
+    // }
 
     public function indexpenilaian()
     {
@@ -59,7 +72,7 @@ class DestinasiController extends Controller
 
     $breadcrumb = (object)[
         'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
-        'subtitle' => 'Penilaian Alternatif',
+        'subtitle' => 'Penilaian',
     ];
 
     return view('penilaian.penilaiandestinasiRW', ['breadcrumb' => $breadcrumb]);
