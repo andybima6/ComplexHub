@@ -49,8 +49,8 @@
             <p style="font-size: 40px; color: black; margin-bottom: 20px; font-weight: 600;">Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
             <p style="font-size: 16px; margin-bottom: 20px;">ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
             <div class="buttons" style="margin-top: 20px;">
-                <button class="start-button" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; background-color: #3b4d61; color: #FBEEC1; font-weight: 600;">Mulai Sekarang</button>
-                <button class="how-it-works-button" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; border: 2px solid #3b4d61; color: #3b4d61; font-weight: 600;">Cara Kerja</button>
+                <a href="{{ route('login') }}"><button class="start-button" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; background-color: #3b4d61; color: #FBEEC1; font-weight: 600;">Mulai Sekarang</button></a>
+                {{-- <button class="how-it-works-button" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; border: 2px solid #3b4d61; color: #3b4d61; font-weight: 600;">Cara Kerja</button> --}}
             </div>
         </div>
         <div class="image" style="flex: 1; background-image: url('img/gambar landingPage.jpg'); background-size: cover; background-position: right; border-top-left-radius: 100px; border-bottom-right-radius: 100px;"></div>
