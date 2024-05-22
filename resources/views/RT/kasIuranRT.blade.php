@@ -58,10 +58,9 @@
                         <td class="border px-4 py-2 text-center" style="color: black">1</td>
                         <td class="border px-4 py-2 text-center" style="color: black">Miguel Santoso</td>
                         <td class="border px-4 py-2 text-center" style="color: black">Mi Amor Bakery</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">Kami menjual aneka ragam kue, dari kue basah hingga kue kering</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">
+
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kopikap.jpg') }}" alt="">
+                                <img src="{{ asset('img/.jpg') }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">

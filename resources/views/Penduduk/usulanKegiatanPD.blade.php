@@ -53,11 +53,7 @@
                         </label>
                         <input id="editFileInput" name="document" style="display: none;" type="file">
 
-                        <select id="lingkup" name="rt_id" class="relative"
-                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                            <option value="1">RT 001</option>
-                            <option value="2">RT 002</option>
-                        </select>
+
                     </div>
 
 
@@ -87,9 +83,9 @@
 
         <div class="bgusulan relative" style="position: absolute; top: 45%; left: 8%; z-index: 0;">
             <div
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); border-radius: 36px; opacity: 0.4;">
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 36px; opacity: 0.4;">
             </div>
-            <img src="{{ asset('img/background.png') }}" class="justify-center items-center m-0 mr-64"
+            <img src="{{ asset('img/background.png') }}" class="justify-center items-center m-0 ]"
                 style="overflow: scroll; height: 950px; border-radius: 16px; width: 100%; margin-bottom: 0px;"></img>
             <span id="closeModal" class="close" class="flex justify-center"
                 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: white; font-family: 'Poppins', sans-serif; font-weight: 300; width: 80%; max-width: 2000px;">Pengajuan

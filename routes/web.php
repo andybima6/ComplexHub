@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
@@ -10,20 +9,17 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
-<<<<<<< HEAD
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\PenilaianController;
 use App\Models\Kriteria;
-=======
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\DataKartuKeluargaController;
 use App\Http\Controllers\AnggotaKeluargaController;
->>>>>>> 42878f6283e9039364357544c9d09a39b8bbbbdd
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -88,6 +84,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RT/detailKegiatanRT/{id}', [ActivityController::class, 'indexDetailIzinRT'])->name('detailKegiatanRT');
         Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
         Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
+
+        Route::get('/RT/dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -106,6 +104,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+
+        Route::get('/RW/dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {
@@ -133,12 +133,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+
+        Route::get('/Penduduk/dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...
 });
 Route::get('/', [LandingPageController::class, 'index']);
-Route::get('/dashboard', [dashboardController::class, 'index']);
+
 
 //Data rt
 // // Jika views ada di dalam direktori 'data_kk'
@@ -293,8 +295,8 @@ Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 });
 
-Route::group(['prefix' => 'pengeluaran'], function () {
-    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+Route::group(['prefix' => 'RT'], function () {
+    Route::get('/iuranRT', [IuranController::class, 'indexiuranRT'])->name('pengeluaranRT');
 });
 
 <<<<<<< HEAD
@@ -302,7 +304,17 @@ Route::group(['prefix' => 'pengeluaran'], function () {
 =======
 Route::group(['prefix' => 'warga'], function () {
     // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+<<<<<<< HEAD
     Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
     Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
 });
 >>>>>>> 42878f6283e9039364357544c9d09a39b8bbbbdd
+=======
+    Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
+    Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
+    Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
+
+
+});
+>>>>>>> master
