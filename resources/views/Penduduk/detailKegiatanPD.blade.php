@@ -6,7 +6,7 @@
             <hr class="mb-4 mr-6">
 
             <div class="mb-4">
-               
+
 
                 <label for="" class="block text-lg font-bold text-gray-700">Nama Kegiatan:</label>
                 <p class="font-medium">{{ $activity->name }}</p>
@@ -36,7 +36,7 @@
             </div>
             <div class="mb-4">
                 <label for="" class="block text-lg font-bold text-gray-700">Lingkup :</label>
-                <p class="font-medium">{{ $activity->rt->rt ?? '-' }}</p>
+                <p class="font-medium">{{ $activity->rt->rt ?? 'RT & RW' }}</p>
             </div>
 
             <div class="absolute right-16 bottom-4 ">

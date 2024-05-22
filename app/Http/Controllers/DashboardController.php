@@ -20,7 +20,7 @@ class dashboardController extends Controller
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('/RT/dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('RT.dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
     }
     public function indexRW()
     {
@@ -32,7 +32,7 @@ class dashboardController extends Controller
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('/RW/dashboardRW', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('RW.dashboardRW', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
     }
     public function indexPD()
     {
@@ -44,6 +44,7 @@ class dashboardController extends Controller
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('/Penduduk/dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('
+        Penduduk.dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
     }
 }
