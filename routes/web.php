@@ -11,6 +11,8 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RTController;
+use App\Http\Controllers\IuranController;
+use App\Http\Controllers\IuranWargaController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\DataKartuKeluargaController;
 use App\Http\Controllers\AnggotaKeluargaController;
@@ -287,8 +289,10 @@ Route::group(['prefix' => 'warga'], function () {
     // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
     Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
     Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
+    Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('wargaHistory');
     Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
     Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
+    Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
 
 
 });
