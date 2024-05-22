@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Models\suggestion;
 
 class DataController extends Controller
 {
@@ -22,12 +23,13 @@ class DataController extends Controller
         public function rwPage()
         {
             $user = auth()->user();
+            $suggestions = suggestion::all();
 
             $breadcrumb = (object)[
                 'title' => 'Pendataan',
                 'subtitle' => 'Data RW',
             ];
-            return view('RW.dashboardRW', ['breadcrumb' => $breadcrumb]);
+            return view('RW.dashboardRW', compact('suggestions'), ['breadcrumb' => $breadcrumb]);
         }
         public function pdPage()
         {

@@ -6,6 +6,8 @@
             <span class="bg-white"></span>
         </div>
         <nav class="ml-auto h-fit ">
+            <img class="w-8 h-8 rounded-full relative left mr-2" src="{{ asset('img/cosplay.png') }}" alt="" >
+            <p class="inline-block btn p0 mr0">Halo, {{ auth()->user()->name }}</p>
 
             <svg class= " w-12 h-12 rounded relative left mr-2 mt-1 " viewBox="0 0 52 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="4.12695" y1="19.5" x2="4.12695" y2="38.9925" stroke="#385668" stroke-width="4"/>

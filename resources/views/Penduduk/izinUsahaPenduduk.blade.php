@@ -89,7 +89,7 @@
                 @csrf
                 <div class="mt-4 mb-4">
                     <label for="nama_warga" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                    <input type="text" id="nama_warga" name="nama_warga" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6">
+                    <input type="text" id="nama_warga" name="nama_warga" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" disabled>
                 </div>
                 <div class="mb-4">
                     <label for="nama_usaha" class="block text-sm font-medium text-gray-700">Nama Usaha</label>
