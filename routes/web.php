@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RTController;
@@ -8,13 +7,14 @@ use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
+
 use App\Http\Controllers\IuranController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\DataRtController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\DestinasiController;
-use App\Http\Controllers\IuranWargaController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -65,7 +65,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // });
 
 
+use App\Http\Controllers\IuranWargaController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
 
@@ -301,7 +303,7 @@ Route::group(['prefix' => 'warga'], function () {
 
 });
 
-    Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
-    Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
+    Route::get('/warga/iuran/', [IuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [IuranController::class, 'formWarga'])->name('wargaForm');
 
 
