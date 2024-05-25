@@ -70,6 +70,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
+use App\Http\Controllers\MetodeDuaController;
 
 Route::middleware(['auth'])->group(function () {
     // Rute yang dapat diakses oleh semua pengguna yang telah terautentikasi
@@ -105,6 +106,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
         Route::get('dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRW');
+
+        
+        Route::get('/metode_dua_spk/alternatifdestinasi2', [MetodeDuaController::class, 'indexAlternatif'])->name('alternatif');
+        Route::get('/metode_dua_spk/kriteriadestinasi2', [MetodeDuaController::class, 'indexKriteria'])->name('kriteria');
+        Route::get('/metode_dua_spk/penilaiandestinasi2', [MetodeDuaController::class, 'indexPenilaian'])->name('penilaian');
+        Route::get('/metode_dua_spk/rankingdestinasi2', [MetodeDuaController::class, 'indexRanking'])->name('ranking');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {

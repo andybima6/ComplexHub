@@ -10,7 +10,7 @@
         text-align: center;
     }
     #gambar-container img {
-        width: 90%; 
+        width: 90%;
         height: auto;
         display: block;
         margin: 0 auto;
@@ -63,7 +63,7 @@
     <div id="tombol-container">
         <!-- Menggunakan tag anchor untuk membuat tombol yang mengarahkan ke tampilan HTML -->
         <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}" class="tombol">Metode 1</a>
-        <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}" class="tombol">Metode 2</a>
+        <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}" class="tombol">Metode 2</a>
     </div>
 </div>
 

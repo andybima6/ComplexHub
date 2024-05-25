@@ -13,7 +13,7 @@ class DestinasiController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Pemilihan Destinasi Wisata',
-            'subtitle' => 'Metode 1 (Satu)'
+            'subtitle' => ''
         ];
         return view('RW.destinasiwisataRW', ['breadcrumb' => $breadcrumb]);
     }
