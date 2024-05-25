@@ -12,6 +12,7 @@ class dashboardController extends Controller
 {
     public function indexRT()
     {
+        $user = auth()->user();
         $izinUsaha = Umkm::all();
         $suggestions = suggestion::all();
         $activities = Activity::all();
@@ -20,10 +21,11 @@ class dashboardController extends Controller
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('RT.dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
     }
     public function indexRW()
     {
+        $user = auth()->user();
         $izinUsaha = Umkm::all();
         $suggestions = suggestion::all();
         $activities = Activity::all();
@@ -32,10 +34,11 @@ class dashboardController extends Controller
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('RW.dashboardRW', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('dashboardRW', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
     }
     public function indexPD()
     {
+        $user = auth()->user();
         $izinUsaha = Umkm::all();
         $suggestions = suggestion::all();
         $activities = Activity::all();
@@ -44,7 +47,6 @@ class dashboardController extends Controller
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('
-        Penduduk.dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
     }
 }

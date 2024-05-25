@@ -2,18 +2,18 @@
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RTController;
+use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\DestinasiController;
-use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\RTController;
+use App\Http\Controllers\IuranController;
 use App\Http\Controllers\SaranController;
-use App\Http\Controllers\DataKartuKeluargaController;
-use App\Http\Controllers\AnggotaKeluargaController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\IuranWargaController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -64,7 +64,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // });
 
 
-use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\AnggotaKeluargaController;
+use App\Http\Controllers\DataKartuKeluargaController;
 
 Route::middleware(['auth'])->group(function () {
     // Rute yang dapat diakses oleh semua pengguna yang telah terautentikasi
@@ -79,7 +81,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
         Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 
-        Route::get('/RT/dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
+        Route::get('dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -99,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
-        Route::get('/RW/dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRT');
+        Route::get('dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRW');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {
@@ -128,7 +130,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
-        Route::get('/Penduduk/dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
+        Route::get('dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...
@@ -157,9 +159,9 @@ Route::delete('/anggota_keluargas/destroy/{dataKartuKeluarga}/{anggotaKeluarga}'
 Route::post('/anggota_keluargas', [AnggotaKeluargaController::class, 'store'])->name('store_anggota_keluarga');
 
 
-Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
-Route::get('/rw', [DataController::class, 'rwPage'])->name('rw.page');
-Route::get('/pd', [DataController::class, 'pdPage'])->name('pd.page');
+// Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
+// Route::get('/rw', [DataController::class, 'rwPage'])->name('rw.page');
+// Route::get('/pd', [DataController::class, 'pdPage'])->name('pd.page');
 Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
 
@@ -238,7 +240,7 @@ Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->n
 Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
-
+//
 //  jika user belum login
 // Route::group(['middleware' => 'guest'], function () {
 //     Route::get('/', [AuthController::class, 'login'])->name('login');

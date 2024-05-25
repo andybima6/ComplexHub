@@ -9,38 +9,38 @@ use App\Models\suggestion;
 
 class DataController extends Controller
 {
-    public function rtPage()
-        {
-            $user = auth()->user();
+    // public function rtPage()
+    //     {
+    //         $user = auth()->user();
 
-            $breadcrumb = (object)[
-                'title' => 'Pendataan',
-                'subtitle' => 'Data RT',
-            ];
-            return view('RT.dashboardRT', ['breadcrumb' => $breadcrumb]);
-        }
+    //         $breadcrumb = (object)[
+    //             'title' => 'Pendataan',
+    //             'subtitle' => 'Data RT',
+    //         ];
+    //         return view('RT.dashboardRT', ['breadcrumb' => $breadcrumb]);
+    //     }
 
-        public function rwPage()
-        {
-            $user = auth()->user();
-            $suggestions = suggestion::all();
+    //     public function rwPage()
+    //     {
+    //         $user = auth()->user();
+    //         $suggestions = suggestion::all();
 
-            $breadcrumb = (object)[
-                'title' => 'Pendataan',
-                'subtitle' => 'Data RW',
-            ];
-            return view('RW.dashboardRW', compact('suggestions'), ['breadcrumb' => $breadcrumb]);
-        }
-        public function pdPage()
-        {
-            $user = auth()->user();
+    //         $breadcrumb = (object)[
+    //             'title' => 'Pendataan',
+    //             'subtitle' => 'Data RW',
+    //         ];
+    //         return view('RW.dashboardRW', compact('suggestions'), ['breadcrumb' => $breadcrumb]);
+    //     }
+    //     public function pdPage()
+    //     {
+    //         $user = auth()->user();
 
-            $breadcrumb = (object)[
-                'title' => 'Pendataan',
-                'subtitle' => 'Data Kartu Keluarga',
-            ];
-            return view('Penduduk.dashboardPD', ['breadcrumb' => $breadcrumb]);
-        }
+    //         $breadcrumb = (object)[
+    //             'title' => 'Pendataan',
+    //             'subtitle' => 'Data Kartu Keluarga',
+    //         ];
+    //         return view('Penduduk.dashboardPD', ['breadcrumb' => $breadcrumb]);
+    //     }
         public function kkPage()
         {
             $user = auth()->user();

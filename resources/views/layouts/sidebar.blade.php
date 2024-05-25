@@ -38,7 +38,7 @@
     <ul class="list-reset ">
         <li class="pointer mb3">
 
-            <a class = "w-100 flex" href="{{ auth()->user()->role_id == 1 ? url('/RT/dashboardRT') : (auth()->user()->role_id == 2 ? url('/RW/dashboardRW') : url('/PD/dashboardPD')) }}"
+            <a class = "w-100 flex" href="{{ auth()->user()->role_id == 1 ? url('dashboardRT') : (auth()->user()->role_id == 2 ? url('dashboardRW') : url('dashboardPD')) }}"
                 style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
                 <svg class="pointer" width="30" height="30" viewBox="0 0 30 30" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +47,7 @@
                         fill="#2A424F" />
                 </svg>
                 <span  class="pointer"  style="margin-left: 10px;">Dashboard</span>
-            </a> --}}
+            </a>
         </li>
 
         <li class="pointer mb3">
@@ -76,7 +76,7 @@
                     <a  href="{{ url('/rts') }}"
                         style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Data RT</a>
                 </li>
-             
+
                 <li class = "w-100  flex h-fit items-center">
                     <svg width="10" height="18" viewBox="0 0 10 18" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +138,7 @@
         </li>
 
         <li class="pointer mb3">
-            {{-- <a class = "w-100 flex" href="{{ auth()->user()->role_id == 1 ? url('saran/RT/saranRT') : (auth()->user()->role_id == 2 ? url('saran/RW/saranRW') : url('/Penduduk/saranPD')) }}"
+            <a class = "w-100 flex" href="{{ auth()->user()->role_id == 1 ? url('saran/RT/saranRT') : (auth()->user()->role_id == 2 ? url('saran/RW/saranRW') : url('/Penduduk/saranPD')) }}"
                 style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
                 <svg width="34" height="34" viewBox="0 0 34 32" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@
                         stroke="#2A424F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
 
-                <span style="margin-left: 4px;">Saran Dan Pengaduan</span></a> --}}
+                <span style="margin-left: 4px;">Saran Dan Pengaduan</span></a>
         </li>
 
         <li class="pointer mb3">
@@ -171,9 +171,9 @@
                             d="M0.444114 0.967783C0.303332 1.10828 0.191641 1.27516 0.115433 1.45887C0.0392265 1.64258 0 1.83952 0 2.03842C0 2.23731 0.0392265 2.43425 0.115433 2.61796C0.191641 2.80168 0.303332 2.96856 0.444114 3.10905L6.33639 9.00133L0.444114 14.8936C0.160165 15.1776 0.000643035 15.5627 0.000643035 15.9642C0.000643035 16.3658 0.160165 16.7509 0.444114 17.0349C0.728064 17.3188 1.11318 17.4783 1.51475 17.4783C1.91631 17.4783 2.30143 17.3188 2.58538 17.0349L9.55589 10.0644C9.69667 9.92388 9.80836 9.757 9.88457 9.57328C9.96078 9.38957 10 9.19263 10 8.99374C10 8.79484 9.96078 8.5979 9.88457 8.41419C9.80836 8.23048 9.69667 8.0636 9.55589 7.9231L2.58538 0.952597C2.0083 0.375518 1.03638 0.375518 0.444114 0.967783Z"
                             fill="#2A424F" />
                     </svg>
-                    {{-- <a  href="{{ auth()->user()->role_id == 1 ? url('/RT/izinUsahaRT') : (auth()->user()->role_id == 2 ? url('/RW/izinUsahaRW') : url('/Penduduk/izinUsahaPenduduk')) }}"
+                    <a  href="{{ auth()->user()->role_id == 1 ? url('/RT/izinUsahaRT') : (auth()->user()->role_id == 2 ? url('/RW/izinUsahaRW') : url('/Penduduk/izinUsahaPenduduk')) }}"
                         style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Izin
-                        Usaha</a> --}}
+                        Usaha</a>
                 </li>
                 <li class = "w-100  flex h-fit items-center">
                     <svg width="10" height="18" viewBox="0 0 10 18" fill="none"
@@ -182,9 +182,9 @@
                             d="M0.444114 0.967783C0.303332 1.10828 0.191641 1.27516 0.115433 1.45887C0.0392265 1.64258 0 1.83952 0 2.03842C0 2.23731 0.0392265 2.43425 0.115433 2.61796C0.191641 2.80168 0.303332 2.96856 0.444114 3.10905L6.33639 9.00133L0.444114 14.8936C0.160165 15.1776 0.000643035 15.5627 0.000643035 15.9642C0.000643035 16.3658 0.160165 16.7509 0.444114 17.0349C0.728064 17.3188 1.11318 17.4783 1.51475 17.4783C1.91631 17.4783 2.30143 17.3188 2.58538 17.0349L9.55589 10.0644C9.69667 9.92388 9.80836 9.757 9.88457 9.57328C9.96078 9.38957 10 9.19263 10 8.99374C10 8.79484 9.96078 8.5979 9.88457 8.41419C9.80836 8.23048 9.69667 8.0636 9.55589 7.9231L2.58538 0.952597C2.0083 0.375518 1.03638 0.375518 0.444114 0.967783Z"
                             fill="#2A424F" />
                     </svg>
-                    {{-- <a  href="{{ auth()->user()->role_id == 1 ? url('/RT/dataUsahaRT') : (auth()->user()->role_id == 2 ? url('/RW/dataUsahaRW') : url('/Penduduk/dataUsahaPenduduk')) }}"
+                    <a  href="{{ auth()->user()->role_id == 1 ? url('/RT/dataUsahaRT') : (auth()->user()->role_id == 2 ? url('/RW/dataUsahaRW') : url('/Penduduk/dataUsahaPenduduk')) }}"
                         style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Data
-                        Usaha</a> --}}
+                        Usaha</a>
                 </li>
             </ul>
 
@@ -211,10 +211,10 @@
                             d="M0.444114 0.967783C0.303332 1.10828 0.191641 1.27516 0.115433 1.45887C0.0392265 1.64258 0 1.83952 0 2.03842C0 2.23731 0.0392265 2.43425 0.115433 2.61796C0.191641 2.80168 0.303332 2.96856 0.444114 3.10905L6.33639 9.00133L0.444114 14.8936C0.160165 15.1776 0.000643035 15.5627 0.000643035 15.9642C0.000643035 16.3658 0.160165 16.7509 0.444114 17.0349C0.728064 17.3188 1.11318 17.4783 1.51475 17.4783C1.91631 17.4783 2.30143 17.3188 2.58538 17.0349L9.55589 10.0644C9.69667 9.92388 9.80836 9.757 9.88457 9.57328C9.96078 9.38957 10 9.19263 10 8.99374C10 8.79484 9.96078 8.5979 9.88457 8.41419C9.80836 8.23048 9.69667 8.0636 9.55589 7.9231L2.58538 0.952597C2.0083 0.375518 1.03638 0.375518 0.444114 0.967783Z"
                             fill="#2A424F" />
                     </svg>
-                    {{-- <a href="{{ auth()->user()->role_id == 1 ? url('usulan/RT/usulanKegiatanRT') : (auth()->user()->role_id == 2 ? url('usulan/RW/usulanKegiatanRW') : url('usulan/Penduduk/usulanKegiatanPD')) }}"
+                    <a href="{{ auth()->user()->role_id == 1 ? url('usulan/RT/usulanKegiatanRT') : (auth()->user()->role_id == 2 ? url('usulan/RW/usulanKegiatanRW') : url('usulan/Penduduk/usulanKegiatanPD')) }}"
                         style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">
                         Usulan Kegiatan
-                    </a> --}}
+                    </a>
                 </li>
 
                 <li class = "w-100  flex h-fit items-center">
@@ -224,9 +224,9 @@
                             d="M0.444114 0.967783C0.303332 1.10828 0.191641 1.27516 0.115433 1.45887C0.0392265 1.64258 0 1.83952 0 2.03842C0 2.23731 0.0392265 2.43425 0.115433 2.61796C0.191641 2.80168 0.303332 2.96856 0.444114 3.10905L6.33639 9.00133L0.444114 14.8936C0.160165 15.1776 0.000643035 15.5627 0.000643035 15.9642C0.000643035 16.3658 0.160165 16.7509 0.444114 17.0349C0.728064 17.3188 1.11318 17.4783 1.51475 17.4783C1.91631 17.4783 2.30143 17.3188 2.58538 17.0349L9.55589 10.0644C9.69667 9.92388 9.80836 9.757 9.88457 9.57328C9.96078 9.38957 10 9.19263 10 8.99374C10 8.79484 9.96078 8.5979 9.88457 8.41419C9.80836 8.23048 9.69667 8.0636 9.55589 7.9231L2.58538 0.952597C2.0083 0.375518 1.03638 0.375518 0.444114 0.967783Z"
                             fill="#2A424F" />
                     </svg>
-                    {{-- <a   href="{{ auth()->user()->role_id == 1 ? url('destinasi/RT/destinasiwisataRT') : (auth()->user()->role_id == 2 ? url('destinasi/RW/destinasiwisataRW') : url('usulan/PD/usulanKegiatanPD')) }}"
+                    <a   href="{{ auth()->user()->role_id == 1 ? url('destinasi/RT/destinasiwisataRT') : (auth()->user()->role_id == 2 ? url('destinasi/RW/destinasiwisataRW') : url('usulan/PD/usulanKegiatanPD')) }}"
                         style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Pemilihan
-                        Destinasi</a> --}}
+                        Destinasi</a>
                 </li>
 
 

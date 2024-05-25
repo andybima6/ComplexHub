@@ -2,7 +2,7 @@
 
 @section('content')
     <main style="overflow-y: auto; min-height: 100vh;">
-        <div class="md:justify-between mt-20 py-24 flex">
+        <div class="md:justify-between mt-20 py-24 flex ">
             <div class="md:ml-52 mt-4 md:mt-0 relative"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
                 <p class="relative md:right-24 top-6 text-center md:text-left;"
