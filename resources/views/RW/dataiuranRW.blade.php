@@ -27,7 +27,7 @@
                     </div>
                 </td>
                 {{-- <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }} --}}
-                <td <td class="border px-4 py-2 text-center" style="color: black">
+                <td class="border px-4 py-2 text-center" style="color: black">
                       <button class="btn-detail bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px">
                           <a href="{{ asset('storage/' . $index->bukti) }}">
                               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                               <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
                       </button>
-                  </td>
+                  </class=>
               </tr>
           </tbody>
       </table>

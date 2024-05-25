@@ -36,6 +36,7 @@ class AuthController extends Controller
             // kalau berhasil simpan data usernya di variabel $user
             $user = Auth::user();
 
+
             // cek role user dan arahkan ke rute yang sesuai
             if ($user->role_id == 1) {
                 return redirect()->intended('dashboardRT');
@@ -43,6 +44,17 @@ class AuthController extends Controller
                 return redirect()->intended('dashboardRW');
             } else if ($user->role_id == 3) {
                 return redirect()->intended('dashboardPD');
+
+            // cek lagi jika level user admin maka arahkan ke halaman admin
+            if ($user->role_id == '1') {
+                return redirect()->intended('rt');
+            }
+            // tapi jika level usernya user biasa maka arahkan kehalaman user
+            else if ($user->role_id == '2') {
+                return redirect()->intended('rw');
+            } else if ($user->role_id == '3') {
+                return redirect()->intended('pd');
+
             }
 
             // jika belum ada role maka ke halaman /
@@ -55,7 +67,7 @@ class AuthController extends Controller
             ->withInput()
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
-
+    }
 
     public function register()
     {
@@ -115,4 +127,8 @@ class AuthController extends Controller
         // kembali ke halaman login
         return Redirect('login');
     }
+
 }
+
+
+

@@ -18,9 +18,10 @@
             <line y1="36.9922" x2="50" y2="36.9922" stroke="#385668" stroke-width="4"/>
         </svg>
 
+
         <p class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
         <br>
-        
+
         <p class="inline-block btn p0 mr0">
             @if(auth()->user()->role_id == 1)
                 RT {{ auth()->user()->rt }}
@@ -31,6 +32,7 @@
             @endif
     </nav>
 
+          
 
     <div class="card">
         @include('layouts.breadcrumb')

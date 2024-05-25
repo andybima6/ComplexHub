@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RTController;
@@ -151,6 +152,7 @@ Route::get('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas/create',
 Route::post('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas', [DataKartuKeluargaController::class, 'storeAnggota'])->name('data_kartu_keluargas.store_anggota');
 Route::get('/data_kartu_keluargas/{dataKartuKeluarga}', [DataKartuKeluargaController::class, 'show'])->name('data_kartu_keluargas.show');
 
+
 Route::get('/anggota_keluargas/create/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'create'])->name('createAnggota');
 Route::post('/anggota_keluargas/store/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'store'])->name('storeAnggota');
 Route::get('/anggota_keluargas/edit/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'edit'])->name('editAnggota');
@@ -281,16 +283,25 @@ Route::group(['prefix' => 'iuran'], function () {
     Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 });
 
-Route::group(['prefix' => 'RT'], function () {
-    Route::get('/iuranRT', [IuranController::class, 'indexiuranRT'])->name('pengeluaranRT');
+Route::group(['prefix' => 'pengeluaran'], function () {
+    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
 });
 
 Route::group(['prefix' => 'warga'], function () {
     // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
     Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
     Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
-    Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
+    Route::post('/warga/form', [IuranController::class, 'storeIuran'])->name('storeIuran');
+    Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('wargaHistory');
+    Route::post('/warga/iuran/store', [IuranController::class, 'storeIuran'])->name('store');
     Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
+    Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
+
 
 
 });
+
+    Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
+
+
