@@ -34,7 +34,7 @@
 
           
 
-    <div class="card">
+    <div class="card" style="margin-top:2%;">
         @include('layouts.breadcrumb')
     </div>
     </div>
