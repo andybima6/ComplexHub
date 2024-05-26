@@ -1,11 +1,11 @@
 @extends('layouts.welcome')
 @section('content')
     {{-- Content --}}
-    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
-            <div class="flex justify-between items-center mb-10">
-                <p style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Permohonan Izin Usaha:</p>
-                <button id="ajukanIzinBtn" class="btn-ajukan bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Ajukan Izin</button>
+    <main class="mx-auto p-6 md:p-10 lg:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+        <div class="rounded-md relative p-4 md:p-8 lg:p-16 top-8 md:top-16 lg:top-32 left-0 md:left-8 lg:left-16" style="background-color: white"">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-10">
+                <p class="text-lg md:text-xl lg:text-2xl font-semibold text-black" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Permohonan Izin Usaha:</p>
+                <button id="ajukanIzinBtn" class="btn-ajukan bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4 md:mt-0">Ajukan Izin</button>
             </div>
             <hr class="mb-6">
             {{-- <p class="mb-6" style="font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 500; color: black;">{{ $breadcrumb->subtitle }}</p> --}}

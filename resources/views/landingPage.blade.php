@@ -43,7 +43,7 @@
     </div>
 </header>
 <main>
-    <div class="container" style="font-family: Arial, sans-serif; display: flex; overflow: hidden; margin: 20px;">
+    <div class="container" style="font-family: Arial, sans-serif; display: flex; overflow: hidden; margin: 20px; flex-wrap:wrap; flex-direction:row; align-items:center;">
         <div class="text" style="flex: 1; margin-right: 350px">
             <h1 style="font-size: 24px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">ComplexHub - Manajemen Lingkungan</h1>
             <p style="font-size: 40px; color: black; margin-bottom: 20px; font-weight: 600;">Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
