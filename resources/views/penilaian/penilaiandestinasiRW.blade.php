@@ -22,9 +22,9 @@
                 font-weight: 600;
             }
         </style>
-        
+
     <nav id="navbar">
-        <a href="{{ url('destinasi/RW/berandadestinasiRW') }}">Beranda</a>
+        <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
         <a href="{{ url('destinasi/Destinasi/kriteriadestinasiRW') }}">Kriteria</a>
         <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}">Alternatif</a>
         <a href="{{ url('destinasi/Destinasi/penilaiandestinasiRW') }}">Penilaian</a>
@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($nilai_akhir as $index => $nilai)
+                @foreach ($penilaian as $index => $nilai)
                 <tr>
                     <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
                     <td class="border px-4 py-2 text-center">{{ $alternatif[$index][0] }}</td>

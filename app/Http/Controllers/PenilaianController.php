@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PenilaianController extends Controller
 {
-    public function index()
+    public function indexpenilaian()
     {
         $breadcrumb = (object) ['title' => 'Penilaian', 'subtitle' => 'Metode 1'];
 
