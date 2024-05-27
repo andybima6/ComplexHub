@@ -97,7 +97,7 @@ class MetodeDuaController extends Controller
         ];
         $alternatives = Alternative::all(); // Mengambil semua data kegiatan dari model criteria
 
-        return view('metode_dua_spk.alternatifdestinasi2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
+        return view('metode_dua_spk.alternatif.alternatifdestinasi2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
     }
 
     public function editAlternative($id)
@@ -107,7 +107,7 @@ class MetodeDuaController extends Controller
             'subtitle' => 'Edit Alternatif',
         ];
         $alternatives = Alternative::findOrFail($id);
-        return view('metode_dua_spk.alternatif_edit2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
+        return view('metode_dua_spk.alternatif.alternatif_edit2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
     }
 
     public function updateAlternative(Request $request, $id)
