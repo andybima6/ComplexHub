@@ -43,7 +43,7 @@
     </div>
 </header>
 <main>
-    <div class="container" style="font-family: Arial, sans-serif; display: flex; overflow: hidden; margin: 20px; flex-wrap:wrap; flex-direction:row; align-items:center;">
+    <div class="container" style="font-family: Arial, sans-serif; display: flex; overflow: hidden; margin: 20px; flex-wrap: wrap; flex-direction: row; align-items: center;">
         <div class="text" style="flex: 1; margin-right: 350px">
             <h1 style="font-size: 24px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">ComplexHub - Manajemen Lingkungan</h1>
             <p style="font-size: 40px; color: black; margin-bottom: 20px; font-weight: 600;">Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
@@ -53,8 +53,9 @@
                 {{-- <button class="how-it-works-button" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; border: 2px solid #3b4d61; color: #3b4d61; font-weight: 600;">Cara Kerja</button> --}}
             </div>
         </div>
-        <div class="image" style="flex: 1; background-image: url('img/gambar landingPage.jpg'); background-size: cover; background-position: right; border-top-left-radius: 100px; border-bottom-right-radius: 100px;"></div>
+        <img class="image" src="{{ asset('img/gambar landingPage.jpg') }}" alt="" style="flex: 1; width: 100%; max-width: 450px; height: auto; background-size: cover; background-position: right; border-top-left-radius: 100px; border-bottom-left-radius: 10px; border-bottom-right-radius: 100px; border-top-right-radius: 10px;">
     </div>
+    
 
     <section id="what-is-complexhub" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 40px 20px; text-align: center;">
         <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">Apa Itu ComplexHub?</h2>
@@ -70,7 +71,7 @@
             <!-- Example UMKM Items -->
             @foreach ($izinUsaha as $izin)
             <div class="umkm-item" style="flex: 0 0 auto; width: 200px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
-                <div class="umkm-image" style="width: 100%; height: 150px; background-color: #ddd;"><img src="{{ asset($izin->foto_produk) }}" alt=""></div>
+                <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" style="width: 100%; height: 150px; background-color: #ddd; border-radius:0;" class="umkm-image">
                 <h3 style="font-size: 18px; color: #333; margin-top: 10px;">{{ $izin->nama_usaha }}</h3>
                 <p style="font-size: 14px; color: #666;">{{ $izin->deskripsi }}</p>
             </div>
