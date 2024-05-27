@@ -30,25 +30,43 @@
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">
-                            <button class="btn-detail bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px"><a href="{{ route('detailIzinUsahaRT', ['id' => $izin->id]) }}">
-                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg></a>       
+                            <a href="{{ route('detailIzinUsahaRT', ['id' => $izin->id]) }}">
+                            <button style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
+                                <svg style="margin-left: 10px;margin-top:2px" width="25" height="24"
+                                    viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </button>
-                            <button class="btn-tolak bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded ml-2" style="border-radius: 10px">
-                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                                
+                            </a>
+                        <form action="{{ route('tolakIzinRT', ['id' => $izin->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
+                                <svg style="margin-left: 10px;margin-top:2px" width="25" height="24"
+                                        viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </button>
-                            <button class="btn-acc bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded ml-2" style="border-radius: 10px">
-                                <svg width="25" height="24" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                               
+                        </form>
+                        <form action="{{ route('accIzinRT', ['id' => $izin->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
+                                <svg style="margin-left: 12px;margin-top:2px" width="19" height="13"
+                                    viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </button>
+                        </form>
                         </td>
                     </tr>
                     @endforeach
