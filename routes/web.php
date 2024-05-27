@@ -24,6 +24,7 @@ use App\Http\Controllers\DataRtController;
 use App\Http\Controllers\MetodeDuaController;
 use App\Http\Controllers\IuranWargaController;
 use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\SAWController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -304,6 +305,9 @@ Route::resource('alternatif', AlternatifController::class);
 Route::get('/alternatif/{nama wisata}/create', [AlternatifController::class, 'create'])->name('alternatifs.create');
 Route::post('/alternatif/{nama wisata}/alternatif', [AlternatifController::class, 'storeAlternatif'])->name('alternatif.');
 Route::get('/alternatif/{nama wisata}', [AlternatifController::class, 'show'])->name('alternatif.show');
+
+Route::get('/saw', [SAWController::class, 'index']);
+
 
 // Iuran
 Route::group(['prefix' => 'iuran'], function () {
