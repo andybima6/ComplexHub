@@ -29,7 +29,7 @@
             <nav id="navbar">
                 <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
                 <a href="{{ url('/metode_dua_spk/kriteria/kriteriadestinasi2') }}">Kriteria</a>
-                <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}">Alternatif</a>
+                <a href="{{ url('/metode_dua_spk/alternatif/alternatifdestinasi2') }}">Alternatif</a>
                 <a href="{{ url('/metode_dua_spk/penilaiandestinasi2') }}">Penilaian</a>
                 <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
             </nav>
