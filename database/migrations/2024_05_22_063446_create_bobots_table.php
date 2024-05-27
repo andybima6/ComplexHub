@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penilaianalternatif', function (Blueprint $table) {
+        Schema::create('bobots', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('kriteria_id');
+            $table->integer('bobot');
             $table->timestamps();
+
+            $table->foreign('kriteria_id')->references('id')->on('kriterias')->onDelete('cascade');
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penilaianalternatif');
+        Schema::dropIfExists('bobots');
     }
 };

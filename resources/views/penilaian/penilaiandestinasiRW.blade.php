@@ -36,9 +36,8 @@
                 <thead>
                     <tr>
                         <th class="border px-4 py-2 text-center w-1/7">No</th>
-                        <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
-                        <th class="border px-4 py-2 text-center w-1/7">Harga Tiket</th>
-                        <th class="border px-4 py-2 text-center w-1/7">Kebersihan</th>
+                        <th class="border px-4 py-2 text-center w-1/7">Alternatif</th>
+                        <th class="border px-4 py-2 text-center w-1/7">Hasil</th>
                         <th class="border px-4 py-2 text-center w-1/7">Aksi</th>
                     </tr>
                 </thead>

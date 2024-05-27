@@ -54,12 +54,12 @@
                         @foreach ($alternatif as $item)
                             <tr>
                                 <td class="border px-4 py-2 text-center" style="color: black">{{ $item->id }}</td>
-                                <td class="border px-4 py-2 text-center" style="color: black">{{ $item->nama wisata }}</td>
+                                <td class="border px-4 py-2 text-center" style="color: black">{{ $item->namawisata }}</td>
                                 <td class="border px-4 py-2 text-center">
                                     <div class="flex justify-center space-x-2">
-                                        <a href="{{ route('detailkriteria', ['id' => $item->id]) }}" class="btn btn-info">Detail</a>
-                                        <a href="{{ route('tambahEditkriteria', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
-                                        <form id="delete-form-{{ $item->id }}" action="{{ route('hapuskriteria', ['id' => $item->id]) }}" method="POST" style="display:inline-block;">
+                                        <a href="{{ route('detailalternatif', ['id' => $item->id]) }}" class="btn btn-info">Detail</a>
+                                        <a href="{{ route('tambahEditalternatif', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
+                                        <form id="delete-form-{{ $item->id }}" action="{{ route('hapusalternatif', ['id' => $item->id]) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" onclick="confirmDelete('{{ $item->id }}')" class="btn btn-danger">Delete</button>

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('penilaians', function (Blueprint $table) {
             $table->id();
+            $table->string('alternatif');
+            $table->string('hasil');
             $table->timestamps();
         });
     }
