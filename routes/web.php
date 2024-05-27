@@ -115,11 +115,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRW');
 
-        
+
         Route::get('/metode_dua_spk/alternatifdestinasi2', [MetodeDuaController::class, 'indexAlternatif'])->name('alternatif');
-        Route::get('/metode_dua_spk/kriteriadestinasi2', [MetodeDuaController::class, 'indexKriteria'])->name('kriteria');
+        Route::get('/metode_dua_spk/kriteria/kriteriadestinasi2', [MetodeDuaController::class, 'indexKriteria'])->name('kriteria');
         Route::get('/metode_dua_spk/penilaiandestinasi2', [MetodeDuaController::class, 'indexPenilaian'])->name('penilaian');
         Route::get('/metode_dua_spk/rankingdestinasi2', [MetodeDuaController::class, 'indexRanking'])->name('ranking');
+
+        Route::get('criterias/{id}/edit', [MetodeDuaController::class, 'edit'])->name('criterias.edit');
+        Route::put('criterias/{id}', [MetodeDuaController::class, 'updatecriteria'])->name('criterias.update');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {
@@ -324,17 +327,17 @@ Route::group(['prefix' => 'warga'], function () {
     Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
 });
 Route::group(['prefix' => 'warga'], function () {
-Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
-Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
-Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
-Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
-});
     Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
     Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
-    Route::post('/warga/form', [IuranController::class, 'storeIuran'])->name('storeIuran');
-    Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('wargaHistory');
-    Route::post('/warga/iuran/store', [IuranController::class, 'storeIuran'])->name('store');
+    Route::post('/iuran/store', [IuranController::class, 'storeIuran'])->name('storeIuran');
     Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
-    Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
-    Route::get('/warga/iuran/', [IuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
-    Route::get('/warga/form', [IuranController::class, 'formWarga'])->name('wargaForm');
+});
+Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
+Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
+Route::post('/warga/form', [IuranController::class, 'storeIuran'])->name('storeIuran');
+Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('wargaHistory');
+Route::post('/warga/iuran/store', [IuranController::class, 'storeIuran'])->name('store');
+Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
+Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
+Route::get('/warga/iuran/', [IuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
+Route::get('/warga/form', [IuranController::class, 'formWarga'])->name('wargaForm');
