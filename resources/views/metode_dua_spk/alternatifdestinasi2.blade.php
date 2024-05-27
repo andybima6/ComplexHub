@@ -47,10 +47,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($alternatives as $index => $alternative)
                         <tr>
-
-
+                            <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $alternative->alternatif }}</td>
+                            <td class="border px-4 py-2 text-center">
+                                <a href="{{ route('alternatives.edit', $alternative->id) }}" style="width:55px;height:34px;border-radius:10px;background-color:#75751f; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">Edit</a>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

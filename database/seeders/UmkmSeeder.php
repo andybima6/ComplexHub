@@ -20,7 +20,10 @@ class UmkmSeeder extends Seeder
             'foto_produk' => 'foto-produk/wHiNCDGnnWZGJ11xUm70xXwhDIhlxvCZrUUg36js.png',
             'status_rt' => 'pending',
             'status_rw' => 'pending',
+<<<<<<< HEAD
           
+=======
+>>>>>>> 172efc4db38404ed6a1e30462698cb61d25f7676
         ]);
         Umkm::create([
             'nama_warga' => 'lukman',
@@ -29,7 +32,10 @@ class UmkmSeeder extends Seeder
             'foto_produk' => 'foto-produk/R4KsDSVEtK0Gke7IDZfLDIIMNb2MEn1q73qdseow.png',
             'status_rt' => 'pending',
             'status_rw' => 'pending',
+<<<<<<< HEAD
           
+=======
+>>>>>>> 172efc4db38404ed6a1e30462698cb61d25f7676
         ]);
         Umkm::create([
             'nama_warga' => 'lukman',
@@ -38,7 +44,10 @@ class UmkmSeeder extends Seeder
             'foto_produk' => 'foto-produk/W9ONIIptXFbqasrvBYdXyJpWXvTlNauut6SBr6EW.png',
             'status_rt' => 'pending',
             'status_rw' => 'pending',
+<<<<<<< HEAD
           
+=======
+>>>>>>> 172efc4db38404ed6a1e30462698cb61d25f7676
         ]);
         Umkm::create([
             'nama_warga' => 'lukman',
@@ -47,7 +56,10 @@ class UmkmSeeder extends Seeder
             'foto_produk' => 'foto-produk/179cAiEckQzyZBFKiTL1LB9OZhaQ3d78DCIzVnT7.png',
             'status_rt' => 'pending',
             'status_rw' => 'pending',
+<<<<<<< HEAD
           
+=======
+>>>>>>> 172efc4db38404ed6a1e30462698cb61d25f7676
         ]);
     }
 }

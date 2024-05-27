@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternative;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
 
@@ -94,10 +95,40 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Alternatif (Metode II)',
             'subtitle' => 'Data Alternatif',
         ];
-        $criterias = Criteria::all(); // Mengambil semua data kegiatan dari model criteria
+        $alternatives = Alternative::all(); // Mengambil semua data kegiatan dari model criteria
 
-        return view('metode_dua_spk.alternatifdestinasi2', ['breadcrumb' => $breadcrumb], compact('criterias'));
+        return view('metode_dua_spk.alternatifdestinasi2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
     }
+
+    public function editAlternative($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Daftar Alternatif ',
+            'subtitle' => 'Edit Alternatif',
+        ];
+        $alternatives = Alternative::findOrFail($id);
+        return view('metode_dua_spk.alternatif_edit2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
+    }
+
+    public function updateAlternative(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'alternatif' => 'required|string|max:255',
+    ]);
+
+    // Find the existing alternative or fail
+    $alternative = Alternative::findOrFail($id);
+
+    // Update the alternative with the new data
+    $alternative->update([
+        'alternatif' => $request->input('alternatif'),
+    ]);
+
+    // Redirect back to the alternatives list with a success message
+    return redirect()->route('alternatif')
+        ->with('success', 'Alternative updated successfully');
+}
 
 
     public function indexPenilaian()
