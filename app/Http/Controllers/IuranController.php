@@ -20,6 +20,15 @@ class IuranController extends Controller
         ];
         return view('RT/kasIuranRT', compact('index'), ['breadcrumb' => $breadcrumb]);
     }
+    public function historyRT()
+    {
+        $index = Iuran::all();
+        $breadcrumb = (object) [
+            'title' => 'History Kas RT',
+            'subtitle' => '',
+        ];
+        return view('RT/historyRT', compact('index'), ['breadcrumb' => $breadcrumb]);
+    }
     public function indexiuranRT()
     {
         $breadcrumb = (object) [
@@ -71,7 +80,15 @@ class IuranController extends Controller
         ];
         return view('RW/dataiuranRW', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
-
+    public function historyRW()
+    {
+        $iuran = Iuran::all();
+        $breadcrumb = (object) [
+            'title' => 'History Iuran RW',
+            'subtitle' => '',
+        ];
+        return view('RW/historyRW', compact('iuran'), ['breadcrumb' => $breadcrumb]);
+    }
     public function storeIuran(Request $request)
     {
         // Log the incoming request data
