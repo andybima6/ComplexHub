@@ -12,6 +12,7 @@ class CreateDataKartuKeluargasTable extends Migration
             $table->id();
             $table->string('kepala_keluarga');
             $table->string('no_kk');
+            $table->string('alamat');
             $table->foreignId('rt_id')->constrained('rts')->onDelete('cascade');
             $table->enum('status_ekonomi', ['mampu', 'tidak mampu']);
             $table->timestamps();

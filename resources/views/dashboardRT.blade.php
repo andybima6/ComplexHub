@@ -1,7 +1,8 @@
 @extends('layouts.welcome')
 @section('content')
-    <main>
-        <div class="opsi flex flex-col md:flex-row md:justify-between mt-20">
+    <main class="h-full max-h-full">
+        <div class="relative top-36">
+        <div class="opsi flex flex-col md:flex-row md:justify-between">
             <div class="md:w-2/5 h-96 rounded-md md:ml-16 mt-4 md:mt-0"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
                 <p class="values w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
@@ -65,5 +66,6 @@
                 </p>
             </div>
         </div>
+    </div>
     </main>
 @endsection

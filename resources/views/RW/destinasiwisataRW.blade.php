@@ -10,7 +10,7 @@
         text-align: center;
     }
     #gambar-container img {
-        width: 90%; 
+        width: 90%;
         height: auto;
         display: block;
         margin: 0 auto;
@@ -71,8 +71,13 @@
     <div id="teks-di-gambar">Selamat Datang Administrator, di Sistem Pendukung Keputusan pemilihan Destinasi Wisata </div>
     <div id="tombol-container">
         <!-- Menggunakan tag anchor untuk membuat tombol yang mengarahkan ke tampilan HTML -->
+<<<<<<< HEAD
         <a href="{{ url('destinasi/Destinasi/kriteriadestinasiRW') }}" class="tombol">Metode 1</a>
         <a href="{{ url('destinasi/Destinasi/kriteriadestinasiRW') }}" class="tombol">Metode 2</a>
+=======
+        <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}" class="tombol">Metode 1</a>
+        <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}" class="tombol">Metode 2</a>
+>>>>>>> fe3038451c3f70b4b833a0d8081b44c68321d1a9
     </div>
 </div>
 

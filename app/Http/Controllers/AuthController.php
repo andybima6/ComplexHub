@@ -33,9 +33,17 @@ class AuthController extends Controller
         $ambil = $request->only('email', 'password');
         //cek jika data username dan password valid (sesuai) dengan data
         if (Auth::attempt($ambil)) {
-
             // kalau berhasil simpan data usernya di variabel $user
             $user = Auth::user();
+
+
+            // cek role user dan arahkan ke rute yang sesuai
+            if ($user->role_id == 1) {
+                return redirect()->intended('dashboardRT');
+            } else if ($user->role_id == 2) {
+                return redirect()->intended('dashboardRW');
+            } else if ($user->role_id == 3) {
+                return redirect()->intended('dashboardPD');
 
             // cek lagi jika level user admin maka arahkan ke halaman admin
             if ($user->role_id == '1') {
@@ -44,7 +52,6 @@ class AuthController extends Controller
             // tapi jika level usernya user biasa maka arahkan kehalaman user
             else if ($user->role_id == '2') {
                 return redirect()->intended('rw');
-
             } else if ($user->role_id == '3') {
                 return redirect()->intended('pd');
 
@@ -53,13 +60,14 @@ class AuthController extends Controller
             // jika belum ada role maka ke halaman /
             return redirect()->intended('/');
         }
+
         // jika tidak ada data user yang valid maka kembalikan lagi ke halaman login
         // pastikan kirim pesar error juga kalau login gagal yaa...
         return redirect('/')
             ->withInput()
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
-
+    }
 
     public function register()
     {
@@ -71,6 +79,8 @@ class AuthController extends Controller
     // aksi form register
     public function proses_register(Request $request)
     {
+        $rt = $request->input('rt') ?? '0';
+        $rw = $request->input('rw') ?? '0';
         // Buat validasi
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -89,7 +99,7 @@ class AuthController extends Controller
         $password = Hash::make($request->password);
 
         // Ambil ID role "penduduk"
-        $pendudukRole = Role::where('role_name', 'penduduk')->first();
+        $pendudukRole = Role::where('role_name', 'pd')->first();
 
         // Buat user baru dengan role "penduduk"
         User::create([
@@ -97,6 +107,8 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $password,
             'role_id' => $pendudukRole->id, // Set role_id ke ID role "penduduk"
+            'rt' => $rt,
+            'rw' => $rw,
         ]);
 
         // Redirect ke halaman login
@@ -115,5 +127,8 @@ class AuthController extends Controller
         // kembali ke halaman login
         return Redirect('login');
     }
+
 }
+
+
 
