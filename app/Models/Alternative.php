@@ -9,7 +9,7 @@ class Alternative extends Model
 {
     use HasFactory;
 
-    protected $table = 'alternatives';
+    protected $table = 'alternative';
 
     protected $fillable = [
         'alternatif',
