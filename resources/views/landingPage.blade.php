@@ -1,21 +1,32 @@
 @extends('layouts.body')
 <style>
-    .menu a.active {
-            color: black;
+    .umkm-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
         }
-        .menu a:hover:not(.active) {
-            color: #555; /* Slightly darker grey for hover on non-active items */
+        .umkm-item {
+            flex: 0 0 calc(33.333% - 20px); /* Three items per row minus the gap */
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            height: 550px; /* Adjusted height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .menu a {
-            margin: 0 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #888; /* Default color for non-active items */
-            transition: color 0.3s;
+        .umkm-image {
+            width: 100%;
+            height: 350px; /* Adjusted height for better appearance */
+            background-color: #ddd;
+            border-radius: 0;
         }
-        header .menu p.active {
-    color: black;
-}
+        .umkm-item h3, .umkm-item p {
+            text-align: center;
+        }
 </style>
 
 <header class="px-9 py-10" style="display: flex; align-items: center; justify-content: space-between;">
@@ -67,16 +78,14 @@
     <section id="umkm" style="margin: 40px 20px;">
         <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">UMKM</h2>
         <p style="font-size: 20px; text-align:center; color: grey;">Informasi seputar UMKM yang ada di RW 08 Cemorokandang</p>
-        <div class="umkm-container" style="display: flex; overflow-x: auto; gap: 20px; padding: 20px;">
-            <!-- Example UMKM Items -->
+        <div class="umkm-container">
             @foreach ($izinUsaha as $izin)
-            <div class="umkm-item" style="flex: 0 0 auto; width: 200px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
-                <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" style="width: 100%; height: 150px; background-color: #ddd; border-radius:0;" class="umkm-image">
-                <h3 style="font-size: 18px; color: #333; margin-top: 10px;">{{ $izin->nama_usaha }}</h3>
-                <p style="font-size: 14px; color: #666;">{{ $izin->deskripsi }}</p>
-            </div>
+                <div class="umkm-item">
+                    <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" class="umkm-image">
+                    <h3 style="font-size: 18px; color: #333; margin-top: 10px;">{{ $izin->nama_usaha }}</h3>
+                    <p style="font-size: 14px; color: #666;">{{ $izin->deskripsi }}</p>
+                </div>
             @endforeach
-            <!-- Add more UMKM items as needed -->
         </div>
     </section>
 
@@ -121,4 +130,35 @@
             });
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('.umkm-container');
+        const items = Array.from(document.querySelectorAll('.umkm-item'));
+        let currentIndex = 0;
+
+        function cloneItems() {
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                container.appendChild(clone);
+            });
+        }
+
+        function startScrolling() {
+            setInterval(() => {
+                currentIndex++;
+                if (currentIndex >= items.length) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                    currentIndex = 0;
+                } else {
+                    const scrollAmount = container.clientWidth / 3 + 20; // Width of one item + gap
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 2000);
+        }
+
+        cloneItems();
+        startScrolling();
+    });
+</script>
 </main>

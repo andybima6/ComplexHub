@@ -133,7 +133,7 @@ class UmkmController extends Controller
             'nama_warga' => 'required',
             'nama_usaha' => 'required',
             'deskripsi' => 'required',
-            'foto_produk' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'foto_produk' => 'image|mimes:jpeg,png,jpg',
         ]);
     
         // Periksa apakah file gambar telah diunggah sebelum menyimpannya
