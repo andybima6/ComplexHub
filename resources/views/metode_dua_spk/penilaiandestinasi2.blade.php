@@ -32,26 +32,55 @@
                 <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
             </nav>
 
-            <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
-                <p class="mb-10"
-                    style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">Penilaian
-                    Data Alternatif :</p>
+            <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28 mb-10">
+                <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
+                    Penilaian Matriks Keputusan :
+                </p>
                 <table class="md:table-fixed w-full">
                     <thead>
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/7">No</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Alternatif</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Bobot</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Biaya Tiket Masuk</th>
                             <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
-                            <th class="border px-4 py-2 text-center w-1/7">Harga Tiket</th>
                             <th class="border px-4 py-2 text-center w-1/7">Kebersihan</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Keamanan</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Biaya Akomodasi</th>
                             <th class="border px-4 py-2 text-center w-1/7">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-
+                            <!-- Rows of data will be here -->
                         </tr>
                     </tbody>
                 </table>
             </div>
-    </main>
-@endsection
+
+            <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
+                <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
+                    Normalisasi Matriks :
+                </p>
+                <table class="md:table-fixed w-full">
+                    <thead>
+                        <tr>
+                            <th class="border px-4 py-2 text-center w-1/7">No</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Alternatif</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Biaya Tiket Masuk</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Kebersihan</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Keamanan</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Biaya Akomodasi</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- Rows of data will be here -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        @endsection

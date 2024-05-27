@@ -18,7 +18,10 @@ class Criteria extends Model
         'jenis',
         'bobot'
     ];
-
+    public function alternatives()
+    {
+        return $this->belongsToMany(Alternative::class, 'alternative_criteria');
+    }
 
     // public function criteria()
     // {

@@ -9,9 +9,14 @@ class Alternative extends Model
 {
     use HasFactory;
 
-    protected $table = 'alternative';
+    protected $table = 'alternatives';
 
     protected $fillable = [
         'alternatif',
     ];
+
+    public function penilaians()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
 }
