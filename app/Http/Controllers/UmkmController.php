@@ -240,15 +240,15 @@ class UmkmController extends Controller
     
 
     public function updateStatus(Request $request, $id) {
-        if (Auth::user()->role !== 'RT' && Auth::user()->role !== 'RW') {
+        if (Auth::user()->role !== 'rt' && Auth::user()->role !== 'rw') {
             return response()->json(['message' => 'Anda tidak memiliki izin untuk mengubah status.'], 403);
         }
         $umkm = Umkm::findOrFail($id);
 
-        if (Auth::user()->role === 'RT') {
-            $umkm->status_rt = $request->status;
-        } elseif (Auth::user()->role === 'RW') {
-            $umkm->status_rw = $request->status;
+        if (Auth::user()->role === 'rt') {
+            $umkm->status_rt = $request->status_rt;
+        } elseif (Auth::user()->role === 'rw') {
+            $umkm->status_rw = $request->status_rw;
         }
 
         $umkm->save();
