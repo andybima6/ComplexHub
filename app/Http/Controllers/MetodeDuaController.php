@@ -151,9 +151,13 @@ class MetodeDuaController extends Controller
 
     public function editPenilaian($id)
     {
+        $breadcrumb = (object)[
+            'title' => 'Daftar Penilain (Metode II)',
+            'subtitle' => 'Edit Data Penilain',
+        ];
         $penilaian = PenilaianDua::findOrFail($id);
         $alternatives = Alternative::all();
-        return view('penilaian.edit', compact('penilaian', 'alternatives'));
+        return view('metode_dua_spk.penilaian.penilaian_edit2', compact('penilaian', 'breadcrumb', 'alternatives'));
     }
 
     // Method to update penilaian
@@ -171,7 +175,7 @@ class MetodeDuaController extends Controller
         $penilaian = PenilaianDua::findOrFail($id);
         $penilaian->update($request->all());
 
-        return redirect()->route('penilaian.index')->with('success', 'Penilaian updated successfully.');
+        return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
     }
     public function indexRanking()
     {
