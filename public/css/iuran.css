@@ -15,6 +15,29 @@
   background-color: #6A94AD;
 }
 
+.custom-dropdown {
+  background-color: #7DA7C3;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 30px 120px;
+  font-size: 2.5em;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 140px;
+  margin-left: 110px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align: center;
+  text-align-last: center;
+}
+
+.custom-dropdown option {
+  background-color: white;
+  color: #000;
+}
+
 .box {
   background-color: white;
   border: 2px solid #b0c4de;
