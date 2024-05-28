@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penilaianalternatif', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('criteria', function (Blueprint $table) {
+            $table->string('jenis');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penilaianalternatif');
+        Schema::table('criteria', function (Blueprint $table) {
+            $table->dropColumn('jenis');
+        });
     }
 };

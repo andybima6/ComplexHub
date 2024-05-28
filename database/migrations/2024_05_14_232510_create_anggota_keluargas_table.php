@@ -29,3 +29,5 @@ class CreateAnggotaKeluargasTable extends Migration
         Schema::dropIfExists('anggota_keluargas');
     }
 }
+
+

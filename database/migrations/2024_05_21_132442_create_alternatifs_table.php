@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ranking', function (Blueprint $table) {
+        Schema::create('alternatifs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama wisata');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ranking');
+        Schema::dropIfExists('alternatifs');
     }
 };

@@ -103,7 +103,7 @@ class IuranController extends Controller
             'periode' => 'required|date',
             'keterangan' => 'required|string',
             'total' => 'required|numeric',
-            'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'bukti' => 'required|file|mimes:jpg,jpeg,png',
         ]);
 
         // If rt_id is not provided, use the default value
@@ -114,7 +114,7 @@ class IuranController extends Controller
     
         // Save the file
         if ($request->hasFile('bukti')) {
-            $buktiPath = $request->file('bukti')->store('bukti', 'public');
+            $buktiPath = $request->file('bukti')->store('bukti');
         } else {
             $buktiPath = null;
         }

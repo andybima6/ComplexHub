@@ -11,6 +11,7 @@ use App\Models\suggestion;
 
 class DataController extends Controller
 {
+
     public function rtPage()
     {
         $user = auth()->user();
@@ -22,7 +23,7 @@ class DataController extends Controller
             'title' => 'Pendataan',
             'subtitle' => 'Data RT',
         ];
-        return view('RT.dashboardRT', compact('suggestions', 'izinUsaha', 'activities'), ['breadcrumb' => $breadcrumb]);
+        return view('dashboardRT', compact('suggestions', 'izinUsaha', 'activities'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function rwPage()
@@ -36,7 +37,7 @@ class DataController extends Controller
             'title' => 'Pendataan',
             'subtitle' => 'Data RW',
         ];
-        return view('RW.dashboardRW', compact('suggestions', 'izinUsaha', 'activities'), ['breadcrumb' => $breadcrumb]);
+        return view('dashboardRW', compact('suggestions', 'izinUsaha', 'activities'), ['breadcrumb' => $breadcrumb]);
     }
     public function pdPage()
     {
@@ -46,11 +47,12 @@ class DataController extends Controller
             'title' => 'Pendataan',
             'subtitle' => 'Data Kartu Keluarga',
         ];
-        return view('Penduduk.dashboardPD', ['breadcrumb' => $breadcrumb]);
+        return view('dashboardPD', ['breadcrumb' => $breadcrumb]);
     }
     public function kkPage()
     {
         $user = auth()->user();
+
 
         $breadcrumb = (object) [
             'title' => 'Pendataan',
@@ -103,10 +105,5 @@ class DataController extends Controller
         ];
 
         return view('tanggapan', ['breadcrumb' => $breadcrumb]);
-
     }
-
-
-
-
 }

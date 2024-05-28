@@ -1,21 +1,31 @@
 <?php
 
-use App\Http\Controllers\IuranController;
-use App\Http\Controllers\IuranWargaController;
+use App\Http\Controllers\iuranController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RTController;
+use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DestinasiController;
-use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\RTController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\PenilaianController;
+use App\Models\Kriteria;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DataKartuKeluargaController;
 use App\Http\Controllers\AnggotaKeluargaController;
+use App\Http\Controllers\IuranController;
+use App\Http\Controllers\DataRtController;
+use App\Http\Controllers\MetodeDuaController;
+use App\Http\Controllers\IuranWargaController;
+use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\SAWController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -67,6 +77,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 use App\Http\Middleware\RoleMiddleware;
+
 Route::middleware(['auth'])->group(function () {
     // Rute yang dapat diakses oleh semua pengguna yang telah terautentikasi
 
@@ -85,7 +96,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/RT/pengeluaranRT', [IuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
         // Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
 
-        Route::get('/RT/dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
+        Route::get('dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -108,7 +119,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
         Route::get('/RW/historyRW', [IuranController::class, 'historyRW'])->name('historyRW');
 
-        Route::get('/RW/dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRT');
+        Route::get('dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRW');
+
+
+        Route::get('/metode_dua_spk/alternatifdestinasi2', [MetodeDuaController::class, 'indexAlternatif'])->name('alternatif');
+        Route::get('/metode_dua_spk/kriteria/kriteriadestinasi2', [MetodeDuaController::class, 'indexKriteria'])->name('kriteria');
+        Route::get('/metode_dua_spk/penilaiandestinasi2', [MetodeDuaController::class, 'indexPenilaian'])->name('penilaian');
+        Route::get('/metode_dua_spk/rankingdestinasi2', [MetodeDuaController::class, 'indexRanking'])->name('ranking');
+
+        Route::get('criterias/{id}/edit', [MetodeDuaController::class, 'edit'])->name('criterias.edit');
+        Route::put('criterias/{id}', [MetodeDuaController::class, 'updatecriteria'])->name('criterias.update');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {
@@ -145,7 +165,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
         // Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
 
-        Route::get('/Penduduk/dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
+        Route::get('dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...
@@ -175,9 +195,9 @@ Route::delete('/anggota_keluargas/destroy/{dataKartuKeluarga}/{anggotaKeluarga}'
 Route::post('/anggota_keluargas', [AnggotaKeluargaController::class, 'store'])->name('store_anggota_keluarga');
 
 
-Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
-Route::get('/rw', [DataController::class, 'rwPage'])->name('rw.page');
-Route::get('/pd', [DataController::class, 'pdPage'])->name('pd.page');
+// Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
+// Route::get('/rw', [DataController::class, 'rwPage'])->name('rw.page');
+// Route::get('/pd', [DataController::class, 'pdPage'])->name('pd.page');
 Route::get('/kk', [DataController::class, 'kkPage'])->name('kk.page');
 Route::get('/warga', [DataController::class, 'wargaPage'])->name('warga.page');
 
@@ -253,10 +273,10 @@ Route::get('/Penduduk/izinUsahaPenduduk/{id}/edit', [UmkmController::class, 'edi
 Route::put('/Penduduk/izinUsahaPenduduk/{id}', [UmkmController::class, 'update'])->name('updateIzin');
 Route::post('/Penduduk/accIzinRT/{id}', [UmkmController::class, 'accIzinRT'])->name('accIzinRT');
 Route::post('/Penduduk/accIzinRW/{id}', [UmkmController::class, 'accIzinRW'])->name('accIzinRW');
-Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
+Route::post('/Penduduk/tolakIzinRT/{id}', [UmkmController::class, 'tolakIzinRT'])->name('tolakIzinRT');
 Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
-
+//
 //  jika user belum login
 // Route::group(['middleware' => 'guest'], function () {
 //     Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -283,12 +303,49 @@ Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW']
 
 // Destinasi Wisata
 Route::group(['prefix' => 'destinasi'], function () {
-    Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW']);
+    Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW'])->name('RW.destinasiwisataRW');
+    Route::get('/Destinasi/berandadestinasiRW', [DestinasiController::class, 'indexberanda'])->name('RW.berandadestinasiRW');
+    Route::get('/Destinasi/alternatifdestinasiRW', [AlternatifController::class, 'index'])->name('Destinasi.alternatifdestinasiRW');
+
+    Route::get('/Destinasi/kriteriadestinasiRW', [KriteriaController::class, 'index'])->name('kriteria.kriteriadestinasiRW');
+    Route::get('/kriteria/create/{nama}', [KriteriaController::class, 'create'])->name('kriteria.create');
+
+    Route::get('/Destinasi/penilaiandestinasiRW', [PenilaianController::class, 'indexpenilaian'])->name('penilaian.penilaiandestinasiRW');
+    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking'])->name('ranking.rankingdestinasiRW');
 });
-Route::group(['prefix' => 'destinasi'], function () {
-    Route::get('/Destinasi/alternatifdestinasiRW', [DestinasiController::class, 'indexDestinasi']);
-    Route::get('/Destinasi/kriteriadestinasiRW', [DestinasiController::class, 'indexkriteria']);
-    Route::get('/Destinasi/penilaiandestinasiRW', [DestinasiController::class, 'indexpenilaian']);
-    Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking']);
+Route::resource('kriteria', KriteriaController::class);
+Route::get('/kriteria/{nama}/create', [KriteriaController::class, 'create'])->name('kriterias.create');
+Route::post('/kriteria/{nama}/kriteria', [KriteriaController::class, 'storeKriteria'])->name('kriteria.');
+Route::get('/kriteria/{nama}', [KriteriaController::class, 'show'])->name('kriteria.show');
+
+Route::resource('alternatif', AlternatifController::class);
+Route::get('/alternatif/{nama wisata}/create', [AlternatifController::class, 'create'])->name('alternatifs.create');
+Route::post('/alternatif/{nama wisata}/alternatif', [AlternatifController::class, 'storeAlternatif'])->name('alternatif.');
+Route::get('/alternatif/{nama wisata}', [AlternatifController::class, 'show'])->name('alternatif.show');
+
+Route::get('/saw', [SAWController::class, 'index']);
+
+
+// Iuran
+Route::group(['prefix' => 'iuran'], function () {
+    Route::get('/RT/kasIuranRT', [iuranController::class, 'kasindexRT'])->name('kasIuranRT');
 });
 
+Route::group(['prefix' => 'pengeluaran'], function () {
+    Route::get('/RT/pengeluaranRT', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+});
+
+Route::group(['prefix' => 'warga'], function () {
+    // Route::get('/warga/iuran', [iuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
+    Route::get('/warga/iuran/', [IuranWargaController::class, 'index'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [IuranWargaController::class, 'form'])->name('wargaForm');
+    Route::post('/warga/form', [IuranController::class, 'storeIuran'])->name('storeIuran');
+    Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('wargaHistory');
+    Route::post('/warga/iuran/store', [IuranController::class, 'storeIuran'])->name('store');
+    Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
+    Route::get('/RW/iuranRW', [IuranController::class, 'dataiuranRW'])->name('dataiuranRW');
+
+
+    Route::get('/warga/iuran/', [iuranController::class, 'pengeluaranindexWarga'])->name('pengeluaranWarga');
+    Route::get('/warga/form', [iuranController::class, 'formWarga'])->name('wargaForm');
+});
