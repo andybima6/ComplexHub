@@ -151,7 +151,7 @@ class MetodeDuaController extends Controller
 
     public function editPenilaian($id)
     {
-        $penilaian = Penilaian::findOrFail($id);
+        $penilaian = PenilaianDua::findOrFail($id);
         $alternatives = Alternative::all();
         return view('penilaian.edit', compact('penilaian', 'alternatives'));
     }
@@ -160,8 +160,7 @@ class MetodeDuaController extends Controller
     public function updatePenilaian(Request $request, $id)
     {
         $request->validate([
-            'alternative_id' => 'required|exists:alternatives,id',
-            'criteria_id' => 'required|integer|min:1|max:100',
+
             'biaya_tiket_masuk' => 'required|numeric|min:0',
             'fasilitas' => 'required|numeric|min:0|max:5',
             'kebersihan' => 'required|numeric|min:0|max:5',
@@ -169,7 +168,7 @@ class MetodeDuaController extends Controller
             'biaya_akomodasi' => 'required|numeric|min:0',
         ]);
 
-        $penilaian = Penilaian::findOrFail($id);
+        $penilaian = PenilaianDua::findOrFail($id);
         $penilaian->update($request->all());
 
         return redirect()->route('penilaian.index')->with('success', 'Penilaian updated successfully.');
