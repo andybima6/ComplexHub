@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alternative;
 use App\Models\Criteria;
 use App\Models\Penilaian;
+use App\Models\penilaiandua;
 use Illuminate\Http\Request;
 
 class MetodeDuaController extends Controller
@@ -140,9 +141,11 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Penilain (Metode II)',
             'subtitle' => 'Data Penilain',
         ];
-        $penilaians = Penilaian::all(); // Mengambil semua data kegiatan dari model criteria
-         $alternatives = Alternative::all();
-        return view('metode_dua_spk.penilaian.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('penilaians'));
+
+        $penilaians = PenilaianDua::with('criteria')->get();
+        $alternatives = PenilaianDua::with('alternative')->get();
+
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'alternatives'));
     }
 
 
@@ -158,7 +161,7 @@ class MetodeDuaController extends Controller
     {
         $request->validate([
             'alternative_id' => 'required|exists:alternatives,id',
-            'bobot' => 'required|integer|min:1|max:100',
+            'criteria_id' => 'required|integer|min:1|max:100',
             'biaya_tiket_masuk' => 'required|numeric|min:0',
             'fasilitas' => 'required|numeric|min:0|max:5',
             'kebersihan' => 'required|numeric|min:0|max:5',

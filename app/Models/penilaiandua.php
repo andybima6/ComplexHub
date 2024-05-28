@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penilaian extends Model
+class penilaiandua extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Penilaian extends Model
 
     protected $fillable = [
         'alternative_id',
-        'bobot',
+        'criteria_id',
         'biaya_tiket_masuk',
         'fasilitas',
         'kebersihan',
@@ -24,5 +24,9 @@ class Penilaian extends Model
     public function alternative()
     {
         return $this->belongsTo(Alternative::class);
+    }
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class);
     }
 }
