@@ -2,65 +2,141 @@
 
 @section('content')
 {{-- <style>
-    main {
-        text-align: center;
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         padding: 20px;
-        margin-top: 200px; /* Increased space at the top to push content further downward */
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
     }
 
     .custom-button, .lanjut-button {
         padding: 10px 20px;
         font-size: 16px;
-        margin: 10px;
         cursor: pointer;
-        display: inline-block;
     }
 
     .box {
-        margin: 20px auto;
-        padding: 20px;
+        padding: 10px;
         border: 1px solid #ccc;
-        width: 80%;
-        max-width: 600px;
-        font-size: 18px;
-        box-sizing: border-box;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Mobile view */
+    @media (max-width: 767px) {
+        main {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .custom-button, .lanjut-button {
+            flex: 1 1 100%;
+            font-size: 14px;
+        }
+
+        .box {
+            flex: 1 1 100%;
+            max-width: none;
+        }
+    }
+</style> --}}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        /* text-align: center; */
+        gap: 20px;
+    }
+
+    .custom-button, .lanjut-button {
+        padding: 10px 20px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .box {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        max-width: 300px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
     }
 
     img {
         max-width: 100%;
         height: auto;
         display: block;
-        margin: 0 auto; /* Centers the image */
     }
 
-    @media (max-width: 600px) {
+    .custom-button {
+        width: 300px;
+        height: 80px;
+        font-size: 25px;
+    }
+
+    /* Mobile view */
+    @media (max-width: 480px) {
+        main {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+        }
+
         .custom-button, .lanjut-button {
-            width: calc(100% - 40px); /* Full width on small screens minus padding */
-            padding: 12px;
+            flex: 1 1 100%;
             font-size: 14px;
-            box-sizing: border-box;
+            text-align: center;
         }
 
         .box {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
+            flex: 1 1 100%;
+            max-width: none;
+            text-align: center;
+        }
+
+        img {
+            flex: 1 1 100%;
+            text-align: center;
         }
     }
 
-    @media (min-width: 601px) {
-        .custom-button, .lanjut-button {
-            width: auto;
-        }
-
-        .box {
-            width: 80%; /* Adjusted for better desktop view */
-            max-width: 600px;
-        }
+    .lanjut-button {
+        display: flex;
+        justify-content: center;
     }
-</style> --}}
+</style>
 
-<main>
+<main class="contain-responsive">
     <button class="custom-button">Input Iuran</button>
     <br><br>
     <img src="{{ asset('images/qrcode.png') }}" alt="QR Code">

@@ -1,6 +1,42 @@
 @extends('layouts.welcome')
 
 @section('content')
+<style>
+    .custom-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            background-color: #6f9bca;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (max-width: 768px) {
+            .custom-button {
+                padding: 12px 25px;
+                font-size: 18px;
+            }
+        }
+
+        /* Small devices (landscape phones, 576px and up) */
+        @media (max-width: 576px) {
+            .custom-button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+
+        /* Extra small devices (phones, less than 576px) */
+        @media (max-width: 480px) {
+            .custom-button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+</style>
 <main>
     <button class="custom-button">Form Input Iuran</button>
     <br><br>
