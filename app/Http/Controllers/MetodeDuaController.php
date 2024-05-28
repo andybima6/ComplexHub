@@ -141,8 +141,9 @@ class MetodeDuaController extends Controller
             'subtitle' => 'Data Penilain',
         ];
         $penilaians = Penilaian::all(); // Mengambil semua data kegiatan dari model criteria
+        $penilaianss = Penilaian::with('alternative')->get(); // Mengambil semua data kegiatan dari model criteria
          $alternatives = Alternative::all();
-        return view('metode_dua_spk.penilaian.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('penilaians'));
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('penilaians', 'penilaianss'));
     }
 
 
