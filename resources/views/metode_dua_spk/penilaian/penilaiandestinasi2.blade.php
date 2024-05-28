@@ -63,7 +63,7 @@
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->keamanan }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_akomodasi }}</td>
                                 <td class="border px-4 py-2 text-center">
-                                    <a href="{{ route('penilaian.edit', $penilaian->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('penilaian.edit', $penilaian->id) }}" style="width:55px;height:34px;border-radius:10px;background-color:#75751f; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px; font-size:12px">Edit</a>
                                 </td>
                             </tr>
                             @endforeach
