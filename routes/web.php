@@ -129,6 +129,12 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('criterias/{id}/edit', [MetodeDuaController::class, 'edit'])->name('criterias.edit');
         Route::put('criterias/{id}', [MetodeDuaController::class, 'updatecriteria'])->name('criterias.update');
+
+        Route::get('alternatives/{id}/edit', [MetodeDuaController::class, 'editAlternative'])->name('alternatives.edit');
+        Route::put('alternatives/{id}', [MetodeDuaController::class, 'updateAlternative'])->name('alternatives.update');
+
+        Route::get('penilaians/{id}/edit', [MetodeDuaController::class, 'editPenilaian'])->name('penilaian.edit');
+        Route::put('penilaians/{id}', [MetodeDuaController::class, 'updatePenilaian'])->name('penilaian.update');
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {

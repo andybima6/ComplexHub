@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternative;
 use App\Models\Criteria;
+use App\Models\Penilaian;
 use Illuminate\Http\Request;
 
 class MetodeDuaController extends Controller
@@ -94,9 +96,39 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Alternatif (Metode II)',
             'subtitle' => 'Data Alternatif',
         ];
-        $criterias = Criteria::all(); // Mengambil semua data kegiatan dari model criteria
+        $alternatives = Alternative::all(); // Mengambil semua data kegiatan dari model criteria
 
-        return view('metode_dua_spk.alternatifdestinasi2', ['breadcrumb' => $breadcrumb], compact('criterias'));
+        return view('metode_dua_spk.alternatif.alternatifdestinasi2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
+    }
+
+    public function editAlternative($id)
+    {
+        $breadcrumb = (object)[
+            'title' => 'Daftar Alternatif ',
+            'subtitle' => 'Edit Alternatif',
+        ];
+        $alternatives = Alternative::findOrFail($id);
+        return view('metode_dua_spk.alternatif.alternatif_edit2', ['breadcrumb' => $breadcrumb], compact('alternatives'));
+    }
+
+    public function updateAlternative(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'alternatif' => 'required|string|max:255',
+        ]);
+
+        // Find the existing alternative or fail
+        $alternative = Alternative::findOrFail($id);
+
+        // Update the alternative with the new data
+        $alternative->update([
+            'alternatif' => $request->input('alternatif'),
+        ]);
+
+        // Redirect back to the alternatives list with a success message
+        return redirect()->route('alternatif')
+            ->with('success', 'Alternative updated successfully');
     }
 
 
@@ -108,9 +140,36 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Penilain (Metode II)',
             'subtitle' => 'Data Penilain',
         ];
-        $criterias = Criteria::all(); // Mengambil semua data kegiatan dari model criteria
+        $penilaians = Penilaian::all(); // Mengambil semua data kegiatan dari model criteria
+         $alternatives = Alternative::all();
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('penilaians'));
+    }
 
-        return view('metode_dua_spk.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('criterias'));
+
+    public function editPenilaian($id)
+    {
+        $penilaian = Penilaian::findOrFail($id);
+        $alternatives = Alternative::all();
+        return view('penilaian.edit', compact('penilaian', 'alternatives'));
+    }
+
+    // Method to update penilaian
+    public function updatePenilaian(Request $request, $id)
+    {
+        $request->validate([
+            'alternative_id' => 'required|exists:alternatives,id',
+            'bobot' => 'required|integer|min:1|max:100',
+            'biaya_tiket_masuk' => 'required|numeric|min:0',
+            'fasilitas' => 'required|numeric|min:0|max:5',
+            'kebersihan' => 'required|numeric|min:0|max:5',
+            'keamanan' => 'required|numeric|min:0|max:5',
+            'biaya_akomodasi' => 'required|numeric|min:0',
+        ]);
+
+        $penilaian = Penilaian::findOrFail($id);
+        $penilaian->update($request->all());
+
+        return redirect()->route('penilaian.index')->with('success', 'Penilaian updated successfully.');
     }
     public function indexRanking()
     {

@@ -66,14 +66,14 @@
         </div>
         <img class="image" src="{{ asset('img/gambar landingPage.jpg') }}" alt="" style="flex: 1; width: 100%; max-width: 450px; height: auto; background-size: cover; background-position: right; border-top-left-radius: 100px; border-bottom-left-radius: 10px; border-bottom-right-radius: 100px; border-top-right-radius: 10px;">
     </div>
-    
 
-    <section id="what-is-complexhub" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 40px 20px; text-align: center;">
+
+    <section id="what-is-complexhub" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh; margin: 40px 20px; text-align: center;">
         <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">Apa Itu ComplexHub?</h2>
         <hr style="width: 50%; border: 1px solid #385668; margin: 20px 0;">
         <p style="font-size: 20px; color: black; margin-bottom: 20px; padding-left:15%; padding-right:15%;">ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
         {{-- <button style="padding: 10px 20px; border-radius: 5px; background-color: #3b4d61; color: #FBEEC1; font-weight: 600;">Baca lebih lanjut</button> --}}
-    </section>    
+    </section>
 
     <section id="umkm" style="margin: 40px 20px;">
         <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">UMKM</h2>
@@ -94,12 +94,14 @@
             <div class="footer-column" style="flex: 1; margin: 10px; min-width: 200px;">
                 <h3 style="font-size: 36px; color: #FBEEC1; font-weight: 600; font-family: 'Poppins', sans-serif;">ComplexHub</h3>
                 <p>RW 08 Kelurahan Cemorokandang<br>Kota Malang, Jawa Timur</p>
-                <p><strong>Telepon:</strong> +62 896 8053 3168<br><strong>Email:</strong> ComplexHub@gmail.com</p>
-                {{-- <div class="social-icons" style="margin-right: 10px;">
-                    <a href="#"><img src="facebook-icon.png" alt="Facebook" style="color: #FBEEC1; text-decoration: none; display: block; margin: 5px 0;"></a>
-                    <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-                    <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-                </div> --}}
+                <p><strong>Telepon:</strong> 911<br><strong>Email:</strong> andybima6@gmail.com</p>
+                <div class="social-icons" style="margin-right: 10px;">
+                    <a href="https://www.facebook.com/andy.bima.902">
+                        <img src="facebook-icon.png" alt="Facebook" style="color: #FBEEC1; text-decoration: none; display: block; margin: 5px 0;">
+                    </a>
+                    <a href="https://www.instagram.com/andybima_/"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="https://x.com/Andynugrahaput1"><img src="twitter-icon.png" alt="Twitter"></a>
+                </div>
             </div>
             {{-- <div class="footer-column">
                 <h3>Link</h3>

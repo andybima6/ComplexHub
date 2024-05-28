@@ -2,7 +2,6 @@
 @section('content')
     {{-- Content --}}
     <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-
         <!DOCTYPE html>
         <html lang="en">
 
@@ -24,34 +23,42 @@
                 }
             </style>
 
+        </head>
+
+        <body>
             <nav id="navbar">
                 <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
                 <a href="{{ url('/metode_dua_spk/kriteria/kriteriadestinasi2') }}">Kriteria</a>
-                <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}">Alternatif</a>
+                <a href="{{ url('/metode_dua_spk/alternatif/alternatifdestinasi2') }}">Alternatif</a>
                 <a href="{{ url('/metode_dua_spk/penilaiandestinasi2') }}">Penilaian</a>
                 <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
             </nav>
 
             <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
                 <p class="mb-10"
-                    style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">Penilaian
-                    Data Alternatif :</p>
+                    style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">Data
+                    Alternatif Destinasi Wisata yang ingin di kunjungi :</p>
                 <table class="md:table-fixed w-full">
                     <thead>
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/7">No</th>
-                            <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
-                            <th class="border px-4 py-2 text-center w-1/7">Harga Tiket</th>
-                            <th class="border px-4 py-2 text-center w-1/7">Kebersihan</th>
+                            <th class="border px-4 py-2 text-center w-1/7">Nama Wisata</th>
                             <th class="border px-4 py-2 text-center w-1/7">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($alternatives as $index => $alternative)
                         <tr>
-
+                            <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $alternative->alternatif }}</td>
+                            <td class="border px-4 py-2 text-center">
+                                <a href="{{ route('alternatives.edit', $alternative->id) }}" style="width:55px;height:34px;border-radius:10px;background-color:#75751f; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">Edit</a>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+
     </main>
 @endsection
