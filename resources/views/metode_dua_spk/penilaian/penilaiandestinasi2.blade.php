@@ -55,10 +55,11 @@
                             @foreach ($penilaians as $index => $penilaian)
                             <tr>
                                 <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->alternative->alternatif }}</td>
+                       <td class="border px-4 py-2 text-center">{{ $penilaian->alternative->alternatif }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->criteria->bobot }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_tiket_masuk }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->fasilitas }}</td>
+
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->keamanan }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_akomodasi }}</td>
                                 <td class="border px-4 py-2 text-center">

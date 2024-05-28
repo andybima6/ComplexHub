@@ -141,11 +141,18 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Penilain (Metode II)',
             'subtitle' => 'Data Penilain',
         ];
+<<<<<<< HEAD
 
         $penilaians = PenilaianDua::with('criteria')->get();
         $alternatives = PenilaianDua::with('alternative')->get();
 
         return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'alternatives'));
+=======
+        $penilaians = Penilaian::all(); // Mengambil semua data kegiatan dari model criteria
+        $penilaianss = Penilaian::with('alternative')->get(); // Mengambil semua data kegiatan dari model criteria
+         $alternatives = Alternative::all();
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('penilaians', 'penilaianss'));
+>>>>>>> abcd3ec610cddb449adc3c4a230d6276ecf049ca
     }
 
 

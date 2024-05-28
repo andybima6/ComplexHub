@@ -10,10 +10,19 @@
     <div class="card-body">
       <form action="{{ route('rts.index') }}" method="GET" class="mb-4">
         <div class="flex justify-between items-center">
-          <input type="text" name="search" class="form-control" placeholder="Cari nama RT...">
-          <button type="submit" class="btn btn-primary">Cari</button>
-        </div>
-      </form>
+          <div class="input-group mb-3 w-full">  <input type="text" name="search" class="form-control rounded-md px-4 py-2" placeholder="Cari berdasarkan nama, nomor RT, dll." value="{{ request()->input('search') }}">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button> </div>
+          </div>
+        </form>
+
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        </div> 
       <table class="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr>

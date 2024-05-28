@@ -47,7 +47,9 @@
                         fill="#2A424F" />
                 </svg>
                 <span  class="pointer"  style="margin-left: 10px;">Dashboard</span>
+
             </a>
+
         </li>
 
         <li class="pointer mb3">

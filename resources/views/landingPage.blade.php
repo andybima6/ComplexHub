@@ -7,9 +7,12 @@
             padding: 20px;
             scroll-behavior: smooth;
         }
+        .umkm-container::-webkit-scrollbar {
+        display: none;  /* Webkit browsers */
+    }
         .umkm-item {
             flex: 0 0 calc(33.333% - 20px); /* Three items per row minus the gap */
-            background: #f9f9f9;
+            background: #2b3e50;
             padding: 20px;
             border-radius: 10px;
             box-sizing: border-box;
@@ -54,7 +57,7 @@
     </div>
 </header>
 <main>
-    <div class="container" style="font-family: Arial, sans-serif; display: flex; overflow: hidden; margin: 20px; flex-wrap: wrap; flex-direction: row; align-items: center;">
+    <div class="container" style="font-family: Arial, sans-serif; flex:3; display: flex; overflow: hidden; margin: 20px; flex-wrap: wrap; flex-direction: row; align-items: center;">
         <div class="text" style="flex: 1; margin-right: 350px">
             <h1 style="font-size: 24px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">ComplexHub - Manajemen Lingkungan</h1>
             <p style="font-size: 40px; color: black; margin-bottom: 20px; font-weight: 600;">Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
@@ -75,15 +78,15 @@
         {{-- <button style="padding: 10px 20px; border-radius: 5px; background-color: #3b4d61; color: #FBEEC1; font-weight: 600;">Baca lebih lanjut</button> --}}
     </section>
 
-    <section id="umkm" style="margin: 40px 20px;">
+    <section id="umkm" style="margin: 40px 20px;" class="relative">
         <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">UMKM</h2>
         <p style="font-size: 20px; text-align:center; color: grey;">Informasi seputar UMKM yang ada di RW 08 Cemorokandang</p>
         <div class="umkm-container">
             @foreach ($izinUsaha as $izin)
                 <div class="umkm-item">
                     <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" class="umkm-image">
-                    <h3 style="font-size: 18px; color: #333; margin-top: 10px;">{{ $izin->nama_usaha }}</h3>
-                    <p style="font-size: 14px; color: #666;">{{ $izin->deskripsi }}</p>
+                    <h3 style="font-size: 18px; color: #FBEEC1; margin-top: 10px;">{{ $izin->nama_usaha }}</h3>
+                    <p style="font-size: 14px; color: #FBEEC1;">{{ $izin->deskripsi }}</p>
                 </div>
             @endforeach
         </div>

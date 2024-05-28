@@ -1,30 +1,31 @@
 <?php
 
+use App\Models\Kriteria;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\RTController;
+use App\Http\Controllers\SAWController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\DestinasiController;
-use App\Http\Controllers\KriteriaController;
-use App\Http\Controllers\SaranController;
-use App\Http\Controllers\AlternatifController;
-use App\Http\Controllers\PenilaianController;
-use App\Models\Kriteria;
-use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\DataKartuKeluargaController;
-use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\IuranController;
+use App\Http\Controllers\SaranController;
 use App\Http\Controllers\DataRtController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\MetodeDuaController;
+use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\IuranWargaController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DataPendudukController;
-use App\Http\Controllers\SAWController;
+use App\Http\Controllers\AnggotaKeluargaController;
+use App\Http\Controllers\DataKartuKeluargaController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
@@ -196,6 +197,7 @@ Route::get('/anggota_keluargas/edit/{dataKartuKeluarga}/{anggotaKeluarga}', [Ang
 Route::put('/anggota_keluargas/update/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'update'])->name('updateAnggota');
 Route::delete('/anggota_keluargas/destroy/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'destroy'])->name('destroyAnggota');
 Route::post('/anggota_keluargas', [AnggotaKeluargaController::class, 'store'])->name('store_anggota_keluarga');
+Route::post('/data_kartu_keluargas', [DataKartuKeluargaController::class, 'store'])->name('data_kartu_keluargas.store');
 
 
 // Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
