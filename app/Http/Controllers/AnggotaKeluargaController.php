@@ -73,6 +73,7 @@ public function store(Request $request)
             'alamat' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'hubungan_keluarga' => 'required|string|max:255',
+            'status_perkawinan' => 'required|string|in:Menikah,Belum Menikah',
             'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
             'golongan_darah' => 'required|string|in:A,B,AB,O',
         ]);

@@ -7,15 +7,26 @@ use Illuminate\Http\Request;
 
 class RTController extends Controller
 {
-    public function index()
-    {
-        $breadcrumb = (object)[
-            'title' => 'Pendataan',
-            'subtitle' => 'List Data RT',
-        ];
+    public function index(Request $request)
+{
+    $breadcrumb = (object)[
+        'title' => 'Pendataan',
+        'subtitle' => 'List Data RT',
+    ];
+
+    $search = $request->input('search');
+    if ($search) {
+        $rts = RT::where('nama', 'like', "%{$search}%")
+                 ->orWhere('rt', 'like', "%{$search}%")
+                 ->orWhere('alamat', 'like', "%{$search}%")
+                 ->orWhere('nomor_telefon', 'like', "%{$search}%")
+                 ->get();
+    } else {
         $rts = RT::all();
-        return view('rts.index', compact('rts', 'breadcrumb'));
     }
+
+    return view('rts.index', compact('rts', 'breadcrumb', 'search'));
+}
 
     public function create()
     {
@@ -41,8 +52,9 @@ class RTController extends Controller
         ]);
 
         RT::create($request->all());
-        return redirect()->route('rts.index')->with('success', 'RT created successfully.');
-    }
+        $rtName = $request->nama;
+        return redirect()->route('rts.index')->with('success', "RT \"$rtName\" created successfully.");
+}
 
     public function show(RT $rt)
     {
@@ -77,7 +89,8 @@ class RTController extends Controller
         ]);
 
         $rt->update($request->all());
-        return redirect()->route('rts.index')->with('success', 'RT updated successfully.');
+        $rtName = $request->nama;
+        return redirect()->route('rts.index')->with('success', "RT \"$rtName\" updated successfully.");
     }
 
     public function destroy(RT $rt)

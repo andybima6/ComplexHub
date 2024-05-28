@@ -185,6 +185,7 @@ Route::get('/anggota_keluargas/edit/{dataKartuKeluarga}/{anggotaKeluarga}', [Ang
 Route::put('/anggota_keluargas/update/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'update'])->name('updateAnggota');
 Route::delete('/anggota_keluargas/destroy/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'destroy'])->name('destroyAnggota');
 Route::post('/anggota_keluargas', [AnggotaKeluargaController::class, 'store'])->name('store_anggota_keluarga');
+Route::post('/data_kartu_keluargas', [DataKartuKeluargaController::class, 'store'])->name('data_kartu_keluargas.store');
 
 
 // Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
