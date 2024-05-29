@@ -55,3 +55,4 @@ if (!function_exists('getSaranDetailJson')) {
         ]);
     }
 }
+

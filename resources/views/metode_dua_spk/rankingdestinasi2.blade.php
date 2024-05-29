@@ -43,18 +43,19 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Rank</th>
+                                <th>No</th>
                                 <th>Alternative</th>
                                 <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($rankings as $index => $ranking)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $ranking['alternative'] }}</td>
-                                    <td>{{ number_format($ranking['score'], 4) }}</td>
-                                </tr>
+                            <tr>
+                                <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
+                                </td>
+                                <td>{{ $ranking['alternative'] }}</td>
+                                <td>{{ number_format($ranking['score'], 4) }}</td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alternative;
+use App\Models\Ranking;
 use App\Models\Criteria;
-use App\Models\Penilaian;
+use App\Models\Alternative;
 use App\Models\penilaiandua;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MetodeDuaController extends Controller
 {
@@ -116,49 +117,47 @@ class MetodeDuaController extends Controller
 
 
     public function indexPenilaian()
-{
-    $user = auth()->user();
-    $breadcrumb = (object)[
-        'title' => 'Daftar Penilain (Metode II)',
-        'subtitle' => 'Data Penilain',
-    ];
+    {
+        $user = auth()->user();
+        $breadcrumb = (object)[
+            'title' => 'Daftar Penilain (Metode II)',
+            'subtitle' => 'Data Penilain',
+        ];
 
-    // Ambil data penilaian, alternatif, dan kriteria
-    $penilaians = PenilaianDua::all();
-    $alternatives = Alternative::all();
-    $criterias = Criteria::all();
+        // Ambil data penilaian, alternatif, dan kriteria
+        $penilaians = penilaiandua::all();
+        $alternatives = Alternative::all();
+        $criterias = Criteria::all();
 
-    // Persiapkan data untuk normalisasi dan perhitungan skor
-    $data = [];
-    foreach ($penilaians as $penilaian) {
-        $alternative = $alternatives->find($penilaian->alternative_id);
-        if ($alternative) {
-            $data[] = [
-                'alternative' => $alternative->alternatif,
-                'bobot' => $penilaian->bobot, // Pastikan 'bobot' ditambahkan
-                'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
-                'fasilitas' => $penilaian->fasilitas,
-                'kebersihan' => $penilaian->kebersihan,
-                'keamanan' => $penilaian->keamanan,
-                'biaya_akomodasi' => $penilaian->biaya_akomodasi,
-            ];
+        // Persiapkan data untuk normalisasi dan perhitungan skor
+        $data = [];
+        foreach ($penilaians as $penilaian) {
+            $alternative = $alternatives->find($penilaian->alternative_id);
+            if ($alternative) {
+                $data[] = [
+                    'alternative' => $alternative->alternatif,
+                    'bobot' => $penilaian->bobot,
+                    'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
+                    'fasilitas' => $penilaian->fasilitas,
+                    'kebersihan' => $penilaian->kebersihan,
+                    'keamanan' => $penilaian->keamanan,
+                    'biaya_akomodasi' => $penilaian->biaya_akomodasi,
+                ];
+            }
         }
+
+        // Persiapkan bobot kriteria
+        $bobot_kriteria = [];
+        foreach ($criterias as $criteria) {
+            $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
+        }
+
+        // Lakukan normalisasi dan perhitungan skor
+        $normalizedData = $this->normalizeData($data, $bobot_kriteria);
+        $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
+
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'normalizedData', 'rankings'));
     }
-
-    // Persiapkan bobot kriteria
-    $bobot_kriteria = [];
-    foreach ($criterias as $criteria) {
-        $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
-    }
-
-    // Lakukan normalisasi dan perhitungan skor
-    $normalizedData = $this->normalizeData($data, $bobot_kriteria);
-    $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
-    // dd($normalizedData);
-
-    return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'normalizedData', 'rankings'));
-}
-
 
     public function editPenilaian($id)
     {
@@ -166,16 +165,14 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Penilain (Metode II)',
             'subtitle' => 'Edit Data Penilain',
         ];
-        $penilaian = PenilaianDua::findOrFail($id);
+        $penilaian = penilaiandua::findOrFail($id);
         $alternatives = Alternative::all();
         return view('metode_dua_spk.penilaian.penilaian_edit2', compact('penilaian', 'breadcrumb', 'alternatives'));
     }
 
-    // Method to update penilaian
     public function updatePenilaian(Request $request, $id)
     {
         $request->validate([
-
             'biaya_tiket_masuk' => 'required|numeric|min:0',
             'fasilitas' => 'required|numeric|min:0|max:5',
             'kebersihan' => 'required|numeric|min:0|max:5',
@@ -183,58 +180,58 @@ class MetodeDuaController extends Controller
             'biaya_akomodasi' => 'required|numeric|min:0',
         ]);
 
-        $penilaian = PenilaianDua::findOrFail($id);
+        $penilaian = penilaiandua::findOrFail($id);
         $penilaian->update($request->all());
 
         return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
     }
-        public function olahPenilaian(Request $request, $id)
-        {
-            return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
-        }
 
-        public function indexRanking()
-        {
-            $breadcrumb = (object)[
-                'title' => 'Daftar Ranking (Metode II)',
-                'subtitle' => 'Data Ranking',
+    public function olahPenilaian(Request $request, $id)
+    {
+        return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
+    }
+
+    public function indexRanking()
+    {
+        $breadcrumb = (object)[
+            'title' => 'Daftar Ranking (Metode II)',
+            'subtitle' => 'Data Ranking',
+        ];
+
+        // Ambil data penilaian
+        $penilaians = penilaiandua::with('alternative')->get();
+
+        // Ambil data kriteria
+        $criterias = Criteria::all();
+
+        // Persiapkan data untuk normalisasi dan perhitungan skor
+        $data = [];
+        foreach ($penilaians as $penilaian) {
+            $data[] = [
+                'alternative' => $penilaian->alternative->alternatif,
+                'bobot' => $penilaian->bobot,
+                'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
+                'kebersihan' => $penilaian->kebersihan,
+                'fasilitas' => $penilaian->fasilitas,
+                'keamanan' => $penilaian->keamanan,
+                'biaya_akomodasi' => $penilaian->biaya_akomodasi,
             ];
-
-            // Ambil data penilaian
-            $penilaians = PenilaianDua::with('alternative')->get();
-
-            // Ambil data kriteria
-            $criterias = Criteria::all();
-
-            // Persiapkan data untuk normalisasi dan perhitungan skor
-            $data = [];
-            foreach ($penilaians as $penilaian) {
-                $data[] = [
-                    'alternative' => $penilaian->alternative->alternatif,
-
-                    'bobot' => $penilaian->bobot,
-                    'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
-                    'kebersihan' => $penilaian->kebersihan,
-                    'fasilitas' => $penilaian->fasilitas,
-                    'keamanan' => $penilaian->keamanan,
-                    'biaya_akomodasi' => $penilaian->biaya_akomodasi,
-                ];
-            }
-
-            // Persiapkan bobot kriteria
-            $bobot_kriteria = [];
-            foreach ($criterias as $criteria) {
-                $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
-            }
-
-            // Lakukan normalisasi dan perhitungan skor
-            $normalizedData = $this->normalizeData($data, $bobot_kriteria);
-            $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
-
-            return view('metode_dua_spk.rankingdestinasi2', compact('rankings', 'breadcrumb'));
         }
 
-        private function calculateRanking($normalizedData, $bobot_kriteria)
+        // Persiapkan bobot kriteria
+        $bobot_kriteria = [];
+        foreach ($criterias as $criteria) {
+            $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
+        }
+
+        // Lakukan normalisasi dan perhitungan skor
+        $normalizedData = $this->normalizeData($data, $bobot_kriteria);
+        $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
+
+        return view('metode_dua_spk.rankingdestinasi2', compact('rankings', 'breadcrumb'));
+    }
+
+    private function calculateRanking($normalizedData, $bobot_kriteria)
     {
         // Hitung skor
         $rankings = [];
@@ -256,10 +253,19 @@ class MetodeDuaController extends Controller
             return $b['score'] <=> $a['score'];
         });
 
+        // Simpan ranking ke database
+        Ranking::truncate();
+        foreach ($rankings as $ranking) {
+            Ranking::create([
+                'alternative_id' => Alternative::where('alternatif', $ranking['alternative'])->first()->id,
+                'score' => $ranking['score'],
+            ]);
+        }
+
         return $rankings;
     }
 
-        public function getMaxMinValues($data)
+    public function getMaxMinValues($data)
     {
         $maxMinValues = ['max' => [], 'min' => []];
 
@@ -278,6 +284,7 @@ class MetodeDuaController extends Controller
 
         return $maxMinValues;
     }
+
     public function normalizeData($data, $bobot_kriteria)
     {
         $normalized = [];
@@ -286,7 +293,7 @@ class MetodeDuaController extends Controller
         foreach ($data as $item) {
             $normalizedItem = [
                 'alternative' => $item['alternative'],
-                'bobot' => $item['bobot'],  // Pastikan 'bobot' ditambahkan
+                'bobot' => $item['bobot'],
             ];
             foreach ($bobot_kriteria as $key => $bobot) {
                 if (isset($item[$key])) {
@@ -307,6 +314,4 @@ class MetodeDuaController extends Controller
 
         return $normalized;
     }
-
-
-    }
+}
