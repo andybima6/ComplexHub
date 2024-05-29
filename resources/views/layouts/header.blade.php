@@ -23,7 +23,7 @@
         </svg>
 
 
-        <p class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
+        {{-- <p class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
         <br>
 
         <p class="inline-block btn p0 mr0">
@@ -33,7 +33,7 @@
                 RW {{ auth()->user()->rw }}
             @else
                 PD
-            @endif
+            @endif --}}
     </nav>
 
 

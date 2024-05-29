@@ -21,7 +21,7 @@ class AnggotaKeluarga extends Model
     ];
 
     public function dataKartuKeluarga()
-    {
-        return $this->belongsTo(DataKartuKeluarga::class, 'kk_id');
-    }
+{
+    return $this->belongsTo(DataKartuKeluarga::class, 'kk_id');
+}
 }

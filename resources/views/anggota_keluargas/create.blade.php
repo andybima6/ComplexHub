@@ -70,7 +70,7 @@
             </div>
 
             <div class="flex flex-col">
-                <label for="jenis_kelamin" class="text-gray-700 font-medium mb-2">Status Perkawinan</label>
+                <label for="status_perkawinan" class="text-gray-700 font-medium mb-2">Status Perkawinan</label>
                 <select class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="status_perkawinan" name="status_perkawinan" required>
                     <option value="Menikah" {{ old('status_perkawinan') == 'Menikah' ? 'selected' : '' }}>Menikah</option>
                     <option value="Belum Menikah" {{ old('status_perkawinan') == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
