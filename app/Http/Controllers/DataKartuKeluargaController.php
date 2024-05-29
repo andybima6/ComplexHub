@@ -128,11 +128,9 @@ class DataKartuKeluargaController extends Controller
     }
 
     public function storeAnggota(Request $request, DataKartuKeluarga $dataKartuKeluarga)
-    {
-        dd($dataKartuKeluarga->id);
-
-        $request->validate([
-        'kk_id' => 'required', // Pastikan kk_id ada dalam validasi
+{
+    dd($dataKartuKeluarga->id);
+    $request->validate([
         'nama' => 'required|string|max:255',
         'nik' => 'required|string|max:255',
         'alamat' => 'required|string',
@@ -141,10 +139,9 @@ class DataKartuKeluargaController extends Controller
         'status_perkawinan' => 'required|string|in:Menikah,Belum Menikah',
         'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
         'golongan_darah' => 'required|string|in:A,B,AB,O',
-        ]);
+    ]);
 
-        $dataKartuKeluarga->anggotaKeluargas()->create([
-        'kk_id' => $request->kk_id,
+    $dataKartuKeluarga->anggotaKeluargas()->create([
         'nama' => $request->nama,
         'nik' => $request->nik,
         'alamat' => $request->alamat,
@@ -153,8 +150,9 @@ class DataKartuKeluargaController extends Controller
         'status_perkawinan' => $request->status_perkawinan,
         'jenis_kelamin' => $request->jenis_kelamin,
         'golongan_darah' => $request->golongan_darah,
-        ]);
+        'kk_id' => $dataKartuKeluarga->id
+    ]);
 
-        return redirect()->route('data_kartu_keluargas.show', $dataKartuKeluarga)->with('success', 'Anggota keluarga berhasil ditambahkan.');
-    }
+    return redirect()->route('data_kartu_keluargas.show', $dataKartuKeluarga)->with('success', 'Anggota keluarga berhasil ditambahkan.');
+}
 }
