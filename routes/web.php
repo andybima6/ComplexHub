@@ -2,7 +2,6 @@
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\RTController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
@@ -110,6 +109,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
+        Route::get('dashboardRW', [DashboardController::class, 'indexRW'])->name('dashboardRW');
+
         Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
         Route::get('/RW/detailKegiatanRW/{id}', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
         Route::post('/Penduduk/accKegiatanRW/{id}', [ActivityController::class, 'accKegiatanRW'])->name('accKegiatanRW');
@@ -133,7 +134,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/RW/{id}', [IuranRWController::class, 'perbarui'])->name('perbarui');
         Route::delete('/RW/{id}', [IuranRWController::class, 'hapus'])->name('hapus');
 
-        Route::get('dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRW');
 
 
         Route::get('/metode_dua_spk/alternatifdestinasi2', [MetodeDuaController::class, 'indexAlternatif'])->name('alternatif');
