@@ -10,11 +10,16 @@ class Ranking extends Model
 
     protected $fillable = [
         'alternative_id',
+        'criteria_id',
         'score',
     ];
 
     public function alternative()
     {
         return $this->belongsTo(Alternative::class);
+    }
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class);
     }
 }
