@@ -32,7 +32,7 @@
                     <label for="bobot" class="block text-lg font-bold text-gray-700">Bobot :</label>
                     <input type="number" name="bobot" id="bobot" class="form-control" value="{{ $criteria->bobot }}" step="0.01" min="0" max="1" required>
                 </div>
-
+                
                 @error('bobot')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror

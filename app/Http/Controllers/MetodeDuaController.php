@@ -136,8 +136,9 @@ class MetodeDuaController extends Controller
             $data[] = [
                 'alternative' => $alternative->alternatif,
                 'bobot' => $penilaian->bobot, // Pastikan 'bobot' ditambahkan
-                'biaya_tiket' => $penilaian->biaya_tiket_masuk,
+                'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
                 'fasilitas' => $penilaian->fasilitas,
+                'kebersihan' => $penilaian->kebersihan,
                 'keamanan' => $penilaian->keamanan,
                 'biaya_akomodasi' => $penilaian->biaya_akomodasi,
             ];
@@ -212,8 +213,10 @@ class MetodeDuaController extends Controller
         foreach ($penilaians as $penilaian) {
             $data[] = [
                 'alternative' => $penilaian->alternative->alternatif,
+
                 'bobot' => $penilaian->bobot,
-                'biaya_tiket' => $penilaian->biaya_tiket_masuk,
+                'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
+                'kebersihan' => $penilaian->kebersihan,
                 'fasilitas' => $penilaian->fasilitas,
                 'keamanan' => $penilaian->keamanan,
                 'biaya_akomodasi' => $penilaian->biaya_akomodasi,
@@ -285,11 +288,11 @@ public function normalizeData($data, $bobot_kriteria)
     foreach ($data as $item) {
         $normalizedItem = [
             'alternative' => $item['alternative'],
-            'bobot' => $item['bobot']  // Tambahkan kunci 'bobot'
+            'bobot' => $item['bobot'],  // Pastikan 'bobot' ditambahkan
         ];
         foreach ($bobot_kriteria as $key => $bobot) {
             if (isset($item[$key])) {
-                if ($key == 'biaya_tiket' || $key == 'biaya_akomodasi') {
+                if ($key == 'biaya_tiket_masuk' || $key == 'biaya_akomodasi') {
                     // Cost criteria
                     $normalizedItem[$key] = $item[$key] > 0 ? $maxMinValues['min'][$key] / $item[$key] : 0;
                 } else {
@@ -297,6 +300,7 @@ public function normalizeData($data, $bobot_kriteria)
                     $normalizedItem[$key] = $maxMinValues['max'][$key] > 0 ? $item[$key] / $maxMinValues['max'][$key] : 0;
                 }
             } else {
+                // Handle case when key does not exist
                 $normalizedItem[$key] = 0; // Default value if key does not exist
             }
         }

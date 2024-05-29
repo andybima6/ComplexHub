@@ -30,6 +30,25 @@
         .umkm-item h3, .umkm-item p {
             text-align: center;
         }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .menu a {
+            margin: 0 15px;
+            font-size: 24px;
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .menu a:hover {
+            color: #888; /* Change the color on hover */
+            transform: scale(1.3); /* Zoom effect on hover */
+        }
 </style>
 
 <header class="px-9 py-10" style="display: flex; align-items: center; justify-content: space-between;">
@@ -46,9 +65,9 @@
         <line y1="36.9922" x2="50" y2="36.9922" stroke="#385668" stroke-width="4"/>
     </svg>
     <div class="menu" style="display: flex; justify-content: center; flex-grow: 1;">
-        <a class="active" style="margin: 0 15px; font-size:24px; color: #888;" href="#container">Beranda</a>
-        <a class="active" style="margin: 0 15px; font-size:24px; color: #888;" href="#what-is-complexhub">Tentang</a>
-        <a class="active" style="margin: 0 15px; font-size:24px; color: #888;" href="#umkm">UMKM</a>
+        <a class="active" style="margin: 0 15px; font-size:24px; color: #000000;" href="#container">Beranda</a>
+        <a class="active" style="margin: 0 15px; font-size:24px; color: #000000;" href="#what-is-complexhub">Tentang</a>
+        <a class="active" style="margin: 0 15px; font-size:24px; color: #000000;" href="#umkm">UMKM</a>
         {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">FAQ</p> --}}
         {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Saran</p> --}}
     </div>
