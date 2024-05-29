@@ -49,7 +49,7 @@
                 </form>
             </div>
             <div class="modal-right">
-                <img src="{{ url('images/pemandangan2.jpg') }}" alt="">
+                <img src="{{ asset('img/Pemandangan2.jpg') }}" alt="">
             </div>
             <button class="icon-button close-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
