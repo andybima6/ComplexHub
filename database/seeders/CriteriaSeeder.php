@@ -17,7 +17,7 @@ class CriteriaSeeder extends Seeder
         Criteria::create([
             'kriteria' => 'biaya tiket masuk',
             'jenis' => 'benefit',
-            'bobot' => 0.5,
+            'bobot' => 0.2,
         ]);
 
         Criteria::create([
@@ -29,7 +29,7 @@ class CriteriaSeeder extends Seeder
         Criteria::create([
             'kriteria' => 'kebersihan',
             'jenis' => 'benefit',
-            'bobot' => 0.8,
+            'bobot' => 0.2,
         ]);
 
         Criteria::create([
@@ -41,7 +41,7 @@ class CriteriaSeeder extends Seeder
         Criteria::create([
             'kriteria' => 'biaya akomodasi            ',
             'jenis' => 'benefit',
-            'bobot' => 0.7,
+            'bobot' => 0.1,
         ]);
     }
 }
