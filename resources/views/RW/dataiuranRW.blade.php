@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 @section('content')
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-    <button class="custom-button">Kas Iuran rw</button>
+    {{-- <button class="custom-button">Kas Iuran RT</button> --}}
 
     <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
         <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Data Iuran rw:</p>
