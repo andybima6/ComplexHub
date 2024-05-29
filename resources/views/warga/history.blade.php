@@ -1,43 +1,56 @@
 @extends('layouts.welcome')
-
 @section('content')
-<main>
-    <button class="custom-button">History Iuran</button>
-    <br><br>
-    <div class="form-container">
-        <div class="form-group-row" style="display: flex; align-items: center; margin-bottom: 5px;">
-            <label for="rt" style="flex: 1; font-weight: bold; margin: 0; padding-right: 5px;">RT</label>
-            <p id="rt" style="flex: 8; margin: 0;">: 001</p>
-        </div>
-        
-        <div class="form-group-row" style="display: flex; align-items: center; margin-bottom: 5px;">
-            <label for="nama" style="flex: 1; font-weight: bold; margin: 0; padding-right: 5px;">Nama</label>
-            <p id="nama" style="flex: 8; margin: 0;">: John Doe</p>
-        </div>
+<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+    {{-- <button class="custom-button">Kas Iuran RT</button> --}}
 
-        <div class="form-group-row" style="display: flex; align-items: center; margin-bottom: 5px;">
-            <label for="periode" style="flex: 1; font-weight: bold; margin: 0; padding-right: 5px;">Periode</label>
-            <p id="periode" style="flex: 8; margin: 0;">: Januari 2024</p>
-        </div>
+    <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
+        <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">History Iuran Warga:</p>
+        <hr class="mb-6">
 
-        <div class="form-group-row" style="display: flex; align-items: center; margin-bottom: 5px;">
-            <label for="total" style="flex: 1; font-weight: bold; margin: 0; padding-right: 5px;">Total</label>
-            <p id="total" style="flex: 8; margin: 0;">: Rp 100.000</p>
-        </div>
-
-        <div class="form-group-row" style="display: flex; align-items: center; margin-bottom: 5px;">
-            <label for="total" style="flex: 1; font-weight: bold; margin: 0; padding-right: 5px;">Bukti</label>
-            <p id="total" style="flex: 8; margin: 0;">: 
-            {{-- <img src="{{ asset('storage/' . $iuran->bukti) }}" alt=""> --}}
-            </p>
-        </div>  
-
-        <div class="form-group-row" style="display: flex; align-items: center; margin-bottom: 5px;">
-            <label for="keterangan" style="flex: 1; font-weight: bold; margin: 0; padding-right: 5px;">Keterangan</label>
-            <div id="keterangan" style="flex: 8; margin: 0;">
-                : <button class="btn-primary" style="background-color: #007bff; color: white; padding: 5px 10px; border: none; border-radius: 5px;">Diterima</button>
+        <!-- Search form -->
+        {{-- <form method="GET" action="{{ route('search') }}">
+            <div class="mb-4">
+                <label for="rt_search" class="block text-sm font-medium text-gray-700">Cari Nama:</label>
+                <input type="text" id="rt_search" name="rt_search" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
             </div>
-        </div>
+            <button type="submit" class="search-button">Cari</button>
+        </form> --}}
+
+        <table class="md:table-fixed w-full mt-6">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">No</th>
+                    {{-- <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Nama</th> --}}
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Periode</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Total</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 15%;">Bukti</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">RT</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($iuran as $ir)
+                <tr>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->id }}</td>
+                    {{-- <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->nama }}</td> --}}
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->periode }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->total }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">
+                        <div class="flex justify-center">
+                            <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" style="max-width: 100px; max-height: 100px;">
+                        </div>
+                    </td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->rt_id }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">
+                        @if($ir->status == 'disetujui')
+                            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Disetujui</button>
+                        @elseif($ir->status == 'ditolak')
+                            <button class="bg-red-500 text-white font-bold py-2 px-4 rounded">Ditolak</button>
+                        @endif
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </main>
 @endsection

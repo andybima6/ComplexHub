@@ -43,7 +43,7 @@ public function store(Request $request)
     $anggotaKeluarga = AnggotaKeluarga::create([
         'kk_id' => $request->kk_id,
         'nama' => $request->nama,
-        'nik' => $request->nik,
+        'nik' => $request->nik, 
         'alamat' => $request->alamat,
         'tanggal_lahir' => $request->tanggal_lahir,
         'hubungan_keluarga' => $request->hubungan_keluarga,
@@ -54,6 +54,7 @@ public function store(Request $request)
 
     return redirect()->route('data_kartu_keluargas.show', $request->kk_id)->with('success', 'Anggota Keluarga created successfully.');
 }
+
 
 
     public function edit(DataKartuKeluarga $dataKartuKeluarga, AnggotaKeluarga $anggotaKeluarga)

@@ -33,61 +33,43 @@ class MetodeDuaController extends Controller
     }
 
     // Menyimpan perubahan setelah edit
-    public function updatecriteria(Request $request, $id)
+
+    public function updatekriteria(Request $request, $id)
     {
         $request->validate([
             'jenis' => 'required|in:benefit,cost',
-            'bobot' => 'required|numeric',
+            'bobot' => 'required|numeric|min:0',
         ]);
 
         $criteria = Criteria::findOrFail($id);
-        $criteria->update($request->only('jenis', 'bobot'));
+
+        // Hitung total bobot saat ini tanpa kriteria yang sedang diupdate
+        $currentTotalBobot = Criteria::where('id', '!=', $id)->sum('bobot');
+
+        // Hitung total bobot baru jika update sukses
+        $newTotalBobot = $currentTotalBobot - $criteria->bobot + $request->bobot;
+
+        // Periksa apakah total bobot baru melebihi 1
+        if ($newTotalBobot > 1) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['bobot' => 'Total bobot should not exceed 1.']);
+        }
+
+        // Lakukan update hanya jika total bobot baru tidak melebihi 1
+        $criteria->update([
+            'jenis' => $request->jenis,
+            'bobot' => $request->bobot,
+        ]);
 
         return redirect()->route('kriteria')
             ->with('success', 'Criteria updated successfully');
     }
 
-    public function updatejenis(Request $request, $id)
-    {
-        $request->validate([
-            'jenis' => 'required|in:benefit,cost',
-            'bobot' => 'required|numeric',
-        ]);
 
-        $criteria = Criteria::findOrFail($id);
 
-        // Apply different calculations based on 'jenis'
-        if ($request->jenis == 'benefit') {
-            $calculatedValue = $this->calculateBenefit($request->bobot);
-        } else {
-            $calculatedValue = $this->calculateCost($request->bobot);
-        }
-
-        // Update criteria with calculated value
-        $criteria->update([
-            'jenis' => $request->jenis,
-            'bobot' => $calculatedValue,
-        ]);
-
-        return redirect()->route('criterias.index')
-            ->with('success', 'Criteria updated successfully');
-    }
 
     // Calculate benefit value
-    private function calculateBenefit($bobot)
-    {
-        // Example formula for benefit
-        return $bobot * 1.1;
-    }
-
-    // Calculate cost value
-    private function calculateCost($bobot)
-    {
-        // Example formula for cost
-        return $bobot * 0.9;
-    }
-
-
 
     public function indexAlternatif()
     {
@@ -135,6 +117,7 @@ class MetodeDuaController extends Controller
 
     public function indexPenilaian()
 {
+    $user = auth()->user();
     $breadcrumb = (object)[
         'title' => 'Daftar Penilain (Metode II)',
         'subtitle' => 'Data Penilain',
@@ -204,6 +187,13 @@ class MetodeDuaController extends Controller
 
         return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
     }
+    public function olahPenilaian(Request $request, $id)
+    {
+
+
+        return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
+    }
+
     public function indexRanking()
     {
         $breadcrumb = (object)[

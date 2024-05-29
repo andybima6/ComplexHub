@@ -1,56 +1,98 @@
 @extends('layouts.welcome')
 
 @section('content')
-<main class="mx-auto p-6 sm:p-12 md:p-24 lg:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-    <div class="rounded-md relative p-6 sm:p-8 md:p-12 lg:p-16 bg-white shadow-lg">
-        <p class="mb-10 text-lg sm:text-xl md:text-2xl font-semibold" style="font-family: 'Poppins', sans-serif; color: black;">Data Iuran Warga:</p>
+<style>
+    /* Layout and Whitespace */
+
+
+/* Color and Contrast */
+body {
+  background-color: #fff; /* Light background for better contrast */
+}
+
+
+
+/* Buttons */
+.search-button,
+.edit-button,
+.delete-button {
+  background-color: #337ab7; /* Blue for primary buttons */
+  color: #fff; /* White text for contrast */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 16px; /* Adjust padding for comfortable click area */
+  cursor: pointer; /* Indicate clickable button */
+}
+.search-button:hover,
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #286090; /* Darker shade on hover */
+}
+
+</style>
+<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+    {{-- <button class="custom-button">Kas Iuran RT</button> --}}
+
+    <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
+        <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Data Iuran Warga:</p>
         <hr class="mb-6">
-        <div class="overflow-x-auto">
-            <table class="w-full table-auto">
-                <thead>
-                    <tr>
-                        <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">No</th>
-                        <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Nama Warga</th>
-                        <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Bukti</th>
-                        <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border px-2 sm:px-4 py-2 text-center" style="color: black">1</td>
-                        <td class="border px-2 sm:px-4 py-2 text-center" style="color: black">Miguel Santoso</td>
-                        <td class="border px-2 sm:px-4 py-2 text-center" style="color: black">
-                            <div class="flex justify-center">
-                                <img src="{{ asset('img/.jpg') }}" alt="Bukti" class="w-full max-w-xs">
-                            </div>
-                        </td>
-                        <td class="border px-2 sm:px-4 py-2 text-center" style="color: black">
-                            <div class="flex justify-center gap-2">
-                                <a href="{{ route('wargaHistory') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px">
-                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.5 3H21.5V9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9.5 21H3.5V15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M21.5 3L14.5 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M3.5 21L10.5 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                                <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px">
-                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                                <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px">
-                                    <svg width="25" height="24" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
+        <!-- Search form -->
+        <form method="GET" action="{{ route('search') }}">
+            <div class="mb-4">
+                <label for="rt_search" class="block text-sm font-medium text-gray-700">Search</label>
+                <input type="text" id="rt_search" name="rt_search" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
+            </div>
+            <button type="submit" class="search-button">Cari</button>
+        </form>
+
+        <table class="md:table-fixed w-full mt-6">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">No</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Nama</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Periode</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Total</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 15%;">Bukti</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">RT</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Status</th>
+                    <th class="border px-4 py-2 text-center" style="color: black; width: 15%;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($iuran as $ir)
+                <tr>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->id }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->nama }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->periode }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->total }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">
+                        <div class="flex justify-center">
+                            <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" style="max-width: 100px; max-height: 100px;">
+                        </div>
+                    </td>
+                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->rt_id }}</td>
+                    <td class="border px-4 py-2 text-center" style="color: black">
+                        @if($ir->status == 'disetujui')
+                            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Disetujui</button>
+                        @elseif($ir->status == 'ditolak')
+                            <button class="bg-red-500 text-white font-bold py-2 px-4 rounded">Ditolak</button>
+                        @endif
+                    </td>
+                    <td class="border px-4 py-2 text-center" style="color: black">
+                        <div class="flex justify-center">
+                            <a href="{{ url('/RT/' . $ir->id . '/edit') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                            <form action="{{ url('/RT/' . $ir->id) }}" method="POST" class="ml-2">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </main>
 @endsection
