@@ -2,7 +2,6 @@
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\RTController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
@@ -10,21 +9,23 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\IuranController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\IuranRTController;
+use App\Http\Controllers\IuranRWController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\IuranWargaController;
+
+use App\Http\Controllers\DataRtController;
+use App\Http\Controllers\MetodeDuaController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
-use App\Http\Controllers\DataRtController;
-use App\Http\Controllers\MetodeDuaController;
-use App\Http\Controllers\IuranRTController;
-use App\Http\Controllers\IuranRWController;
-use App\Http\Controllers\IuranWargaController;
+
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\SAWController;
 
@@ -103,10 +104,12 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/RT/pengeluaranRT', [IuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
         // Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
 
-        Route::get('dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
+        Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
+        Route::get('dashboardRW', [DashboardController::class, 'indexRW'])->name('dashboardRW');
+
         Route::get('/RW/usulanKegiatanRW', [ActivityController::class, 'indexRW'])->name('usulanKegiatanRW');
         Route::get('/RW/detailKegiatanRW/{id}', [ActivityController::class, 'indexDetailIzinRW'])->name('detailKegiatanRW');
         Route::post('/Penduduk/accKegiatanRW/{id}', [ActivityController::class, 'accKegiatanRW'])->name('accKegiatanRW');
@@ -130,7 +133,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/RW/{id}', [IuranRWController::class, 'perbarui'])->name('perbarui');
         Route::delete('/RW/{id}', [IuranRWController::class, 'hapus'])->name('hapus');
 
-        Route::get('dashboardRW', [dashboardController::class, 'indexRW'])->name('dashboardRW');
 
 
         Route::get('/metode_dua_spk/alternatifdestinasi2', [MetodeDuaController::class, 'indexAlternatif'])->name('alternatif');
@@ -181,7 +183,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/warga/store', [IuranWargaController::class, 'store'])->name('store');
         Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('history');
 
-        Route::get('dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
+        Route::get('dashboardPD', [DashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...

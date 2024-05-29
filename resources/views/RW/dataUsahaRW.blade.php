@@ -37,17 +37,17 @@
 
 
 
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: #659DBD">
-            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: white;">Daftar Izin Usaha RT :</p>
+        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
+            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
             <table class="md:table-fixed w-full">
                 <thead>
                     <tr>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Nama Warga</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Nama Usaha</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Deskripsi</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Foto Produk</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: white">Status</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +63,7 @@
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: white">Izin telah di setujui</td>
-                        
+
                     </tr>
                     @endforeach
                 </tbody>

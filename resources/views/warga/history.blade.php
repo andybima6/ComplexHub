@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 @section('content')
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-    <button class="custom-button">Kas Iuran RT</button>
+    {{-- <button class="custom-button">Kas Iuran RT</button> --}}
 
     <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
         <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">History Iuran Warga:</p>
@@ -20,7 +20,7 @@
             <thead>
                 <tr>
                     <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">No</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Nama</th>
+                    {{-- <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Nama</th> --}}
                     <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Periode</th>
                     <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Total</th>
                     <th class="border px-4 py-2 text-center" style="color: black; width: 15%;">Bukti</th>
@@ -32,7 +32,7 @@
                 @foreach($iuran as $ir)
                 <tr>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->id }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->nama }}</td>
+                    {{-- <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->nama }}</td> --}}
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->periode }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->total }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">
