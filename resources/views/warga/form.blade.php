@@ -5,46 +5,48 @@
     <button class="custom-button">Form Input Iuran</button>
     <br><br>
     <div class="form-container">
-        <form action="{{ route('storeIuran') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-
+        <h2>Form Input Iuran</h2>
+        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <label for="nama" class="label">Nama:</label>
+            <input type="text" id="nama" name="nama" required class="input">
+            </div>
+            
             <div class="form-group">
-                <label for="periode">Periode:</label>
-                <input type="date" id="periode" name="periode" required>
+                <label for="periode" class="label">Periode:</label>
+                <input type="date" id="periode" name="periode" required class="input">
             </div>
 
             <div class="form-group">
-                <label for="total">Total:</label>
-                <input type="number" id="total" name="total" placeholder="Nominal" required>
-            </div>
-            <div class="form-group">
-                <label for="keterangan">Keterangan:</label>
-                <input type="text" id="keterangan" name="keterangan" required>
+                <label for="total" class="label">Total:</label>
+                <input type="number" id="total" name="total" placeholder="Nominal" required class="input">
             </div>
 
             <div class="form-group">
-                <label for="bukti">Bukti:</label>
-                <input type="file" id="bukti" name="bukti" required>
-            </div>
-
-
-            <div class="form-group">
-                <label for="rt_id">Lingkup:</label>
-                <select id="rt_id" name="rt_id" required>
-                    <option value="1">RT & RW</option>
-                    <!-- Tambahkan opsi lain sesuai kebutuhan -->
-                </select>
+                <label for="keterangan" class="label">Keterangan:</label>
+                <input type="text" id="keterangan" name="keterangan" required class="input">
             </div>
 
             <div class="form-group">
-                <button type="submit" onclick="return confirmSubmit()">Kirim</button>
+                <label for="bukti" class="label">Bukti:</label>
+                <input type="file" id="bukti" name="bukti" required class="input">
+            </div>
+
+            <div class="form-group">
+              <label for="rt_id" class="label">RT:</label>
+              <input type="number" id="rt_id" name="rt_id" required class="input">
+          </div>
+
+            <div class="form-group">
+                <button type="submit" onclick="return confirmSubmit()" class="button">Kirim</button>
             </div>
         </form>
     </div>
-    <script>
+    {{-- <script>
         function confirmSubmit() {
             return confirm("Apakah Anda yakin ingin mengirim data?");
         }
-    </script>
+    </script> --}}
 </main>
 @endsection

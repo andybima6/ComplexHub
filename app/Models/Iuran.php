@@ -12,16 +12,15 @@ class Iuran extends Model
     protected $table = 'iuran';
 
     protected $fillable = [
-        'rt_id',
+        'nama',
         'periode',
-        'keterangan',
         'total',
+        'keterangan',
         'bukti',
+        'rt_id',
+        'status',
     ];
 
-    // protected $attributes = [
-    //     'keterangan' => 'Pending'
-    // ];
     public function rt()
     {
         return $this->belongsTo(DataRt::class, 'rt_id');

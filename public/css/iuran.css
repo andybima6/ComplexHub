@@ -16,16 +16,14 @@
 }
 
 .custom-dropdown {
-  background-color: #7DA7C3;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 30px 120px;
-  font-size: 2.5em;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+  color: #333;
+  border: none; /* Remove or adjust border */
+  border-radius: 5px;
+  padding: 5px 10px; /* Reduce padding */
+  font-size: 14px; /* Smaller font size */
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Modified shadow */
   cursor: pointer;
-  margin-top: 140px;
-  margin-left: 110px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -37,6 +35,7 @@
   background-color: white;
   color: #000;
 }
+
 
 .box {
   background-color: white;
