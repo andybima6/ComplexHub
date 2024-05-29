@@ -9,6 +9,8 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\IuranController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\IuranRTController;
+use App\Http\Controllers\IuranRWController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RedirectController;
@@ -16,19 +18,16 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\IuranWargaController;
+
+use App\Http\Controllers\DataRtController;
+use App\Http\Controllers\MetodeDuaController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
-// use App\Http\Controllers\AnggotaKeluargaController;
-// use App\Http\Controllers\DataRtController;
-// use App\Http\Controllers\MetodeDuaController;
-use App\Http\Controllers\IuranRTController;
-use App\Http\Controllers\IuranRWController;
 
-// use App\Http\Controllers\IuranWargaController;
-
-// use App\Http\Controllers\DataPendudukController;
-// use App\Http\Controllers\SAWController;
+use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\SAWController;
 
 Route::get('/welcome', function () {
     return view('layouts.welcome');
