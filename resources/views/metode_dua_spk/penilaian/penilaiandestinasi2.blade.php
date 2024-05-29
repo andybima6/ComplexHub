@@ -91,10 +91,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <!-- Rows of data will be here -->
-                        </tr>
+                        @foreach($normalizedData as $item)
+                    <tr>
+                        <td>{{ $item['alternative'] }}</td>
+                        <td>{{ number_format($item['bobot'], 4) }}</td>
+                        <td>{{ number_format($item['biaya_tiket'], 4) }}</td>
+                        <td>{{ number_format($item['fasilitas'], 4) }}</td>
+                        <td>{{ number_format($item['keamanan'], 4) }}</td>
+                        <td>{{ number_format($item['biaya_akomodasi'], 4) }}</td>
+                    </tr>
+                    @endforeach
                     </tbody>
+                    <h3>Ranking</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Alternative</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($rankings as $index => $ranking)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $ranking['alternative'] }}</td>
+                        <td>{{ number_format($ranking['score'], 4) }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
                 </table>
             </div>
         </main>
