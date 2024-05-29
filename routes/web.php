@@ -24,6 +24,7 @@ use App\Http\Controllers\DataKartuKeluargaController;
 // use App\Http\Controllers\MetodeDuaController;
 use App\Http\Controllers\IuranRTController;
 use App\Http\Controllers\IuranRWController;
+use App\Http\Controllers\IuranwargaController;
 
 // use App\Http\Controllers\IuranWargaController;
 
