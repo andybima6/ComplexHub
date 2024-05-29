@@ -1,5 +1,107 @@
 @extends('layouts.body')
 <style>
+      #landing-container {
+        font-family: Arial, sans-serif;
+        display: flex;
+        overflow: hidden;
+        margin: auto;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end; /* Align content to the right */
+        padding-right: 50px; /* Add padding to push content further right */
+    }
+
+    #landing-container .text {
+        flex: 1;
+        margin-right: 50px;
+    }
+
+    #landing-container h1 {
+        font-size: 24px;
+        color: #385668;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    #landing-container p:first-of-type {
+        font-size: 40px;
+        color: black;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    #landing-container p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    #landing-container .buttons {
+        margin-top: 20px;
+    }
+
+    #landing-container .start-button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border-radius: 5px;
+        background-color: #3b4d61;
+        color: #FBEEC1;
+        font-weight: 600;
+        border: none;
+    }
+
+    #landing-container .image {
+        flex: 1;
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        background-size: cover;
+        background-position: right;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 100px;
+        border-top-right-radius: 10px;
+    }
+
+    #login-landing {
+        border: none;
+        outline: none;
+        padding: 8px 16px;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        background-color: rgba(56, 86, 104, 1);
+        color: #FBEEC1;
+    }
+
+    #login-landing:hover {
+        background-color: #FBEEC1;
+        border: 1px solid rgba(56, 86, 104, 1);
+        color: rgba(56, 86, 104, 1);
+    }
+
+    #mulai-landing2 {
+        border: none;
+        outline: none;
+        padding: 8px 16px;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        background-color: rgba(56, 86, 104, 1);
+        color: #FBEEC1;
+    }
+
+    #mulai-landing2:hover {
+        background-color: #FBEEC1;
+        border: 1px solid rgba(56, 86, 104, 1);
+        color: rgba(56, 86, 104, 1);
+    }
     .umkm-container {
             display: flex;
             overflow-x: auto;
@@ -71,23 +173,22 @@
         {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">FAQ</p> --}}
         {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Saran</p> --}}
     </div>
-    <div class="btn btn-primary" style="background-color: #385668; border-radius: 40px;">
-        <a href="{{ route('login') }}"><button style="color: #FBEEC1">Masuk</button></a>
+    <div id="login-landing" class="btn btn-primary">
+        <a href="{{ route('login') }}"><button>Masuk</button></a>
     </div>
 </header>
 <main>
-    <div class="container" style="font-family: Arial, sans-serif; flex:3; display: flex; overflow: hidden; margin: 20px; flex-wrap: wrap; flex-direction: row; align-items: center;">
-        <div class="text" style="flex: 1; margin-right: 350px">
-            <h1 style="font-size: 24px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif;">ComplexHub - Manajemen Lingkungan</h1>
-            <p style="font-size: 40px; color: black; margin-bottom: 20px; font-weight: 600;">Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
-            <p style="font-size: 16px; margin-bottom: 20px;">ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
-            <div class="buttons" style="margin-top: 20px;">
-                <a href="{{ route('login') }}"><button class="start-button" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; background-color: #3b4d61; color: #FBEEC1; font-weight: 600;">Mulai Sekarang</button></a>
-                {{-- <button class="how-it-works-bPlutton" style="padding: 10px 20px; margin-right: 10px; border-radius: 5px; border: 2px solid #3b4d61; color: #3b4d61; font-weight: 600;">Cara Kerja</button> --}}
-            </div>
+  <div id="landing-container" class="container">
+    <div class="text">
+        <h1>ComplexHub - Manajemen Lingkungan</h1>
+        <p>Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
+        <p>ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
+        <div id="mulai-landing2" class="btn btn-primary">
+            <a href="{{ route('login') }}"><button class="start-button">Mulai Sekarang</button></a>
         </div>
-        <img class="image" src="{{ asset('img/gambar landingPage.jpg') }}" alt="" style="flex: 1; width: 100%; max-width: 450px; height: auto; background-size: cover; background-position: right; border-top-left-radius: 100px; border-bottom-left-radius: 10px; border-bottom-right-radius: 100px; border-top-right-radius: 10px;">
     </div>
+    <img class="image" src="{{ asset('img/gambar landingPage.jpg') }}" alt="">
+</div>
 
 
     <section id="what-is-complexhub" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh; margin: 40px 20px; text-align: center;">
