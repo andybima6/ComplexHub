@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('criterias.update', $criteria->id) }}" method="POST">
+            <form action="{{ route('criterias.updatekriteria', $criteria->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -30,16 +30,19 @@
 
                 <div class="mb-4">
                     <label for="bobot" class="block text-lg font-bold text-gray-700">Bobot :</label>
-                    <input type="number" name="bobot" id="bobot" class="form-control" value="{{ $criteria->bobot }}" required>
+                    <input type="number" name="bobot" id="bobot" class="form-control" value="{{ $criteria->bobot }}" step="0.01" min="0" max="1" required>
                 </div>
+
+                @error('bobot')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
 
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2 relative top-5">
                     Update
                 </button>
-
-
             </form>
-            <a  href="{{ url('metode_dua_spk/kriteria/kriteriadestinasi2') }}">
+
+            <a  href="{{ url('metode_dua_spk/kriteriadestinasi2') }}">
                 <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2 relative left-28 bottom-5">
                     kembali
                 </button>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/ace-css/css/ace.min.css">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Login</title>
+    
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                 <p class="sign-up">Don't have an account? <a href="{{ route('register') }}">Sign up now</a></p>
             </div>
             <div class="modal-right">
-                <img src="{{ url('images/pemandangan2.jpg') }}" alt="">
+                <img src="{{ asset('img/pemandangan2.jpg') }}" alt="">
             </div>
             <button class="icon-button close-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
