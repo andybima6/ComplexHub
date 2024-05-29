@@ -1,8 +1,37 @@
 @extends('layouts.welcome')
 
 @section('content')
+<style>
+    /* Layout and Whitespace */
+
+
+/* Color and Contrast */
+body {
+  background-color: #fff; /* Light background for better contrast */
+}
+
+
+
+/* Buttons */
+.search-button,
+.edit-button,
+.delete-button {
+  background-color: #337ab7; /* Blue for primary buttons */
+  color: #fff; /* White text for contrast */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 16px; /* Adjust padding for comfortable click area */
+  cursor: pointer; /* Indicate clickable button */
+}
+.search-button:hover,
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #286090; /* Darker shade on hover */
+}
+
+</style>
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-    <button class="custom-button">Kas Iuran RT</button>
+    {{-- <button class="custom-button">Kas Iuran RT</button> --}}
 
     <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
         <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Data Iuran Warga:</p>
@@ -11,7 +40,7 @@
         <!-- Search form -->
         <form method="GET" action="{{ route('search') }}">
             <div class="mb-4">
-                <label for="rt_search" class="block text-sm font-medium text-gray-700">Cari Nama:</label>
+                <label for="rt_search" class="block text-sm font-medium text-gray-700">Search</label>
                 <input type="text" id="rt_search" name="rt_search" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
             </div>
             <button type="submit" class="search-button">Cari</button>
