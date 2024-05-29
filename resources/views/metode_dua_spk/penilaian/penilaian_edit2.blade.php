@@ -36,12 +36,9 @@
                 <input type="text" name="alternative_name" id="alternative_name" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->alternative->alternatif }}" readonly>
                 <input type="hidden" name="alternative_id" value="{{ $penilaian->alternative_id }}">
             </div>
-            
 
-            <div class="form-group mb-4">
-                <label for="bobot" class="block text-lg font-bold text-gray-700">Bobot</label>
-                <input type="number" name="bobot" id="bobot" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->criteria->bobot }}" readonly>
-            </div>
+
+           
 
             <div class="form-group mb-4">
                 <label for="biaya_tiket_masuk" class="block text-lg font-bold text-gray-700">Biaya Tiket Masuk</label>

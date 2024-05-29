@@ -121,12 +121,14 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('/metode_dua_spk/alternatifdestinasi2', [MetodeDuaController::class, 'indexAlternatif'])->name('alternatif');
-        Route::get('/metode_dua_spk/kriteria/kriteriadestinasi2', [MetodeDuaController::class, 'indexKriteria'])->name('kriteria');
+        Route::get('/metode_dua_spk/kriteriadestinasi2', [MetodeDuaController::class, 'indexKriteria'])->name('kriteria');
         Route::get('/metode_dua_spk/penilaiandestinasi2', [MetodeDuaController::class, 'indexPenilaian'])->name('penilaian');
         Route::get('/metode_dua_spk/rankingdestinasi2', [MetodeDuaController::class, 'indexRanking'])->name('ranking');
 
+    
         Route::get('criterias/{id}/edit', [MetodeDuaController::class, 'edit'])->name('criterias.edit');
-        Route::put('criterias/{id}', [MetodeDuaController::class, 'updatecriteria'])->name('criterias.update');
+        Route::put('criterias/{id}', [MetodeDuaController::class, 'updatekriteria'])->name('criterias.updatekriteria');
+
 
         Route::get('alternatives/{id}/edit', [MetodeDuaController::class, 'editAlternative'])->name('alternatives.edit');
         Route::put('alternatives/{id}', [MetodeDuaController::class, 'updateAlternative'])->name('alternatives.update');
@@ -282,7 +284,7 @@ Route::post('/Penduduk/tolakIzinRT/{id}', [UmkmController::class, 'tolakIzinRT']
 Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
 //
- 
+
 
 // untuk superadmin dan pegawai
 Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {

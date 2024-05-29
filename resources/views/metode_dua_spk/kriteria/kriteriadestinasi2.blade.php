@@ -53,7 +53,7 @@
                             <td class="border px-4 py-2 text-center">{{ $criteria->jenis }}</td>
                             <td class="border px-4 py-2 text-center">{{ $criteria->bobot }}</td>
                             <td class="border px-4 py-2 text-center">
-                                <a href="{{ route('criterias.edit', $criteria->id) }}" style="width:55px;height:34px;border-radius:10px;background-color:#75751f; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">Edit</a>
+                                <a class="bg-blue-500 hover:bg-blue-600" href="{{ route('criterias.edit', $criteria->id) }}" style="width:55px;height:34px;border-radius:10px; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">Edit</a>
                             </td>
                         </tr>
                         @endforeach
