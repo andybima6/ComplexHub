@@ -1,20 +1,52 @@
 @extends('layouts.welcome')
 
 @section('content')
+<style>
+  /* Layout and Whitespace */
+
+
+/* Color and Contrast */
+body {
+background-color: #fff; /* Light background for better contrast */
+}
+
+
+
+/* Buttons */
+.search-button,
+.edit-button,
+.delete-button {
+background-color: #337ab7; /* Blue for primary buttons */
+color: #fff; /* White text for contrast */
+border: none;
+border-radius: 4px; /* Rounded corners */
+padding: 8px 16px; /* Adjust padding for comfortable click area */
+cursor: pointer; /* Indicate clickable button */
+}
+.search-button:hover,
+.edit-button:hover,
+.delete-button:hover {
+background-color: #286090; /* Darker shade on hover */
+}
+</style>
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
   <div class="rounded-md relative p-16 top-32 left-16 bg-white">
     <div class="card-header mb-4 flex justify-between items-center">
       <h2 class="text-2xl font-semibold">List Data RT</h2>
-      <a href="{{ route('rts.create') }}" class="btn btn-primary">Tambah Data RT</a>
+      {{-- <a href="{{ route('rts.create') }}" class="btn btn-primary">Tambah Data RT</a> --}}
+      <button type="button" class="search-button" onclick="window.location.href='{{ route('rts.create') }}'">Tambah Data RT</button>
     </div>
+
+<!-- Search form -->
+<form method="GET" action="{{ route('rts.index') }}">
+  <div class="mb-4">
+    <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
+    <input type="text" id="search" name="search" value="{{ request('search') }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama, Alamat, Nomor, dll">
+  </div>
+  <button type="submit" class="search-button">Cari</button>
+</form>
+
     <div class="card-body">
-      <form action="{{ route('rts.index') }}" method="GET" class="mb-4">
-        <div class="flex justify-between items-center">
-          <div class="input-group mb-3 w-full">  <input type="text" name="search" class="form-control rounded-md px-4 py-2" placeholder="Cari berdasarkan nama, nomor RT, dll." value="{{ request()->input('search') }}">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button> </div>
-          </div>
-        </form>
 
         <!-- Success Message -->
         @if(session('success'))
@@ -42,7 +74,7 @@
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
-            <td class="border px-4 py-2 text-center">
+            {{-- <td class="border px-4 py-2 text-center">
               <div class="flex justify-center space-x-2">
                 <a href="{{ route('rts.edit', $rt) }}" class="btn btn-warning px-2 py-1 bg-yellow-500">Edit</a>
                 <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
@@ -51,7 +83,18 @@
                   <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="btn btn-danger px-2 py-1 bg-red-500">Delete</button>
                 </form>
               </div>
-            </td>
+            </td> --}}
+            <td class="border px-4 py-2 text-center" style="color: black">
+              <div class="flex justify-center">
+                  <a href="{{ route('rts.edit', $rt) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                  <form action="{{ route('rts.destroy', $rt) }}" method="POST" class="ml-2">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" onclick="confirmDelete('{{ $rt->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                  </form>
+              </div>
+          </td>
+
           </tr>
           @endforeach
         </tbody>
