@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rankings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alternative_id');
+            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
             $table->double('score', 10, 4);
             $table->timestamps();
 
