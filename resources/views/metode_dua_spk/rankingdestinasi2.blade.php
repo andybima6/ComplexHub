@@ -39,7 +39,26 @@
                 <table class="md:table-fixed w-full">
                     <thead>
                         <tr>
-
+                              <h3>Ranking</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Alternative</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($rankings as $index => $ranking)
+                            <tr>
+                                <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
+                                </td>
+                                <td>{{ $ranking['alternative'] }}</td>
+                                <td>{{ number_format($ranking['score'], 4) }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                         </tr>
                         <!-- Add more rows here -->
                         </tbody>

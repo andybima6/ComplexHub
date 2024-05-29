@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Register</title>
 </head>
-
+<style>
+.container{
+    background-image: url('{{ asset('img/Pemandangan.jpg') }}');
+}
+</style>
 <body>
     <div class="scroll-down">SCROLL DOWN
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -49,7 +53,7 @@
                 </form>
             </div>
             <div class="modal-right">
-                <img src="{{ url('images/pemandangan2.jpg') }}" alt="">
+                <img src="{{ asset('img/Pemandangan2.jpg') }}" alt="">
             </div>
             <button class="icon-button close-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
