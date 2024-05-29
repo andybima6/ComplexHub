@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penilaian', function (Blueprint $table) {
             $table->id();
             $table->foreignId('alternative_id')->constrained('alternative')->onDelete('cascade');
-            $table->integer('bobot');
+            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
             $table->decimal('biaya_tiket_masuk', 10, 2);
             $table->decimal('fasilitas', 10, 2);
             $table->decimal('kebersihan', 10, 2);

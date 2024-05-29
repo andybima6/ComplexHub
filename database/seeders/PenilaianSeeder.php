@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
+use App\Models\Criteria;
 use App\Models\Penilaian;
 use App\Models\Alternative;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class PenilaianSeeder extends Seeder
 {
@@ -18,18 +19,20 @@ class PenilaianSeeder extends Seeder
     {
         $faker = Faker::create();
         $alternatives = Alternative::all();
-
+        $criterias = Criteria::all(); // Mengambil semua criteria
+        $i = 0;
         foreach ($alternatives as $alternative) {
+            // $criteria = $criterias->random(); // Mengambil criteria secara acak
             Penilaian::create([
                 'alternative_id' => $alternative->id,
-                'bobot' => $faker->numberBetween(1, 100),
+                'criteria_id' => $criterias[$i]['id'],
                 'biaya_tiket_masuk' => $faker->randomFloat(2, 10, 100),
                 'fasilitas' => $faker->randomFloat(2, 1, 5),
                 'kebersihan' => $faker->randomFloat(2, 1, 5),
                 'keamanan' => $faker->randomFloat(2, 1, 5),
                 'biaya_akomodasi' => $faker->randomFloat(2, 10, 1000),
             ]);
+            $i++;
         }
     }
 }
-

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alternative;
 use App\Models\Criteria;
 use App\Models\Penilaian;
+use App\Models\penilaiandua;
 use Illuminate\Http\Request;
 
 class MetodeDuaController extends Controller
@@ -140,25 +141,30 @@ class MetodeDuaController extends Controller
             'title' => 'Daftar Penilain (Metode II)',
             'subtitle' => 'Data Penilain',
         ];
-        $penilaians = Penilaian::all(); // Mengambil semua data kegiatan dari model criteria
-         $alternatives = Alternative::all();
-        return view('metode_dua_spk.penilaian.penilaiandestinasi2', ['breadcrumb' => $breadcrumb], compact('penilaians'));
+        $penilaians = PenilaianDua::with('criteria')->get();
+        $alternatives = PenilaianDua::with('alternative')->get();
+
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'alternatives'));
+
     }
 
 
     public function editPenilaian($id)
     {
-        $penilaian = Penilaian::findOrFail($id);
+        $breadcrumb = (object)[
+            'title' => 'Daftar Penilain (Metode II)',
+            'subtitle' => 'Edit Data Penilain',
+        ];
+        $penilaian = PenilaianDua::findOrFail($id);
         $alternatives = Alternative::all();
-        return view('penilaian.edit', compact('penilaian', 'alternatives'));
+        return view('metode_dua_spk.penilaian.penilaian_edit2', compact('penilaian', 'breadcrumb', 'alternatives'));
     }
 
     // Method to update penilaian
     public function updatePenilaian(Request $request, $id)
     {
         $request->validate([
-            'alternative_id' => 'required|exists:alternatives,id',
-            'bobot' => 'required|integer|min:1|max:100',
+
             'biaya_tiket_masuk' => 'required|numeric|min:0',
             'fasilitas' => 'required|numeric|min:0|max:5',
             'kebersihan' => 'required|numeric|min:0|max:5',
@@ -166,10 +172,10 @@ class MetodeDuaController extends Controller
             'biaya_akomodasi' => 'required|numeric|min:0',
         ]);
 
-        $penilaian = Penilaian::findOrFail($id);
+        $penilaian = PenilaianDua::findOrFail($id);
         $penilaian->update($request->all());
 
-        return redirect()->route('penilaian.index')->with('success', 'Penilaian updated successfully.');
+        return redirect()->route('penilaian')->with('success', 'Penilaian updated successfully.');
     }
     public function indexRanking()
     {

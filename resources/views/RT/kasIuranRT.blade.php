@@ -1,4 +1,5 @@
 @extends('layouts.welcome')
+
 @section('content')
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <button class="custom-button">Kas Iuran RT</button>

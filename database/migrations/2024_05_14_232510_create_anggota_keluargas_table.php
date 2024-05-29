@@ -17,7 +17,8 @@ class CreateAnggotaKeluargasTable extends Migration
             $table->date('tanggal_lahir');
             $table->enum('hubungan_keluarga', ['Ibu', 'Ayah', 'Anak']);
             $table->enum('jenis_kelamin', ['Perempuan', 'Laki-laki']);
-            $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']); 
+            $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
+            $table->enum('status_perkawinan', ['Menikah', 'Belum Menikah']);
             $table->timestamps();
 
             $table->foreign('kk_id')->references('id')->on('data_kartu_keluargas')->onDelete('cascade');

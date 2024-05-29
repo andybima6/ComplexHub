@@ -44,7 +44,7 @@
                             <th class="border px-4 py-2 text-center w-1/7">Bobot</th>
                             <th class="border px-4 py-2 text-center w-1/7">Biaya Tiket Masuk</th>
                             <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
-                            <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
+
                             <th class="border px-4 py-2 text-center w-1/7">Keamanan</th>
                             <th class="border px-4 py-2 text-center w-1/7">Biaya Akomodasi</th>
                             <th class="border px-4 py-2 text-center w-1/7">Aksi</th>
@@ -55,15 +55,15 @@
                             @foreach ($penilaians as $index => $penilaian)
                             <tr>
                                 <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->alternatif }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->Bobot }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->Biaya_Tiket_Masuk }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->Fasilitas }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->Fasilitas }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->Keamanan }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->Biaya_Akomodasi }}</td>
+                       <td class="border px-4 py-2 text-center">{{ $penilaian->alternative->alternatif }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $penilaian->criteria->bobot }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_tiket_masuk }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $penilaian->fasilitas }}</td>
+
+                                <td class="border px-4 py-2 text-center">{{ $penilaian->keamanan }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_akomodasi }}</td>
                                 <td class="border px-4 py-2 text-center">
-                                    <a href="{{ route('penilaian.edit', $penilaian->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('penilaian.edit', $penilaian->id) }}" style="width:55px;height:34px;border-radius:10px;background-color:#75751f; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px; font-size:12px">Edit</a>
                                 </td>
                             </tr>
                             @endforeach
