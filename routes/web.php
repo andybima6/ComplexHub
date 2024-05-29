@@ -12,7 +12,7 @@ use App\Http\Controllers\SaranController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\AlternatifController;
@@ -105,7 +105,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/RT/pengeluaranRT', [IuranController::class, 'pengeluaranindexRT'])->name('pengeluaranRT');
         // Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
 
-        Route::get('dashboardRT', [dashboardController::class, 'indexRT'])->name('dashboardRT');
+        Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -184,7 +184,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/warga/store', [IuranWargaController::class, 'store'])->name('store');
         Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('history');
 
-        Route::get('dashboardPD', [dashboardController::class, 'indexPD'])->name('dashboardPD');
+        Route::get('dashboardPD', [DashboardController::class, 'indexPD'])->name('dashboardPD');
     });
 
     // Rute lainnya...
