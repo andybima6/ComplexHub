@@ -10,10 +10,15 @@ class CreateIuranTable extends Migration
     {
         Schema::create('iuran', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->date('periode');
             $table->decimal('total', 8, 2);
             $table->string('keterangan');
             $table->string('bukti');
+            $table->unsignedBigInteger('rt_id');
+
+            // Foreign key constraint
+            $table->foreign('rt_id')->references('id')->on('data_rt');
         });
     }
 

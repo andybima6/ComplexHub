@@ -45,17 +45,6 @@ class AuthController extends Controller
             } else if ($user->role_id == 3) {
                 return redirect()->intended('dashboardPD');
 
-            // cek lagi jika level user admin maka arahkan ke halaman admin
-            if ($user->role_id == '1') {
-                return redirect()->intended('rt');
-            }
-            // tapi jika level usernya user biasa maka arahkan kehalaman user
-            else if ($user->role_id == '2') {
-                return redirect()->intended('rw');
-            } else if ($user->role_id == '3') {
-                return redirect()->intended('pd');
-
-            }
 
             // jika belum ada role maka ke halaman /
             return redirect()->intended('/');

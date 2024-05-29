@@ -28,8 +28,8 @@
         <body>
             <nav id="navbar">
                 <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
-                <a href="{{ url('/metode_dua_spk/kriteria/kriteriadestinasi2') }}">Kriteria</a>
-                <a href="{{ url('/metode_dua_spk/alternatif/alternatifdestinasi2') }}">Alternatif</a>
+                <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}">Kriteria</a>
+                <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}">Alternatif</a>
                 <a href="{{ url('/metode_dua_spk/penilaiandestinasi2') }}">Penilaian</a>
                 <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
             </nav>
@@ -52,7 +52,7 @@
                             <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
                             <td class="border px-4 py-2 text-center">{{ $alternative->alternatif }}</td>
                             <td class="border px-4 py-2 text-center">
-                                <a href="{{ route('alternatives.edit', $alternative->id) }}" style="width:55px;height:34px;border-radius:10px;background-color:#75751f; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">Edit</a>
+                                <a  class="bg-blue-500 hover:bg-blue-600" href="{{ route('alternatives.edit', $alternative->id) }}" style="width:55px;height:34px;border-radius:10px; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">Edit</a>
                             </td>
                         </tr>
                         @endforeach

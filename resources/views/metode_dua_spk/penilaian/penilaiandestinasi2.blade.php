@@ -26,7 +26,7 @@
 
             <nav id="navbar">
                 <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
-                <a href="{{ url('/metode_dua_spk/kriteria/kriteriadestinasi2') }}">Kriteria</a>
+                <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}">Kriteria</a>
                 <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}">Alternatif</a>
                 <a href="{{ url('/metode_dua_spk/penilaiandestinasi2') }}">Penilaian</a>
                 <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
@@ -44,7 +44,7 @@
                             <th class="border px-4 py-2 text-center w-1/7">Bobot</th>
                             <th class="border px-4 py-2 text-center w-1/7">Biaya Tiket Masuk</th>
                             <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
-                            <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
+
                             <th class="border px-4 py-2 text-center w-1/7">Keamanan</th>
                             <th class="border px-4 py-2 text-center w-1/7">Biaya Akomodasi</th>
                             <th class="border px-4 py-2 text-center w-1/7">Aksi</th>
@@ -55,19 +55,18 @@
                             @foreach ($penilaians as $index => $penilaian)
                             <tr>
                                 <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->alternative->alternatif ?? 'N/A' }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->bobot }}</td>
+                       <td class="border px-4 py-2 text-center">{{ $penilaian->alternative->alternatif }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $penilaian->criteria->bobot }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_tiket_masuk }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->fasilitas }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $penilaian->fasilitas }}</td>
+
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->keamanan }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $penilaian->biaya_akomodasi }}</td>
                                 <td class="border px-4 py-2 text-center">
-                                    <a href="{{ route('penilaian.edit', $penilaian->id) }}" class="btn btn-primary">Edit</a>
+                                    <a class="bg-blue-500 hover:bg-blue-600" href="{{ route('penilaian.edit', $penilaian->id) }}" style="width:55px;height:34px;border-radius:10px; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px; font-size:12px">Edit</a>
                                 </td>
                             </tr>
                             @endforeach
-
                         </tr>
                     </tbody>
                 </table>
