@@ -1,9 +1,18 @@
 @extends('layouts.welcome')
 
 @section('content')
+
+<style>
+  .btn-primary {
+    background-color: #007bff;
+  }
+</style>
+
+
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
   <div class="rounded-md shadow-md relative p-16 top-32 left-16 bg-white">
     <h2 class="text-2xl font-semibold mb-4">Edit Kartu Keluarga</h2>
+    <a href="{{ route('data_kartu_keluargas.index') }}" class="btn btn-primary px-4 py-2 border border-gray-500">Kembali</a>
     <form action="{{ route('data_kartu_keluargas.update', $dataKartuKeluarga->id) }}" method="POST">
       @csrf
       @method('PUT')
