@@ -258,7 +258,7 @@ class UmkmController extends Controller
 
     public function destroy($id) {
         Umkm::destroy($id);
-        return redirect()->route('destroy')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil dihapus');
     }
 
     public function getDataById($id) {
