@@ -1,6 +1,78 @@
 @extends('layouts.welcome')
 
 @section('content')
+<style>
+  /* Body */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #FBEEC1;
+  min-height: 100vh;
+}
+
+/* Container Utama */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 36px;
+}
+
+/* Judul */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Subjudul */
+h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Paragraf */
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Data Kepala Keluarga */
+.data-kepala-keluarga {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Label Data */
+.label {
+  font-weight: bold;
+}
+
+/* Nilai Data */
+.value {
+  font-weight: normal;
+}
+
+/* Tabel Anggota Keluarga */
+.table-anggota-keluarga {
+  margin-top: 24px;
+}
+
+.table-anggota-keluarga th,
+.table-anggota-keluarga td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Tombol Tambah Anggota */
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+  </style>
 <main class="mx-auto p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
 
     <div class="text-center mb-8">
@@ -9,6 +81,7 @@
     </div>
 
     <div class="rounded-md p-16 bg-white">
+      <a href="{{ route('data_kartu_keluargas.index') }}" class="btn btn-primary mb-4">Kembali</a>
         <h4 class="mb-4">Data Kepala Keluarga</h4>
         <div class="grid grid-cols-2 gap-4">
             <div>

@@ -54,9 +54,6 @@ public function store(Request $request)
 
     return redirect()->route('data_kartu_keluargas.show', $request->kk_id)->with('success', 'Anggota Keluarga created successfully.');
 }
-
-
-
     public function edit(DataKartuKeluarga $dataKartuKeluarga, AnggotaKeluarga $anggotaKeluarga)
     {
         $breadcrumb = (object)[

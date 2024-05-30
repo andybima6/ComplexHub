@@ -10,7 +10,6 @@ class HasilPenilaian extends Model
 
     protected $fillable = [
         'alternative_id',
-        'bobot',
         'biaya_tiket_masuk',
         'fasilitas',
         'kebersihan',
