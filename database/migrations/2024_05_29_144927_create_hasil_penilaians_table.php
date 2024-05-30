@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('hasil_penilaians', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alternative_id');
+            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
             $table->decimal('biaya_tiket_masuk', 10, 4);
             $table->decimal('fasilitas', 10, 4);
             $table->decimal('kebersihan', 10, 4);

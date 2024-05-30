@@ -163,7 +163,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('penilaians/{id}/edit', [MetodeDuaController::class, 'editPenilaian'])->name('penilaian.edit');
         Route::put('penilaians/{id}', [MetodeDuaController::class, 'updatePenilaian'])->name('penilaian.update');
 
-        Route::get('/ranking', [RankingController::class, 'indexRanking'])->name('ranking');
+        Route::get('/ranking', [MetodeDuaController::class, 'indexRanking'])->name('ranking');
+
     });
 
     Route::middleware(RoleMiddleware::class . ':3')->group(function () {

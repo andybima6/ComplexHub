@@ -10,6 +10,7 @@ class HasilPenilaian extends Model
 
     protected $fillable = [
         'alternative_id',
+        'criteria_id',
         'biaya_tiket_masuk',
         'fasilitas',
         'kebersihan',
@@ -20,5 +21,9 @@ class HasilPenilaian extends Model
     public function alternative()
     {
         return $this->belongsTo(Alternative::class);
+    }
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class);
     }
 }

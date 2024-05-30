@@ -2,17 +2,7 @@
 
 @section('content')
 <style>
-  /* Layout and Whitespace */
 
-
-/* Color and Contrast */
-body {
-background-color: #fff; /* Light background for better contrast */
-}
-
-
-
-/* Buttons */
 .search-button,
 .edit-button,
 .delete-button {
@@ -67,7 +57,7 @@ background-color: #286090; /* Darker shade on hover */
                 {{ session('success') }}
             </div>
         @endif
-        </div> 
+        </div>
       <table class="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr class="bg-gray-200 text-black font-medium text-center">
