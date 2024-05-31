@@ -87,10 +87,6 @@
             </div>
         </form>
     </div>
-    {{-- <script>
-        function confirmSubmit() {
-            return confirm("Apakah Anda yakin ingin mengirim data?");
-        }
-    </script> --}}
+
 </main>
 @endsection
