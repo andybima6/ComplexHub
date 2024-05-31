@@ -217,52 +217,64 @@ public function updatePenilaian(Request $request, $id)
     return redirect()->route('penilaian')->with('success', 'Penilaian berhasil diperbarui');
 }
 
-    private function normalizeData($data, $criterias)
-    {
-        // Inisialisasi array untuk menyimpan nilai maksimal dan minimal dari setiap kriteria
-        $maxValues = [];
-        $minValues = [];
+private function normalizeData($criterias)
+{
+    // Fetch data from the penilaiandua model
+    $data = penilaiandua::all()->toArray();
+    $criterias = Criteria::all();
 
-        // Iterasi melalui data untuk menemukan nilai maksimal dan minimal dari setiap kriteria
-        foreach ($criterias as $criteria) {
-            $criterion = $criteria->criterion;
-            $values = array_column($data, $criterion);
-            $maxValues[$criterion] = max($values);
-            $minValues[$criterion] = min($values);
+    // Inisialisasi array untuk menyimpan nilai maksimal dan minimal dari setiap kriteria
+    $maxValues = [];
+    $minValues = [];
+
+    // Iterasi melalui data untuk menemukan nilai maksimal dan minimal dari setiap kriteria
+    foreach ($criterias as $criteria) {
+        $kriteria = $criteria->kriteria;
+        $values = array_column($data, $kriteria);
+    
+        if (!empty($values)) {
+            $maxValues[$kriteria] = max($values);
+            $minValues[$kriteria] = min($values);
+        } else {
+            // Handle the case where there are no values for the current criteria
+            $maxValues[$kriteria] = null;
+            $minValues[$kriteria] = null;
         }
+    }
 
-        // Inisialisasi array untuk menyimpan hasil normalisasi
-        $normalizedData = [];
+    // Inisialisasi array untuk menyimpan hasil normalisasi
+    $normalizedData = [];
 
-        // Normalisasi data
-        foreach ($data as $item) {
-            $normalizedItem = [
-                'alternative_id' => $item['alternative_id'],
-                'criteria_id' => $item['criteria_id'],
-                'biaya_tiket_masuk' => 0,  // Default value
-                'fasilitas' => 0,          // Default value
-                'kebersihan' => 0,         // Default value
-                'keamanan' => 0,           // Default value
-                'biaya_akomodasi' => 0,    // Default value
-            ];
+    // Normalisasi data
+    foreach ($data as $item) {
+        $normalizedItem = [
+            'alternative_id' => $item['alternative_id'],
+            'criteria_id' => $item['criteria_id'],
+            'biaya_tiket_masuk' => 0,  // Default value
+            'fasilitas' => 0,          // Default value
+            'kebersihan' => 0,         // Default value
+            'keamanan' => 0,           // Default value
+            'biaya_akomodasi' => 0,    // Default value
+        ];
 
-            foreach ($criterias as $criteria) {
-                $criterion = $criteria->criterion;
-                if (isset($item[$criterion])) {
-                    if ($criteria->type == 'benefit') {
-                        // Kriteria benefit: (nilai - nilai minimum) / (nilai maksimum - nilai minimum)
-                        $normalizedItem[$criterion] = ($item[$criterion] - $minValues[$criterion]) / ($maxValues[$criterion] - $minValues[$criterion]);
-                    } else {
-                        // Kriteria cost: (nilai maksimum - nilai) / (nilai maksimum - nilai minimum)
-                        $normalizedItem[$criterion] = ($maxValues[$criterion] - $item[$criterion]) / ($maxValues[$criterion] - $minValues[$criterion]);
-                    }
+        foreach ($criterias as $criteria) {
+            $kriteria = $criteria->kriteria;
+            if (isset($item[$kriteria]) && $maxValues[$kriteria] !== null && $minValues[$kriteria] !== null) {
+                if ($criteria->type == 'benefit') {
+                    // Kriteria benefit: (nilai - nilai minimum) / (nilai maksimum - nilai minimum)
+                    $normalizedItem[$kriteria] = ($item[$kriteria] - $minValues[$kriteria]) / ($maxValues[$kriteria] - $minValues[$kriteria]);
+                } else {
+                    // Kriteria cost: (nilai maksimum - nilai) / (nilai maksimum - nilai minimum)
+                    $normalizedItem[$kriteria] = ($maxValues[$kriteria] - $item[$kriteria]) / ($maxValues[$kriteria] - $minValues[$kriteria]);
                 }
             }
-            $normalizedData[] = $normalizedItem;
         }
-
-        return $normalizedData;
+        $normalizedData[] = $normalizedItem;
     }
+
+    return $normalizedData;
+}
+
 
     private function calculateRanking($normalizedData, $bobot_kriteria)
     {
