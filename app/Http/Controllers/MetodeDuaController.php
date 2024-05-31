@@ -177,6 +177,45 @@ class MetodeDuaController extends Controller
         return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'normalizedData', 'rankings'));
     }
 
+    public function editPenilaian($id)
+{
+    $penilaian = Penilaiandua::findOrFail($id);
+    $alternative = Alternative::all();
+    $criterias = Criteria::all();
+
+    $breadcrumb = (object)[
+        'title' => 'Edit Penilaian',
+        'subtitle' => 'Perbarui Data Penilaian',
+    ];
+
+    return view('metode_dua_spk.penilaian.penilaian_edit2', compact('penilaian', 'alternative', 'criterias', 'breadcrumb'));
+}
+public function updatePenilaian(Request $request, $id)
+{
+    $request->validate([
+        'alternative_id' => 'required|exists:alternative,id',
+        // 'criteria_id' => 'exists:criterias,id',
+        'biaya_tiket_masuk' => 'required|numeric',
+        'fasilitas' => 'required|numeric',
+        'kebersihan' => 'required|numeric',
+        'keamanan' => 'required|numeric',
+        'biaya_akomodasi' => 'required|numeric',
+    ]);
+
+    $penilaian = Penilaiandua::findOrFail($id);
+    $penilaian->update([
+        'alternative_id' => $request->alternative_id,
+        // 'criteria_id' => $request->criteria_id,
+        'biaya_tiket_masuk' => $request->biaya_tiket_masuk,
+        'fasilitas' => $request->fasilitas,
+        'kebersihan' => $request->kebersihan,
+        'keamanan' => $request->keamanan,
+        'biaya_akomodasi' => $request->biaya_akomodasi,
+    ]);
+
+    return redirect()->route('penilaian')->with('success', 'Penilaian berhasil diperbarui');
+}
+
     private function normalizeData($data, $criterias)
     {
         // Inisialisasi array untuk menyimpan nilai maksimal dan minimal dari setiap kriteria

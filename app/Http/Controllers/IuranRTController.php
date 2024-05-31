@@ -7,22 +7,25 @@ use App\Models\Iuran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class IuranRTController extends Controller
 {
     public function kasindexRT()
     {
-        $iuran = Iuran::all();
+        $user = Auth::user();
+        $iuran = Iuran::where('rt_id', $user->rt)->get();
         $breadcrumb = (object) [
             'title' => 'Kas RT',
             'subtitle' => '',
         ];
         return view('RT/kasIuranRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
+
     public function historyRT()
     {
-        $iuran = Iuran::all();
+        $user = Auth::user();
+        $iuran = Iuran::where('rt_id', $user->rt)->get();
         $breadcrumb = (object) [
             'title' => 'History Kas RT',
             'subtitle' => '',
@@ -37,7 +40,10 @@ class IuranRTController extends Controller
             'subtitle' => '',
         ];
         $rtSearch = $request->input('rt_search');
-        $iuran = Iuran::where('nama', 'like', '%' . $rtSearch . '%')->get();
+        $user = Auth::user();
+        $iuran = Iuran::where('rt_id', $user->rt)
+            ->where('nama', 'like', '%' . $rtSearch . '%')
+            ->get();
 
         return view('RT/kasIuranRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }

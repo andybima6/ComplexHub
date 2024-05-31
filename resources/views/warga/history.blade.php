@@ -42,7 +42,9 @@
                     </td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->rt_id }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">
-                        @if($ir->status == 'disetujui')
+                        @if($ir->status == 'diproses')
+                            <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded">Diproses</button>
+                        @elseif($ir->status == 'disetujui')
                             <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Disetujui</button>
                         @elseif($ir->status == 'ditolak')
                             <button class="bg-red-500 text-white font-bold py-2 px-4 rounded">Ditolak</button>

@@ -12,16 +12,12 @@ class dashboardController extends Controller
 {
     public function indexRT()
     {
-        $user = auth()->user();
         $izinUsaha = Umkm::all();
-        $suggestions = suggestion::all();
-        $activities = Activity::all();
-        // $datapenduduk = DataPenduduk::all();
-        $breadcrumb = (object)[
-            'title' => 'Daftar dashboard',
+        $breadcrumb = (object) [
+            'title' => 'Dashboard',
             'subtitle' => '',
         ];
-        return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('dashboardRT', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
     public function indexRW()
     {

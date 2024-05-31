@@ -117,6 +117,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
 
         Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
+        
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
