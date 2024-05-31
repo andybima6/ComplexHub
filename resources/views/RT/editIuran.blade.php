@@ -45,6 +45,7 @@
           <div class="form-group">
             <label for="status" class="label">Status:</label>
             <select id="status" name="status" required class="input">
+                <option value="Diproses" {{ $iuran->status == 'Diproses' ? 'selected' : '' }}>Diproses</option>
                 <option value="Disetujui" {{ $iuran->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
                 <option value="Ditolak" {{ $iuran->status == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
             </select>

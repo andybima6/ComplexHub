@@ -70,9 +70,17 @@
             </div>
 
             <div class="form-group">
-              <label for="rt_id" class="label">RT:</label>
-              <input type="number" id="rt_id" name="rt_id" required class="input">
-          </div>
+                <label for="rt_id" class="label">RT:</label>
+                <select id="rt_id" name="rt_id" required class="input">
+                    <option value="" disabled selected>Select RT</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
 
             <div class="form-group">
                 <button type="submit" onclick="return confirmSubmit()" class="button">Kirim</button>
