@@ -20,11 +20,14 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             CriteriaSeeder::class,
             AlternativeSeeder::class,
+            PenilaianSeeder::class,
+            DataKartuKeluargaSeeder::class,
+            AnggotaKeluargaSeeder::class,
             // DataKkSeeder::class,
             // PendudukSeeder::class,
             // WargaSeeder::class,
             // DataRtSeeder::class,
-            PenilaianSeeder::class,
+         
 
         ]);
 

@@ -6,7 +6,7 @@
     <div class="container mx-auto p-4 bg-white rounded-md shadow-md" style="max-width: 500px;">
       <header class="flex justify-between items-center mb-2">
         <h2 class="text-xl font-semibold text-gray-800">Edit RT</h2>
-        <a href="{{ route('rts.index') }}" class="btn btn-secondary px-4 py-2 border border-gray-500">Back</a>
+        <a href="{{ route('rts.index') }}" class="btn btn-primary px-4 py-2 border border-gray-500">Back</a>
       </header>
 
       <form action="{{ route('rts.update', $rt->id) }}" method="POST" class="space-y-3">

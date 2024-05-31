@@ -10,7 +10,7 @@ class AnggotaKeluargaController extends Controller
 {
     public function create(DataKartuKeluarga $dataKartuKeluarga)
 {
-    $dataKartuKeluarga = DataKartuKeluarga::latest()->first();
+    // $dataKartuKeluarga = DataKartuKeluarga::latest()->first();
     
     // Periksa apakah objek $dataKartuKeluarga ada dan memiliki id yang valid`
     if ($dataKartuKeluarga) {
@@ -27,8 +27,9 @@ class AnggotaKeluargaController extends Controller
 
 public function store(Request $request)
 {
+    // dd($request->all());
     $request->validate([
-        'kk_id' => 'required', // Pastikan kk_id ada dalam validasi
+        'kk_id' => 'required', 
         'nama' => 'required|string|max:255',
         'nik' => 'required|string|max:255',
         'alamat' => 'required|string',
@@ -38,12 +39,11 @@ public function store(Request $request)
         'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
         'golongan_darah' => 'required|string|in:A,B,AB,O',
     ]);
-
     // Menyimpan anggota keluarga dengan menyertakan kk_id
     $anggotaKeluarga = AnggotaKeluarga::create([
         'kk_id' => $request->kk_id,
         'nama' => $request->nama,
-        'nik' => $request->nik, 
+        'nik' => $request->nik,
         'alamat' => $request->alamat,
         'tanggal_lahir' => $request->tanggal_lahir,
         'hubungan_keluarga' => $request->hubungan_keluarga,
@@ -54,9 +54,6 @@ public function store(Request $request)
 
     return redirect()->route('data_kartu_keluargas.show', $request->kk_id)->with('success', 'Anggota Keluarga created successfully.');
 }
-
-
-
     public function edit(DataKartuKeluarga $dataKartuKeluarga, AnggotaKeluarga $anggotaKeluarga)
     {
         $breadcrumb = (object)[
