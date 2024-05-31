@@ -170,6 +170,7 @@ class MetodeDuaController extends Controller
         foreach ($rankings as $ranking) {
             Ranking::create([
                 'alternative_id' => $ranking['alternative_id'],
+                'criteria_id' => $ranking['criteria_id'],
                 'score' => $ranking['score'],
             ]);
         }
@@ -237,6 +238,7 @@ public function updatePenilaian(Request $request, $id)
         foreach ($data as $item) {
             $normalizedItem = [
                 'alternative_id' => $item['alternative_id'],
+                'criteria_id' => $item['criteria_id'],
                 'biaya_tiket_masuk' => 0,  // Default value
                 'fasilitas' => 0,          // Default value
                 'kebersihan' => 0,         // Default value
@@ -275,6 +277,7 @@ public function updatePenilaian(Request $request, $id)
             }
             $rankings[] = [
                 'alternative_id' => $normValues['alternative_id'],
+                'criteria_id' => $normValues['criteria_id'],
                 'score' => $score,
             ];
         }
