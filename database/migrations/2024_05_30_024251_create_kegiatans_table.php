@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('document')->nullable();
             $table->string('status');
-            $table->unsignedBigInteger('rt_id')->nullable();
-            // $table->foreign('rt_id')->references('id')->on('data_rt');
+            $table->foreignId('rt_id')->constrained('rts')->onDelete('cascade');
             $table->timestamps();
         });
     }

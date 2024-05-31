@@ -94,9 +94,10 @@ class ActivityController extends Controller
             'subtitle' => 'Usulan Kegiatan',
         ];
 
-        $rtId = 1;
-        $rt = RT::with(['activities'])->findOrFail($rtId);
-        $activities = $rt->activities;
+        // $rtId = 1;
+        // $rt = RT::with(['activities'])->findOrFail($rtId);
+        // $activities = $rt->activities;
+        $activities = Activity::all();
         $rts = RT::all();
         // $rt = $request->user()->rt
 
@@ -108,7 +109,7 @@ class ActivityController extends Controller
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'rt_id' => 'required|exists:data_rt,id',
+             'rt_id' => 'required|exists:rts,id',
             'document' => 'nullable|file',
         ]);
         $activity = new Activity($request->only(['name', 'description', 'rt_id']));
@@ -123,7 +124,7 @@ class ActivityController extends Controller
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'rt_id' => 'required|exists:data_rt,id',
+             'rt_id' => 'required|exists:rts,id',
             'document' => 'nullable|file',
             'id' => 'required|exists:activities',
         ]);
