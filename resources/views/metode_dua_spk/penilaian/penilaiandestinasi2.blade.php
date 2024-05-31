@@ -42,6 +42,7 @@
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/7">No</th>
                             <th class="border px-4 py-2 text-center w-1/7">Alternatif</th>
+
                             <th class="border px-4 py-2 text-center w-1/7">Bobot</th>
                             <th class="border px-4 py-2 text-center w-1/7">Biaya Tiket Masuk</th>
                             <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
@@ -86,6 +87,7 @@
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/7">No</th>
                             <th class="border px-4 py-2 text-center w-1/7">Alternatif</th>
+                            <th class="border px-4 py-2 text-center w-1/7">kriteria</th>
                             <th class="border px-4 py-2 text-center w-1/7">Biaya Tiket Masuk</th>
                             <th class="border px-4 py-2 text-center w-1/7">Fasilitas</th>
                             <th class="border px-4 py-2 text-center w-1/7">Kebersihan</th>
@@ -101,8 +103,11 @@
                                 <td class="border px-4 py-2  text-center" data-number="{{ $index + 1 }}">
                                     {{ $index + 1 }}
                                 </td>
-                                <td class="border px-4 py-2 text-center" >{{ $item['alternative_id'] }}</td>
-                                <td class="border px-4 py-2 text-center" >{{ $item['criteria_id'] }}</td>
+                                <td class="border px-4 py-2 text-center">{{ \App\Models\Alternative::find($item['alternative_id'])->alternatif }}</td>
+
+
+                                <td class="border px-4 py-2 text-center">{{ \App\Models\Criteria::find($item['criteria_id'])->kriteria }}</td>
+
 
                                 <td  class="border px-4 py-2 text-center">{{ isset($item['biaya_tiket_masuk']) ? number_format($item['biaya_tiket_masuk'], 4) : '-' }}
                                 </td>
