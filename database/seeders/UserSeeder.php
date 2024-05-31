@@ -52,6 +52,17 @@ class UserSeeder extends Seeder
                 'rt' => 2,
                 'rw' => 0,
             ],
+            [
+                'name' => 'aku',
+                'email' => 'aku@gmail.com',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('12345678'),
+                'role_id' => 3,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'rt' => 0,
+                'rw' => 0,
+            ],
 
             // Tambahkan data lainnya sesuai kebutuhan
         ]);

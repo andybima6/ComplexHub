@@ -29,13 +29,14 @@
                 <!-- Modal content -->
                 <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data"
                     class="modal-content absolute inset-0 mt-56"
-                    style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
+                    style="background-color:#FFFFFF;border-radius:15px;z-index:9999;">
                     @csrf
                     <span id="closeModal" class="close">&times;</span>
-                    <div class="relative  w-fit py-2 "
+                    <div class="relative w-fit py-2"
                         style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
-                        Tambah Saran Pengaduan</div>
-                    <hr class="relative " style="border-width: 3px;">
+                        Tambah Saran Pengaduan
+                    </div>
+                    <hr class="relative" style="border-width: 3px;">
 
                     <div class="flex flex-col gap-4 my-8">
                         <input type="hidden" name="id" value="">
@@ -43,9 +44,14 @@
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                             type="date" placeholder="tanggal">
 
-                        <input id="editNamaKegiatan" name="name" class="relative"
+                            <div class="mt-4 mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                                <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
+                            </div>
+
+                        {{-- <input id="editNamaKegiatan" name="name" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                            type="text" placeholder="name">
+                            type="text" placeholder="Hal yang diajukan"> --}}
 
                         <input id="editKeterangan" name="field" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
@@ -53,16 +59,16 @@
 
                         <textarea id="editKeterangan" rows="10" name="laporan" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
-                            type="text" placeholder="Isi Laporan"></textarea>
-
+                            placeholder="Isi Laporan"></textarea>
 
                         <select id="lingkup" name="rt_id" class="relative"
                             style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                            <option value="1">RT 001</option>
-                            <option value="2">RT 002</option>
+                            @foreach ($rts as $rt)
+                                <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} -
+                                    {{ $rt->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
-
 
                     <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
                         <button type="button" data-close-modal="editSaranModal"
@@ -74,7 +80,6 @@
                             Save
                         </button>
                     </div>
-
             </div>
             </form>
 
@@ -89,9 +94,10 @@
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/6">No</th>
                             <th class="border px-4 py-2 text-center w-1/6">Tanggal</th>
-                            <th class="border px-4 py-2 text-center w-1/6">Nama</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Name</th>
                             <th class="border px-4 py-2 text-center w-1/6">Bidang </th>
                             <th class="border px-4 py-2 text-center w-1/6">Laporan</th>
+                            <th class="border px-4 py-2 text-center w-1/6">Lingkup</th>
                             <th class="border px-4 py-2 text-center w-1/6">Status</th>
                             <th class="border px-24 py-2 text-center w-1/6">Aksi</th>
                         </tr>
@@ -105,7 +111,8 @@
                             <td class="border px-4 py-2 text-center">{{ $suggestion->tanggal }}</td>
                             <td class="border px-4 py-2 text-center">{{ $suggestion->name }}</td>
                             <td class="border px-4 py-2 text-center">{{ $suggestion->field }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $suggestion->Laporan }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $suggestion->laporan }}</td>
+                            <td class="border px-4 py-2 text-center">RT {{ $suggestion->rt_id }}</td>
                             <td class="border px-4 py-2 text-center">{{ $suggestion->status }}</td>
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
                                 <a href="{{ route('detailSaranPD', ['id' => $suggestion->id]) }}">
@@ -168,8 +175,10 @@
 
                     <select id="lingkup" name="rt_id" class="relative"
                         style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                        <option value="1">RT 001</option>
-                        <option value="2">RT 002</option>
+                        @foreach ($rts as $rt)
+                            <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} -
+                                {{ $rt->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -241,34 +250,33 @@
 
         // Hapus Data Kegiatan
         function deleteSaran(id, index) {
-    if (confirm('Apakah Anda yakin ingin menghapus Pengaduan ini?')) {
-        fetch('{{ route('deleteSaranPD') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                id: id
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Hapus baris pada tabel
-            document.querySelector(`tr[data-id="${id}"]`).remove();
-            for (let i = index; i <= totalData; i++) {
-                const element = document.querySelector(`td[data-number="${i}"]`);
-                if (element) {
-                    element.innerText = parseInt(element.innerText, 10) - 1;
-                }
+            if (confirm('Apakah Anda yakin ingin menghapus Pengaduan ini?')) {
+                fetch('{{ route('deleteSaranPD') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            id: id
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Hapus baris pada tabel
+                        document.querySelector(`tr[data-id="${id}"]`).remove();
+                        for (let i = index; i <= totalData; i++) {
+                            const element = document.querySelector(`td[data-number="${i}"]`);
+                            if (element) {
+                                element.innerText = parseInt(element.innerText, 10) - 1;
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        // Handle errors
+                        console.error(error);
+                    });
             }
-        })
-        .catch(error => {
-            // Handle errors
-            console.error(error);
-        });
-    }
-}
-
+        }
     </script>
 @endsection

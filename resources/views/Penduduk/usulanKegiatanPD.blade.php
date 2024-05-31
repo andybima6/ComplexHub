@@ -39,10 +39,9 @@
 
                     <div class="flex flex-col gap-4 my-8">
                         <input type="hidden" name="id" value="">
-                        <input id="editNamaKegiatan" name="name" class="relative"
-                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                            type="text" placeholder="Nama Kegiatan">
-
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                                <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
+                       
                         <textarea id="editKeterangan" rows="10" name="description" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                             type="text" placeholder="Keterangan"></textarea>

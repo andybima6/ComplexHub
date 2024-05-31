@@ -39,13 +39,21 @@
 
                     <div class="flex flex-col gap-4 my-8">
                         <input type="hidden" name="id" value="">
-                        <input id="editNamaKegiatan" name="name" class="relative"
-                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                            type="text" placeholder="Nama Kegiatan">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
 
                         <textarea id="editKeterangan" rows="10" name="description" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                             type="text" placeholder="Keterangan"></textarea>
+
+
+                            <select id="lingkup" name="rt_id" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                            @foreach ($rts as $rt)
+                                <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} -
+                                    {{ $rt->nama }}</option>
+                            @endforeach
+                        </select>
 
                         <label for="addFileInput" class="relative max-w-full"
                             style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
@@ -53,11 +61,7 @@
                         </label>
                         <input id="addFileInput" name="document" style="display: none;" type="file">
 
-                        <select id="lingkup" name="rt_id" class="relative"
-                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
-                            <option value="1">RT & RW</option>
 
-                        </select>
                     </div>
 
 
@@ -87,11 +91,11 @@
                 <thead>
                     <tr>
                         <th class="border px-4 py-2 text-center w-1/6">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Nama Kegiatan</th>
+                        <th class="border px-4 py-2 text-center w-1/6">Nama Lengkap</th>
                         <th class="border px-4 py-2 text-center w-1/6">Keterangan</th>
                         <th class="border px-4 py-2 text-center w-1/6">Document</th>
+                        <th class="border px-4 py-2 text-center w-1/6">Lingkup</th>
                         <th class="border px-4 py-2 text-center w-1/6">Status</th>
-                        <th class="border px-2 py-2 text-center w-1/6">Lingkup</th>
                         <th class="border px-24 py-2 text-center w-1/6">Aksi</th>
                     </tr>
                 </thead>
@@ -119,7 +123,8 @@
                                 @endif
                             </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->rt->rt ?: 'RT Dan RW ' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ $activity->lingkup }}</td>
+
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
                                 <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
                                     <div>
@@ -162,9 +167,8 @@
 
                 <div class="flex flex-col gap-4 my-8">
                     <input type="hidden" name="id" value="">
-                    <input id="editNamaKegiatan" name="name" class="relative"
-                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                        type="text" placeholder="Nama Kegiatan">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
 
                     <textarea id="editKeterangan" rows="10" name="description" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"

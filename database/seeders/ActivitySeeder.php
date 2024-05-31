@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RT;
 use Illuminate\Database\Seeder;
 use App\Models\Activity; // Pastikan model Kegiatan di-import
 
@@ -12,26 +13,35 @@ class ActivitySeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        Activity::create([
-            'name' => 'Kegiatan 1',
-            'description' => 'Keterangan kegiatan 1',
-            'document' => 'path/to/document1.jpg',
-            'comment' => 'Comment kegiatan 1',
-            'status' => 'pending',
-            'rt_id' => 1,
-        ]);
+        $rts = RT::all();
 
-        Activity::create([
-            'name' => 'Kegiatan 2',
-            'description' => 'Keterangan kegiatan 2',
-            'document' => 'path/to/document2.jpg',
-            'comment' => 'Comment kegiatan 2',
-            'status' => 'pending',
-            'rt_id' => 2,
-        ]);
+        if ($rts->isEmpty()) {
+            // Handle the case where there are no RT records
+            $this->command->info('No RT records found. Please seed the RT table first.');
+            return;
+        }
+            Activity::create([
+                'name' => 'aku',
+                'description' => 'Keterangan kegiatan 1',
+                'document' => 'path/to/document1.jpg',
 
-        // Tambahkan data kegiatan lainnya sesuai kebutuhan
+                'status' => 'pending',
+                'rt_id' => $rts->random()->id,
+            ]);
+
+            Activity::create([
+                'name' => 'aku',
+                'description' => 'Keterangan kegiatan 2',
+                'document' => 'path/to/document2.jpg',
+
+                'status' => 'pending',
+                'rt_id' => $rts->random()->id,
+            ]);
+
+            // Tambahkan data kegiatan lainnya sesuai kebutuhan
+        }
     }
-}
+

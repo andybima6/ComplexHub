@@ -74,7 +74,7 @@ background-color: #286090; /* Darker shade on hover */
           <tr>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->id }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nama }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt }}</td>
+            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
             {{-- <td class="border px-4 py-2 text-center">

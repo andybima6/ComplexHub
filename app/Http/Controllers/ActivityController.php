@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RT;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Activity; // Import model Kegiatan
-use App\Models\DataRt;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Str;
+use App\Models\Activity; // Import model Kegiatan
 
 class ActivityController extends Controller
 {
@@ -47,6 +47,7 @@ class ActivityController extends Controller
             'title' => 'Daftar Kegiatan',
             'subtitle' => 'Usulan Kegiatan',
         ];
+
         return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb]);
     }
 
@@ -80,6 +81,7 @@ class ActivityController extends Controller
 
         // $activity = Activity::where()
         $activity = Activity::findOrFail($id);
+
         return view('Penduduk.detailKegiatanPD', compact('activity', 'breadcrumb'));
     }
 
@@ -93,11 +95,12 @@ class ActivityController extends Controller
         ];
 
         $rtId = 1;
-        $rt = DataRt::with(['activities'])->findOrFail($rtId);
+        $rt = RT::with(['activities'])->findOrFail($rtId);
         $activities = $rt->activities;
+        $rts = RT::all();
         // $rt = $request->user()->rt
 
-        return view('Penduduk.tambahEditKegiatanPD', compact('activities', 'breadcrumb'));
+        return view('Penduduk.tambahEditKegiatanPD', compact('activities', 'breadcrumb','rts'));
     }
 
     public function storeKegiatan(Request $request)

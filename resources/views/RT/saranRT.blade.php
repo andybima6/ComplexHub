@@ -24,7 +24,7 @@
                     <tr>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Tanggal</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Hal yang diadukan</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Bidang</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Isi Laporan</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>

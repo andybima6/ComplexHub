@@ -10,13 +10,13 @@ class Activity extends Model
         'name',
         'description',
         'document',
-        'comment',
         'status',
         'rt_id',
     ];
 
     public function rt()
     {
-        return $this->belongsTo(DataRt::class, 'rt_id');
+        return $this->belongsTo(RT::class, 'rt_id');
     }
+
 }

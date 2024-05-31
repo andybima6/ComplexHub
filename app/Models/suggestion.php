@@ -10,14 +10,18 @@ class suggestion extends Model
     protected $fillable = [
         'tanggal',
         'name',
-        'field',
+        'description',
         'laporan',
         'status',
         'rt_id',
     ];
+    protected $attributes = [
+        'status' => 'Pending',
+
+    ];
 
     public function rt()
     {
-        return $this->belongsTo(DataRt::class, 'rt_id');
+        return $this->belongsTo(RT::class, 'rt_id');
     }
 }

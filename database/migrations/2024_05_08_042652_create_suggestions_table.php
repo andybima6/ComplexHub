@@ -4,26 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateSuggestionsTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('suggestions', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
             $table->string('field');
             $table->string('name');
-            $table->string('Laporan')->nullable();
+            $table->string('laporan')->nullable();
             $table->string('status');
-            $table->unsignedBigInteger('rt_id')->nullable();
-            // $table->foreign('rt_id')->references('id')->on('data_rt');
+            $table->foreignId('rt_id')->constrained('rts')->onDelete('cascade');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -32,4 +30,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('suggestions');
     }
-};
+}

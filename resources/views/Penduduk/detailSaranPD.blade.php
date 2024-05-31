@@ -13,7 +13,7 @@
                 <p class="font-medium">{{ $suggestion->field }}</p>
             </div>
             <div class="mb-4">
-                <label for="" class="block text-lg font-bold text-gray-700">Nama :</label>
+                <label for="" class="block text-lg font-bold text-gray-700">Hal Yang diajukan :</label>
                 <p class="font-medium">{{ $suggestion->name }}</p>
             </div>
             <div class="mb-4">

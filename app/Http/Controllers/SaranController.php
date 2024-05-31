@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RT;
 use App\Models\suggestion;
 use Illuminate\Http\Request;
 
@@ -39,9 +40,10 @@ class SaranController extends Controller
             'subtitle' => '',
         ];
         $suggestions = suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
-        return view('Penduduk.saranPD', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb'));
-    }
+        $rts = RT::all(); // Assuming you have a model named RT and you want to fetch all RT records
 
+        return view('Penduduk.saranPD', ['breadcrumb' => $breadcrumb], compact('suggestions', 'breadcrumb', 'rts'));
+    }
     // public function tanggapanPage()
     // {
     //     // Mendapatkan user yang sedang login
@@ -55,31 +57,28 @@ class SaranController extends Controller
 
     //     return view('tanggapan', ['breadcrumb' => $breadcrumb]);
     // }
-
     public function storeSaran(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
+        $validated = $request->validate([
             'tanggal' => 'required|date',
-            'field' => 'required|string',
+            'name' => 'required|string|max:255',
+            'field' => 'required|string|max:255',
             'laporan' => 'required|string',
-            'rt_id' => 'required|exists:data_rt,id',
-
+            'rt_id' => 'required|exists:rts,id',
         ]);
-        $suggestions = new suggestion($request->only(['name', 'tanggal','field','laporan', 'rt_id']));
 
-        $suggestions->status = 'pending';
-        $suggestions->save();
-        return redirect(route('saranPD'));
+
+
+        Suggestion::create($validated);
+
+        return redirect()->back()->with('success', 'Suggestion added successfully.');
     }
-
     public function ShowPenduduk($id)
     {
         $breadcrumb = (object)[
             'title' => 'Saran Pengaduan',
             'subtitle' => 'Detail Pengaduan',
         ];
-
         // $suggestion = Activity::where()
         $suggestion = suggestion::findOrFail($id);
         return view('Penduduk.detailSaranPD', compact('suggestion', 'breadcrumb'));
