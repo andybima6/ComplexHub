@@ -102,6 +102,7 @@
                                     {{ $index + 1 }}
                                 </td>
                                 <td class="border px-4 py-2 text-center" >{{ $item['alternative_id'] }}</td>
+                                <td class="border px-4 py-2 text-center" >{{ $item['criteria_id'] }}</td>
 
                                 <td  class="border px-4 py-2 text-center">{{ isset($item['biaya_tiket_masuk']) ? number_format($item['biaya_tiket_masuk'], 4) : '-' }}
                                 </td>
