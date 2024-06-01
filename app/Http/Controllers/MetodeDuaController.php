@@ -245,11 +245,11 @@ class MetodeDuaController extends Controller
             $normalizedItem = [
                 'alternative_id' => $item['alternative_id'],
                 'criteria_id' => $item['criteria_id'],
-                'tiket' => 0,
+                'tiket' => 1,
                 'fasilitas' => 0,
                 'kebersihan' => 0,
                 'keamanan' => 0,
-                'akomodasi' => 0,
+                'akomodasi' => 1,
             ];
 
             foreach ($criterias as $criteria) {

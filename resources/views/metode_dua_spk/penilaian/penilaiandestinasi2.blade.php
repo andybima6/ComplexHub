@@ -95,22 +95,23 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody  >
                         @foreach ($normalizedData as $index => $item)
-                            <tr>
-                                <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">
-                                    {{ $index + 1 }}
-                                </td>
-                                <td class="border px-4 py-2 text-center">{{ $alternatives[$item['alternative_id']]['alternatif'] }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $criterias[$item['criteria_id']]['kriteria'] }}</td>
-                                <td class="border px-4 py-2 text-center">{{ isset($item['tiket']) ? number_format($item['tiket'], 4) : '-' }}</td>
-                                <td class="border px-4 py-2 text-center">{{ isset($item['fasilitas']) ? number_format($item['fasilitas'], 4) : '-' }}</td>
-                                <td class="border px-4 py-2 text-center">{{ isset($item['kebersihan']) ? number_format($item['kebersihan'], 4) : '-' }}</td>
-                                <td class="border px-4 py-2 text-center">{{ isset($item['keamanan']) ? number_format($item['keamanan'], 4) : '-' }}</td>
-                                <td class="border px-4 py-2 text-center">{{ isset($item['akomodasi']) ? number_format($item['akomodasi'], 4) : '-' }}</td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">
+                                {{ $index + 1 }}
+                            </td>
+                            <td class="border px-4 py-2 text-center">{{ \App\Models\Alternative::find($item['alternative_id'])->alternatif }}</td>
+                            <td class="border px-4 py-2 text-center">{{ \App\Models\Criteria::find($item['criteria_id'])->kriteria }}</td>
+                            <td class="border px-4 py-2 text-center">{{ isset($item['tiket']) ? number_format($item['tiket'], 4) : '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ isset($item['fasilitas']) ? number_format($item['fasilitas'], 4) : '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ isset($item['kebersihan']) ? number_format($item['kebersihan'], 4) : '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ isset($item['keamanan']) ? number_format($item['keamanan'], 4) : '-' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ isset($item['akomodasi']) ? number_format($item['akomodasi'], 4) : '-' }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
+
             </div>
     </main>
 @endsection
