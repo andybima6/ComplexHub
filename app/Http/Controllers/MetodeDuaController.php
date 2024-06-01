@@ -245,11 +245,11 @@ class MetodeDuaController extends Controller
             $normalizedItem = [
                 'alternative_id' => $item['alternative_id'],
                 'criteria_id' => $item['criteria_id'],
-                'tiket' => 1,
-                'fasilitas' => 0,
-                'kebersihan' => 0,
-                'keamanan' => 0,
-                'akomodasi' => 1,
+                'tiket' => isset($item['tiket']) ? $item['tiket'] : 0, // Default value jika tiket tidak terdefinisi
+                'fasilitas' => isset($item['fasilitas']) ? $item['fasilitas'] : 0,
+                'kebersihan' => isset($item['kebersihan']) ? $item['kebersihan'] : 0,
+                'keamanan' => isset($item['keamanan']) ? $item['keamanan'] : 0,
+                'akomodasi' => isset($item['akomodasi']) ? $item['akomodasi'] : 0, // Default value jika akomodasi tidak terdefinisi
             ];
 
             foreach ($criterias as $criteria) {
@@ -271,8 +271,24 @@ class MetodeDuaController extends Controller
         return $normalizedData;
     }
 
+
+    public function indexRanking()
+{
+    $breadcrumb = (object)[
+        'title' => 'Daftar Kriteria (Metode II)',
+        'subtitle' => 'Data Ranking',
+    ];
+    $normalizedData = []; // Isi dengan data yang sesuai dari perhitungan ranking
+    $bobot_kriteria = []; // Isi dengan bobot kriteria yang sesuai
+
+    $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
+
+    return view('metode_dua_spk.ranking.rankingdestinasi2', compact('rankings','breadcrumb'));
+}
+
     private function calculateRanking($normalizedData, $bobot_kriteria)
     {
+
         // Hitung skor
         $rankings = [];
         foreach ($normalizedData as $normValues) {
