@@ -26,11 +26,11 @@ class PenilaianSeeder extends Seeder
             Penilaian::create([
                 'alternative_id' => $alternative->id,
                 'criteria_id' => $criterias[$i]['id'],
-                'biaya_tiket_masuk' => $faker->randomFloat(2, 10, 100),
+                'tiket' => $faker->randomFloat(2, 10, 100),
                 'fasilitas' => $faker->randomFloat(2, 1, 5),
                 'kebersihan' => $faker->randomFloat(2, 1, 5),
                 'keamanan' => $faker->randomFloat(2, 1, 5),
-                'biaya_akomodasi' => $faker->randomFloat(2, 10, 1000),
+                'akomodasi' => $faker->randomFloat(2, 10, 1000),
             ]);
             $i++;
         }

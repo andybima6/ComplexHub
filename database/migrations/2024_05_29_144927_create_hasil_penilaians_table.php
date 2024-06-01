@@ -16,11 +16,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('alternative_id');
             $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
-            $table->decimal('biaya_tiket_masuk', 10, 4);
+            $table->decimal('tiket', 10, 4);
             $table->decimal('fasilitas', 10, 4);
             $table->decimal('kebersihan', 10, 4);
             $table->decimal('keamanan', 10, 4);
-            $table->decimal('biaya_akomodasi', 10, 4);
+            $table->decimal('akomodasi', 10, 4);
             $table->timestamps();
 
             $table->foreign('alternative_id')->references('id')->on('alternative')->onDelete('cascade');

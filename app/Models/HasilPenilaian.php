@@ -11,11 +11,11 @@ class HasilPenilaian extends Model
     protected $fillable = [
         'alternative_id',
         'criteria_id',
-        'biaya_tiket_masuk',
+        'tiket',
         'fasilitas',
         'kebersihan',
         'keamanan',
-        'biaya_akomodasi',
+        'akomodasi',
     ];
 
     public function alternative()

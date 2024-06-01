@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('alternative_id')->constrained('alternative')->onDelete('cascade');
             $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
-            $table->decimal('biaya_tiket_masuk', 10, 2);
+            $table->decimal('tiket', 10, 2);
             $table->decimal('fasilitas', 10, 2);
             $table->decimal('kebersihan', 10, 2);
             $table->decimal('keamanan', 10, 2);
-            $table->decimal('biaya_akomodasi', 10, 2);
+            $table->decimal('akomodasi', 10, 2);
             $table->timestamps();
         });
     }

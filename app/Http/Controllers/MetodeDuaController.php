@@ -9,7 +9,8 @@ use App\Models\penilaiandua;
 use App\Models\HasilPenilaian;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Log;
+use Illuminate\Support\Facades\Log;
+
 
 class MetodeDuaController extends Controller
 {
@@ -134,35 +135,35 @@ class MetodeDuaController extends Controller
         // Persiapkan data untuk normalisasi dan perhitungan skor
         $data = [];
         foreach ($penilaians as $penilaian) {
-            $alternative = $alternatives->find($penilaian->alternative_id);
-            if ($alternative) {
-                $data[] = [
-                    'alternative_id' => $penilaian->alternative_id,
-                    'criteria_id' => $penilaian->criteria_id,
-                    'biaya_tiket_masuk' => $penilaian->biaya_tiket_masuk,
-                    'fasilitas' => $penilaian->fasilitas,
-                    'kebersihan' => $penilaian->kebersihan,
-                    'keamanan' => $penilaian->keamanan,
-                    'biaya_akomodasi' => $penilaian->biaya_akomodasi,
-                ];
-            }
+            $data[] = [
+                'alternative_id' => $penilaian->alternative_id,
+                'criteria_id' => $penilaian->criteria_id,
+                'tiket' => $penilaian->tiket,
+                'fasilitas' => $penilaian->fasilitas,
+                'kebersihan' => $penilaian->kebersihan,
+                'keamanan' => $penilaian->keamanan,
+                'akomodasi' => $penilaian->akomodasi,
+            ];
         }
 
-        // Persiapkan bobot kriteria
-        $bobot_kriteria = [];
-        foreach ($criterias as $criteria) {
-            $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
-        }
+        Log::info('Data sebelum normalisasi:', $data);
 
         // Lakukan normalisasi dan perhitungan skor
-        $normalizedData = $this->normalizeData($data, $criterias);
+        $normalizedData = $this->normalizeData($data, $criterias); // Kirim data dan kriteria sebagai argumen
+
+        Log::info('Data setelah normalisasi:', $normalizedData);
 
         // Simpan data yang telah dinormalisasi ke dalam tabel hasil_penilaian
+        HasilPenilaian::truncate(); // Hapus data lama
         foreach ($normalizedData as $normalizedItem) {
             HasilPenilaian::create($normalizedItem);
         }
 
         // Hitung ranking
+        $bobot_kriteria = [];
+        foreach ($criterias as $criteria) {
+            $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
+        }
         $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
 
         // Simpan ranking ke dalam tabel
@@ -175,106 +176,100 @@ class MetodeDuaController extends Controller
             ]);
         }
 
-        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb', 'normalizedData', 'rankings'));
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb','alternatives','criterias', 'normalizedData', 'rankings'));
     }
 
     public function editPenilaian($id)
-{
-    $penilaian = Penilaiandua::findOrFail($id);
-    $alternative = Alternative::all();
-    $criterias = Criteria::all();
+    {
+        $penilaian = penilaiandua::findOrFail($id);
+        $alternative = Alternative::all();
+        $criterias = Criteria::all();
 
-    $breadcrumb = (object)[
-        'title' => 'Edit Penilaian',
-        'subtitle' => 'Perbarui Data Penilaian',
-    ];
+        $breadcrumb = (object)[
+            'title' => 'Edit Penilaian',
+            'subtitle' => 'Perbarui Data Penilaian',
+        ];
 
-    return view('metode_dua_spk.penilaian.penilaian_edit2', compact('penilaian', 'alternative', 'criterias', 'breadcrumb'));
-}
-public function updatePenilaian(Request $request, $id)
-{
-    $request->validate([
-        'alternative_id' => 'required|exists:alternative,id',
-        // 'criteria_id' => 'exists:criterias,id',
-        'biaya_tiket_masuk' => 'required|numeric',
-        'fasilitas' => 'required|numeric',
-        'kebersihan' => 'required|numeric',
-        'keamanan' => 'required|numeric',
-        'biaya_akomodasi' => 'required|numeric',
-    ]);
+        return view('metode_dua_spk.penilaian.penilaian_edit2', compact('penilaian', 'alternative', 'criterias', 'breadcrumb'));
+    }
+    public function updatePenilaian(Request $request, $id)
+    {
+        $request->validate([
+            'alternative_id' => 'required|exists:alternative,id',
+            'criteria_id' => 'exists:criterias,id',
+            'tiket' => 'required|numeric',
+            'fasilitas' => 'required|numeric',
+            'kebersihan' => 'required|numeric',
+            'keamanan' => 'required|numeric',
+            'akomodasi' => 'required|numeric',
+        ]);
 
-    $penilaian = Penilaiandua::findOrFail($id);
-    $penilaian->update([
-        'alternative_id' => $request->alternative_id,
-        // 'criteria_id' => $request->criteria_id,
-        'biaya_tiket_masuk' => $request->biaya_tiket_masuk,
-        'fasilitas' => $request->fasilitas,
-        'kebersihan' => $request->kebersihan,
-        'keamanan' => $request->keamanan,
-        'biaya_akomodasi' => $request->biaya_akomodasi,
-    ]);
+        $penilaian = penilaiandua::findOrFail($id);
+        $penilaian->update([
+            'alternative_id' => $request->alternative_id,
+            'criteria_id' => $request->criteria_id,
+            'tiket' => $request->tiket,
+            'fasilitas' => $request->fasilitas,
+            'kebersihan' => $request->kebersihan,
+            'keamanan' => $request->keamanan,
+            'akomodasi' => $request->akomodasi,
+        ]);
 
-    return redirect()->route('penilaian')->with('success', 'Penilaian berhasil diperbarui');
-}
-
-private function normalizeData($criterias)
-{
-    // Fetch data from the penilaiandua model
-    $data = penilaiandua::all()->toArray();
-    $criterias = Criteria::all();
-
-    // Inisialisasi array untuk menyimpan nilai maksimal dan minimal dari setiap kriteria
-    $maxValues = [];
-    $minValues = [];
-
-    // Iterasi melalui data untuk menemukan nilai maksimal dan minimal dari setiap kriteria
-    foreach ($criterias as $criteria) {
-        $kriteria = $criteria->kriteria;
-        $values = array_column($data, $kriteria);
-    
-        if (!empty($values)) {
-            $maxValues[$kriteria] = max($values);
-            $minValues[$kriteria] = min($values);
-        } else {
-            // Handle the case where there are no values for the current criteria
-            $maxValues[$kriteria] = null;
-            $minValues[$kriteria] = null;
-        }
+        return redirect()->route('penilaian')->with('success', 'Penilaian berhasil diperbarui');
     }
 
-    // Inisialisasi array untuk menyimpan hasil normalisasi
-    $normalizedData = [];
-
-    // Normalisasi data
-    foreach ($data as $item) {
-        $normalizedItem = [
-            'alternative_id' => $item['alternative_id'],
-            'criteria_id' => $item['criteria_id'],
-            'biaya_tiket_masuk' => 0,  // Default value
-            'fasilitas' => 0,          // Default value
-            'kebersihan' => 0,         // Default value
-            'keamanan' => 0,           // Default value
-            'biaya_akomodasi' => 0,    // Default value
-        ];
+    private function normalizeData($data, $criterias)
+    {
+        $maxValues = [];
+        $minValues = [];
 
         foreach ($criterias as $criteria) {
             $kriteria = $criteria->kriteria;
-            if (isset($item[$kriteria]) && $maxValues[$kriteria] !== null && $minValues[$kriteria] !== null) {
-                if ($criteria->type == 'benefit') {
-                    // Kriteria benefit: (nilai - nilai minimum) / (nilai maksimum - nilai minimum)
-                    $normalizedItem[$kriteria] = ($item[$kriteria] - $minValues[$kriteria]) / ($maxValues[$kriteria] - $minValues[$kriteria]);
-                } else {
-                    // Kriteria cost: (nilai maksimum - nilai) / (nilai maksimum - nilai minimum)
-                    $normalizedItem[$kriteria] = ($maxValues[$kriteria] - $item[$kriteria]) / ($maxValues[$kriteria] - $minValues[$kriteria]);
-                }
+            $values = array_column($data, $kriteria);
+
+            if (!empty($values)) {
+                $maxValues[$kriteria] = max($values);
+                $minValues[$kriteria] = min($values);
+            } else {
+                $maxValues[$kriteria] = null;
+                $minValues[$kriteria] = null;
             }
         }
-        $normalizedData[] = $normalizedItem;
+
+        Log::info('Max Values:', $maxValues);
+        Log::info('Min Values:', $minValues);
+
+        $normalizedData = [];
+
+        foreach ($data as $item) {
+            $normalizedItem = [
+                'alternative_id' => $item['alternative_id'],
+                'criteria_id' => $item['criteria_id'],
+                'tiket' => 0,
+                'fasilitas' => 0,
+                'kebersihan' => 0,
+                'keamanan' => 0,
+                'akomodasi' => 0,
+            ];
+
+            foreach ($criterias as $criteria) {
+                $kriteria = $criteria->kriteria;
+                if (isset($item[$kriteria]) && $maxValues[$kriteria] !== null && $minValues[$kriteria] !== null) {
+                    if ($criteria->type == 'benefit') {
+                        $normalizedItem[$kriteria] = ($item[$kriteria] - $minValues[$kriteria]) / ($maxValues[$kriteria] - $minValues[$kriteria]);
+                    } else {
+                        $normalizedItem[$kriteria] = ($maxValues[$kriteria] - $item[$kriteria]) / ($maxValues[$kriteria] - $minValues[$kriteria]);
+                    }
+                }
+            }
+
+            Log::info('Normalized Item:', $normalizedItem);
+
+            $normalizedData[] = $normalizedItem;
+        }
+
+        return $normalizedData;
     }
-
-    return $normalizedData;
-}
-
 
     private function calculateRanking($normalizedData, $bobot_kriteria)
     {
