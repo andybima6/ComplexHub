@@ -31,20 +31,18 @@ body {
 
 </style>
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-    {{-- <button class="custom-button">Kas Iuran RT</button> --}}
-
     <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
         <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Data Iuran Warga:</p>
         <hr class="mb-6">
 
         <!-- Search form -->
         <form method="GET" action="{{ route('search') }}">
-            <div class="mb-4">
-                <label for="rt_search" class="block text-sm font-medium text-gray-700">Search</label>
-                <input type="text" id="rt_search" name="rt_search" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
+            <div class="mb-4 flex items-center">
+                <input type="text" id="rt_search" name="rt_search" class="mt-1 block w-1/3 px-2 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
+                <button type="submit" class="ml-2 search-button">Cari</button>
             </div>
-            <button type="submit" class="search-button">Cari</button>
         </form>
+        
 
         <table class="md:table-fixed w-full mt-6">
             <thead>
@@ -87,7 +85,7 @@ body {
                             <form action="{{ url('/RT/' . $ir->id) }}" method="POST" class="ml-2">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="delete">Delete</button>
                             </form>
                         </div>
                     </td>
@@ -97,4 +95,35 @@ body {
         </table>
     </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click', '#delete', function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form'); // get the closest form to the button
+
+            Swal.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Data Yang dihapus tidak bisa kembali!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "YA, Hapus Data!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit the form if the user confirms
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

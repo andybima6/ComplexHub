@@ -2,6 +2,7 @@
 
 @section('content')
 <style>
+    
     .custom-button {
             padding: 15px 30px;
             font-size: 20px;
@@ -12,6 +13,40 @@
             color: white;
             transition: all 0.3s ease;
         }
+
+        .form-container {
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
 
         /* Medium devices (tablets, 768px and up) */
         @media (max-width: 768px) {
@@ -37,9 +72,7 @@
             }
         }
 </style>
-<main>
-    <button class="custom-button">Form Input Iuran</button>
-    <br><br>
+<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="form-container">
         <h2>Form Input Iuran</h2>
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
@@ -83,10 +116,57 @@
             
 
             <div class="form-group">
-                <button type="submit" onclick="return confirmSubmit()" class="button">Kirim</button>
+                <button type="submit" onclick="return confirmSubmit()" class="button" id="kirim">Kirim</button>
             </div>
         </form>
     </div>
 
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+
+    $(function(){
+        $(document).on('click', '#kirim', function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form'); // get the closest form to the button
+
+            swalWithBootstrapButtons.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Mengirim Iuran RT",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "YA, Kirimkan!",
+                cancelButtonText: "Tidak, Batalkan!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit the form if the user confirms
+                    swalWithBootstrapButtons.fire({
+                        title: "Iuran Berhasil Dikirim!",
+                        icon: "success"
+                    });
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Dibatalkan",
+                        text: "Iuran GAGAL di Input",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

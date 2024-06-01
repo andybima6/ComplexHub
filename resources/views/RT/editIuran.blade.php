@@ -1,9 +1,7 @@
 @extends('layouts.welcome')
 
 @section('content')
-<main>
-    <button class="custom-button">Form Edit Iuran</button>
-    <br><br>
+<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="form-container">
         <h2>Form Edit Iuran</h2>
         <form action="{{ route('update', $iuran->id) }}" method="POST" enctype="multipart/form-data">
@@ -50,7 +48,6 @@
                 <option value="Ditolak" {{ $iuran->status == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
             </select>
         </div>
-
             <div class="form-group">
                 <button type="submit" onclick="return confirmSubmit()" class="button">Kirim</button>
             </div>

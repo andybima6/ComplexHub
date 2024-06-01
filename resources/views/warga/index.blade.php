@@ -90,10 +90,7 @@
 </style>
 
 <main>
-    <div class="button-container">
-        <button class="buttonJudul">Input Iuran</button>
-    </div>
-    <img src="{{ asset('images/qrcode.png') }}" alt="QR Code">
+    <img src="{{ asset('images/qr.png') }}" alt="QR Code">
     <div class="box">
         Silahkan Lakukan pembayaran pada Kode QR diatas!
     </div>

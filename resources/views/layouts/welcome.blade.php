@@ -10,6 +10,7 @@
     <link rel="stylesheet" href = "{{ asset('css/template.css') }}">
     <link rel="stylesheet" href = "{{ asset('css/iuran.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    
 
     <style>
         #sidenav {
