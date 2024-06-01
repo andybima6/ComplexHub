@@ -150,16 +150,17 @@ body {
   padding: 8px 12px;
   outline: none;
   border: 0;
-  color: #fff;
+  color: #FBEEC1;
   border-radius: 4px;
-  background: #8c7569;
+  background: #385668;
   font-family: "Nunito", sans-serif;
   transition: 0.3s;
   cursor: pointer;
 }
 
 .input-button:hover {
-  background: #55311c;
+  background: #FBEEC1;
+  color: #385668;
 }
 
 .input-label {

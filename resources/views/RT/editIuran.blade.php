@@ -49,15 +49,38 @@
             </select>
         </div>
             <div class="form-group">
-                <button type="submit" onclick="return confirmSubmit()" class="button">Kirim</button>
+                <button type="submit" onclick="return confirmSubmit()" class="button" id="edit">Kirim</button>
             </div>
             
         </form>
     </div>
-    <script>
-        function confirmSubmit() {
-            return confirm("Apakah Anda yakin ingin mengirim data?");
-        }
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(document).on('click', '#edit', function(e) {
+                e.preventDefault();
+                var form = $(this).closest('form'); // get the closest form to the button
+    
+                Swal.fire({
+                    title: "Simpan Perubahan?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Simpan",
+                    denyButtonText: `Tidakk`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        form.submit(); // submit the form if the user confirms
+                        Swal.fire("Saved!", "", "success");
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                    }
+                });
+            });
+        });
     </script>
+    
 </main>
 @endsection
