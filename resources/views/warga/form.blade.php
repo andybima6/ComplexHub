@@ -15,14 +15,14 @@
         }
 
         .form-container {
-        margin: 50px auto;
+        margin: 20px auto;
         background: #fff;
-        padding: 30px;
-        border-radius: 10px;
+        padding: 10px;
+        border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     .label {
         display: block;
