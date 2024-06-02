@@ -36,7 +36,7 @@
         <label for="rt_id" class="text-gray-700 font-medium mb-2">RT</label>
         <select name="rt_id" class="form-control border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:ring-1" required>
           @foreach($rts as $rt)
-          <option value="{{ $rt->id }}" {{ $rt->id == $dataKartuKeluarga->rt_id ? 'selected' : '' }}>{{ $rt->rt }}</option>
+          <option value="{{ $rt->id }}" {{ $rt->id == $dataKartuKeluarga->rt_id ? 'selected' : '' }}>{{ $rt->rt_id }}</option>
           @endforeach
         </select>
       </div>

@@ -3,6 +3,7 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RTController;
+use App\Http\Controllers\RWController;
 use App\Http\Controllers\SAWController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
@@ -18,14 +19,14 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DestinasiController;
 
+use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\MetodeDuaController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\IuranWargaController;
-use App\Http\Controllers\LandingPageController;
 
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
@@ -117,7 +118,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
 
         Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
-        
+
     });
 
     Route::middleware(RoleMiddleware::class . ':2')->group(function () {
@@ -215,6 +216,7 @@ Route::get('/', [LandingPageController::class, 'index']);
 
 //pendataan
 Route::resource('rts', RTController::class);
+Route::resource('rws', RWController::class);
 Route::resource('data_kartu_keluargas', DataKartuKeluargaController::class);
 Route::get('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas/create', [DataKartuKeluargaController::class, 'createAnggota'])->name('data_kartu_keluargas.create_anggota');
 Route::post('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas', [DataKartuKeluargaController::class, 'storeAnggota'])->name('data_kartu_keluargas.store_anggota');

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PenilaianSeeder::class,
             RtSeeder::class,
             ActivitySeeder::class,
+            UmkmSeeder::class,
             DataKartuKeluargaSeeder::class,
             AnggotaKeluargaSeeder::class,
             SuggestionSeeder::class,

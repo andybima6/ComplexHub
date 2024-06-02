@@ -94,7 +94,7 @@ p {
             </div>
             <div>
                 <p class="font-semibold">RT:</p>
-                <p>{{ $dataKartuKeluarga->rt->rt }}</p>
+                <p>{{ $dataKartuKeluarga->rt->rt_id }}</p>
             </div>
             <div>
                 <p class="font-semibold">Status Ekonomi:</p>
@@ -106,7 +106,7 @@ p {
     <div class="rounded-md p-16 bg-white mt-8">
       <h4 class="mb-4">Anggota Keluarga</h4>
       <a href="{{ route('data_kartu_keluargas.create_anggota', $dataKartuKeluarga->id) }}" class="btn btn-primary mb-4">Tambah Anggota Keluarga</a>
-  
+
       @if(count($anggotaKeluargas) > 0)
           <div class="table-responsive">
               <table class="table table-bordered table-hover text-center">
@@ -157,7 +157,7 @@ p {
           </div>
       @endif
   </div>
-  
+
 
 </main>
 <style>
@@ -166,49 +166,49 @@ body {
     background-color: #f5f5f5;
     color: #333;
   }
-  
+
   .container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
   }
-  
+
   .main {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 30px;
   }
-  
+
   h1 {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 20px;
   }
-  
+
   p {
     line-height: 1.6;
     margin-bottom: 15px;
   }
-  
+
   .table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
   }
-  
+
   .table th,
   .table td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
   }
-  
+
   .table th {
     background-color: #f0f0f0;
   }
-  
+
   .btn {
     padding: 10px 20px;
     border: none;
@@ -216,26 +216,26 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .btn:hover {
     background-color: #007bff;
   }
-  
+
   .btn-primary {
     background-color: #007bff;
     color: #fff;
   }
-  
+
   .btn-warning {
     background-color: #ffc107;
     color: #fff;
   }
-  
+
   .btn-danger {
     background-color: #dc3545;
     color: #fff;
   }
-  
+
   .btn-sm {
     padding: 5px 10px;
     font-size: 12px;
