@@ -43,17 +43,17 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th  class="border px-4 py-2 text-center w-1/7">No</th>
+                                <th  class="border px-4 py-2 text-center w-1/7">Peringkat</th>
                                 <th  class="border px-4 py-2 text-center w-1/7">Alternative</th>
                                 <th  class="border px-4 py-2 text-center w-1/7">Score</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rankings as $index => $ranking)
+                            @foreach ($rankingScores as $index => $ranking)
                             <tr>
                                 <td class="border px-4 py-2 text-center" class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
                                 </td>
-                                <td class="border px-4 py-2 text-center">{{ $ranking['alternative'] }}</td>
+                                <td class="border px-4 py-2 text-center">{{ \App\Models\Alternative::find($ranking['alternative_id'])->alternatif }}</td>
                                 <td class="border px-4 py-2 text-center">{{ number_format($ranking['score'], 4) }}</td>
                             </tr>
                             @endforeach

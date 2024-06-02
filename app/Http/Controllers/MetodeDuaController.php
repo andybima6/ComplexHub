@@ -160,23 +160,23 @@ class MetodeDuaController extends Controller
         }
 
         // Hitung ranking
-        $bobot_kriteria = [];
-        foreach ($criterias as $criteria) {
-            $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
-        }
-        $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
+        // $bobot_kriteria = [];
+        // foreach ($criterias as $criteria) {
+        //     $bobot_kriteria[$criteria->nama_kriteria] = $criteria->bobot;
+        // }
+        // $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
 
         // Simpan ranking ke dalam tabel
-        Ranking::truncate(); // Hapus data lama
-        foreach ($rankings as $ranking) {
-            Ranking::create([
-                'alternative_id' => $ranking['alternative_id'],
-                'criteria_id' => $ranking['criteria_id'],
-                'score' => $ranking['score'],
-            ]);
-        }
+        // Ranking::truncate(); // Hapus data lama
+        // foreach ($rankings as $ranking) {
+        //     Ranking::create([
+        //         'alternative_id' => $ranking['alternative_id'],
+        //         'criteria_id' => $ranking['criteria_id'],
+        //         'score' => $ranking['score'],
+        //     ]);
+        // }
 
-        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb','alternatives','criterias', 'normalizedData', 'rankings'));
+        return view('metode_dua_spk.penilaian.penilaiandestinasi2', compact('penilaians', 'breadcrumb','alternatives','criterias', 'normalizedData'));
     }
 
     public function editPenilaian($id)
@@ -278,38 +278,49 @@ class MetodeDuaController extends Controller
         'title' => 'Daftar Kriteria (Metode II)',
         'subtitle' => 'Data Ranking',
     ];
-    $normalizedData = []; // Isi dengan data yang sesuai dari perhitungan ranking
-    $bobot_kriteria = []; // Isi dengan bobot kriteria yang sesuai
+    $normalizedData = HasilPenilaian::all()->toArray(); // Isi dengan data yang sesuai dari perhitungan ranking
+    $bobot_kriteria = Criteria::pluck('bobot', 'id')->toArray(); // Isi dengan bobot kriteria yang sesuai
+    $alternatives = Alternative::all();
 
-    $rankings = $this->calculateRanking($normalizedData, $bobot_kriteria);
+    $rankingScores = $this->calculateRanking($normalizedData, $bobot_kriteria);
 
-    return view('metode_dua_spk.ranking.rankingdestinasi2', compact('rankings','breadcrumb'));
+    Ranking::truncate();
+    foreach ($rankingScores as $ranking) {
+        Ranking::create([
+            'alternative_id' => $ranking['alternative_id'],
+            // 'criteria_id' => $ranking['criteria_id'],
+            'score' => $ranking['score']
+        ]);
+    }
+
+    return view('metode_dua_spk.ranking.rankingdestinasi2', compact('rankingScores','breadcrumb', 'alternatives'));
 }
 
-    private function calculateRanking($normalizedData, $bobot_kriteria)
+private function calculateRanking($normalizedData, $bobot_kriteria)
     {
+        $rankingScores = [];
 
-        // Hitung skor
-        $rankings = [];
-        foreach ($normalizedData as $normValues) {
-            $score = 0;
-            foreach ($bobot_kriteria as $key => $bobot) {
-                if (isset($normValues[$key])) {
-                    $score += $normValues[$key] * $bobot;
-                }
-            }
-            $rankings[] = [
-                'alternative_id' => $normValues['alternative_id'],
-                'criteria_id' => $normValues['criteria_id'],
-                'score' => $score,
+    // Ambil bobot kriteria dari tabel 'criteria'
+    $criteriaWeights = Criteria::pluck('bobot', 'id')->toArray();
+
+    foreach ($normalizedData as $data) {
+        if (!isset($rankingScores[$data['alternative_id']])) {
+            $rankingScores[$data['alternative_id']] = [
+                'alternative_id' => $data['alternative_id'],
+                'score' => 0,
             ];
         }
-
-        // Urutkan berdasarkan skor
-        usort($rankings, function ($a, $b) {
-            return $b['score'] <=> $a['score'];
-        });
-
-        return $rankings;
+        $rankingScores[$data['alternative_id']]['score'] += ($data['tiket']) * 0.2 +
+        ($data['fasilitas']) * 0.3 +
+        ($data['kebersihan']) * 0.2 +
+        ($data['keamanan']) * 0.2 +
+        ($data['akomodasi']) * 0.1;
     }
+    usort($rankingScores, function($a, $b) {
+        return $b['score'] <=> $a['score'];
+    });
+
+    return $rankingScores;
+}
+
 }
