@@ -42,8 +42,11 @@
                         <td class="border px-4 py-2">{{ $ir->periode }}</td>
                         <td class="border px-4 py-2">{{ $ir->total }}</td>
                         <td class="border px-4 py-2">
-                            <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-full h-auto">
+                            <a href="{{ asset('storage/' . $ir->bukti) }}" download>
+                                <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-full h-auto">
+                            </a>
                         </td>
+                        
                         <td class="border px-4 py-2">
                             @if($ir->status == 'diproses')
                                 <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded">Diproses</button>

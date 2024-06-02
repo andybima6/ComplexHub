@@ -2,54 +2,70 @@
 @section('content')
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
 
-    <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
-        <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Data Iuran rw:</p>
-        <hr class="mb-6">
-
-        <form method="GET" action="{{ route('cari') }}">
-            <div class="mb-4">
-                <label for="rw_id_search" class="block text-sm font-medium text-gray-700">Cari rw ID:</label>
-                <input type="text" id="rw_id_search" name="rw_id_search" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan RW ID">
+    <div class="rounded-md relative p-16 top-32 left-16 bg-white">
+        <div class="card-header mb-4 flex justify-between items-center">
+            <h2 class="text-2xl font-semibold">Data Iuran Warga</h2>
+        </div>
+    
+        <form method="GET" action="{{ route('search') }}" class="flex items-end mb-6 space-x-4">
+            <div>
+                <label for="rt_search" class="block text-sm font-medium text-gray-700 mb-1">
+                    <span class="text-blue-600">Search</span>
+                </label>
+                <input type="text" id="rt_search" name="rt_search" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
             </div>
-            <button type="submit" class="search-button">Cari</button>
+            <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Cari</button>
         </form>
-
-        <table class="md:table-fixed w-full mt-6">
-            <thead>
-                <tr>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">No</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Nama</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Periode</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Total</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 15%;">Bukti</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">RW</th>
-                    <th class="border px-4 py-2 text-center" style="color: black; width: 10%;">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($iuran as $ir)
-                <tr>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->id }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->nama }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->periode }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->total }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">
-                        <div class="flex justify-center">
-                            <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" style="max-width: 100px; max-height: 100px;">
-                        </div>
-                    </td>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->rw_id }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">
-                        @if($ir->status == 'disetujui')
-                            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Disetujui</button>
-                        @elseif($ir->status == 'ditolak')
-                            <button class="bg-red-500 text-white font-bold py-2 px-4 rounded">Ditolak</button>
-                        @endif
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    
+        <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+    
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200 text-black font-medium text-center">
+                        <th class="border px-4 py-2">No</th>
+                        <th class="border px-4 py-2">Nama</th>
+                        <th class="border px-4 py-2">Periode</th>
+                        <th class="border px-4 py-2">Total</th>
+                        <th class="border px-4 py-2">Bukti</th>
+                        <th class="border px-4 py-2">RT</th>
+                        <th class="border px-4 py-2">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($iuran as $ir)
+                    <tr class="text-center">
+                        <td class="border px-4 py-2">{{ $ir->id }}</td>
+                        <td class="border px-4 py-2">{{ $ir->nama }}</td>
+                        <td class="border px-4 py-2">{{ $ir->periode }}</td>
+                        <td class="border px-4 py-2">{{ $ir->total }}</td>
+                        <td class="border px-4 py-2">
+                            <a href="{{ asset('storage/' . $ir->bukti) }}" download>
+                                <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-full h-auto">
+                            </a>
+                        </td>
+                        <td class="border px-4 py-2">{{ $ir->rt_id }}</td>
+                        <td class="border px-4 py-2">
+                            @if($ir->status == 'diproses')
+                                <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded">Diproses</button>
+                            @elseif($ir->status == 'disetujui')
+                                <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Disetujui</button>
+                            @elseif($ir->status == 'ditolak')
+                                <button class="bg-red-500 text-white font-bold py-2 px-4 rounded">Ditolak</button>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+    
 </main>
 @endsection

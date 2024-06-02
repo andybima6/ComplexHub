@@ -65,7 +65,7 @@
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="rounded-md relative p-16 top-32 left-16 bg-white">
         <div class="card-header mb-4 flex justify-between items-center">
-            <h2 class="text-2xl font-semibold">Data Iuran Warga</h2>
+            <h2 class="text-2xl font-semibold">Data Iuran Warga RT :</h2>
         </div>
 
         <form method="GET" action="{{ route('search') }}" class="flex items-end mb-6 space-x-4">
@@ -95,7 +95,7 @@
                         <th class="border px-4 py-2">Periode</th>
                         <th class="border px-4 py-2">Total</th>
                         <th class="border px-4 py-2">Bukti</th>
-                        <th class="border px-4 py-2">RT</th>
+                        {{-- <th class="border px-4 py-2">RT</th> --}}
                         <th class="border px-4 py-2">Status</th>
                         <th class="border px-4 py-2">Aksi</th>
                     </tr>
@@ -110,7 +110,7 @@
                         <td class="border px-4 py-2">
                             <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-full h-auto">
                         </td>
-                        <td class="border px-4 py-2">{{ $ir->rt_id }}</td>
+                        {{-- <td class="border px-4 py-2">{{ $ir->rt_id }}</td> --}}
                         <td class="border px-4 py-2">
                             @if($ir->status == 'diproses')
                                 <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded">Diproses</button>
@@ -128,7 +128,7 @@
                                     @method('DELETE')
                                     <button type="submit" onclick="confirmDelete('{{ $ir->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="delete">Hapus</button>
                                 </form>
-                                <button type="button" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" onclick="showImageModal('{{ asset('storage/' . $ir->bukti) }}')">Bukti</button>
+                                <button type="button" class="bg-yellow-400 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" onclick="downloadImage('{{ asset('storage/' . $ir->bukti) }}')">Unduh</button>
                             </div>
                         </td>
                     </tr>
@@ -151,7 +151,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script>
+    function downloadImage(imageUrl) {
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.setAttribute('download', '');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
 <script type="text/javascript">
     $(function(){
         $(document).on('click', '#delete', function(e) {
