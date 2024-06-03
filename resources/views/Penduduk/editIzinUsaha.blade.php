@@ -25,7 +25,7 @@
 
             <div class="mb-4">
                 <label for="foto_produk" class="block text-sm font-medium text-gray-700">Foto Produk</label>
-                <img class="img-preview img-fluid mb-3 col-sm-5" src="{{ asset('storage/' . $umkm->foto_produk) }}" alt="Foto Produk">
+                <img style="padding-right: 45%" class="img-preview img-fluid mb-3 col-sm-5" src="{{ asset('storage/' . $umkm->foto_produk) }}" alt="Foto Produk">
                 <input type="file" id="foto_produk" name="foto_produk" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" onchange="previewImage()">
             </div>
 
