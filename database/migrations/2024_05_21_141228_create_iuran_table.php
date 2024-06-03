@@ -16,9 +16,9 @@ class CreateIuranTable extends Migration
             $table->string('keterangan');
             $table->string('bukti');
             $table->unsignedBigInteger('rt_id');
-
+            $table->string('status');
             // Foreign key constraint
-            $table->foreign('rt_id')->references('id')->on('data_rt');
+            $table->foreign('rt_id')->references('id')->on('rts');
         });
     }
 

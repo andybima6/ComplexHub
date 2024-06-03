@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             DataKartuKeluargaSeeder::class,
             AnggotaKeluargaSeeder::class,
             SuggestionSeeder::class,
+            IuranSeeder::class,
             // DataKkSeeder::class,
             // PendudukSeeder::class,
             // WargaSeeder::class,

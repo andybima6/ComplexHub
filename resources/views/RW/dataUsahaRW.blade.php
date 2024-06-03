@@ -53,16 +53,16 @@
                 <tbody>
                     @foreach ($izinUsaha as $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->id }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->nama_warga }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->nama_usaha }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->deskripsi }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
                                 <img src="{{ asset($izin->foto_produk) }}" alt="">
                             </div>
                         </td>
-                        <td class="border px-4 py-2 text-center" style="color: white">Izin telah di setujui</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">Izin telah di setujui</td>
 
                     </tr>
                     @endforeach

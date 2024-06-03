@@ -10,7 +10,7 @@
 
 <style>
     #kotakBiru {
-        background-color: #659DBD; 
+        background-color: #659DBD;
         filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));
         font-family: 'Poppins', sans-serif;
     }
@@ -44,7 +44,7 @@
         flex-direction: column; */
         align-items: left;
     }
-    
+
     .umkm-container {
         /* display: flex;
         flex-direction: column; */
@@ -149,7 +149,7 @@
                                     <path d="M 80 82 L 80 66 C 80 63.6 78.8 61.2 76.8 59.6 C 72.4 56 66.8 53.6 61.2 52 C 57.2 50.8 52.8 50 48 50 C 43.6 50 39.2 50.8 34.8 52 C 29.2 53.6 23.6 56.4 19.2 59.6 C 17.2 61.2 16 63.6 16 66 L 16 82 L 80 82 Z"/>
                                 </g>
                             </svg>
-                            
+
                             <h5 style="font-weight: 600; color: white; margin-left: 10px;">RT : </h5>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="40px" height="40px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                            <g>
-                               <path fill="#FFFFFF" d="M256,0C114.625,0,0,114.625,0,256s114.625,256,256,256c141.406,0,256-114.625,256-256S397.406,0,256,0z 
+                               <path fill="#FFFFFF" d="M256,0C114.625,0,0,114.625,0,256s114.625,256,256,256c141.406,0,256-114.625,256-256S397.406,0,256,0z
                                    M325.812,354.844c-12.594,14.125-30.78,22.438-54.562,24.938V416h-30.313v-36.031c-39.656-4.062-64.188-27.125-73.656-69.125
                                    l46.875-12.219c4.344,26.406,18.719,39.594,43.125,39.594c11.406,0,19.844-2.812,25.219-8.469s8.062-12.469,8.062-20.469
                                    c0-8.281-2.688-14.563-8.062-18.813c-5.375-4.28-17.344-9.688-35.875-16.25c-16.656-5.78-29.688-11.469-39.063-17.155
@@ -207,7 +207,7 @@
                                    c10.25,5.844,18.406,13.938,24.531,24.219c6.094,10.313,9.155,22.345,9.155,36.126C344.719,323.125,338.406,340.75,325.812,354.844z"/>
                                 </g>
                             </svg>
-                       
+
                             <h5 style="font-weight: 600; color: white; margin-left: 10px;">Iuran : </h5>
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            
+
                             <h5 style="font-weight: 600; color: white; margin-left: 10px;">Jumlah Kegiatan : </h5>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
 
     <br><br><br><br>
 
-    
+
     <div class="charts" style="display: flex; justify-content: center;">
         <div class="chart md:max-w-lg">
             <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">Jumlah Warga</h2>
@@ -269,9 +269,9 @@
             </div>
         </div>
         ...
-        
+
     </div>
-    
+
     <div id="wrapkotak2" style="padding: 40px; border-radius: 12px; position: relative; top: 32px; left: 16px;">
         <div id="kotak" style="display: flex; flex-wrap: wrap; justify-content: center;">
             <div style="flex: 1 1 28%; max-width: 28%; padding: 20px;">
@@ -300,7 +300,7 @@
                             </svg>
                             <h5 style="font-weight: 600; color: white; margin-left: 10px;">Saran Dan Pengaduan</h5>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -498,7 +498,7 @@
                 height: '600',
                 type: 'pie',
             },
-            labels: ['RT 1', 'RT 2', 'RT 3', 'RT 4', 'RT 5'],
+            labels: ['RT 1', 'RT 2', 'RT 3', 'RT 4', 'RT 5', 'RT 6', 'RT 7'],
             legend: {
                 position: 'bottom'
             },
@@ -565,7 +565,7 @@
         colors: ["#304758"]
       }
     },
-    
+
     xaxis: {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       position: 'top',
@@ -604,7 +604,7 @@
           return val + "%";
         }
       }
-    
+
     },
     title: {
       text: 'Iuran Warga',
