@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Iuran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class IuranWargaController extends Controller
 {
@@ -47,7 +48,7 @@ class IuranWargaController extends Controller
         ]);
 
         // Log the validated data
-        \Log::info('Validated Data:', $validatedData);
+        Log::info('Validated Data:', $validatedData);
 
         // Handle file upload
         if ($request->hasFile('bukti')) {

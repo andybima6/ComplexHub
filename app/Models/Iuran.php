@@ -23,6 +23,6 @@ class Iuran extends Model
 
     public function rt()
     {
-        return $this->belongsTo(DataRt::class, 'rt_id');
+        return $this->belongsTo(RT::class, 'rt_id');
     }
 }

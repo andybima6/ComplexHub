@@ -47,22 +47,22 @@
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
+                        {{-- <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($izinUsaha as $izin)
+                    @foreach ($izinUsaha as $index => $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->id }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->nama_warga }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->nama_usaha }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">{{ $izin->deskripsi }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: white">
+                        <td class="border px-4 py-2 text-center" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset($izin->foto_produk) }}" alt="">
+                                <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
-                        <td class="border px-4 py-2 text-center" style="color: white">Izin telah di setujui</td>
+                        {{-- <td class="border px-4 py-2 text-center" style="color: black">Pending</td> --}}
 
                     </tr>
                     @endforeach

@@ -28,6 +28,16 @@ class DatabaseSeeder extends Seeder
             DataKartuKeluargaSeeder::class,
             AnggotaKeluargaSeeder::class,
             SuggestionSeeder::class,
+<<<<<<< HEAD
+=======
+            IuranSeeder::class,
+            // DataKkSeeder::class,
+            // PendudukSeeder::class,
+            // WargaSeeder::class,
+            // DataRtSeeder::class,
+
+
+>>>>>>> 77e03badd2efc1859a2c6c9657d8bd57501aebc0
         ]);
 
         DB::table('tb_alternatif')->insert([
