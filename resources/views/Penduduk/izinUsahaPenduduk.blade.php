@@ -23,9 +23,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($izinUsaha as $izin)
+                    @foreach ($izinUsaha as $index => $izin)
                     <tr>
-                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+                        <td class="border px-4 py-2 text-center" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
@@ -33,7 +33,7 @@
                         <td class="border px-4 py-2 text-center" style="color: black"><i>{{ $izin->status_rw }}</i></td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
+                                <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">

@@ -14,29 +14,29 @@ class UmkmSeeder extends Seeder
     public function run(): void
     {
         Umkm::create([
-            'nama_warga' => 'lukman',
+            'nama_warga' => 'aku',
             'nama_usaha' => 'Menara Cafe',
             'deskripsi' => 'tempat nongkrong yang seru dan asik bisa buat nugas bareng juga',
-            'foto_produk' => 'foto-produk/wHiNCDGnnWZGJ11xUm70xXwhDIhlxvCZrUUg36js.png',
-            'status_rt' => 'pending',
-            'status_rw' => 'pending',
+            'foto_produk' => 'public/img/wHiNCDGnnWZGJ11xUm70xXwhDIhlxvCZrUUg36js.png',
+            'status_rt' => 'izin belum disetujui oleh ketua RT',
+            'status_rw' => 'izin belum disetujui oleh ketua RW',
         ]);
         Umkm::create([
-            'nama_warga' => 'lukman',
+            'nama_warga' => 'aku',
             'nama_usaha' => 'RS Cafe',
             'deskripsi' => 'solusi tempat nongkrong yang murah dan 24 jam, kamu bisa ngobrol santai dan melakukan hal seru lainnya bareng temen kamu!',
-            'foto_produk' => 'foto-produk/R4KsDSVEtK0Gke7IDZfLDIIMNb2MEn1q73qdseow.png',
-            'status_rt' => 'pending',
-            'status_rw' => 'pending',
+            'foto_produk' => 'public/img/JrCl3bbhFI8pqaF2wfWCnqz0sRTD41WpMjWQNmzv.png',
+            'status_rt' => 'izin belum disetujui oleh ketua RT',
+            'status_rw' => 'izin belum disetujui oleh ketua RW',
 
         ]);
         Umkm::create([
-            'nama_warga' => 'lukman',
+            'nama_warga' => 'aku',
             'nama_usaha' => 'Pangea Castle',
             'deskripsi' => 'bengkel motor custom impian para lelaki',
-            'foto_produk' => 'foto-produk/179cAiEckQzyZBFKiTL1LB9OZhaQ3d78DCIzVnT7.png',
-            'status_rt' => 'pending',
-            'status_rw' => 'pending',
+            'foto_produk' => 'public/img/cYv9vA34KmXV3EWOgJHe51em9tbJr7f45X0c55O6.png',
+            'status_rt' => 'izin belum disetujui oleh ketua RT',
+            'status_rw' => 'izin belum disetujui oleh ketua RW',
         ]);
     }
 }
