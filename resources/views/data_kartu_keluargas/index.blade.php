@@ -28,7 +28,7 @@ background-color: #286090; /* Darker shade on hover */
                 <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Tambah Kartu Keluarga</button>
             </form>
         </div>
-
+        
         <form method="GET" action="{{ route('data_kartu_keluargas.index') }}" class="flex items-end mb-6 space-x-4">
             <div>
                 <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
@@ -52,42 +52,31 @@ background-color: #286090; /* Darker shade on hover */
         </tr>
       </thead>
       <tbody>
-        @foreach($data_kartu_keluargas as $index => $kk)
-        <tr  data-id="{{ $kk->id }}">
-            <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
-            </td>
+        @foreach($data_kartu_keluargas as $kk)
+        <tr>
+          <td class="border px-4 py-2 text-center">{{ $kk->id }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-          <td class="border px-4 py-2 text-center">{{ $kk->rt->rt_id }}</td>
+          <td class="border px-4 py-2 text-center">{{ $kk->rt->rt }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">
-                <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15.5 3H21.5V9" />
-                        <path d="M9.5 21H3.5V15" />
-                        <path d="M21.5 3L14.5 10" />
-                        <path d="M3.5 21L10.5 14" />
-                    </svg>
-                </a>
-                <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">
-                    <svg class="w-5 h-5" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17.5 1L6.5 12L1.5 7" />
-                    </svg>
-                </a>
-                <form action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST" class="ml-2">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
-                        <svg class="w-6 h-6" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18.5 6L6.5 18" />
-                            <path d="M6.5 6L18.5 18" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
-        </td>
+              <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                  Lihat
+              </a>
+              <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">
+                  Edit
+              </a>
+              <form action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST" class="ml-2">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                      Hapus
+                  </button>
+              </form>
+          </div>          
+        </td>        
         </tr>
         @endforeach
       </tbody>
@@ -99,8 +88,6 @@ background-color: #286090; /* Darker shade on hover */
   function confirmDelete(id) {
     if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
       document.getElementById('delete-form-' + id).submit();
-    }else{
-        return false;
     }
   }
 </script>
