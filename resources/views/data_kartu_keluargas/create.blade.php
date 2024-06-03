@@ -30,7 +30,7 @@
         <label for="rt_id" class="text-gray-700 font-medium mb-1">RT</label>
         <select name="rt_id" id="rt_id" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" required>
           @foreach($rts as $rt)
-            <option value="{{ $rt->id }}">{{ $rt->rt }}</option>
+            <option value="{{ $rt->RT_id }}">{{ $rt->rt_id }}</option>
           @endforeach
         </select>
       </div>
