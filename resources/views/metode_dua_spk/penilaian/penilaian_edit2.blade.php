@@ -41,8 +41,8 @@
            
 
             <div class="form-group mb-4">
-                <label for="biaya_tiket_masuk" class="block text-lg font-bold text-gray-700">Biaya Tiket Masuk</label>
-                <input type="text" name="biaya_tiket_masuk" id="biaya_tiket_masuk" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->biaya_tiket_masuk }}">
+                <label for="tiket" class="block text-lg font-bold text-gray-700">Biaya Tiket Masuk</label>
+                <input type="text" name="tiket" id="tiket" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->tiket }}">
             </div>
 
             <div class="form-group mb-4">
@@ -61,8 +61,8 @@
             </div>
 
             <div class="form-group mb-4">
-                <label for="biaya_akomodasi" class="block text-lg font-bold text-gray-700">Biaya Akomodasi</label>
-                <input type="text" name="biaya_akomodasi" id="biaya_akomodasi" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->biaya_akomodasi }}">
+                <label for="akomodasi" class="block text-lg font-bold text-gray-700">Biaya Akomodasi</label>
+                <input type="text" name="akomodasi" id="akomodasi" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->akomodasi }}">
             </div>
 
             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2 relative top-5">Update</button>

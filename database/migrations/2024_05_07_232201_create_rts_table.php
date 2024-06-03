@@ -16,6 +16,11 @@ class CreateRtsTable extends Migration
             $table->string('nomor_telefon');
             $table->timestamps();
         });
+
+        Schema::table('users' ,function (Blueprint $table) {
+            $table->foreign('rt_id')->references('id')->on('rts')->onDelete('cascade');
+
+        });
     }
 
     public function down()
