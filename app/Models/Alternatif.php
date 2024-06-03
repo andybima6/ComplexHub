@@ -9,6 +9,10 @@ class Alternatif extends Model
 {
     use HasFactory;
 
-    protected $table ='tb_alternatif';
-    protected $primaryKey ='id_alternatif';
+    protected $fillable = ['nama'];
+
+    public function nilaiKriteria()
+    {
+        return $this->hasMany(NilaiAlternatif::class);
+    }
 }

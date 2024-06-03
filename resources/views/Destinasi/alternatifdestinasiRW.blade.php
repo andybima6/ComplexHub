@@ -5,25 +5,24 @@
         <style>
             #navbar {
                 display: flex;
-                justify-content: center; /* Mengatur item agar berada di tengah secara horizontal */
-                align-items: center; /* Mengatur item agar berada di tengah secara vertikal */
-                gap: 20px; /* Menambahkan jarak antar item */
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
             }
             #navbar a {
                 padding: 10px 20px;
                 text-decoration: none;
                 font-size: 24px;
                 font-weight: 600;
-                color: #000; /* Warna teks */
-                transition: color 0.3s; /* Efek transisi warna */
+                color: #000;
+                transition: color 0.3s;
             }
             #navbar a:hover {
-                color: #007BFF; /* Warna teks saat dihover */
+                color: #007BFF;
             }
         </style>
 
         <nav id="navbar">
-            <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
             <a href="{{ url('destinasi/Destinasi/kriteriadestinasiRW') }}">Kriteria</a>
             <a href="{{ url('destinasi/Destinasi/alternatifdestinasiRW') }}">Alternatif</a>
             <a href="{{ url('destinasi/Destinasi/penilaiandestinasiRW') }}">Penilaian</a>
@@ -33,7 +32,7 @@
         <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white;">
             <div class="card-header mb-4 flex justify-between items-center">
                 <h2 class="text-2xl font-semibold">List Data Alternatif</h2>
-                <a href="{{ route('alternatif.create', ['nama' => 'Fasilitas']) }}" class="btn btn-primary">Tambah Alternatif</a>
+                <a href="{{ route('Destinasi.create', ['namawisata' => '']) }}" class="btn btn-primary">Tambah Alternatif</a>
             </div>
             <div class="card-body">
                 <form action="{{ route('Destinasi.alternatifdestinasiRW') }}" method="GET" class="mb-4">

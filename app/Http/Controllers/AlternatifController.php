@@ -9,66 +9,53 @@ class AlternatifController extends Controller
 {
     public function index()
     {
-        $breadcrumb = (object) ['title' => 'Data Alternatif', 'subtitle' => ''];
-
-        $alternatif = Alternatif::all();
-        return view('Destinasi.alternatifdestinasiRW', compact('alternatif'), ['breadcrumb' => $breadcrumb]);
+        $breadcrumb = (object)[
+            'title' => 'Alternatif (Metode I)',
+            'subtitle' => '',
+        ];
+        $alternatifs = Alternatif::all();
+        return view('alternatif.index', compact('alternatifs'),  ['breadcrumb' => $breadcrumb]);
     }
 
-    public function create($namawisata)
+    public function create()
     {
-        $namawisata = 'Kayutangan Heritage';
-        $alternatif = Alternatif::all(); //mengambil semua data alternatif
-        return view('alternatif_create', compact('nama', 'kriteria'));
+        return view('alternatif.create');
     }
 
     public function store(Request $request)
     {
-        // Validasi data yang dikirim dari form
-        $validatedData = $request->validate([
-            'nama wisata' => 'required|string|max:255',
+        $request->validate([
+            'nama' => 'required|string|max:255',
         ]);
 
-        // Simpan Alternatif baru
-        $alternatif = Alternatif::create($validatedData);
+        Alternatif::create($request->all());
 
-        // Redirect ke halaman index alternatifdestinasiRW setelah berhasil menyimpan
-        return redirect()->route('Destinasi/alternatifdestinasiRW')->with('success', 'Data Alternatif berhasil disimpan');
-    }
-
-    public function show(Alternatif $alternatif)
-    {
-        $breadcrumb = (object) ['title' => 'Data Alternatif'];
-        return view('alternatif/show', compact('alternatif', 'breadcrumb'));
+        return redirect()->route('alternatif.index')
+                         ->with('success', 'Alternatif berhasil ditambahkan.');
     }
 
     public function edit(Alternatif $alternatif)
     {
-        $breadcrumb = (object) ['title' => 'Edit Data Alternatif'];
-        return view('/alternatif/edit', compact('alternatif', 'breadcrumb'));
+        return view('alternatif.edit', compact('alternatif'));
     }
 
     public function update(Request $request, Alternatif $alternatif)
     {
-        // Validasi data yang dikirim dari form
-        $validatedData = $request->validate([
-            'nama wisata' => 'required|string|max:255',
+        $request->validate([
+            'nama' => 'required|string|max:255',
         ]);
 
-        // Perbarui data alternatif
-        $alternatif->update($validatedData);
+        $alternatif->update($request->all());
 
-        // Redirect ke halaman index kriteria setelah berhasil memperbarui
-        return redirect()->route('Destinasi/alternatifdestinasiRW')->with('success', 'Data alternatif berhasil diperbarui');
+        return redirect()->route('alternatif.index')
+                         ->with('success', 'Alternatif berhasil diperbarui.');
     }
 
     public function destroy(Alternatif $alternatif)
     {
-        $breadcrumb = (object) ['title' => 'Hapus Data Alterntaif'];
-        // Hapus data Alternatif
         $alternatif->delete();
 
-        // Redirect ke halaman index Alternatif setelah berhasil menghapus
-        return redirect()->route('Destinasi/alternatifdestinasiRW')->with('success', 'Data Alternatif berhasil dihapus');
+        return redirect()->route('alternatif.index')
+                         ->with('success', 'Alternatif berhasil dihapus.');
     }
 }

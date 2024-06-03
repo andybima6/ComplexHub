@@ -66,7 +66,7 @@ background-color: #286090; /* Darker shade on hover */
             <th class="border px-4 py-2 text-center" style="color: black">RT</th>
             <th class="border px-4 py-2 text-center" style="color: black">Alamat</th>
             <th class="border px-4 py-2 text-center" style="color: black">Nomor Telefon</th>
-
+            <th class="border px-0 py-0 text-center" style="color: black">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -77,7 +77,7 @@ background-color: #286090; /* Darker shade on hover */
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
-            {{-- <td class="border px-4 py-2 text-center">
+            <td class="border px-4 py-2 text-center">
               <div class="flex justify-center space-x-2">
                 <a href="{{ route('rts.edit', $rt) }}" class="btn btn-warning px-2 py-1 bg-yellow-500">Edit</a>
                 <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
@@ -86,7 +86,7 @@ background-color: #286090; /* Darker shade on hover */
                   <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="btn btn-danger px-2 py-1 bg-red-500">Delete</button>
                 </form>
               </div>
-            </td> --}}
+            </td>
 
 
           </tr>

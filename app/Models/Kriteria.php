@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kriteria extends Model
 {
     use HasFactory;
-
-    protected $table ='tb_kriteria';
-    protected $primaryKey ='id_kriteria';
+    public function nilaiAlternatif()
+    {
+        return $this->hasMany(NilaiAlternatif::class);
+    }
 }

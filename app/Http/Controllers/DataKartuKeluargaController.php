@@ -9,21 +9,21 @@ use Illuminate\Http\Request;
 class DataKartuKeluargaController extends Controller
 {
     public function index(Request $request)
-    {
-        $breadcrumb = (object)[
-            'title' => 'Pendataan',
-            'subtitle' => 'List Data Kartu Keluarga',
-        ];
+{
+    $breadcrumb = (object)[
+        'title' => 'Pendataan',
+        'subtitle' => 'List Data Kartu Keluarga',
+    ];
 
-        $search = $request->input('search');
-        $data_kartu_keluargas = DataKartuKeluarga::when($search, function ($query, $search) {
-            return $query->where('kepala_keluarga', 'like', "%{$search}%")
-                         ->orWhere('no_kk', 'like', "%{$search}%")
-                         ->orWhere('alamat', 'like', "%{$search}%");
-        })->get();
+    $search = $request->input('search');
+    $data_kartu_keluargas = DataKartuKeluarga::with('rt')->when($search, function ($query, $search) {
+        return $query->where('kepala_keluarga', 'like', "%{$search}%")
+                     ->orWhere('no_kk', 'like', "%{$search}%")
+                     ->orWhere('alamat', 'like', "%{$search}%");
+    })->get();
 
-        return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search'));
-    }
+    return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search'));
+}
 
     public function create()
     {

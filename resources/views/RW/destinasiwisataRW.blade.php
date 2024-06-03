@@ -72,7 +72,7 @@
     <div id="tombol-container">
         <!-- Menggunakan tag anchor untuk membuat tombol yang mengarahkan ke tampilan HTML -->
 
-        <a href="{{ url('destinasi/alternatifdestinasiRW') }}" class="tombol">Metode 1</a>
+        <a href="{{ route('alternatif.index') }}" class="tombol">SAW</a>
         <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}"class="tombol">MAUT</a>
 
     </div>

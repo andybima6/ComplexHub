@@ -5,10 +5,10 @@
     <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white;">
         <div class="card-header mb-4 flex justify-between items-center">
             <h2 class="text-2xl font-semibold">Tambah Alternatif</h2>
-            <a href="{{ route('createalternatif') }}" class="btn btn-danger">Kembali</a>
+            <a href="{{ route('alternatif.index') }}" class="btn btn-danger">Kembali</a>
         </div>
         <div class="card-body">
-            <form action="{{ route('alternatif/create') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('Destinasi.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="ID" class="form-label">ID</label>

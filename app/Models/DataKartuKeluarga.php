@@ -14,8 +14,10 @@ class DataKartuKeluarga extends Model
         return $this->hasMany(AnggotaKeluarga::class, 'kk_id');
     }
 
+    // Di model DataKartuKeluarga.php
     public function rt()
     {
         return $this->belongsTo(RT::class, 'rt_id');
     }
+
 }

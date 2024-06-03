@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_nilai', function (Blueprint $table) {
-            $table->id('id_nilai');
-            $table->string('id_alternatif', 16);
-            $table->string('id_kriteria', 16);
-            $table->double('nilai');
+        Schema::create('penilaians', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('alternative_id')->constrained('alternative')->onDelete('cascade');
+            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
+            $table->decimal('nilai', 10, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_nilai');
+        Schema::dropIfExists('penilaians');
     }
 };
