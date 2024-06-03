@@ -12,3 +12,4 @@ class Penilaian extends Model
     protected $table = 'penilaian';
     protected $fillable = ['alternatif', 'hasil'];
 }
+ 

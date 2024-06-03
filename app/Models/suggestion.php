@@ -10,7 +10,7 @@ class suggestion extends Model
     protected $fillable = [
         'tanggal',
         'name',
-        'description',
+        'field',
         'laporan',
         'status',
         'rt_id',

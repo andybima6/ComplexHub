@@ -126,7 +126,7 @@
                                 @endif
                             </td>
                             <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->rt_id }}</td>
+                            <td class="border px-4 py-2 text-center">RT {{ $activity->rt_id }}</td>
 
                             <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
                                 <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
@@ -185,7 +185,13 @@
                     </label>
                     <input id="editFileInput" name="document" style="display: none;" type="file">
 
-
+                    <select id="lingkup" name="rt_id" class="relative"
+                    style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                    @foreach ($rts as $rt)
+                        <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} -
+                            {{ $rt->nama }}</option>
+                    @endforeach
+                </select>
                 </div>
 
 

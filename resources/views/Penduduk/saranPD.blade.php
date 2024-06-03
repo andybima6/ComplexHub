@@ -160,9 +160,11 @@
                         style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
                         type="date" placeholder="tanggal">
 
-                    <input id="editNamaKegiatan" name="name" class="relative"
-                        style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px;"
-                        type="text" placeholder="name">
+                        <div class="mt-4 mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
+                        </div>
+
 
                     <input name="field" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"

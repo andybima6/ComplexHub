@@ -6,7 +6,7 @@
             <span class="bg-white"></span>
             <span class="bg-white"></span>
         </div>
-   
+
     </div>
     <nav class="ml-auto h-fit ">
         <svg class="w-12 h-12 rounded relative left mr-2 mt-1" viewBox="0 0 52 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,10 +21,10 @@
             <line x1="49.873" y1="19.5" x2="49.873" y2="38.9925" stroke="#FBEEC1" stroke-width="4"/>
             <line y1="36.9922" x2="50" y2="36.9922" stroke="#FBEEC1" stroke-width="4"/>
         </svg>
-        
 
 
-        {{-- <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
+
+        <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
         <br>
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">
@@ -34,7 +34,7 @@
                 RW {{ auth()->user()->rw }}
             @else
                 PD
-            @endif  --}}
+            @endif
     </nav>
 
 

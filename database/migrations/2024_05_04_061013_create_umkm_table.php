@@ -25,6 +25,7 @@ return new class extends Migration
                 ->restrictOnUpdate();
             $table->string('status_rt')->nullable();
             $table->string('status_rw')->nullable();
+            
             $table->timestamps();
         });
     }
