@@ -8,8 +8,13 @@ class KriteriaController extends Controller
 {
     public function index()
     {
+        $breadcrumb = (object)[
+            'title' => 'Kriteria (Metode I)',
+            'subtitle' => '',
+        ];
+
         $kriterias = Kriteria::all();
-        return view('kriteria.index', compact('kriterias'));
+        return view('kriteria.index', compact('kriterias'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function create()

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Criteria;
-use App\Models\Penilaian;
+use App\Models\penilaiandua;
 use App\Models\Alternative;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -23,7 +23,7 @@ class PenilaianSeeder extends Seeder
         $i = 0;
         foreach ($alternatives as $alternative) {
             // $criteria = $criterias->random(); // Mengambil criteria secara acak
-            Penilaian::create([
+            penilaiandua::create([
                 'alternative_id' => $alternative->id,
                 'criteria_id' => $criterias[$i]['id'],
                 'tiket' => $faker->randomFloat(2, 10, 100),

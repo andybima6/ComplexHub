@@ -9,8 +9,12 @@ class AlternatifController extends Controller
 {
     public function index()
     {
+        $breadcrumb = (object)[
+            'title' => 'Alternatif (Metode I)',
+            'subtitle' => '',
+        ];
         $alternatifs = Alternatif::all();
-        return view('alternatif.index', compact('alternatifs'));
+        return view('alternatif.index', compact('alternatifs'),  ['breadcrumb' => $breadcrumb]);
     }
 
     public function create()

@@ -341,7 +341,7 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/RW/destinasiwisataRW', [DestinasiController::class, 'indexRW'])->name('RW.destinasiwisataRW');
     Route::get('/Destinasi/berandadestinasiRW', [DestinasiController::class, 'indexberanda'])->name('RW.berandadestinasiRW');
-    Route::get('/Destinasi/alternatifdestinasiRW', [AlternatifController::class, 'index'])->name('Destinasi.alternatifdestinasiRW');
+    Route::get('/Destinasi/alternatifdestinasiRW', [AlternatifController::class, 'index'])->name('alternatif.index');
 
     Route::get('/Destinasi/kriteriadestinasiRW', [KriteriaController::class, 'index'])->name('kriteria.kriteriadestinasiRW');
     Route::get('/kriteria/create/{nama}', [KriteriaController::class, 'create'])->name('kriteria.create');
