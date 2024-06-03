@@ -2,76 +2,110 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Penilaian;
+use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\NilaiAlternatif;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PenilaianController extends Controller
 {
-    public function indexpenilaian()
+    public function index()
+{
+    $alternatifs = Alternatif::with('nilaiKriteria')->get();
+    $kriterias = Kriteria::all();
+    
+    return view('penilaian.index', compact('alternatifs', 'kriterias'));
+}
+
+public function show()
+{
+    // Lakukan operasi yang diperlukan untuk mempersiapkan data
+    // Misalnya, jika Anda perlu menghitung skor, Anda dapat melakukan itu di sini
+    $skor = []; // Anda perlu mengisi ini dengan data skor sesuai kebutuhan aplikasi Anda
+    $alternatifs = Alternatif::all(); // Anda mungkin perlu mengambil data alternatif sesuai kebutuhan
+
+    // Tampilkan view hasil penilaian dengan data yang sudah disiapkan
+    return view('penilaian.hasil', compact('skor', 'alternatifs'));
+}
+
+    public function create()
     {
-        $breadcrumb = (object) ['title' => 'Penilaian', 'subtitle' => 'Metode 1'];
-
-        $penilaian = Penilaian::all();
-        return view('penilaian.penilaiandestinasiRW', compact('penilaian'), ['breadcrumb' => $breadcrumb]);
+        $alternatifs = Alternatif::all();
+        $kriterias = Kriteria::all();
+        return view('penilaian.create', compact('alternatifs', 'kriterias'));
     }
-
-    public function create($nama)
-    {
-        $nama = 'Fasilitas';
-        $penilaian = Penilaian::all(); //mengambil semua data penilaian
-        return view('penilaian_create', compact('nama', 'penilaian'));
-    }
-
 
     public function store(Request $request)
     {
-        // Validasi data yang dikirim dari form
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'Jenis' => 'required|string|max:255',
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'nilai.*.*' => 'required|numeric', // Menyatakan bahwa setiap nilai harus ada dan harus numerik
         ]);
 
-        // Simpan Penilaian baru
-        $penilaian = Penilaian::create($validatedData);
+        // Jika validasi gagal, kembali ke halaman sebelumnya dengan pesan error
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-        // Redirect ke halaman index PenilaiandestinasiRW setelah berhasil menyimpan
-        return redirect()->route('penilaian/penilaiandestinasiRW')->with('success', 'Data Penilaian berhasil disimpan');
+        // Simpan nilai alternatif ke dalam basis data
+        foreach ($request->nilai as $alternatif_id => $nilai_kriteria) {
+            foreach ($nilai_kriteria as $kriteria_id => $nilai) {
+                NilaiAlternatif::updateOrCreate(
+                    ['alternatif_id' => $alternatif_id, 'kriteria_id' => $kriteria_id],
+                    ['nilai' => $nilai]
+                );
+            }
+        }
+
+        // Redirect ke halaman indeks penilaian
+        return redirect()->route('penilaian.index')->with('success', 'Penilaian berhasil disimpan.');
     }
 
-    public function show(Penilaian $penilaian)
+
+
+
+    // public function store(Request $request)
+    // {
+    //     // dd($request->alternatif_id, $request->kriteria_id);
+
+    //     foreach ($request->alternatif_id as $alternatif_id) {
+    //         foreach ($request->kriteria_id as $kriteria_id => $nilai) {
+    //             NilaiAlternatif::updateOrCreate(
+    //                 ['alternatif_id' => $alternatif_id, 'kriteria_id' => $kriteria_id],
+    //                 ['nilai' => $nilai]
+    //             );
+    //         }
+    //     }
+    //     return redirect()->route('penilaian.index');
+    // }
+
+    public function edit(Alternatif $alternatif)
     {
-        $breadcrumb = (object) ['title' => 'Data Penilaian'];
-        return view('penilaian/show', compact('penilaian', 'breadcrumb'));
+        $kriterias = Kriteria::all();
+        return view('penilaian.edit', compact('alternatif', 'kriterias'));
     }
 
-    public function edit(Penilaian $penilaian)
+
+    public function update(Request $request, Alternatif $alternatif)
     {
-        $breadcrumb = (object) ['title' => 'Edit Data Penilaian'];
-        return view('/penilaian/edit', compact('penilaian', 'breadcrumb'));
+        foreach ($request->kriteria_id as $kriteria_id => $nilai) {
+            $nilaiAlternatif = NilaiAlternatif::where('alternatif_id', $alternatif->id)
+                                               ->where('kriteria_id', $kriteria_id)
+                                               ->first();
+            if ($nilaiAlternatif) {
+                $nilaiAlternatif->update(['nilai' => $nilai]);
+            } else {
+                NilaiAlternatif::create([
+                    'alternatif_id' => $alternatif->id,
+                    'kriteria_id' => $kriteria_id,
+                    'nilai' => $nilai
+                ]);
+            }
+        }
+        return redirect()->route('penilaian.index');
     }
 
-    public function update(Request $request, Penilaian $penilaian)
-    {
-        // Validasi data yang dikirim dari form
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'jenis' => 'required|string|max:255',
-        ]);
-
-        // Perbarui data Penilaian
-        $penilaian->update($validatedData);
-
-        // Redirect ke halaman index kriteria setelah berhasil memperbarui
-        return redirect()->route('kriteria/kriteriadestinasiRW')->with('success', 'Data Kriteria berhasil diperbarui');
-    }
-
-    public function destroy(Penilaian $penilaian)
-    {
-        $breadcrumb = (object) ['title' => 'Hapus Data Penilaian'];
-        // Hapus data penilaian
-        $penilaian->delete();
-
-        // Redirect ke halaman index Kriteria setelah berhasil menghapus
-        return redirect()->route('penilaian/penilaiandestinasiRW')->with('success', 'Penilaian berhasil dihapus');
-    }
 }
+

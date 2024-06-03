@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up():void
 {
-    Schema::create('kriterias', function (Blueprint $table) {
+    Schema::create('nilai_alternatifs', function (Blueprint $table) {
         $table->id();
-        $table->string('nama');
-        $table->string('jenis'); // benefit atau cost
-        $table->decimal('bobot', 3, 2); // misal 0.50
+        $table->foreignId('alternatif_id')->constrained()->onDelete('cascade');
+        $table->foreignId('kriteria_id')->constrained()->onDelete('cascade');
+        $table->decimal('nilai', 5, 2); // nilai kriteria
         $table->timestamps();
     });
 }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kriterias');
+        Schema::dropIfExists('nilai_alternatifs');
     }
 };

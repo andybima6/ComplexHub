@@ -58,7 +58,7 @@ background-color: #286090; /* Darker shade on hover */
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-          <td class="border px-4 py-2 text-center">{{ $kk->rt->rt }}</td>
+          <td class="border px-4 py-2 text-center">{{ $kk->rt->nama_rt ?? 'N/A' }}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">
@@ -68,10 +68,10 @@ background-color: #286090; /* Darker shade on hover */
               <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">
                   Edit
               </a>
-              <form action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST" class="ml-2">
+              <form action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST" class="ml-2" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                  <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
                       Hapus
                   </button>
               </form>
@@ -83,13 +83,5 @@ background-color: #286090; /* Darker shade on hover */
     </table>
   </div>
 </main>
-
-<script>
-  function confirmDelete(id) {
-    if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-      document.getElementById('delete-form-' + id).submit();
-    }
-  }
-</script>
 
 @endsection

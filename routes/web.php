@@ -27,7 +27,7 @@ use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\IuranWargaController;
 
 use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\DataPendudukController;
+// use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
 // use App\Http\Controllers\AnggotaKeluargaController;
@@ -332,9 +332,9 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 });
 
 // untuk pegawai
-Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
-    Route::get('/pegawai', [DataPendudukController::class, 'index']);
-});
+// Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
+//     Route::get('/pegawai', [DataPendudukController::class, 'index']);
+// });
 
 
 // Destinasi Wisata
@@ -359,8 +359,14 @@ Route::get('/alternatif/{nama wisata}/create', [AlternatifController::class, 'cr
 Route::post('/alternatif/{nama wisata}/alternatif', [AlternatifController::class, 'storeAlternatif'])->name('alternatif.');
 Route::get('/alternatif/{nama wisata}', [AlternatifController::class, 'show'])->name('alternatif.show');
 
-Route::get('/saw', [SAWController::class, 'index']);
+//Route::get('/saw', [SAWController::class, 'index']);
 
+//spk repici
+Route::resource('kriteria', KriteriaController::class);
+Route::resource('alternatif', AlternatifController::class);
+Route::resource('penilaian', PenilaianController::class);
+Route::put('penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
+Route::get('/saw', [SAWController::class, 'calculateSAW']);
 
 // Iuran
 // Route::group(['prefix' => 'iuran'], function () {
