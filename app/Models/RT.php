@@ -25,5 +25,9 @@ class RT extends Model
     {
         return $this->hasMany(RT::class, 'rt_id');
     }
+      public function umkm()
+    {
+        return $this->hasMany(Umkm::class, 'rt_id');
+    }
 }
 
