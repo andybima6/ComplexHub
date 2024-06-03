@@ -24,7 +24,7 @@ background-color: #286090; /* Darker shade on hover */
     <div class="card-header mb-4 flex justify-between items-center">
       <h2 class="text-2xl font-semibold">List Data RT</h2>
       {{-- <a href="{{ route('rts.create') }}" class="btn btn-primary">Tambah Data RT</a> --}}
-    
+      <button type="button" class="search-button" onclick="window.location.href='{{ route('rws.create') }}'">Tambah Data RT</button>
     </div>
 
 
@@ -39,7 +39,7 @@ background-color: #286090; /* Darker shade on hover */
   </form> --}}
 
 <!-- Search form -->
-<form method="GET" action="{{ route('rts.index') }}"class="flex items-end mb-6 space-x-4">
+<form method="GET" action="{{ route('rws.index') }}"class="flex items-end mb-6 space-x-4">
   <div>
     <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
         <span class="text-blue-600">Search</span>
@@ -70,7 +70,7 @@ background-color: #286090; /* Darker shade on hover */
           </tr>
         </thead>
         <tbody>
-          @foreach($rts as $rt)
+          @foreach($rws as $rt)
           <tr>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->id }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nama }}</td>

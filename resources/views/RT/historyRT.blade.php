@@ -65,7 +65,7 @@
 <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="rounded-md relative p-16 top-32 left-16 bg-white">
         <div class="card-header mb-4 flex justify-between items-center">
-            <h2 class="text-2xl font-semibold">Data Iuran Warga</h2>
+            <h2 class="text-2xl font-semibold">History Iuran Warga RT : </h2>
         </div>
 
         <form method="GET" action="{{ route('search') }}" class="flex items-end mb-6 space-x-4">
@@ -94,7 +94,7 @@
                     <th class="border px-4 py-2 text-center" style="color: black">Periode</th>
                     <th class="border px-4 py-2 text-center" style="color: black">Total</th>
                     <th class="border px-4 py-2 text-center" style="color: black">Bukti</th>
-                    <th class="border px-4 py-2 text-center" style="color: black">RT</th>
+                    {{-- <th class="border px-4 py-2 text-center" style="color: black">RT</th> --}}
                     <th class="border px-4 py-2 text-center" style="color: black">Status</th>
                 </tr>
             </thead>
@@ -105,12 +105,12 @@
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->nama }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->periode }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->total }}</td>
-                    <td class="border px-4 py-2 text-center" style="color: black">
-                        <div class="flex justify-center">
+                    <td class="border px-4 py-2">
+                        <a href="{{ asset('storage/' . $ir->bukti) }}" download>
                             <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-full h-auto">
-                        </div>
+                        </a>
                     </td>
-                    <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->rt_id }}</td>
+                    {{-- <td class="border px-4 py-2 text-center" style="color: black">{{ $ir->rt_id }}</td> --}}
                     <td class="border px-4 py-2 text-center" style="color: black">
                         @if($ir->status == 'diproses')
                             <button class="bg-gray-500 text-white font-bold py-2 px-4 rounded">Diproses</button>

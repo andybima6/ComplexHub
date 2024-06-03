@@ -7,11 +7,12 @@
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
                 <p class="values w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
                     style="font-size: 80px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                    RT :
+                    RW :
                 <div class="values w-911 h-62 relative md:left-96 top-2 text-center md:text-left"
                     style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <div class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                        01
+                        {{'0' . strval(auth()->user()->id) }}
+
                         <!-- tambahkan opsi lainnya sesuai kebutuhan -->
                     </div>
                 </div>
@@ -29,7 +30,7 @@
                     </div>
                 </div>
 
-                
+
                 </div>
                 </p>
             </div>
