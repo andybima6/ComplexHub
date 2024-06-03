@@ -18,15 +18,15 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach($izinUsaha  as $izin)
+                    @foreach($izinUsaha  as $index => $izin)
                     <tr>
-    <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->id }}</td>
+    <td class="border px-4 py-2 text-center" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
     <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
     <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
     <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
     <td class="border px-4 py-2 text-center relative" style="color: black;">
         <div class="flex justify-center items-center" style="height: 100%;">
-            <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" style="max-width: 100%; height: auto;">
+            <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" style="max-width: 100%; height: auto;">
         </div>
     </td>                        
     <td class="border px-4 py-2 text-center" style="color: black"><i>Izin telah disetujui oleh ketua RT</i></td>

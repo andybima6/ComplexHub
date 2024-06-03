@@ -9,5 +9,6 @@ class Kriteria extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'jenis'];
+    protected $table ='tb_kriteria';
+    protected $primaryKey ='id_kriteria';
 }
