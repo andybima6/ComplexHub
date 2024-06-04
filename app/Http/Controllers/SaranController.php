@@ -59,6 +59,7 @@ class SaranController extends Controller
     // }
     public function storeSaran(Request $request)
     {
+        // Validasi input pengguna
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'name' => 'required|string|max:255',
@@ -67,12 +68,16 @@ class SaranController extends Controller
             'rt_id' => 'required|exists:rts,id',
         ]);
 
+        // Pastikan data hanya masuk ke rt_id yang sesuai
+        $rtId = $request->input('rt_id');
+        if (RT::where('id', $rtId)->exists()) {
+            Suggestion::create($validated);
+            return redirect()->back()->with('success', 'Suggestion added successfully.');
+        }
 
-
-        Suggestion::create($validated);
-
-        return redirect()->back()->with('success', 'Suggestion added successfully.');
+        return redirect()->back()->with('error', 'Invalid rt_id. Suggestion not added.');
     }
+
     public function ShowPenduduk($id)
     {
         $breadcrumb = (object)[
@@ -91,7 +96,7 @@ class SaranController extends Controller
             'tanggal' => 'required|date',
             'field' => 'required|string',
             'laporan' => 'required|string',
-            'rt_id' => 'required|exists:data_rt,id',
+            'rt_id' => 'required|exists:rts,id',
             'id' => 'required|exists:suggestions',
         ]);
 
@@ -107,6 +112,7 @@ class SaranController extends Controller
 
         return redirect(route('saranPD'));
     }
+
     public function deleteSaranPD(Request $request)
     {
         $request->validate([

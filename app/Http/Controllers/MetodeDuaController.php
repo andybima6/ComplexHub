@@ -204,6 +204,7 @@ class MetodeDuaController extends Controller
             'akomodasi' => 'required|numeric',
         ]);
 
+
         $penilaian = penilaiandua::findOrFail($id);
         $penilaian->update([
             'alternative_id' => $request->alternative_id,
@@ -297,7 +298,7 @@ class MetodeDuaController extends Controller
 }
 
 private function calculateRanking($normalizedData, $bobot_kriteria)
-    {
+         {
         $rankingScores = [];
 
     // Ambil bobot kriteria dari tabel 'criteria'

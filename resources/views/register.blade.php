@@ -29,28 +29,40 @@
                 <form method="POST" action="{{ route('proses_register') }}">
                     @csrf
                     <div class="input-block">
-                        <label for="name" class="input-label">Name</label>
-                        <input type="text" name="name" id="name" placeholder="Name" required>
-                    </div>
-                    <div class="input-block">
-                        <label for="email" class="input-label">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email" required>
-                    </div>
-                    <div class="input-block">
-                        <label for="password" class="input-label">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" required>
-                    </div>
-                    <div class="input-block">
-                        <label for="password_confirmation" class="input-label">Confirm Password</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
+                        <label for="name">Name</label>
+                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
                     </div>
 
-                    <a href="{{ route('login') }}">
-                    <div class="modal-buttons">
+                    <div class="input-block">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" required>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input id="password_confirmation" type="password" name="password_confirmation" required>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="rt_id">RT</label>
+                        <select id="rt_id" name="rt_id" required>
+                            @foreach($rts as $rt)
+                                <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} - {{ $rt->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                     <div class="modal-buttons">
                         <button type="submit" class="input-button">Register</button>
                     </div>
-                </a>
                 </form>
+
             </div>
             <div class="modal-right">
                 <img src="{{ asset('img/Pemandangan2.jpg') }}" alt="">
@@ -62,7 +74,7 @@
                     </path>
                 </svg>
             </button>
-        </div>
+        </div >
         <button class="modal-button">Click here to register</button>
     </div>
     <script src="{{ asset('js/login.js') }}"></script>

@@ -49,7 +49,7 @@ if (!function_exists('getSaranDetailJson')) {
             'tanggal' => $suggestion->tanggal,
             'name' => $suggestion->name,
             'field' => $suggestion->field,
-            'laporan' => $suggestion->Laporan,
+            'laporan' => $suggestion->laporan,
             'status' => $suggestion->status,
             'rt_id' => $suggestion->rt_id,
         ]);

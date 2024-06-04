@@ -28,7 +28,7 @@ background-color: #286090; /* Darker shade on hover */
                 <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Tambah Kartu Keluarga</button>
             </form>
         </div>
-        
+
         <form method="GET" action="{{ route('data_kartu_keluargas.index') }}" class="flex items-end mb-6 space-x-4">
             <div>
                 <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
@@ -53,7 +53,7 @@ background-color: #286090; /* Darker shade on hover */
     <table class="md:table-fixed w-full">
       <thead>
         <tr class="bg-gray-200 text-black font-medium text-center">
-          <th class="border px-4 py-2">ID</th>
+          <th class="border px-4 py-2">No</th>
           <th class="border px-4 py-2">Kepala Keluarga</th>
           <th class="border px-4 py-2">No KK</th>
           <th class="border px-4 py-2">Alamat</th>
@@ -86,8 +86,8 @@ background-color: #286090; /* Darker shade on hover */
                       Hapus
                   </button>
               </form>
-          </div>          
-        </td>        
+          </div>
+        </td>
         </tr>
         @endforeach
       </tbody>

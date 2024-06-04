@@ -23,8 +23,10 @@ return new class extends Migration
                 ->on('penduduk')
                 ->cascadeOnDelete()
                 ->restrictOnUpdate();
+                $table->foreignId('rt_id')->constrained('rts')->onDelete('cascade');
             $table->string('status_rt')->nullable();
             $table->string('status_rw')->nullable();
+
             $table->timestamps();
         });
     }

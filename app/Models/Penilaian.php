@@ -25,3 +25,4 @@ class Penilaian extends Model
         return $this->belongsTo(Criteria::class);
     }
 }
+ 

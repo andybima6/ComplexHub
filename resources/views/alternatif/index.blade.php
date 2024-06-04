@@ -2,6 +2,45 @@
 
 @section('content')
     {{-- Content --}}
+    <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px auto;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    /* Remove border on the bottom of the table body */
+    .table tbody tr:last-child td {
+        border-bottom: none;
+    }
+      
+    /* Style for the "Edit" button within the table cell */
+    .btn-warning {
+        background-color: #ffc107;
+        color: #212529;
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    }
+        </style>
     <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <!DOCTYPE html>
         <html lang="en">
@@ -28,10 +67,10 @@
         <body>
             <nav id="navbar">
                 <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
-                <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}">Kriteria</a>
-                <a href="{{ url('/metode_dua_spk/alternatifdestinasi2') }}">Alternatif</a>
-                <a href="{{ url('/metode_dua_spk/penilaiandestinasi2') }}">Penilaian</a>
-                <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
+                <a href="{{ url('/kriteria') }}">Kriteria</a>
+                <a href="{{ url('/alternatif') }}">Alternatif</a>
+                <a href="{{ url('/penilaian') }}">Penilaian</a>
+                <a href="{{ url('/saw') }}">Ranking</a>
             </nav>
 
             <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
@@ -39,11 +78,10 @@
                     style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
                     Data Alternatif Destinasi Wisata yang ingin di kunjungi :
                 </p>
-                <a href="{{ route('alternatif.create') }}" class="btn btn-primary mb-4">Tambah Alternatif</a>
                 <table class="md:table-fixed w-full">
                     <thead>
                         <tr>
-                            <th class="border px-4 py-2 text-center w-1/7">No</th>
+                            <th class="border px-4 py-2 text-center w-1/10">No</th>
                             <th class="border px-4 py-2 text-center w-1/7">Nama Wisata</th>
                             <th class="border px-4 py-2 text-center w-1/7">Aksi</th>
                         </tr>
@@ -54,14 +92,7 @@
                             <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
                             <td class="border px-4 py-2 text-center">{{ $alternatif->nama }}</td>
                             <td class="border px-4 py-2 text-center">
-                                <a class="bg-blue-500 hover:bg-blue-600" href="{{ route('alternatif.edit', $alternatif->id) }}" style="width:55px;height:34px;border-radius:10px; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; display:inline-block; text-align:center; line-height:34px;">
-                                    Edit
-                                </a>
-                                <form action="{{ route('alternatif.destroy', $alternatif->id) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bg-red-500 hover:bg-red-600" style="width:55px;height:34px;border-radius:10px; font-family: 'Montserrat', sans-serif; font-size: 10px;color:white; text-align:center; line-height:34px;">Delete</button>
-                                </form>
+                                <a href="{{ route('alternatif.edit', $alternatif->id) }}" class="btn btn-warning">Edit</a>
                             </td>
                         </tr>
                         @endforeach

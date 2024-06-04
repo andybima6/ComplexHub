@@ -20,4 +20,8 @@ class DataKartuKeluarga extends Model
         return $this->belongsTo(RT::class, 'rt_id');
     }
 
+    public function rw()
+    {
+        return $this->belongsTo(RT::class, 'rt_id');
+    }
 }
