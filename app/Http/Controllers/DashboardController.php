@@ -7,6 +7,7 @@ use App\Models\suggestion;
 use App\Models\Activity;
 use App\Models\DataPenduduk;
 use App\Models\Umkm;
+use App\Models\AnggotaKeluarga;
 
 class dashboardController extends Controller
 {
@@ -26,6 +27,7 @@ class dashboardController extends Controller
         $suggestions = suggestion::all();
         $activities = Activity::all();
         // $datapenduduk = DataPenduduk::all();
+        $anggotaKeluarga = AnggotaKeluarga::all();
         $breadcrumb = (object)[
             'title' => 'Daftar dashboard',
             'subtitle' => '',
@@ -39,6 +41,7 @@ class dashboardController extends Controller
         $suggestions = suggestion::all();
         $activities = Activity::all();
         // $datapenduduk = DataPenduduk::all();
+        $anggotaKeluarga = AnggotaKeluarga::all();
         $breadcrumb = (object)[
             'title' => 'Daftar dashboard',
             'subtitle' => '',

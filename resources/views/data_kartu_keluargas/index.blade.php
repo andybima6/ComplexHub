@@ -2,7 +2,55 @@
 
 @section('content')
 <style>
-<<<<<<< HEAD
+    @media (max-width: 640px) {
+    .responsive-table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .responsive-table thead,
+    .responsive-table tbody,
+    .responsive-table th,
+    .responsive-table td,
+    .responsive-table tr {
+      display: block;
+    }
+    .responsive-table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    .responsive-table tr {
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+    }
+    .responsive-table td {
+      border: none;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      padding-left: 50%;
+      white-space: normal;
+      text-align: left;
+    }
+    .responsive-table td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+    .responsive-table td:before {
+      content: attr(data-label);
+    }
+  }
+
+
+
+
     /* Layout and Whitespace */
     /* Color and Contrast */
     body {
@@ -61,16 +109,15 @@
     font-size: 24px;
     cursor: pointer;
 }
-
 </style>
 <main class="mx-auto p-8 sm:p-16 md:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-    <div class="rounded-md relative p-4 sm:p-8 md:p-16 top-8 sm:top-16 md:top-32 left-2 sm:left-8 md:left-16 bg-white">
+    {{-- <div class="rounded-md relative p-4 sm:p-8 md:p-16 top-8 sm:top-16 md:top-32 left-2 sm:left-8 md:left-16 bg-white">
         <div class="card-header mb-4 flex justify-between items-center">
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Data Kartu Keluarga</h2>
         </div>
         <form action="{{ route('data_kartu_keluargas.create') }}" method="GET">
             <button type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Tambah Kartu Keluarga</button>
-         </form>
+         </form> 
 <form method="GET" action="{{ route('data_kartu_keluargas.index') }}" class="flex items-end mb-6 space-x-4">
     <div>
         <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
@@ -85,29 +132,13 @@
       </label>
       <select id="rt_id" name="rt_id" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" onchange="filterRT()">
           <option value="">Pilih RT</option>
-          {{-- @foreach($rts as $rt)
+          @foreach($rts as $rt)
               <option value="{{ $rt->rt_id }}">{{ $rt->rt_id }}</option>
-          @endforeach --}}
+          @endforeach
       </select>
-=======
-    /* Buttons */
-.search-button,
-.edit-button,
-.delete-button {
-background-color: #337ab7; /* Blue for primary buttons */
-color: #fff; /* White text for contrast */
-border: none;
-border-radius: 4px; /* Rounded corners */
-padding: 8px 16px; /* Adjust padding for comfortable click area */
-cursor: pointer; /* Indicate clickable button */
-}
-.search-button:hover,
-.edit-button:hover,
-.delete-button:hover {
-background-color: #286090; /* Darker shade on hover */
-}
-</style>
-<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+    </div> --}}
+
+<main class="mx-auto p-10 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="rounded-md relative p-8 bg-white">
         <div class="flex justify-between items-center mb-6">
             <p class="text-2xl font-bold text-black">Data Kartu Keluarga</p>
@@ -131,12 +162,12 @@ background-color: #286090; /* Darker shade on hover */
               <select id="rt_id" name="rt_id" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" onchange="filterRT()">
                   <option value="">Pilih RT</option>
                   @foreach($rts as $rt)
-                      <option value="{{ $rt->rt_id }}">{{ $rt->rt_id }}</option>
+                      <option value="{{ $rt->id }} - {{ $rt->nama }}">{{ $rt->id }} - {{ $rt->nama }}</option>
                   @endforeach
               </select>
           </div>
         </form>
-
+    {{-- <div class="rounded-md relative p-8 bg-white">
     <table class="md:table-fixed w-full">
       <thead>
         <tr class="bg-gray-200 text-black font-medium text-center">
@@ -156,7 +187,7 @@ background-color: #286090; /* Darker shade on hover */
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-          <td class="border px-4 py-2 text-center">{{ $kk->rt->rt_id ?? 'N/A' }}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
+          <td class="border px-4 py-2 text-center">{{ $kk->rt->rt_id ?? 'N/A' }} - {{ $kk->rt->nama ?? 'N/A' }}</td> 
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">
@@ -179,10 +210,10 @@ background-color: #286090; /* Darker shade on hover */
         @endforeach
       </tbody>
     </table>
->>>>>>> 814fdd23147a91dcd4844bd2a4a67e8e01c64e7b
-  </div>
-        </form>
+    </div>
+  </div> --}}
 
+    
         <div class="card-body">
             @if(session('success'))
                 <div class="alert alert-success">
@@ -190,7 +221,7 @@ background-color: #286090; /* Darker shade on hover */
                 </div>
             @endif
         </div>
-
+        <div class="rounded-md relative p-8 bg-white">
         <div class="overflow-x-auto">
             <table class="table-auto w-full border-collapse border border-gray-300">
                 <thead>
@@ -211,7 +242,7 @@ background-color: #286090; /* Darker shade on hover */
                     <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
                     <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
                     <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-                    <td class="border px-4 py-2 text-center">{{ $kk->rt->nama_rt ?? 'N/A' }}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
+                    <td class="border px-4 py-2 text-center">{{ $kk->rt->rt_id ?? 'N/A' }} - {{ $kk->rt->nama ?? 'N/A' }}</td> 
                     <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
                     <td class="border px-4 py-2 text-center" style="color: black">
                       <div class="flex justify-center">
@@ -234,13 +265,13 @@ background-color: #286090; /* Darker shade on hover */
                   </tr>
                   @endforeach
                 </tbody>
-          
+                
             </table>
+        </div>
         </div>
     </div>
 </main>
 
-<<<<<<< HEAD
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -283,7 +314,7 @@ background-color: #286090; /* Darker shade on hover */
 
 
 
-=======
+
 <script>
   function filterRT() {
     var selectedRT = document.getElementById('rt_id').value;
@@ -298,5 +329,4 @@ background-color: #286090; /* Darker shade on hover */
   }
 </script>
 
->>>>>>> 814fdd23147a91dcd4844bd2a4a67e8e01c64e7b
 @endsection
