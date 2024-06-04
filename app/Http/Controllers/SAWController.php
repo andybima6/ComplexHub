@@ -14,46 +14,35 @@ class SAWController extends Controller
             'title' => 'Penilaian',
             'subtitle' => 'Destinasi Wisata dengan Perhitungan SAW',
         ];
-        // Ambil data alternatif dan kriteria
+
         $alternatifs = Alternatif::all();
         $kriterias = Kriteria::all();
 
-        // Inisialisasi skor akhir
         $skor = [];
+        $nilaiNormalisasi = [];
 
-        // Hitung skor akhir untuk setiap alternatif
         foreach ($alternatifs as $alternatif) {
             $totalSkor = 0;
             foreach ($kriterias as $kriteria) {
-                // Hitung nilai bobot normalisasi
-                $nilaiNormalisasi = $this->calculateNormalizedValue($alternatif, $kriteria);
-
-                // Hitung skor dengan bobot
-                $totalSkor += $nilaiNormalisasi * $kriteria->bobot;
+                $nilai = $this->calculateNormalizedValue($alternatif, $kriteria);
+                $nilaiNormalisasi[$alternatif->id][$kriteria->id] = $nilai;
+                $totalSkor += $nilai * $kriteria->bobot;
             }
-            // Simpan skor akhir
             $skor[$alternatif->id] = $totalSkor;
         }
 
-        // Sort skor secara descending
         arsort($skor);
-
-        // Tampilkan hasil perhitungan
-        return view('saw.hasil', compact('skor', 'alternatifs', 'breadcrumb'));
+        return view('saw.hasil', compact('skor', 'alternatifs', 'breadcrumb', 'kriterias', 'nilaiNormalisasi'));
     }
 
     private function calculateNormalizedValue($alternatif, $kriteria)
-{
-    // Hitung nilai normalisasi sesuai jenis kriteria
-    $nilai = $alternatif->nilaiKriteria->where('kriteria_id', $kriteria->id)->first()->nilai ?? 0;
-    
-    // Pastikan max_value tidak nol untuk menghindari pembagian oleh nol
-    $max_value = $kriteria->max_value != 0 ? $kriteria->max_value : 1;
-    
-    if ($kriteria->jenis == 'benefit') {
-        return $nilai / $max_value;
+    {
+        $nilai = $alternatif->nilaiKriteria->where('kriteria_id', $kriteria->id)->first()->nilai ?? 0;
+        $max_value = $kriteria->max_value != 0 ? $kriteria->max_value : 1;
+        
+        if ($kriteria->jenis == 'benefit') {
+            return $nilai / $max_value;
+        }
+        return $max_value / $nilai;
     }
-    // Tambahkan penanganan untuk kriteria dengan jenis 'cost' jika diperlukan
-}
-
 }
