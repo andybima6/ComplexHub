@@ -19,7 +19,11 @@ class KriteriaController extends Controller
 
     public function create()
     {
-        return view('kriteria.create');
+        $breadcrumb = (object)[
+            'title' => 'Kriteria (Metode I)',
+            'subtitle' => '',
+        ];
+        return view('kriteria.create', ['breadcrumb' => $breadcrumb]);
     }
 
     public function store(Request $request)
@@ -28,16 +32,30 @@ class KriteriaController extends Controller
         return redirect()->route('kriteria.index');
     }
 
-    public function edit(Kriteria $kriteria)
+    public function edit($id)
     {
-        return view('kriteria.edit', compact('kriteria'));
+        $breadcrumb = (object)[
+            'title' => 'Daftar Kriteria ',
+            'subtitle' => 'Edit Kriteria',
+        ];
+        $kriteria = Kriteria::findOrFail($id);
+        return view('kriteria.edit', ['breadcrumb' => $breadcrumb], compact('kriteria'));
     }
 
     public function update(Request $request, Kriteria $kriteria)
-    {
-        $kriteria->update($request->all());
-        return redirect()->route('kriteria.index');
-    }
+{
+    $request->validate([
+        'nama' => 'required|string',
+        'jenis' => 'required|string',
+        'bobot' => 'required|numeric',
+    ]);
+
+    $kriteria->update($request->all());
+    
+    return redirect()->route('kriteria.edit', $kriteria->id)->with('success', 'Kriteria berhasil diperbarui.');
+}
+
+
 
     public function destroy(Kriteria $kriteria)
     {

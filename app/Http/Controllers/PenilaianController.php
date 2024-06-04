@@ -13,10 +13,15 @@ class PenilaianController extends Controller
 {
     public function index()
 {
+    // $user = auth()->user();
+        $breadcrumb = (object)[
+            'title' => 'Daftar Penilaian (Metode I)',
+            'subtitle' => 'Data Penilaian',
+        ];
     $alternatifs = Alternatif::with('nilaiKriteria')->get();
     $kriterias = Kriteria::all();
     
-    return view('penilaian.index', compact('alternatifs', 'kriterias'));
+    return view('penilaian.index', compact('alternatifs', 'kriterias', 'breadcrumb'));
 }
 
 public function show()
@@ -32,9 +37,14 @@ public function show()
 
     public function create()
     {
+        $breadcrumb = (object)[
+            'title' => 'Daftar Penilaian (Metode I)',
+            'subtitle' => 'Pengisian Data Penilaian',
+        ];
+
         $alternatifs = Alternatif::all();
         $kriterias = Kriteria::all();
-        return view('penilaian.create', compact('alternatifs', 'kriterias'));
+        return view('penilaian.create', compact('alternatifs', 'kriterias', 'breadcrumb'));
     }
 
     public function store(Request $request)

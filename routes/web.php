@@ -349,24 +349,26 @@ Route::group(['prefix' => 'destinasi'], function () {
     Route::get('/Destinasi/penilaiandestinasiRW', [PenilaianController::class, 'indexpenilaian'])->name('penilaian.penilaiandestinasiRW');
     Route::get('/Destinasi/rankingdestinasiRW', [DestinasiController::class, 'indexranking'])->name('ranking.rankingdestinasiRW');
 });
-Route::resource('kriteria', KriteriaController::class);
-Route::get('/kriteria/{nama}/create', [KriteriaController::class, 'create'])->name('kriterias.create');
-Route::post('/kriteria/{nama}/kriteria', [KriteriaController::class, 'storeKriteria'])->name('kriteria.');
-Route::get('/kriteria/{nama}', [KriteriaController::class, 'show'])->name('kriteria.show');
+// Route::resource('kriteria', KriteriaController::class);
+// Route::get('/kriteria/{nama}/create', [KriteriaController::class, 'create'])->name('kriterias.create');
+// Route::post('/kriteria/{nama}/kriteria', [KriteriaController::class, 'storeKriteria'])->name('kriteria.');
+// Route::get('/kriteria/{nama}', [KriteriaController::class, 'show'])->name('kriteria.show');
 
-Route::resource('alternatif', AlternatifController::class);
-Route::get('/alternatif/{nama wisata}/create', [AlternatifController::class, 'create'])->name('alternatifs.create');
-Route::post('/alternatif/{nama wisata}/alternatif', [AlternatifController::class, 'storeAlternatif'])->name('alternatif.');
-Route::get('/alternatif/{nama wisata}', [AlternatifController::class, 'show'])->name('alternatif.show');
+// Route::resource('alternatif', AlternatifController::class);
+// Route::get('/alternatif/{nama wisata}/create', [AlternatifController::class, 'create'])->name('alternatifs.create');
+// Route::post('/alternatif/{nama wisata}/alternatif', [AlternatifController::class, 'storeAlternatif'])->name('alternatif.');
+// Route::get('/alternatif/{nama wisata}', [AlternatifController::class, 'show'])->name('alternatif.show');
 
 //Route::get('/saw', [SAWController::class, 'index']);
 
 //spk repici
+Route::get('kriteria/{id}/edit', [KriteriaController::class, 'edit'])->name('kriteria.edit');
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::resource('penilaian', PenilaianController::class);
 Route::put('penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
 Route::get('/saw', [SAWController::class, 'calculateSAW']);
+Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
 // Iuran
 // Route::group(['prefix' => 'iuran'], function () {
