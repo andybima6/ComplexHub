@@ -18,39 +18,6 @@
         <div class="card-header mb-4 flex flex-col sm:flex-row justify-between items-center">
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">List Data RT</h2>
         </div>
-<<<<<<< HEAD
-=======
-      <table class="table-auto w-full border-collapse border border-gray-300">
-        <thead>
-          <tr class="bg-gray-200 text-black font-medium text-center">
-            <th class="border px-4 py-2 text-center" style="color: black">No</th>
-            <th class="border px-4 py-2 text-center" style="color: black">Nama</th>
-            <th class="border px-4 py-2 text-center" style="color: black">RT</th>
-            <th class="border px-4 py-2 text-center" style="color: black">Alamat</th>
-            <th class="border px-4 py-2 text-center" style="color: black">Nomor Telefon</th>
-            <th class="border px-0 py-0 text-center" style="color: black">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($rts as $index => $rt)
-          <tr>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $index + 1 }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nama }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
-            <td class="border px-4 py-2 text-center">
-              <div class="flex justify-center space-x-2">
-                <a href="{{ route('rts.edit', $rt) }}" class="btn btn-warning px-2 py-1 bg-yellow-500">Edit</a>
-                <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
-                  @csrf
-                  @method('DELETE')
-                  <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="btn btn-danger px-2 py-1 bg-red-500">Delete</button>
-                </form>
-              </div>
-            </td>
->>>>>>> 814fdd23147a91dcd4844bd2a4a67e8e01c64e7b
-
         <!-- Search form -->
         <form method="GET" action="{{ route('rts.index') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
             <div class="w-full sm:w-auto">

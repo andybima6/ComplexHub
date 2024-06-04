@@ -24,15 +24,7 @@
 
 
 
-<<<<<<< HEAD
-        <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
-=======
-{{-- 
-         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>  
-        <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> --}}
->>>>>>> 814fdd23147a91dcd4844bd2a4a67e8e01c64e7b
-
-        <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
+        <<p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
         <br>
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">
