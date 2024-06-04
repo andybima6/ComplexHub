@@ -58,7 +58,7 @@ background-color: #286090; /* Darker shade on hover */
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-          <td class="border px-4 py-2 text-center">{{ $rt->rw->nama ?? 'Error' }}</td>
+          <td class="border px-4 py-2 text-center">{{ $kk->rt->id ?? 'Error' }} - {{ $kk->rt->nama ?? 'Error' }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">
