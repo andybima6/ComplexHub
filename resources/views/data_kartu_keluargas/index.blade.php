@@ -42,7 +42,7 @@ background-color: #286090; /* Darker shade on hover */
     <table class="md:table-fixed w-full">
       <thead>
         <tr class="bg-gray-200 text-black font-medium text-center">
-          <th class="border px-4 py-2">ID</th>
+          <th class="border px-4 py-2">No</th>
           <th class="border px-4 py-2">Kepala Keluarga</th>
           <th class="border px-4 py-2">No KK</th>
           <th class="border px-4 py-2">Alamat</th>
@@ -52,13 +52,13 @@ background-color: #286090; /* Darker shade on hover */
         </tr>
       </thead>
       <tbody>
-        @foreach($data_kartu_keluargas as $kk)
+        @foreach($data_kartu_keluargas as $index => $kk)
         <tr>
-          <td class="border px-4 py-2 text-center">{{ $kk->id }}</td>
+          <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-          <td class="border px-4 py-2 text-center">{{ $kk->rt->nama_rt ?? 'N/A' }}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
+          <td class="border px-4 py-2 text-center">{{ $rt->rw->nama ?? 'Error' }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">

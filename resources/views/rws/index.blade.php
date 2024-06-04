@@ -61,7 +61,7 @@ background-color: #286090; /* Darker shade on hover */
       <table class="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr class="bg-gray-200 text-black font-medium text-center">
-            <th class="border px-4 py-2 text-center" style="color: black">ID</th>
+            <th class="border px-4 py-2 text-center" style="color: black">No</th>
             <th class="border px-4 py-2 text-center" style="color: black">Nama</th>
             <th class="border px-4 py-2 text-center" style="color: black">RT</th>
             <th class="border px-4 py-2 text-center" style="color: black">Alamat</th>
@@ -70,9 +70,9 @@ background-color: #286090; /* Darker shade on hover */
           </tr>
         </thead>
         <tbody>
-          @foreach($rws as $rt)
+          @foreach($rws as $index => $rt)
           <tr>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->id }}</td>
+            <td class="border px-4 py-2 text-center" style="color: black">{{ $index + 1 }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nama }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
             <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
