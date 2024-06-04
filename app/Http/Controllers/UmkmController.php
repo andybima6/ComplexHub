@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\RT;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,8 +54,9 @@ class UmkmController extends Controller
             'title' => 'UMKM',
             'subtitle' => 'Izin Usaha Penduduk',
         ];
-
-        return view('Penduduk.izinUsahaPenduduk', ['breadcrumb' => $breadcrumb]);
+        $izinUsaha = Umkm::all(); // Assuming Umkm is the model for your izinUsaha
+        $rts = RT::all();
+        return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha', 'rts', 'breadcrumb'));
     }
 
     public function indexDataPenduduk() {
@@ -89,12 +91,13 @@ class UmkmController extends Controller
 
     public function indexDetailIzinRW($id) {
         $izinUsaha = Umkm::findOrFail($id);
+        $rts = RT::all();
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Detail Izin Usaha Warga',
         ];
 
-        return view('RW.detailIzinUsahaRW', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
+        return view('RW.detailIzinUsahaRW', compact('izinUsaha', 'rts'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function showUmkm() {
@@ -103,7 +106,8 @@ class UmkmController extends Controller
             'title' => 'UMKM',
             'subtitle' => 'Izin Usaha Penduduk',
         ];
-        return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
+        $rts = RT::all();
+        return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha','rts'), ['breadcrumb' => $breadcrumb]);
     }
 
     // public function storeIzin(Request $request) {
@@ -129,31 +133,33 @@ class UmkmController extends Controller
     // }
 
     public function storeIzin(Request $request) {
-        $validateData = $request->validate([
-            'nama_warga' => 'required',
-            'nama_usaha' => 'required',
-            'deskripsi' => 'required',
+        $validatedData = $request->validate([
+            'nama_warga' => 'required|string',
+            'nama_usaha' => 'required|string',
+            'deskripsi' => 'required|string',
             'foto_produk' => 'image|mimes:jpeg,png,jpg',
+            'rt_id' => 'required|exists:rts,id',
         ]);
-    
+
         // Periksa apakah file gambar telah diunggah sebelum menyimpannya
         if ($request->hasFile('foto_produk')) {
             $foto_produk = $request->file('foto_produk')->store('foto-produk');
         } else {
             $foto_produk = null; // Atau sesuaikan dengan logika bisnis Anda
         }
-    
+
         // Simpan data izin usaha ke dalam database menggunakan model Umkm
         Umkm::create([
-            'nama_warga' => $validateData['nama_warga'],
-            'nama_usaha' => $validateData['nama_usaha'],
-            'deskripsi' => $validateData['deskripsi'],
+            'nama_warga' => $validatedData['nama_warga'],
+            'nama_usaha' => $validatedData['nama_usaha'],
+            'deskripsi' => $validatedData['deskripsi'],
             'foto_produk' => $foto_produk, // Simpan nama file gambar jika ada, atau null jika tidak
+            'rt_id' => $validatedData['rt_id'],
         ]);
-    
-        // Redirect pengguna ke rute yang sesuai setelah data berhasil disimpan
-        return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil disimpan');
+
+        return redirect()->back()->with('success', 'Data izin usaha berhasil disimpan.');
     }
+
 
     public function edit($id) {
         $breadcrumb = (object)[
@@ -182,26 +188,26 @@ class UmkmController extends Controller
     //         'deskripsi' => 'required',
     //         'foto_produk' => 'required|image|mimes:jpeg,png,jpg|max:2048',
     //     ]);
-    
+
     //     $umkm = Umkm::findOrFail($id);
-    
+
     //     // Periksa apakah ada file foto produk yang diunggah
     //     if ($request->hasFile('foto_produk')) {
     //         // Hapus foto produk yang lama jika ada
     //         if (Storage::exists($umkm->foto_produk)) {
     //             Storage::delete($umkm->foto_produk);
     //         }
-    
+
     //         // Simpan foto produk yang baru
     //         $umkm->foto_produk = $request->file('foto_produk')->store('foto-produk');
     //     }
-    
+
     //     // Update data umkm
     //     $umkm->nama_warga = $request->nama_warga;
     //     $umkm->nama_usaha = $request->nama_usaha;
     //     $umkm->deskripsi = $request->deskripsi;
     //     $umkm->save();
-    
+
     //     return redirect()->route('Penduduk.izinUsahaPenduduk')->with('success', 'Data berhasil diperbarui');
     // }
 
@@ -212,19 +218,19 @@ class UmkmController extends Controller
             'deskripsi' => 'required',
             'foto_produk' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // pastikan untuk validasi file gambar
         ]);
-    
+
         // Cek apakah ada file gambar yang diunggah
         if ($request->hasFile('foto_produk')) {
             // Simpan file gambar yang diunggah ke penyimpanan yang diinginkan
             $imagePath = $request->file('foto_produk')->store('public/images');
-            
+
             // Mengambil nama file gambar untuk disimpan di database
             $fileName = basename($imagePath);
         } else {
             // Jika tidak ada file gambar yang diunggah, gunakan nama file gambar yang lama
             $fileName = $request->oldFotoProduk;
         }
-    
+
         // Update data Umkm
         $umkm = Umkm::findOrFail($id);
         $umkm->nama_warga = $request->nama_warga;
@@ -232,12 +238,12 @@ class UmkmController extends Controller
         $umkm->deskripsi = $request->deskripsi;
         $umkm->foto_produk = $fileName; // nama file gambar yang baru atau yang lama
         $umkm->save();
-    
+
         // Redirect kembali ke halaman izinUsahaPenduduk dengan pesan sukses
         return redirect()->route('izinUsahaPenduduk')->with('success', 'Data berhasil diperbarui');
     }
-    
-    
+
+
 
     public function updateStatus(Request $request, $id) {
         if (Auth::user()->role !== 'rt' && Auth::user()->role !== 'rw') {

@@ -27,7 +27,7 @@ class DataKartuKeluargaSeeder extends Seeder
                 'alamat' => '123 Main St',
                 'rt_id' => $rts->random()->id,
                 'status_ekonomi' => 'mampu',
-            ],
+            ], 
             [
                 'kepala_keluarga' => 'Jane Smith',
                 'no_kk' => '0987654321',
