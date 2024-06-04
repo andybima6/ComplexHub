@@ -10,6 +10,7 @@ class DataKartuKeluargaController extends Controller
 {
     public function index(Request $request)
 {
+    $rts = RT::all();
     $breadcrumb = (object)[
             'title' => 'Data',
             'subtitle' => 'Kartu Keluarga',
@@ -22,7 +23,7 @@ class DataKartuKeluargaController extends Controller
                      ->orWhere('alamat', 'like', "%{$search}%");
     })->get();
 
-    return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search'));
+    return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search', 'rts'));
 }
 
     public function create()

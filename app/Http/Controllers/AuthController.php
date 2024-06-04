@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\RT; // Add this line
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -22,54 +22,53 @@ class AuthController extends Controller
 
     public function proses_login(Request $request)
     {
-        // kita buat validasi pada saat tombol login diklik
-        // validasinya username & password wajib diisi
+        // Validasi input
         $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
 
-        // ambil data request username & password saja
+        // Ambil data request email & password
         $ambil = $request->only('email', 'password');
-        //cek jika data username dan password valid (sesuai) dengan data
+
+        // Cek jika data email dan password valid
         if (Auth::attempt($ambil)) {
-            // kalau berhasil simpan data usernya di variabel $user
+            // Jika berhasil simpan data user di variabel $user
             $user = Auth::user();
 
-
-            // cek role user dan arahkan ke rute yang sesuai
+            // Cek role user dan arahkan ke rute yang sesuai
             if ($user->role_id == 1) {
                 return redirect()->intended('dashboardRT');
             } else if ($user->role_id == 2) {
                 return redirect()->intended('dashboardRW');
             } else if ($user->role_id == 3) {
                 return redirect()->intended('dashboardPD');
+            }
 
-
-            // jika belum ada role maka ke halaman /
+            // Jika belum ada role maka ke halaman /
             return redirect()->intended('/');
         }
 
-        // jika tidak ada data user yang valid maka kembalikan lagi ke halaman login
-        // pastikan kirim pesar error juga kalau login gagal yaa...
+        // Jika tidak ada data user yang valid maka kembalikan lagi ke halaman login
         return redirect('/')
             ->withInput()
             ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
-    }
 
     public function register()
     {
-        // tampilkan view register
-        $id = role::select('id', 'role_name')->get();
-        return view('register', ['id' => $id]);
+        // Tampilkan view register
+        $roles = Role::select('id', 'role_name')->get();
+        $rts = RT::all(); // Add this line to get all RT
+        return view('register', ['roles' => $roles, 'rts' => $rts]);
     }
 
-    // aksi form register
+    // Aksi form register
     public function proses_register(Request $request)
     {
-        $rt = $request->input('rt') ?? '0';
+        $rt = $request->input('rt_id') ?? '0';
         $rw = $request->input('rw') ?? '0';
+
         // Buat validasi
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -96,7 +95,7 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $password,
             'role_id' => $pendudukRole->id, // Set role_id ke ID role "penduduk"
-            'rt' => $rt,
+            'rt_id' => $rt,
             'rw' => $rw,
         ]);
 
@@ -104,20 +103,15 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-
-
     public function logout(Request $request)
     {
-        // logout itu harus menghapus sessionnya
+        // Logout harus menghapus session
         $request->session()->flush();
 
-        // jalankan juga dungsi logout pada auth
+        // Jalankan juga fungsi logout pada auth
         Auth::logout();
-        // kembali ke halaman login
+
+        // Kembali ke halaman login
         return Redirect('login');
     }
-
 }
-
-
-
