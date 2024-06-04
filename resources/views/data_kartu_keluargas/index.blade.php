@@ -42,7 +42,7 @@ background-color: #286090; /* Darker shade on hover */
     <table class="md:table-fixed w-full">
       <thead>
         <tr class="bg-gray-200 text-black font-medium text-center">
-          <th class="border px-4 py-2">ID</th>
+          <th class="border px-4 py-2">No</th>
           <th class="border px-4 py-2">Kepala Keluarga</th>
           <th class="border px-4 py-2">No KK</th>
           <th class="border px-4 py-2">Alamat</th>
@@ -52,13 +52,17 @@ background-color: #286090; /* Darker shade on hover */
         </tr>
       </thead>
       <tbody>
-        @foreach($data_kartu_keluargas as $kk)
+        @foreach($data_kartu_keluargas as $index => $kk)
         <tr>
-          <td class="border px-4 py-2 text-center">{{ $kk->id }}</td>
+          <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
+{{-- <<<<<<< HEAD --}}
           <td class="border px-4 py-2 text-center">RT {{ $kk->rt_id}}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
+{{-- =======
+          <td class="border px-4 py-2 text-center">{{ $kk->rt->id ?? 'Error' }} - {{ $kk->rt->nama ?? 'Error' }}</td>
+>>>>>>> 959fa5b723b6587c7ca5f920c939b01999580463 --}}
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">

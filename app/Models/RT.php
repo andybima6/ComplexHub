@@ -29,5 +29,9 @@ class RT extends Model
     {
         return $this->hasMany(Umkm::class, 'rt_id');
     }
+    public function rw()
+    {
+        return $this->belongsTo(RW::class);
+    }
 }
 
