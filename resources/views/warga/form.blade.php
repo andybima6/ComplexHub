@@ -2,84 +2,110 @@
 
 @section('content')
 <style>
-    
     .custom-button {
-            padding: 15px 30px;
-            font-size: 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 15px;
-            background-color: #6f9bca;
-            color: white;
-            transition: all 0.3s ease;
-        }
+        padding: 15px 30px;
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 15px;
+        background-color: #6f9bca;
+        color: white;
+        transition: all 0.3s ease;
+    }
 
-        .form-container {
+    .form-container {
         margin: 20px auto;
         background: #fff;
         padding: 10px;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
     }
+
     .form-group {
         margin-bottom: 10px;
     }
+
     .label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
     }
+
     .input {
         width: 100%;
-        padding: 10px;
+        padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
         box-sizing: border-box;
     }
+
     .button {
         background-color: #007bff;
         color: #fff;
-        padding: 10px 20px;
+        padding: 8px 15px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
     }
+
     .button:hover {
         background-color: #0056b3;
     }
 
-        /* Medium devices (tablets, 768px and up) */
-        @media (max-width: 768px) {
-            .custom-button {
-                padding: 12px 25px;
-                font-size: 18px;
-            }
+    /* Medium devices (tablets, 768px and up) */
+    @media (max-width: 768px) {
+        .custom-button {
+            padding: 12px 25px;
+            font-size: 18px;
+        }
+    }
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (max-width: 576px) {
+        .custom-button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    }
+
+    /* Extra small devices (phones, less than 576px) */
+    @media (max-width: 480px) {
+        .custom-button {
+            padding: 8px 15px;
+            font-size: 14px;
         }
 
-        /* Small devices (landscape phones, 576px and up) */
-        @media (max-width: 576px) {
-            .custom-button {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
+        .form-container {
+            padding: 15px;
+            box-shadow: none;
+            max-width: 100%;
         }
 
-        /* Extra small devices (phones, less than 576px) */
-        @media (max-width: 480px) {
-            .custom-button {
-                padding: 8px 15px;
-                font-size: 14px;
-            }
+        .button {
+            width: 100%;
+            padding: 10px;
         }
+
+        .label, .input, .button {
+            font-size: 14px;
+        }
+
+        .input {
+            padding: 6px;
+        }
+    }
 </style>
-<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+
+<main class="mx-auto p-4 sm:p-6 md:p-36" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="form-container">
         <h2>Form Input Iuran</h2>
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="form-group">
-            <label for="nama" class="label">Nama:</label>
-            <input type="text" id="nama" name="nama" required class="input">
+            @csrf
+            <div class="form-group">
+                <label for="nama" class="label">Nama:</label>
+                <input type="text" id="nama" name="nama" required class="input">
             </div>
             
             <div class="form-group">
@@ -113,14 +139,12 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            
 
             <div class="form-group">
                 <button type="submit" onclick="return confirmSubmit()" class="button" id="kirim">Kirim</button>
             </div>
         </form>
     </div>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -128,11 +152,11 @@
 
 <script>
     const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger"
-      },
-      buttonsStyling: false
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
     });
 
     $(function(){

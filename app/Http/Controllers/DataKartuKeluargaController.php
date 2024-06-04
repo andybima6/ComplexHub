@@ -11,8 +11,8 @@ class DataKartuKeluargaController extends Controller
     public function index(Request $request)
 {
     $breadcrumb = (object)[
-        'title' => 'Pendataan',
-        'subtitle' => 'List Data Kartu Keluarga',
+            'title' => 'Data',
+            'subtitle' => 'Kartu Keluarga',
     ];
 
     $search = $request->input('search');
@@ -29,7 +29,7 @@ class DataKartuKeluargaController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Pendataan',
-            'subtitle' => 'Tambah Data Kartu Keluarga',
+            'subtitle' => 'Tambah Data KK',
         ];
         $rts = RT::all();
         return view('data_kartu_keluargas.create', compact('rts', 'breadcrumb'));
@@ -69,7 +69,7 @@ class DataKartuKeluargaController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Pendataan',
-            'subtitle' => 'Detail Data Kartu Keluarga',
+            'subtitle' => 'Detail',
         ];
 
         $anggotaKeluargas = $dataKartuKeluarga->anggotaKeluargas;
@@ -81,7 +81,7 @@ class DataKartuKeluargaController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Pendataan',
-            'subtitle' => 'Edit Data Kartu Keluarga',
+            'subtitle' => 'Edit',
         ];
         $rts = RT::all();
         return view('data_kartu_keluargas.edit', compact('dataKartuKeluarga', 'rts', 'breadcrumb'));

@@ -1,11 +1,10 @@
 @extends('layouts.welcome')
 
 @section('content')
-<main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+<main class="mx-auto p-8 sm:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
   <div class="container mx-auto p-4 bg-white rounded-md shadow-md" style="max-width: 500px;">
-    <header class="flex justify-between items-center mb-2">
+    <header class="flex justify-between items-center mb-4 sm:mb-2">
       <h2 class="text-xl font-semibold text-gray-800">Tambah Kartu Keluarga</h2>
-      <a href="{{ route('data_kartu_keluargas.index') }}" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Kembali</a>
     </header>
 
     <form action="{{ route('data_kartu_keluargas.store') }}" method="POST" enctype="multipart/form-data" class="space-y-3">
@@ -48,7 +47,8 @@
         <input type="file" name="foto_kartu_keluarga" id="foto_kartu_keluarga" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500">
       </div>
 
-      <div class="flex justify-center pt-4">
+      <div style="display: flex; justify-content: space-between;">
+        <a href="{{ route('data_kartu_keluargas.index') }}" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Kembali</a>
         <button type="submit" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Tambah</button>
       </div>
     </form>
@@ -60,5 +60,11 @@
   .btn-primary {
     background-color: #007bff;
     color: #fff;
+  }
+
+  @media screen and (max-width: 640px) {
+    .contain-responsive {
+      padding: 8px; /* Adjusting padding for smaller screens */
+    }
   }
 </style>

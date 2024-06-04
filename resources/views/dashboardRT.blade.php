@@ -267,7 +267,7 @@
     }
 </style>
 
-<main class="mx-auto" style="min-height: 100vh; background-color: #FBEEC1; padding: 36px; contain: responsive;">
+<main class="mx-auto" style="min-height: 15%; background-color: #FBEEC1; padding: 36px; contain: responsive;">
     
     <div style="height: 60px;"></div>
     <div id="wrapkotak">
