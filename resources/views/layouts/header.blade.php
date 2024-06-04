@@ -24,6 +24,7 @@
 
 
 
+<<<<<<< HEAD
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
 {{-- 
@@ -31,6 +32,9 @@
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> --}}
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
+=======
+        <<p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
+>>>>>>> 395f8a1af393cbb4ddca34b7dac4cbe1b32738aa
         <br>
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">

@@ -2,6 +2,7 @@
 
 @section('content')
 <style>
+<<<<<<< HEAD
     @media (max-width: 640px) {
     .responsive-table {
       display: block;
@@ -51,6 +52,8 @@
 
 
 
+=======
+>>>>>>> 395f8a1af393cbb4ddca34b7dac4cbe1b32738aa
     /* Layout and Whitespace */
     /* Color and Contrast */
     body {
@@ -136,6 +139,7 @@
               <option value="{{ $rt->rt_id }}">{{ $rt->rt_id }}</option>
           @endforeach
       </select>
+<<<<<<< HEAD
     </div> --}}
 
 <main class="mx-auto p-10 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
@@ -212,6 +216,10 @@
     </table>
     </div>
   </div> --}}
+=======
+  </div>
+        </form>
+>>>>>>> 395f8a1af393cbb4ddca34b7dac4cbe1b32738aa
 
     
         <div class="card-body">
@@ -311,6 +319,7 @@
       document.getElementById('imageModal').style.display = 'none';
   }
 </script>
+<<<<<<< HEAD
 
 
 
@@ -329,4 +338,7 @@
   }
 </script>
 
+=======
+>>>>>>> 395f8a1af393cbb4ddca34b7dac4cbe1b32738aa
 @endsection
+

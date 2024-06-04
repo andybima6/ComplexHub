@@ -24,7 +24,7 @@
           </div>
 
         <!-- Search form -->
-        <form method="GET" action="{{ route('rts.index') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
+        <form method="GET" action="{{ route('rws.index') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
             <div class="w-full sm:w-auto">
                 <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
                     <span class="text-blue-600">Search</span>
@@ -36,51 +36,53 @@
 
         <div class="card-body">
 
-        <!-- Success Message -->
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        </div>
-      <table class="table-auto w-full border-collapse border border-gray-300">
-        <thead>
-          <tr class="bg-gray-200 text-black font-medium text-center">
-            <th class="border px-4 py-2 text-center" style="color: black">No</th>
-            <th class="border px-4 py-2 text-center" style="color: black">Nama</th>
-            <th class="border px-4 py-2 text-center" style="color: black">RT</th>
-            <th class="border px-4 py-2 text-center" style="color: black">Alamat</th>
-            <th class="border px-4 py-2 text-center" style="color: black">Nomor Telefon</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($rws as $index => $rt)
-          <tr>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $index + 1 }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nama }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
-            <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
-            {{-- <td class="border px-4 py-2 text-center">
-              <div class="flex justify-center space-x-2">
-                <a href="{{ route('rts.edit', $rt) }}" class="btn btn-warning px-2 py-1 bg-yellow-500">Edit</a>
-                <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
-                  @csrf
-                  @method('DELETE')
-                  <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="btn btn-danger px-2 py-1 bg-red-500">Delete</button>
-                </form>
+          <!-- Success Message -->
+          @if(session('success'))
+              <div class="alert alert-success">
+                  {{ session('success') }}
               </div>
-            </td> --}}
+          @endif
+          </div>
 
-
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+              <thead>
+                <tr class="bg-gray-200 text-black font-medium text-center">
+                  <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">ID</th>
+                  <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Nama</th>
+                  <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">RT</th>
+                  <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Alamat</th>
+                  <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Nomor Telefon</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($rws as $rt)
+                <tr>
+                  <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->id }}</td>
+                  <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nama }}</td>
+                  <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
+                  <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
+                  <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
+                  {{-- <td class="border px-4 py-2 text-center">
+                    <div class="flex justify-center space-x-2">
+                      <a href="{{ route('rts.edit', $rt) }}" class="btn btn-warning px-2 py-1 bg-yellow-500">Edit</a>
+                      <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="btn btn-danger px-2 py-1 bg-red-500">Delete</button>
+                      </form>
+                    </div>
+                  </td> --}}
+      
+      
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </main>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
