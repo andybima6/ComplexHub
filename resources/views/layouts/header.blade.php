@@ -23,10 +23,15 @@
         </svg>
 
 
+<<<<<<< HEAD
 {{-- 
          <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>  
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> --}}
 
+=======
+
+        <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
+>>>>>>> 37bb9218fb79fc0d11160840e26aa1270580a51b
         <br>
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">

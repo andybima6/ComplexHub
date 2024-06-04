@@ -142,7 +142,14 @@ main {
     border-radius: 9px;
     z-index: 999;
 }
-
+@media only screen and (max-width: 1080px) {
+    .card {
+        width: 70%; /* Mengurangi lebar saat tampilan di perangkat mobile */
+        max-width: 80%;
+        max-height: 50%;
+        top: 70%
+    }
+}
 .header-responsive .card {
     display: flex;
     align-items: center;

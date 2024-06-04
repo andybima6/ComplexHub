@@ -25,5 +25,9 @@ class RW extends Model
     {
         return $this->hasMany(RT::class, 'rt_id');
     }
+    public function rts()
+    {
+        return $this->hasMany(RT::class);
+    }
 }
 
