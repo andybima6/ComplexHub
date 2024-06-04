@@ -23,12 +23,10 @@
         </svg>
 
 
-<<<<<<< HEAD
-         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>  
-=======
 
+         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>  
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
->>>>>>> 0a77c7436137ac5165a8b6866f15c8975fba7202
+
         <br>
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">
@@ -38,11 +36,7 @@
                 RW {{ auth()->user()->rw }}
             @else
                 PD
-<<<<<<< HEAD
             @endif  
-=======
-            @endif
->>>>>>> 0a77c7436137ac5165a8b6866f15c8975fba7202
     </nav>
 
 
