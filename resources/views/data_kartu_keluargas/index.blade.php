@@ -37,6 +37,17 @@ background-color: #286090; /* Darker shade on hover */
                 <input type="text" id="search" name="search" value="{{ request('search') }}" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama, Alamat, Nomor, dll">
             </div>
             <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Cari</button>
+            <div>
+              <label for="rt_id" class="block text-sm font-medium text-gray-700 mb-1">
+                  <span class="text-blue-600">Filter RT</span>
+              </label>
+              <select id="rt_id" name="rt_id" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" onchange="filterRT()">
+                  <option value="">Pilih RT</option>
+                  @foreach($rts as $rt)
+                      <option value="{{ $rt->rt_id }}">{{ $rt->rt_id }}</option>
+                  @endforeach
+              </select>
+          </div>
         </form>
 
     <table class="md:table-fixed w-full">
@@ -51,18 +62,14 @@ background-color: #286090; /* Darker shade on hover */
           <th class="border px-4 py-2">Aksi</th>
         </tr>
       </thead>
-      <tbody>
-        @foreach($data_kartu_keluargas as $index => $kk)
-        <tr>
-          <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
+      <tbody id="kk-table">
+        @foreach($data_kartu_keluargas as $kk)
+        <tr data-rt="{{ $kk->rt->rt_id ?? 'N/A' }}">
+          <td class="border px-4 py-2 text-center">{{ $kk->id }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-{{-- <<<<<<< HEAD --}}
-          <td class="border px-4 py-2 text-center">RT {{ $kk->rt_id}}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
-{{-- =======
-          <td class="border px-4 py-2 text-center">{{ $kk->rt->id ?? 'Error' }} - {{ $kk->rt->nama ?? 'Error' }}</td>
->>>>>>> 959fa5b723b6587c7ca5f920c939b01999580463 --}}
+          <td class="border px-4 py-2 text-center">{{ $kk->rt->rt_id ?? 'N/A' }}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">
@@ -87,5 +94,19 @@ background-color: #286090; /* Darker shade on hover */
     </table>
   </div>
 </main>
+
+<script>
+  function filterRT() {
+    var selectedRT = document.getElementById('rt_id').value;
+    var rows = document.querySelectorAll('#kk-table tr');
+    rows.forEach(function(row) {
+      if (selectedRT === "" || row.getAttribute('data-rt') === selectedRT) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+</script>
 
 @endsection
