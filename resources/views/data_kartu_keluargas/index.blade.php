@@ -28,7 +28,7 @@ background-color: #286090; /* Darker shade on hover */
                 <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Tambah Kartu Keluarga</button>
             </form>
         </div>
-        
+
         <form method="GET" action="{{ route('data_kartu_keluargas.index') }}" class="flex items-end mb-6 space-x-4">
             <div>
                 <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
@@ -58,7 +58,7 @@ background-color: #286090; /* Darker shade on hover */
           <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
           <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-          <td class="border px-4 py-2 text-center">{{ $kk->rt->nama_rt ?? 'N/A' }}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
+          <td class="border px-4 py-2 text-center">RT {{ $kk->rt_id}}</td> <!-- Tampilkan nama RT atau 'N/A' jika tidak ada -->
           <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td>
           <td class="border px-4 py-2 text-center" style="color: black">
             <div class="flex justify-center">
@@ -75,8 +75,8 @@ background-color: #286090; /* Darker shade on hover */
                       Hapus
                   </button>
               </form>
-          </div>          
-        </td>        
+          </div>
+        </td>
         </tr>
         @endforeach
       </tbody>
