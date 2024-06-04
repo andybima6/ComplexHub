@@ -10,7 +10,7 @@ class AlternatifController extends Controller
     public function index()
     {
         $breadcrumb = (object)[
-            'title' => 'Alternatif (Metode I)',
+            'title' => 'Alternatif (Metode SAW)',
             'subtitle' => '',
         ];
         $alternatifs = Alternatif::all();
@@ -19,7 +19,12 @@ class AlternatifController extends Controller
 
     public function create()
     {
-        return view('alternatif.create');
+        $breadcrumb = (object)[
+            'title' => 'Alternatif (Metode SAW)',
+            'subtitle' => '',
+        ];
+
+        return view('alternatif.create', compact('breadcrumb'));
     }
 
     public function store(Request $request)
@@ -36,7 +41,12 @@ class AlternatifController extends Controller
 
     public function edit(Alternatif $alternatif)
     {
-        return view('alternatif.edit', compact('alternatif'));
+        $breadcrumb = (object)[
+            'title' => 'Alternatif (Metode SAW)',
+            'subtitle' => '',
+        ];
+
+        return view('alternatif.edit', compact('alternatif'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function update(Request $request, Alternatif $alternatif)

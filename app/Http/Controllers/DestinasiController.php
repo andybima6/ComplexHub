@@ -13,7 +13,7 @@ class DestinasiController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Pemilihan Destinasi Wisata',
-            'subtitle' => 'dengan Metode Sistem Pengambilan Keputusan'
+            'subtitle' => 'dengan Metode Sistem Pendukung Keputusan'
         ];
         return view('RW.destinasiwisataRW', ['breadcrumb' => $breadcrumb]);
     }
@@ -23,7 +23,7 @@ class DestinasiController extends Controller
     $user = auth()->user();
 
     $breadcrumb = (object)[
-        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
+        'title' => 'Pemilihan Destinasi Wisata (SAW)',
         'subtitle' => 'Daftar Destinasi Wisata',
     ];
 
@@ -35,7 +35,7 @@ class DestinasiController extends Controller
     $user = auth()->user();
 
     $breadcrumb = (object)[
-        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
+        'title' => 'Pemilihan Destinasi Wisata (SAW)',
         'subtitle' => 'Daftar Alternatif Destinasi Wisata',
     ];
 
@@ -47,8 +47,8 @@ class DestinasiController extends Controller
     $user = auth()->user();
 
     $breadcrumb = (object)[
-        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
-        'subtitle' => 'Data Kriteria',
+        'title' => 'Pemilihan Destinasi Wisata (SAW)',
+        'subtitle' => 'Daftar Kriteria',
     ];
 
     return view('kriteria.kriteriadestinasiRW', ['breadcrumb' => $breadcrumb]);
@@ -71,7 +71,7 @@ class DestinasiController extends Controller
     $user = auth()->user();
 
     $breadcrumb = (object)[
-        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
+        'title' => 'Pemilihan Destinasi Wisata (SAW)',
         'subtitle' => 'Penilaian',
     ];
 
@@ -83,7 +83,7 @@ class DestinasiController extends Controller
     $user = auth()->user();
 
     $breadcrumb = (object)[
-        'title' => 'Pemilihan Destinasi Wisata (Metode 1)',
+        'title' => 'Pemilihan Destinasi Wisata (SAW)',
         'subtitle' => 'Hasil Perhitungan',
     ];
 
@@ -96,7 +96,7 @@ class DestinasiController extends Controller
 
         $breadcrumb = (object)[
             'title' => 'Pemilihan Destinasi Wisata',
-            'subtitle' => 'Dengan Metode 1 (Satu)',
+            'subtitle' => 'Dengan Metode SAW',
         ];
         return view('Penduduk.destinasiwisataPD', ['breadcrumb' => $breadcrumb]);
     }

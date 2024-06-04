@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             AnggotaKeluargaSeeder::class,
             SuggestionSeeder::class,
             IuranSeeder::class,
+            KriteriaSeeder::class,
+            AlternatifSeeder::class,
         ]);
 
     }

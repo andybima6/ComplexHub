@@ -53,7 +53,7 @@
 
         <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
             <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
-                Data Kriteria Destinasi Wisata yang ingin di kunjungi :
+                Data Kriteria Destinasi Wisata:
             </p>
 
             <form action="{{ route('kriteria.update', $kriteria->id) }}" method="POST">
@@ -62,14 +62,12 @@
                 <table class="md:table-fixed w-full table">
                     <thead>
                     <tr>
-                        <th class="text-center">Nama Wisata</th>
                         <th class="text-center">Jenis</th>
                         <th class="text-center">Bobot</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="text-center"><input type="text" name="nama" value="{{ $kriteria->nama }}"></td>
                         <td class="text-center"><input type="text" name="jenis" value="{{ $kriteria->jenis }}"></td>
                         <td class="text-center"><input type="text" name="bobot" value="{{ $kriteria->bobot }}"></td>
                     </tr>
