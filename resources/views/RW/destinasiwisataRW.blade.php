@@ -1,26 +1,82 @@
 @extends('layouts.welcome')
 @section('content')
-<main class="mx-auto p-4 md:p-36 contain-responsive min-h-screen" style="background-color: #FBEEC1;">
-    <div id="gambar-container" class="relative text-center">
-        <img src="{{ asset('img/background.png') }}" alt="Gambar" class="w-full h-auto mx-auto md:w-3/4 lg:w-1/2">
-        <div id="teks-di-gambar" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-lg md:text-2xl lg:text-4xl font-bold">
-            Selamat Datang Administrator, di Sistem Pendukung Keputusan pemilihan Destinasi Wisata
-        </div>
-        <div id="tombol-container" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-            <a href="{{ route('kriteria.index') }}" class="tombol bg-blue-500 text-white px-4 py-2 rounded-md">SAW</a>
-            <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}" class="tombol bg-blue-500 text-white px-4 py-2 rounded-md">MAUT</a>
-        </div>
+    {{-- Content --}}
+    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+
+</body>
+</html>
+<style>
+    #gambar-container {
+        text-align: center;
+    }
+    #gambar-container img {
+        width: 90%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 0;
+    }
+    #teks-di-gambar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 40px; /* Ubah ukuran font sesuai kebutuhan */
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    #tombol-di-gambar {
+        position: absolute;
+        top: calc(70% + 80px); /* Sesuaikan jarak tombol dari teks */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #4c8baf; /* Warna latar belakang tombol */
+        color: rgb(255, 255, 255);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #tombol-container {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .tombol {
+        background-color: #4c89af;
+        color: rgb(255, 255, 255);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+    .tombol.metode1 {
+    font-weight: bold;
+}
+
+.tombol.metode2 {
+    font-weight: bold;
+}
+
+
+</style>
+
+<div id="gambar-container">
+    <img src={{ asset('img/background.png') }} alt="Gambar">
+    <div id="teks-di-gambar">Selamat Datang Administrator, di Sistem Pendukung Keputusan pemilihan Destinasi Wisata </div>
+    <div id="tombol-container">
+        <!-- Menggunakan tag anchor untuk membuat tombol yang mengarahkan ke tampilan HTML -->
+
+        <a href="{{ route('kriteria.index') }}" class="tombol">SAW</a>
+        <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}"class="tombol">MAUT</a>
+
     </div>
+</div>
+
 </main>
 @endsection
-
-<style>
-    @media (max-width: 640px) {
-        #teks-di-gambar {
-            font-size: 20px; /* Sesuaikan ukuran font untuk HP */
-        }
-        #tombol-di-gambar {
-            top: calc(70% + 40px); /* Sesuaikan jarak tombol dari teks untuk HP */
-        }
-    }
-</style>
