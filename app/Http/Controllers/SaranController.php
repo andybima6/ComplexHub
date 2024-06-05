@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RT;
-use App\Models\suggestion;
+use App\Models\Suggestion;
 use Illuminate\Http\Request;
 
 class SaranController extends Controller
@@ -16,7 +16,7 @@ class SaranController extends Controller
             'title' => 'Saran dan Pengaduan',
             'subtitle' => '',
         ];
-        $suggestions = suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
+        $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
 
         return view('RT.saranRT', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb'));
     }
@@ -28,7 +28,7 @@ class SaranController extends Controller
             'title' => 'Saran dan Pengaduan',
             'subtitle' => '',
         ];
-        $suggestions = suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
+        $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
         return view('RW.saranRW', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb'));
     }
     public function indexPD()
@@ -39,7 +39,7 @@ class SaranController extends Controller
             'title' => 'Saran dan Pengaduan',
             'subtitle' => '',
         ];
-        $suggestions = suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
+        $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
         $rts = RT::all(); // Assuming you have a model named RT and you want to fetch all RT records
 
         return view('Penduduk.saranPD', ['breadcrumb' => $breadcrumb], compact('suggestions', 'breadcrumb', 'rts'));
@@ -85,7 +85,7 @@ class SaranController extends Controller
             'subtitle' => 'Detail Pengaduan',
         ];
         // $suggestion = Activity::where()
-        $suggestion = suggestion::findOrFail($id);
+        $suggestion = Suggestion::findOrFail($id);
         return view('Penduduk.detailSaranPD', compact('suggestion', 'breadcrumb'));
     }
     public function updateSaranPD(Request $request)
@@ -100,7 +100,7 @@ class SaranController extends Controller
             'id' => 'required|exists:suggestions',
         ]);
 
-        $suggestion = suggestion::findOrFail($request->post('id'));
+        $suggestion = Suggestion::findOrFail($request->post('id'));
 
 
         $suggestion->tanggal = $request->tanggal;
@@ -119,7 +119,7 @@ class SaranController extends Controller
             'id' => 'required|exists:suggestions',
         ]);
 
-        $suggestion = suggestion::findOrFail($request->id);
+        $suggestion = Suggestion::findOrFail($request->id);
 
         $suggestion->delete();
 
@@ -131,7 +131,7 @@ class SaranController extends Controller
 
     public function rejectSaranRW($id)
     {
-        $suggestion = suggestion::find($id);
+        $suggestion = Suggestion::find($id);
 
         if (!$suggestion) {
             return response()->json([
@@ -149,7 +149,7 @@ class SaranController extends Controller
 
     public function accSaranRW($id)
     {
-        $suggestion = suggestion::find($id);
+        $suggestion = Suggestion::find($id);
 
         if (!$suggestion) {
             return response()->json([
@@ -166,7 +166,7 @@ class SaranController extends Controller
     }
     public function rejectSaranRT($id)
     {
-        $suggestion = suggestion::find($id);
+        $suggestion = Suggestion::find($id);
 
         if (!$suggestion) {
             return response()->json([
@@ -184,7 +184,7 @@ class SaranController extends Controller
 
     public function accSaranRT($id)
     {
-        $suggestion = suggestion::find($id);
+        $suggestion = Suggestion::find($id);
 
         if (!$suggestion) {
             return response()->json([
@@ -207,7 +207,7 @@ class SaranController extends Controller
         ];
 
 
-        $suggestion = suggestion::findOrFail($id);
+        $suggestion = Suggestion::findOrFail($id);
         return view('rt.detailSaranRT', compact('suggestion', 'breadcrumb'));
     }
 
@@ -219,7 +219,7 @@ class SaranController extends Controller
         ];
 
 
-        $suggestion = suggestion::findOrFail($id);
+        $suggestion = Suggestion::findOrFail($id);
         return view('rw.detailSaranRW', compact('suggestion', 'breadcrumb'));
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 
 @section('content')
-<main class="mx-auto p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+<main class="mx-auto p-8 sm:p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="container mx-auto p-4 bg-gray-100 rounded-lg shadow-md">
         <header class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold text-gray-800">Tambah Anggota Keluarga</h2>
@@ -76,8 +76,27 @@
                     <option value="Belum Menikah" {{ old('status_perkawinan') == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
                 </select>
             </div>
-            <button type="submit" class="btn-primary px-4 py-2 rounded-md focus:outline-none">Simpan</button>
+            <button type="submit" class="btn-primary w-full px-4 py-2 rounded-md focus:outline-none">Simpan</button>
         </form>
     </div>
 </main>
 @endsection
+
+<style>
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    @media screen and (max-width: 640px) {
+        .container-responsive {
+            padding: 8px; /* Sesuaikan padding untuk layar yang lebih kecil */
+        }
+
+        .container {
+            max-width: none; /* Hapus batasan lebar untuk container */
+        }
+
+        /* Tambahkan styling tambahan sesuai kebutuhan pada layar kecil */
+    }
+</style>

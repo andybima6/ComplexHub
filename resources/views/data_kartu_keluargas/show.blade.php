@@ -73,7 +73,7 @@ p {
 }
 
   </style>
-<main class="mx-auto p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+<main class="mx-auto p-8 sm:p-16 md:p-36 contain-responsive" style="min-height: 200vh; background-color: #FBEEC1;">
 
     <div class="text-center mb-8">
         <h1 class="text-3xl font-bold">Kartu Keluarga</h1>
@@ -108,41 +108,45 @@ p {
       <a href="{{ route('data_kartu_keluargas.create_anggota', $dataKartuKeluarga->id) }}" class="btn btn-primary mb-4">Tambah Anggota Keluarga</a>
 
       @if(count($anggotaKeluargas) > 0)
+      <div class="overflow-x-auto">
+
           <div class="table-responsive">
-              <table class="table table-bordered table-hover text-center">
-                  <thead>
+            <table class="table-auto w-full border-collapse border border-gray-300">
+              <thead>
                       <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Nama</th>
-                          <th scope="col">NIK</th>
-                          <th scope="col">Tanggal Lahir</th>
-                          <th scope="col">Hubungan Keluarga</th>
-                          <th scope="col">Status Perkawinan</th>
-                          <th scope="col">Alamat</th>
-                          <th scope="col">Jenis Kelamin</th>
-                          <th scope="col">Golongan Darah</th>
-                          <th scope="col">Aksi</th>
+                          <th class="border px-2 sm:px-4 py-2">ID</th>
+                          <th class="border px-2 sm:px-4 py-2">Nama</th>
+                          <th class="border px-2 sm:px-4 py-2">NIK</th>
+                          <th class="border px-2 sm:px-4 py-2">Tanggal Lahir</th>
+                          <th class="border px-2 sm:px-4 py-2">Hubungan Keluarga</th>
+                          <th class="border px-2 sm:px-4 py-2">Status Perkawinan</th>
+                          <th class="border px-2 sm:px-4 py-2">Alamat</th>
+                          <th class="border px-2 sm:px-4 py-2">Jenis Kelamin</th>
+                          <th class="border px-2 sm:px-4 py-2">Golongan Darah</th>
+                          <th class="border px-2 sm:px-4 py-2">Aksi</th>
                       </tr>
                   </thead>
                   <tbody>
                       @foreach($anggotaKeluargas as $anggota)
                           <tr>
-                              <td>{{ $anggota->id }}</td>
-                              <td>{{ $anggota->nama }}</td>
-                              <td>{{ $anggota->nik }}</td>
-                              <td>{{ $anggota->tanggal_lahir }}</td>
-                              <td>{{ $anggota->hubungan_keluarga }}</td>
-                              <td>{{ $anggota->status_perkawinan }}</td>
-                              <td>{{ $anggota->alamat }}</td>
-                              <td>{{ $anggota->jenis_kelamin }}</td>
-                              <td>{{ $anggota->golongan_darah }}</td>
-                              <td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->id }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->nama }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->nik }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->tanggal_lahir }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->hubungan_keluarga }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->status_perkawinan }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->alamat }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->jenis_kelamin }}</td>
+                              <td class="border px-4 py-2 text-center">{{ $anggota->golongan_darah }}</td>
+                              <td class="border px-4 py-2 text-center">
                                   <div class="flex justify-center">
                                       <a href="{{ route('editAnggota', ['dataKartuKeluarga' => $dataKartuKeluarga->id, 'anggotaKeluarga' => $anggota->id]) }}" class="btn btn-warning btn-sm me-1">Edit</a>
                                       <form action="{{ route('destroyAnggota', ['dataKartuKeluarga' => $dataKartuKeluarga->id, 'anggotaKeluarga' => $anggota->id]) }}" method="POST" style="display:inline;">
                                           @csrf
                                           @method('DELETE')
-                                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota keluarga ini?')">Hapus</button>
+                                          <button id="deleteBtn" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                                          Hapus
+                                        </button>                                      
                                       </form>
                                   </div>
                               </td>
@@ -157,6 +161,7 @@ p {
           </div>
       @endif
   </div>
+</div>
 
 
 </main>
@@ -203,11 +208,11 @@ body {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
-  }
+  } */
 
-  .table th {
+   .table th {
     background-color: #f0f0f0;
-  }
+  } 
 
   .btn {
     padding: 10px 20px;
@@ -241,4 +246,35 @@ body {
     font-size: 12px;
   }
   </style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+  $(function(){
+      $(document).on('click', '#deleteBtn', function(e) { // Mengubah selektor menjadi '#deleteBtn'
+          e.preventDefault();
+          var form = $(this).closest('form');
+
+          Swal.fire({
+              title: "Apakah Anda Yakin?",
+              text: "Data Yang dihapus tidak bisa kembali!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "YA, Hapus Data!"
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  form.submit();
+                  Swal.fire({
+                      title: "Deleted!",
+                      text: "Your file has been deleted.",
+                      icon: "success"
+                  });
+              }
+          });
+      });
+  });
+</script>
 @endsection

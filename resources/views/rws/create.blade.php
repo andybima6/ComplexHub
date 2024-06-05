@@ -1,11 +1,11 @@
 @extends('layouts.welcome')
 
 @section('content')
-<main class="mx-auto p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+<main class="mx-auto p-4 sm:p-8 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
 <div class="container mx-auto p-4 bg-white rounded-md shadow-md" style="max-width: 500px;">
   <header class="flex justify-between items-center mb-2">
     <h2 class="text-xl font-semibold text-gray-800">Tambah Data RT</h2>
-    <a href="{{ route('rts.index') }}" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Kembali</a>
+    {{-- <a href="{{ route('rts.index') }}" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Kembali</a> --}}
   </header>
 
   <form action="{{ route('rts.store') }}" method="POST" class="space-y-3">
@@ -54,5 +54,12 @@
   .btn-primary {
     background-color: #007bff;
     color: #fff;
+  }
+
+  /* Style for responsiveness */
+  @media (max-width: 640px) {
+    .container-responsive {
+      padding: 4px;
+    }
   }
 </style>

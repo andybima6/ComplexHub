@@ -133,7 +133,7 @@
             text-align: center;
         }
 
-        .menu {
+        /* .menu {
             display: flex;
             justify-content: center;
             flex-grow: 1;
@@ -148,9 +148,97 @@
         }
 
         .menu a:hover {
-            color: #888; /* Change the color on hover */
-            transform: scale(1.3); /* Zoom effect on hover */
+            color: #888; 
+            transform: scale(1.3); 
         }
+        .menu {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #000000;
+} */
+
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #385668; /* Warna berubah saat dihover */
+}
+
+.menu a.active {
+    font-weight: bold; /* Memberi penekanan pada menu aktif */
+}
+
+/* Tambahkan animasi saat menu aktif */
+.menu a.active::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #385668;
+    transition: width 0.3s ease;
+}
+
+.menu a.active:hover::after {
+    width: 100%; /* Animasi lebar saat dihover */
+}
+
+/* Animasi efek underline saat menu dihover */
+.menu a:hover::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #385668;
+    transition: width 0.3s ease;
+}
+
+/* Animasi efek underline saat menu aktif */
+.menu a.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #385668;
+    transition: width 0.3s ease;
+}
+
+#login-landing {
+    text-align: center;
+}
+
+
+/* Media Query untuk tampilan pada perangkat mobile */
+@media screen and (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        justify-items: center; /* Tengahkan item */
+        padding: 10%;
+    }
+    .container p {
+        font-size: 10px;
+    }
+}
+
 </style>
 
 <header class="px-9 py-10" style="display: flex; align-items: center; justify-content: space-between;">
@@ -167,11 +255,9 @@
         <line y1="36.9922" x2="50" y2="36.9922" stroke="#385668" stroke-width="4"/>
     </svg>
     <div class="menu" style="display: flex; justify-content: center; flex-grow: 1;">
-        <a class="active" style="margin: 0 15px; font-size:24px; color: #000000;" href="#container">Beranda</a>
-        <a class="active" style="margin: 0 15px; font-size:24px; color: #000000;" href="#what-is-complexhub">Tentang</a>
-        <a class="active" style="margin: 0 15px; font-size:24px; color: #000000;" href="#umkm">UMKM</a>
-        {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">FAQ</p> --}}
-        {{-- <p class="active" style="margin: 0 15px; font-size:24px; color: #888;">Saran</p> --}}
+        <a class="active" style="margin: 0 10px; font-size:24px; color: #385668;" href="#container">Beranda</a>
+        <a class="active" style="margin: 0 10px; font-size:24px; color: #385668;" href="#what-is-complexhub">Tentang</a>
+        <a class="active" style="margin: 0 10px; font-size:24px; color: #385668;" href="#umkm">UMKM</a>
     </div>
     <div id="login-landing" class="btn btn-primary">
         <a href="{{ route('login') }}"><button>Masuk</button></a>

@@ -104,7 +104,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $alternatif->nama }}</td>
             @foreach($kriterias as $kriteria)
-              <td>{{ $alternatif->nilaiKriteria->where('kriteria_id', $kriteria->id)->first()->nilai ?? 'N/A' }}</td>
+              <td>{{ $alternatif->nilaiKriteria->where('kriteria_id', $kriteria->id)->first()->nilai ?? '0' }}</td>
             @endforeach
             <td>
               <a href="{{ route('penilaian.edit', $alternatif->id) }}" class="btn btn-warning">Edit</a>
