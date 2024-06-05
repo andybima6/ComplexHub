@@ -30,13 +30,13 @@
         <br>
 
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">
-            {{-- @if(auth()->user()->role_id == 1) --}}
-                {{-- RT {{ auth()->user()->rt }}
+            @if(auth()->user()->role_id == 1)
+            RT {{ auth()->user()->rt }}
             @elseif(auth()->user()->role_id == 2)
                 RW {{ auth()->user()->rw }}
             @else
                 PD
-            @endif   --}}
+            @endif
     </nav>
 
 
