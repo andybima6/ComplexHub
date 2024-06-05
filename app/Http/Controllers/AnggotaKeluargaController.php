@@ -10,7 +10,7 @@ class AnggotaKeluargaController extends Controller
 {
     public function create(DataKartuKeluarga $dataKartuKeluarga)
 {
-    // $dataKartuKeluarga = DataKartuKeluarga::latest()->first();
+    $dataKartuKeluarga = DataKartuKeluarga::latest()->first();
     
     // Periksa apakah objek $dataKartuKeluarga ada dan memiliki id yang valid`
     if ($dataKartuKeluarga) {
@@ -39,8 +39,7 @@ public function store(Request $request)
         'jenis_kelamin' => 'required|string|in:Perempuan,Laki-laki',
         'golongan_darah' => 'required|string|in:A,B,AB,O',
     ]);
-    // Menyimpan anggota keluarga dengan menyertakan kk_id
-    $anggotaKeluarga = AnggotaKeluarga::create([
+    AnggotaKeluarga::create([
         'kk_id' => $request->kk_id,
         'nama' => $request->nama,
         'nik' => $request->nik,

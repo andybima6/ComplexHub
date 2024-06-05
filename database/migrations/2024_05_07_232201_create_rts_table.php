@@ -11,15 +11,10 @@ class CreateRtsTable extends Migration
         Schema::create('rts', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('rt_id');
+            $table->string('rt');
             $table->string('alamat');
             $table->string('nomor_telefon');
             $table->timestamps();
-        });
-
-        Schema::table('users' ,function (Blueprint $table) {
-            $table->foreign('rt_id')->references('id')->on('rts')->onDelete('cascade');
-
         });
     }
 

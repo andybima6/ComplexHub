@@ -94,7 +94,7 @@ p {
             </div>
             <div>
                 <p class="font-semibold">RT:</p>
-                <p>{{ $dataKartuKeluarga->rt->rt_id }}</p>
+                <p>{{ $dataKartuKeluarga->rt->rt }}</p>
             </div>
             <div>
                 <p class="font-semibold">Status Ekonomi:</p>
