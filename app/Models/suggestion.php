@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class suggestion extends Model
+class Suggestion extends Model
 {
     protected $fillable = [
         'tanggal',

@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
             UmkmSeeder::class,
             DataKartuKeluargaSeeder::class,
             AnggotaKeluargaSeeder::class,
-            SuggestionSeeder::class,
+
             IuranSeeder::class,
             KriteriaSeeder::class,
             AlternatifSeeder::class,
+            SuggestionSeeder::class,
         ]);
 
     }
