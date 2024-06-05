@@ -365,6 +365,8 @@ Route::group(['prefix' => 'destinasi'], function () {
 Route::get('kriteria/{id}/edit', [KriteriaController::class, 'edit'])->name('kriteria.edit');
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
+Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('alternatif.update');
+
 Route::resource('penilaian', PenilaianController::class);
 Route::put('penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
 Route::get('/saw', [SAWController::class, 'calculateSAW']);

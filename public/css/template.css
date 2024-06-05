@@ -109,6 +109,19 @@ main {
     /* line-height: var(--header-height); */
 }
 
+.sidebar-active .header-responsive {
+    height: var(--header-height);
+    /* line-height: var(--header-height); */
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar-active .header-responsive {
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
 :root {
     --sidebar-width: 352px;
     /* Sesuaikan dengan lebar sidebar */

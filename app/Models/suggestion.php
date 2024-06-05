@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class suggestion extends Model
+class Suggestion extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'tanggal',
         'name',
@@ -25,3 +26,5 @@ class suggestion extends Model
         return $this->belongsTo(RT::class, 'rt_id');
     }
 }
+
+

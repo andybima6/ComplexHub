@@ -49,17 +49,33 @@ class AlternatifController extends Controller
         return view('alternatif.edit', compact('alternatif'), ['breadcrumb' => $breadcrumb]);
     }
 
-    public function update(Request $request, Alternatif $alternatif)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-        ]);
+    // public function update(Request $request, Alternatif $alternatif)
+    // {
+    //     $request->validate([
+    //         'nama' => 'required|string|max:255',
+    //     ]);
 
-        $alternatif->update($request->all());
+    //     $alternatif->update($request->all());
 
-        return redirect()->route('alternatif.index')
-                         ->with('success', 'Alternatif berhasil diperbarui.');
-    }
+    //     return redirect()->route('alternatif.index')
+    //                      ->with('success', 'Alternatif berhasil diperbarui.');
+    // }
+
+    // Contoh di controller
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        // tambahkan validasi lain jika diperlukan
+    ]);
+
+    $alternatif = Alternatif::findOrFail($id);
+    $alternatif->nama = $request->input('nama');
+    $alternatif->save();
+
+    // Set pesan sukses di session
+    return redirect()->route('alternatif.index', $id)->with('success', 'Perubahan berhasil disimpan!');
+}
 
     public function destroy(Alternatif $alternatif)
     {
