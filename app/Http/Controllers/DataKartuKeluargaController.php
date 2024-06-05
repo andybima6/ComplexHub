@@ -66,7 +66,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => 'required',
             'no_kk' => 'required',
             'rt_id' => 'required',
-            'status_ekonomi' => 'required',
             'foto_kartu_keluarga' => 'required|image',
             'alamat' => 'required',
         ]);
@@ -82,7 +81,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => $request->kepala_keluarga,
             'no_kk' => $request->no_kk,
             'rt_id' => $request->rt_id,
-            'status_ekonomi' => $request->status_ekonomi,
             'foto_kartu_keluarga' => $imageName,
             'alamat' => $request->alamat,
         ]);
@@ -118,7 +116,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => 'required',
             'no_kk' => 'required',
             'rt_id' => 'required',
-            'status_ekonomi' => 'required',
             'alamat' => 'required',
         ]);
 
@@ -133,7 +130,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => $request->kepala_keluarga,
             'no_kk' => $request->no_kk,
             'rt_id' => $request->rt_id,
-            'status_ekonomi' => $request->status_ekonomi,
             'foto_kartu_keluarga' => $imageName,
             'alamat' => $request->alamat,
         ]);

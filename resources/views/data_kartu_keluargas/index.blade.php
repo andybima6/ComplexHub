@@ -87,7 +87,7 @@
                 <table class="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr class="bg-gray-200 text-black font-medium text-center">
-                            <th class="border px-2 sm:px-4 py-2">No</th>
+                            <th class="border px-2 sm:px-4 py-2">ID</th>
                             <th class="border px-2 sm:px-4 py-2">No KK</th>
                             <th class="border px-2 sm:px-4 py-2">Kepala Keluarga</th>
                             <th class="border px-2 sm:px-4 py-2">Alamat</th>
@@ -158,16 +158,16 @@
                                   <td class="border px-4 py-2 text-center">${item.kepala_keluarga}</td>
                                   <td class="border px-4 py-2 text-center">${item.alamat}</td>
                                   <td class="border px-4 py-2 text-center">${item.rt ? item.rt.rt : 'N/A'}</td>
-                                //   <td class="border px-4 py-2 text-center">${item.status_ekonomi}</td>
                                   <td class="border px-4 py-2 text-center">
                                       <div class="flex justify-center">
                                           <a href="/data_kartu_keluargas/${item.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">Lihat</a>
                                           <a href="/data_kartu_keluargas/${item.id}/edit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">Edit</a>
-                                          <form action="/data_kartu_keluargas/${item.id}" method="POST" class="ml-2" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                              @csrf
-                                              @method('DELETE')
-                                              <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">Hapus</button>
-                                          </form>
+                                          <form id="delete-form-{{ $kk->id }}" action="{{ route('data_kartu_keluargas.destroy', $kk) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 
+                                            text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">Delete</button>
+                                        </form>
                                       </div>
                                   </td>
                               </tr>
@@ -192,7 +192,7 @@
           confirmButtonText: "YA, Hapus Data!"
       }).then((result) => {
           if (result.isConfirmed) {
-              document.getElementById('delete-form-' + kkId).submit();
+              document.getElementById('delete-form-' + kk_id).submit();
               Swal.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",

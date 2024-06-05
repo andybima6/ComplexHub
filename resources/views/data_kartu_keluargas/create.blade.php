@@ -1,6 +1,20 @@
 @extends('layouts.welcome')
 
 @section('content')
+
+<style>
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 640px) {
+    .contain-responsive {
+      padding: 8px; /* Adjusting padding for smaller screens */
+    }
+  }
+</style>
+
 <main class="mx-auto p-8 sm:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
   <div class="container mx-auto p-4 bg-white rounded-md shadow-md" style="max-width: 500px;">
     <header class="flex justify-between items-center mb-4 sm:mb-2">
@@ -49,22 +63,38 @@
 
       <div style="display: flex; justify-content: space-between;">
         <a href="{{ route('data_kartu_keluargas.index') }}" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Kembali</a>
+        <form id="submitform" action="submit" method="POST" onclick="SuccessMessage() style="display: inline-block;">
         <button type="submit" class="btn-primary px-3 py-2 rounded-md focus:outline-none">Tambah</button>
+        </form>
       </div>
     </form>
   </div>
 </main>
 @endsection
 
-<style>
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-  }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  @media screen and (max-width: 640px) {
-    .contain-responsive {
-      padding: 8px; /* Adjusting padding for smaller screens */
-    }
-  }
-</style>
+<script>
+  function SuccessMessage() {
+       Swal.fire({
+           title: "Berhasil!",
+           text: "Data KK Berhasil Ditambahkan.",
+           icon: "success"
+       }).then((result) => {
+           if (result.isConfirmed) {
+               document.getElementById('submitform').submit(); // Mengirim form setelah pengguna menekan tombol OK
+           }
+       });
+   }
+ 
+   function showImageModal(imageSrc) {
+       document.getElementById('modalImage').src = imageSrc;
+       document.getElementById('imageModal').style.display = 'flex';
+   }
+ 
+   function hideImageModal() {
+       document.getElementById('imageModal').style.display = 'none';
+   }
+ </script>
+ 
