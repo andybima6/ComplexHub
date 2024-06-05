@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Suggestion extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'tanggal',
         'name',
@@ -25,3 +26,5 @@ class Suggestion extends Model
         return $this->belongsTo(RT::class, 'rt_id');
     }
 }
+
+
