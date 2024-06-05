@@ -66,7 +66,7 @@ class AuthController extends Controller
     // Aksi form register
     public function proses_register(Request $request)
     {
-        $rt = $request->input('rt_id') ?? '0';
+        $rt_id = $request->input('rt_id') ?? '0'; // Ambil nilai rt_id dari request atau default ke '0'
         $rw = $request->input('rw') ?? '0';
 
         // Buat validasi
@@ -74,6 +74,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'rt_id' => 'required|integer|exists:rts,id', // Validasi rt_id
+            'rw' => 'required|integer',
         ]);
 
         // Jika validasi gagal, kembali ke halaman registrasi dengan pesan error
@@ -95,13 +97,14 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $password,
             'role_id' => $pendudukRole->id, // Set role_id ke ID role "penduduk"
-            'rt_id' => $rt,
+            'rt_id' => $rt_id,
             'rw' => $rw,
         ]);
 
         // Redirect ke halaman login
         return redirect()->route('login');
     }
+
 
     public function logout(Request $request)
     {

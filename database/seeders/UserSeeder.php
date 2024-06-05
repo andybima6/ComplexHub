@@ -114,6 +114,17 @@ class UserSeeder extends Seeder
                 'rt_id' => $rts->random()->id,
                 'rw' => 0,
             ],
+            [
+                'name' => 'andy',
+                'email' => 'andy@gmail.com',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('12345678'),
+                'role_id' => 3,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'rt_id' => $rts->random()->id,
+                'rw' => 0,
+            ],
             // [
             //     'name' => 'aku',
             //     'email' => 'aku@gmail.com',
