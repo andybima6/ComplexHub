@@ -1,6 +1,13 @@
 @extends('layouts.welcome')
 
 @section('content')
+    {{-- Tampilkan pesan sukses --}}
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     {{-- Content --}}
     <style>
     table {

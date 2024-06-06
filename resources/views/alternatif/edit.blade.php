@@ -1,7 +1,6 @@
 @extends('layouts.welcome')
 
 @section('content')
-    {{-- Content --}}
     <style>
         /* Table styles */
         table {
@@ -25,12 +24,6 @@
             background-color: #f9f9f9;
         }
 
-        /* Remove border on the bottom of the table body */
-        .table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Style for the "Edit" button within the table cell */
         .btn-warning {
             background-color: #007BFF;
             color: #ffffff;
@@ -40,10 +33,9 @@
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
-            text-decoration: none; /* Add this to remove underlines from anchor tags */
+            text-decoration: none;
         }
 
-        /* Responsive styles */
         @media (max-width: 768px) {
             .contain-responsive {
                 padding: 10px;
@@ -58,6 +50,32 @@
                 left: 8px;
             }
         }
+
+        /* Pop-up styles */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 20px; /* Ubah posisi vertikal menjadi atas */
+            left: 50%;
+            transform: translateX(-50%); /* Hanya geser secara horizontal */
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .popup {
+            animation: fadeInOut 4s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
 
     <main class="mx-auto p-10 md:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
@@ -71,10 +89,26 @@
 
         <div class="rounded-md relative p-10 md:p-16 bg-white mx-4 md:mx-28">
             <p class="mb-10 text-2xl font-semibold" style="font-family: 'Poppins', sans-serif; color: #2A424F;">
-                Data Alternatif Destinasi Wisata:
+                Edit Data Alternatif Destinasi Wisata:
             </p>
 
-            <form action="{{ route('alternatif.update', $alternatif->id) }}" method="POST">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div id="popup" class="popup">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <form action="{{ route('alternatif.update', $alternatif->id) }}" method="POST" id="updateForm">
                 @csrf
                 @method('PUT')
                 <table class="md:table-fixed w-full">
@@ -85,7 +119,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center"><input type="text" name="jenis" value="{{ $alternatif->nama }}"></td>
+                            <td class="text-center"><input type="text" name="nama" value="{{ old('nama', $alternatif->nama) }}"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -93,4 +127,16 @@
             </form>
         </div>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Check if session has success message and show the popup
+            @if (session('success'))
+                $('#popup').fadeIn(500, function() {
+                    $(this).fadeOut(3000); // Pop-up menghilang setelah 5 detik
+                });
+            @endif
+        });
+    </script>
 @endsection

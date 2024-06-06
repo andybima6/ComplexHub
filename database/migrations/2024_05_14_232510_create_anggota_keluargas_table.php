@@ -10,7 +10,7 @@ class CreateAnggotaKeluargasTable extends Migration
     {
         Schema::create('anggota_keluargas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kk_id')->constrained('data_kartu_keluargas')->onDelete('cascade');
+            $table->unsignedBigInteger('kk_id');
             $table->string('nik');
             $table->string('nama');
             $table->string('alamat');
@@ -20,6 +20,8 @@ class CreateAnggotaKeluargasTable extends Migration
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
             $table->enum('status_perkawinan', ['Menikah', 'Belum Menikah']);
             $table->timestamps();
+
+            $table->foreign('kk_id')->references('id')->on('data_kartu_keluargas')->onDelete('cascade');
         });
     }
 

@@ -54,13 +54,13 @@
             </select>
           </div>
     
-          <div class="form-group mb-4">
+          {{-- <div class="form-group mb-4">
             <label for="status_ekonomi" class="text-gray-700 font-medium mb-2">Status Ekonomi</label>
             <select name="status_ekonomi" class="form-control border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-blue-500 focus:ring-1" required>
               <option value="mampu" {{ $dataKartuKeluarga->status_ekonomi == 'mampu' ? 'selected' : '' }}>Mampu</option>
               <option value="tidak mampu" {{ $dataKartuKeluarga->status_ekonomi == 'tidak mampu' ? 'selected' : '' }}>Tidak Mampu</option>
             </select>
-          </div>
+          </div> --}}
           <div class="form-group">
             <button type="submit" onclick="return confirmSubmit()" class="button w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="edit">Update</button>
           </div>
