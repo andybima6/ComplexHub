@@ -24,10 +24,10 @@
 
 
 
-        <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> 
+
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
-         
-        {{-- <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>  
+
+        {{-- <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p>
         <p style="color: antiquewhite" class="inline-block btn p0 mr0">Halo,{{ auth()->user()->name }}</p> --}}
 
         <br>
@@ -38,7 +38,7 @@
             @elseif(auth()->user()->role_id == 2)
                 RW {{ auth()->user()->rw }}
             @else
-                PD
+                Penduduk
             @endif
     </nav>
 
