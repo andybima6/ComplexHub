@@ -363,14 +363,17 @@ Route::group(['prefix' => 'destinasi'], function () {
 
 //spk repici
 Route::get('kriteria/{id}/edit', [KriteriaController::class, 'edit'])->name('kriteria.edit');
+Route::get('kriteria', [KriteriaController::class, 'index'])->name('kriteria.kriteriadestinasiRW');
+Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('alternatif.update');
 
+
 Route::resource('penilaian', PenilaianController::class);
 Route::put('penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
 Route::get('/saw', [SAWController::class, 'calculateSAW']);
-Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
+// Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
 // Iuran
 // Route::group(['prefix' => 'iuran'], function () {

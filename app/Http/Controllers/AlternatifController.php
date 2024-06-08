@@ -42,8 +42,8 @@ class AlternatifController extends Controller
     public function edit(Alternatif $alternatif)
     {
         $breadcrumb = (object)[
-            'title' => 'Alternatif (Metode SAW)',
-            'subtitle' => '',
+            'title' => 'Daftar Alternatif',
+            'subtitle' => 'Edit Alternatif',
         ];
 
         return view('alternatif.edit', compact('alternatif'), ['breadcrumb' => $breadcrumb]);

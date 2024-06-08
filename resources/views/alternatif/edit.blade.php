@@ -5,12 +5,12 @@
         /* Table styles */
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 50%;
             margin: 20px auto;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
             text-align: left;
         }
@@ -24,7 +24,26 @@
             background-color: #f9f9f9;
         }
 
-        .btn-warning {
+        /* Form styles */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
             background-color: #007BFF;
             color: #ffffff;
             padding: 10px 20px;
@@ -34,47 +53,6 @@
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
-        }
-
-        @media (max-width: 768px) {
-            .contain-responsive {
-                padding: 10px;
-            }
-            .p-16 {
-                padding: 8px;
-            }
-            .top-24 {
-                top: 8px;
-            }
-            .left-16 {
-                left: 8px;
-            }
-        }
-
-        /* Pop-up styles */
-        #popup {
-            display: none;
-            position: fixed;
-            top: 20px; /* Ubah posisi vertikal menjadi atas */
-            left: 50%;
-            transform: translateX(-50%); /* Hanya geser secara horizontal */
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            z-index: 1000;
-            text-align: center;
-        }
-
-        .popup {
-            animation: fadeInOut 4s forwards;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; }
         }
     </style>
 
@@ -102,41 +80,23 @@
                 </div>
             @endif
 
-            @if (session('success'))
-                <div id="popup" class="popup">
-                    {{ session('success') }}
-                </div>
-            @endif
-
             <form action="{{ route('alternatif.update', $alternatif->id) }}" method="POST" id="updateForm">
                 @csrf
                 @method('PUT')
-                <table class="md:table-fixed w-full">
+                <table>
                     <thead>
                         <tr>
-                            <th class="text-center">Nama</th>
+                            <th>Nama Wisata</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center"><input type="text" name="nama" value="{{ old('nama', $alternatif->nama) }}"></td>
+                            <td><input type="text" name="nama" value="{{ old('nama', $alternatif->nama) }}"></td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="submit" class="btn-warning mt-4">Simpan Perubahan</button>
+                <button type="submit">Simpan Perubahan</button>
             </form>
         </div>
     </main>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Check if session has success message and show the popup
-            @if (session('success'))
-                $('#popup').fadeIn(500, function() {
-                    $(this).fadeOut(3000); // Pop-up menghilang setelah 5 detik
-                });
-            @endif
-        });
-    </script>
 @endsection
