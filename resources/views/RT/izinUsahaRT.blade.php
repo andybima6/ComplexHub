@@ -3,7 +3,7 @@
     {{-- Content --}}
     <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
-            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT 10:</p>
+            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
             <hr class="mb-6">
             {{-- <p class="mb-6" style="font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 500; color: black;">{{ $breadcrumb->subtitle }}</p> --}}
             <table class="md:table-fixed w-full">
@@ -30,6 +30,7 @@
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">
+                            <div class="flex justify-center items-center gap-2">
                             <a href="{{ route('detailIzinUsahaRT', ['id' => $izin->id]) }}">
                             <button style="width:45px;height:34px;border-radius:10px;background-color:#2F80ED">
                                 <svg style="margin-left: 10px;margin-top:2px" width="25" height="24"
@@ -67,6 +68,7 @@
                                 </svg>
                             </button>
                         </form>
+                    </div>
                         </td>
                     </tr>
                     @endforeach
