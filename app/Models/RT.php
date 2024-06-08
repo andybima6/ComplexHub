@@ -11,8 +11,7 @@ class RT extends Model
     protected $table = 'rts';
 
 
-    protected $fillable = ['nama', 'rt_id', 'alamat', 'nomor_telefon'];
-
+    protected $fillable = ['nama', 'rt', 'alamat', 'nomor_telefon'];
     public function dataKartuKeluargas()
     {
         return $this->hasMany(DataKartuKeluarga::class);
@@ -29,9 +28,6 @@ class RT extends Model
     {
         return $this->hasMany(Umkm::class, 'rt_id');
     }
-    public function rw()
-    {
-        return $this->belongsTo(RW::class);
-    }
+
 }
 

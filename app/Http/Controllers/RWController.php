@@ -29,33 +29,36 @@ class RWController extends Controller
     return view('rws.index', compact('rws', 'breadcrumb', 'search'));
 }
 
-    public function create()
-    {
-        $breadcrumb = (object)[
-            'title' => 'Pendataan',
-            'subtitle' => 'Tambah Data RT',
-        ];
-        return view('rws.create', compact('breadcrumb'));
-    }
+    // public function create()
+    // {
+    //     $breadcrumb = (object)[
+    //         'title' => 'Pendataan',
+    //         'subtitle' => 'Tambah Data RT',
+    //     ];
+    //     return view('rws.create', compact('breadcrumb'));
+    // }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'rt' => 'required',
-            'alamat' => 'required',
-            'nomor_telefon' => 'required'
-        ], [
-            'nama.required' => 'Nama harus diisi.',
-            'rt.required' => 'Nomor RT harus diisi.',
-            'alamat.required' => 'Alamat harus diisi.',
-            'nomor_telefon.required' => 'Nomor telepon harus diisi.'
-        ]);
+//     public function store(Request $request)
+// {
+//     $request->validate([
+//         'nama' => 'required',
+//         'rt' => 'required',
+//         'alamat' => 'required',
+//         'nomor_telefon' => 'required',
+//         'rt_id' => 'required'
+//     ], [
+//         'nama.required' => 'Nama harus diisi.',
+//         'rt.required' => 'Nomor RT harus diisi.',
+//         'alamat.required' => 'Alamat harus diisi.',
+//         'nomor_telefon.required' => 'Nomor telepon harus diisi.',
+//         'rt_id.required' => 'RT ID harus diisi.'
+//     ]);
 
-        RW::create($request->all());
-        $rtName = $request->nama;
-        return redirect()->route('rws.index')->with('success', "RW \"$rtName\" created successfully.");
-}
+//     RW::create($request->all());
+//     $rtName = $request->nama;
+//     return redirect()->route('rws.index')->with('success', "RT \"$rtName\" created successfully.");
+// }
+
 
     public function show(RW $rw)
     {

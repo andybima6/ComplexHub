@@ -8,29 +8,53 @@ use Illuminate\Http\Request;
 
 class DataKartuKeluargaController extends Controller
 {
+
     public function index(Request $request)
-{
-    $rts = RT::all();
-    $breadcrumb = (object)[
-        'title' => 'Pendataan',
-        'subtitle' => 'List Data Kartu Keluarga',
-    ];
+    {
+        $rts = RT::all();
+        $breadcrumb = (object)[
+            'title' => 'Data',
+            'subtitle' => 'Kartu Keluarga',
+        ];
+    
+        $search = $request->input('search');
+        $rt_id = $request->input('rt_id');
+    
+        $data_kartu_keluargas = DataKartuKeluarga::with('rt')
+            ->when($search, function ($query, $search) {
+                return $query->where('kepala_keluarga', 'like', "%{$search}%")
+                             ->orWhere('no_kk', 'like', "%{$search}%")
+                             ->orWhere('alamat', 'like', "%{$search}%");
+            })
+            ->when($rt_id, function ($query, $rt_id) {
+                return $query->where('rt_id', $rt_id);
+            })
+            ->get();
+    
+        return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search', 'rts', 'rt_id'));
+    }
+    
 
-    $search = $request->input('search');
-    $data_kartu_keluargas = DataKartuKeluarga::with('rt')->when($search, function ($query, $search) {
-        return $query->where('kepala_keluarga', 'like', "%{$search}%")
-                     ->orWhere('no_kk', 'like', "%{$search}%")
-                     ->orWhere('alamat', 'like', "%{$search}%");
-    })->get();
+        public function search(Request $request)
+        {
+            $search = $request->input('search');
+            $data_kartu_keluargas = DataKartuKeluarga::with('rt')
+                ->when($search, function ($query, $search) {
+                    return $query->where('kepala_keluarga', 'like', "%{$search}%")
+                                ->orWhere('no_kk', 'like', "%{$search}%")
+                                ->orWhere('alamat', 'like', "%{$search}%");
+                })
+                ->get();
 
-    return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search', 'rts'));
-}
+            return response()->json($data_kartu_keluargas);
+        }
+
 
     public function create()
     {
         $breadcrumb = (object)[
             'title' => 'Pendataan',
-            'subtitle' => 'Tambah Data Kartu Keluarga',
+            'subtitle' => 'Tambah Data KK',
         ];
         $rts = RT::all();
         return view('data_kartu_keluargas.create', compact('rts', 'breadcrumb'));
@@ -42,7 +66,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => 'required',
             'no_kk' => 'required',
             'rt_id' => 'required',
-            'status_ekonomi' => 'required',
             'foto_kartu_keluarga' => 'required|image',
             'alamat' => 'required',
         ]);
@@ -58,7 +81,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => $request->kepala_keluarga,
             'no_kk' => $request->no_kk,
             'rt_id' => $request->rt_id,
-            'status_ekonomi' => $request->status_ekonomi,
             'foto_kartu_keluarga' => $imageName,
             'alamat' => $request->alamat,
         ]);
@@ -70,7 +92,7 @@ class DataKartuKeluargaController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Pendataan',
-            'subtitle' => 'Detail Data Kartu Keluarga',
+            'subtitle' => 'Detail',
         ];
 
         $anggotaKeluargas = $dataKartuKeluarga->anggotaKeluargas;
@@ -82,7 +104,7 @@ class DataKartuKeluargaController extends Controller
     {
         $breadcrumb = (object)[
             'title' => 'Pendataan',
-            'subtitle' => 'Edit Data Kartu Keluarga',
+            'subtitle' => 'Edit',
         ];
         $rts = RT::all();
         return view('data_kartu_keluargas.edit', compact('dataKartuKeluarga', 'rts', 'breadcrumb'));
@@ -94,7 +116,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => 'required',
             'no_kk' => 'required',
             'rt_id' => 'required',
-            'status_ekonomi' => 'required',
             'alamat' => 'required',
         ]);
 
@@ -109,7 +130,6 @@ class DataKartuKeluargaController extends Controller
             'kepala_keluarga' => $request->kepala_keluarga,
             'no_kk' => $request->no_kk,
             'rt_id' => $request->rt_id,
-            'status_ekonomi' => $request->status_ekonomi,
             'foto_kartu_keluarga' => $imageName,
             'alamat' => $request->alamat,
         ]);
@@ -138,7 +158,6 @@ class DataKartuKeluargaController extends Controller
     public function storeAnggota(Request $request, DataKartuKeluarga $dataKartuKeluarga)
 {
     $request->validate([
-        'kk_id' => 'required',
         'nama' => 'required|string|max:255',
         'nik' => 'required|string|max:255',
         'alamat' => 'required|string',
@@ -150,7 +169,7 @@ class DataKartuKeluargaController extends Controller
     ]);
 
     $dataKartuKeluarga->anggotaKeluargas()->create([
-        'kk_id' => $request->kk_id,
+        'kk_id' => $dataKartuKeluarga->id,
         'nama' => $request->nama,
         'nik' => $request->nik,
         'alamat' => $request->alamat,
@@ -161,7 +180,7 @@ class DataKartuKeluargaController extends Controller
         'golongan_darah' => $request->golongan_darah,
     ]);
 
-    return redirect()->route('data_kartu_keluargas.show', $dataKartuKeluarga->id)->with('success', 'Anggota keluarga berhasil ditambahkan.');
+    return redirect()->route('data_kartu_keluargas.show', $dataKartuKeluarga)->with('success', 'Anggota keluarga berhasil ditambahkan.');
 }
 
 }

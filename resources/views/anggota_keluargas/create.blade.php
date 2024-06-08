@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 
 @section('content')
-<main class="mx-auto p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+<main class="mx-auto p-8 sm:p-36 container-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="container mx-auto p-4 bg-gray-100 rounded-lg shadow-md">
         <header class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold text-gray-800">Tambah Anggota Keluarga</h2>
@@ -24,13 +24,13 @@
 
             <div class="flex flex-col">
                 <label for="nama" class="text-gray-700 font-medium mb-2">Nama</label>
-                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nama" name="nama" value="{{ old('nama') }}" required>
-            </div>
+                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nama" name="nama" pattern="[A-Za-z\s]+" title="Nama hanya boleh mengandung huruf." required>
+            </div>            
 
             <div class="flex flex-col">
                 <label for="nik" class="text-gray-700 font-medium mb-2">NIK</label>
-                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nik" name="nik" value="{{ old('nik') }}" required>
-            </div>
+                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nik" name="nik" pattern="[0-9]{16}" title="NIK harus terdiri dari 16 angka." required>
+            </div>            
 
             <div class="flex flex-col">
                 <label for="tanggal_lahir" class="text-gray-700 font-medium mb-2">Tanggal Lahir</label>
@@ -76,8 +76,27 @@
                     <option value="Belum Menikah" {{ old('status_perkawinan') == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
                 </select>
             </div>
-            <button type="submit" class="btn-primary px-4 py-2 rounded-md focus:outline-none">Simpan</button>
+            <button type="submit" class="btn-primary w-full px-4 py-2 rounded-md focus:outline-none">Simpan</button>
         </form>
     </div>
 </main>
 @endsection
+
+<style>
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    @media screen and (max-width: 640px) {
+        .container-responsive {
+            padding: 8px; /* Sesuaikan padding untuk layar yang lebih kecil */
+        }
+
+        .container {
+            max-width: none; /* Hapus batasan lebar untuk container */
+        }
+
+        /* Tambahkan styling tambahan sesuai kebutuhan pada layar kecil */
+    }
+</style>

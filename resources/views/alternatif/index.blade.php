@@ -1,6 +1,13 @@
 @extends('layouts.welcome')
 
 @section('content')
+    {{-- Tampilkan pesan sukses --}}
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     {{-- Content --}}
     <style>
     table {
@@ -76,7 +83,7 @@
             <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
                 <p class="mb-10"
                     style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
-                    Data Alternatif Destinasi Wisata yang ingin di kunjungi :
+                    Data Alternatif Destinasi Wisata:
                 </p>
                 <table class="md:table-fixed w-full">
                     <thead>

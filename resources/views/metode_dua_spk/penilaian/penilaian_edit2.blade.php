@@ -16,21 +16,11 @@
             </div>
         @endif
 
-        <form action="{{ route('penilaian.update', $penilaian->id) }}" method="POST">
+        <form action="{{ route('penilaian.update', ['id' => $penilaian->id]) }}" method="POST">
             @csrf
             @method('PUT')
 
-            {{-- <div class="form-group mb-4">
-                <label for="alternative_id" class="block text-lg font-bold text-gray-700">Alternatif</label> --}}
-                {{-- <select name="alternative_id" id="alternative_id" class="form-select" required>
-                    @foreach($alternatives as $alternative)
-                        <option value="{{ $alternative->id }}" {{ $alternative->id == $penilaian->alternative_id ? 'selected' : '' }}>
-                            {{ $alternative->alternatif }}
-                        </option>
-                    @endforeach
-                </select> --}}
-                {{-- <input type="text" name="alternative_id" id="alternative_id" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->alternative->alternatif }}" readonly>
-            </div> --}}
+
 
             <div class="form-group mb-4">
                 <label for="alternative_name" class="block text-lg font-bold text-gray-700">Alternatif</label>
@@ -42,13 +32,10 @@
 
 
             <div class="form-group mb-4">
-<<<<<<< HEAD
-                <label for="biaya_tiket_masuk" class="block text-lg font-bold text-gray-700">Biaya Tiket Masuk</label>
-                <input type="text" name="biaya_tiket_masuk" id="biaya_tiket_masuk" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->tiket }}">
-=======
+
                 <label for="tiket" class="block text-lg font-bold text-gray-700">Biaya Tiket Masuk</label>
                 <input type="text" name="tiket" id="tiket" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->tiket }}">
->>>>>>> 5eab276fabce217ce8b50d2bdc6363724f0ff501
+
             </div>
 
             <div class="form-group mb-4">
@@ -67,13 +54,10 @@
             </div>
 
             <div class="form-group mb-4">
-<<<<<<< HEAD
-                <label for="biaya_akomodasi" class="block text-lg font-bold text-gray-700">Biaya Akomodasi</label>
-                <input type="text" name="biaya_akomodasi" id="biaya_akomodasi" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->akomodasi }}">
-=======
+
                 <label for="akomodasi" class="block text-lg font-bold text-gray-700">Biaya Akomodasi</label>
                 <input type="text" name="akomodasi" id="akomodasi" class="form-control w-full p-2 border border-gray-300 rounded-md" value="{{ $penilaian->akomodasi }}">
->>>>>>> 5eab276fabce217ce8b50d2bdc6363724f0ff501
+x
             </div>
 
             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2 relative top-5">Update</button>

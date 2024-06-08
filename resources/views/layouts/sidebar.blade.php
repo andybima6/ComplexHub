@@ -1,9 +1,9 @@
    {{-- Sidebar --}}
    <div id="sidenav" class="fixed z-[9999999999] top-0 left-0 p3">
-       <div class="close flex items-center justify-center relative pointer mb2 right">
-           <div class="absolute cross bg-black left"></div>
-           <div class="absolute cross bg-black right"></div>
-       </div>
+    <div class="close flex items-center justify-center relative pointer mb2 right">
+        <div class="absolute cross bg-black left"></div>
+        <div class="absolute cross bg-black right"></div>
+    </div>
 
        <div class="flex items-center complex">
            <svg width="52" height="39" viewBox="0 0 52 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,9 +77,9 @@
                                fill="#2A424F" />
                        </svg>
 
-                       <a href="{{ auth()->user()->role_id == 1 ? url('rts') : (auth()->user()->role_id == 2 ? url('rws') : url('rts')) }}"
+                       <a href="{{ auth()->user()->role_id == 1 ? url('rws') : (auth()->user()->role_id == 2 ? url('rts') : url('rts')) }}"
 
-                       <a href="{{ auth()->user()->role_id == 1 ? url('rts') : (auth()->user()->role_id == 2 ? url('rws') : url('dashboardPD')) }}"
+                       <a href="{{ auth()->user()->role_id == 1 ? url('rws') : (auth()->user()->role_id == 2 ? url('rts') : url('dashboardPD')) }}"
 
                            style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Data
                            RT</a>
@@ -247,11 +247,10 @@
 
 
                </ul>
-           <li class="pointer" style="position: absolute;
-    bottom: 30px;
-    left: 30px;"><a
-                   href= "{{ url('/') }}"class="w-100 flex" href="#logout"
-                   style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
+           </li>
+           
+           <li class="pointer mb3">
+            <a href= "{{ url('/') }}"class="w-100 flex" href="#logout" style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
                    <svg width="34" height="32" viewBox="0 0 34 32" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                        <path
@@ -261,7 +260,6 @@
 
                    <span style="margin-left: 4px;">Logout</span>
                </a>
-           </li>
            </li>
 
 

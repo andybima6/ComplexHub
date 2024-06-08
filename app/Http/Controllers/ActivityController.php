@@ -47,8 +47,9 @@ class ActivityController extends Controller
             'title' => 'Daftar Kegiatan',
             'subtitle' => 'Usulan Kegiatan',
         ];
-
-        return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb]);
+        $rts = RT::all();
+        $activities = Activity::all();
+        return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb], compact('rts','activities'));
     }
 
     public function indexDetailIzinRT($id)

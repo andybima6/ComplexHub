@@ -28,7 +28,8 @@
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <form method="post" action="{{ route('tambahKegiatanPD') }}" class="modal-content absolute inset-0 mt-56"
+                <form method="POST" action="{{ route('tambahKegiatanPD') }}" enctype="multipart/form-data"
+                    class="modal-content absolute inset-0 mt-56"
                     style="background-color:#FFFFFF;border-radius:15px;z-indeks:9999;">
                     @csrf
                     <span id="closeModal" class="close">&times;</span>
@@ -40,34 +41,45 @@
                     <div class="flex flex-col gap-4 my-8">
                         <input type="hidden" name="id" value="">
                         <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                                <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
-                       
+                        <input type="text" id="name" name="name"
+                            class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                            value="{{ auth()->user()->name }}" readonly>
+
                         <textarea id="editKeterangan" rows="10" name="description" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
                             type="text" placeholder="Keterangan"></textarea>
 
-                        <label for="editFileInput" class="relative max-w-full"
+
+
+
+                        <label for="addFileInput" class="relative max-w-full"
                             style="font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 400; height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; display: flex; align-items: center; justify-content: center;">
                             Upload Document
                         </label>
-                        <input id="editFileInput" name="document" style="display: none;" type="file">
+                        <input id="addFileInput" name="document" style="display: none;" type="file">
 
+                        <select id="lingkup" name="rt_id" class="relative"
+                            style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
+                            @foreach ($rts as $rt)
+                                <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} -
+                                    {{ $rt->nama }}</option>
+                            @endforeach
+                        </select>
 
                     </div>
 
 
                     <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                        <button type="button" data-close-modal="editActivityModal"
-                            class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
-                            Close
-                        </button>
-                        <a href="{{ route('tambahEditKegiatanPD') }}" class="block">
-                            <button id="editSaveButton" type="button"
-                                class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
-                                Save
-                            </button>
-                        </a>
 
+                        <button type="button" id="closePopupBtn"
+                        class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        Close
+                    </button>
+
+                        <button id="editSaveButton" type="submit"
+                            class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                            Save
+                        </button>
                     </div>
 
             </div>
@@ -76,6 +88,8 @@
         </div>
         </div>
         </div>
+
+
 
 
 
@@ -96,33 +110,27 @@
     </main>
 
     <script>
-        function redirectToTambahKegiatanPD() {
-            window.location.href = "{{ route('tambahEditKegiatanPD') }}";
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("openModal");
+        var closeBtn = document.getElementById("closeModal");
+        var cancelBtn = document.getElementById("closePopupBtn");
+
+        btn.onclick = function() {
+            modal.style.display = "block";
         }
 
-        // Ambil modal edit
-        var modalEdit = document.getElementById('myModalEdit');
-
-        // Ambil tombol edit
-        var editButton = document.getElementsByClassName('editbutton')[0];
-
-        // Ambil span elemen untuk menutup modal
-        var closeModalEdit = document.getElementById('closeModalEdit');
-
-        // Ketika tombol edit diklik, tampilkan modal
-        editButton.onclick = function() {
-            modalEdit.style.display = 'block';
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
         }
 
-        // Ketika tombol tutup di dalam modal diklik, sembunyikan modal
-        closeModalEdit.onclick = function() {
-            modalEdit.style.display = 'none';
+        cancelBtn.onclick = function() {
+            modal.style.display = "none";
         }
 
-        // Ketika user mengklik di luar modal, sembunyikan modal
         window.onclick = function(event) {
-            if (event.target == modalEdit) {
-                modalEdit.style.display = 'none';
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
     </script>

@@ -9,7 +9,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $breadcrumb = (object)[
-            'title' => 'Kriteria (Metode I)',
+            'title' => 'Kriteria (Metode SAW)',
             'subtitle' => '',
         ];
 
@@ -20,7 +20,7 @@ class KriteriaController extends Controller
     public function create()
     {
         $breadcrumb = (object)[
-            'title' => 'Kriteria (Metode I)',
+            'title' => 'Kriteria (Metode SAW)',
             'subtitle' => '',
         ];
         return view('kriteria.create', ['breadcrumb' => $breadcrumb]);

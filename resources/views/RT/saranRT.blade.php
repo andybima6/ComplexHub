@@ -40,7 +40,7 @@
                             <td class="border px-4 py-2 text-center" style="color: black">{{ $suggestion->tanggal }}</td>
                             <td class="border px-4 py-2 text-center" style="color: black">{{ $suggestion->name }}</td>
                             <td class="border px-4 py-2 text-center" style="color: black">{{ $suggestion->field }}</td>
-                            <td class="border px-4 py-2 text-center" style="color: black">{{ $suggestion->Laporan }}</td>
+                            <td class="border px-4 py-2 text-center" style="color: black">{{ $suggestion->laporan }}</td>
                             <td class="border px-4 py-2 text-center" style="color: black">{{ $suggestion->status }}</td>
 
                             <td class="border px-4 py-2 text-center">

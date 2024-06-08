@@ -106,11 +106,10 @@
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->nama }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->periode }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->total }}</td>
-                        <td class="border px-4 py-2">
-                            <a href="{{ asset('storage/' . $ir->bukti) }}" download>
-                                <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-xs h-auto" style="max-width: 20%;">
-                            </a>
-                        </td>
+                        <td class="border px-2 sm:px-4 py-2">
+                            <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-xs h-auto" style="max-width: 20%;">
+                        </td>
+                        {{-- <td class="border px-4 py-2">{{ $ir->rt_id }}</td> --}}
                         <td class="border px-2 sm:px-4 py-2">
                             @if($ir->status == 'diproses')
                                 <button class="bg-gray-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Diproses</button>
@@ -128,6 +127,63 @@
         </div>
     </div>
 </main>
+
+<!-- Modal -->
+<div id="imageModal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onclick="hideImageModal()">
+    <div class="modal-content relative p-4 bg-white rounded-md">
+        <span class="close absolute top-2 right-2 text-2xl font-bold cursor-pointer" onclick="hideImageModal()">&times;</span>
+        <img style="display: block; margin: 0 auto;" id="modalImage" src="" alt="Bukti" class="max-w-xs h-auto">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function downloadImage(imageUrl) {
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.setAttribute('download', '');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click', '#delete', function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form'); // get the closest form to the button
+
+            Swal.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Data Yang dihapus tidak bisa kembali!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "YA, Hapus Data!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit the form if the user confirms
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+        });
+    });
+
+    function showImageModal(imageSrc) {
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function hideImageModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+</script>
 
 
 @endsection
