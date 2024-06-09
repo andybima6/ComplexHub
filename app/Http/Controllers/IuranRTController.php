@@ -47,6 +47,14 @@ class IuranRTController extends Controller
 
         return view('RT/kasIuranRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
+    public function form()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Form Input Iuran',
+            'subtitle' => '',
+        ];
+        return view('warga.form', ['breadcrumb' => $breadcrumb]);
+    }
 
     public function edit(string $id)
     {
