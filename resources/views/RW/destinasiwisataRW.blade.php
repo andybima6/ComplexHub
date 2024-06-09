@@ -13,7 +13,7 @@
         <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}" class="bg-transparent hover:bg-[#385668] text-[#385668] font-semibold hover:text-white py-2 px-4 border border-[#385668] hover:border-transparent rounded" style="font-size: 24px;">MAUT</a>
     </div>
 </main>
-@endsection
+
 
 <style>
     @media (max-width: 640px) {
@@ -49,5 +49,4 @@
     </div>
 </div>
 
-</main>
 @endsection
