@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use App\Models\RT; // Add this line
+use App\Models\RT;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AuthController extends Controller
 {
@@ -67,7 +65,6 @@ class AuthController extends Controller
     public function proses_register(Request $request)
     {
         $rt_id = $request->input('rt_id') ?? '0'; // Ambil nilai rt_id dari request atau default ke '0'
-        $rw = $request->input('rw') ?? '0';
 
         // Buat validasi
         $validator = Validator::make($request->all(), [
@@ -75,7 +72,6 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'rt_id' => 'required|integer|exists:rts,id', // Validasi rt_id
-            'rw' => 'required|integer',
         ]);
 
         // Jika validasi gagal, kembali ke halaman registrasi dengan pesan error
@@ -98,13 +94,12 @@ class AuthController extends Controller
             'password' => $password,
             'role_id' => $pendudukRole->id, // Set role_id ke ID role "penduduk"
             'rt_id' => $rt_id,
-            'rw' => $rw,
+            'rw' => 0, // Set rw ke 0
         ]);
 
         // Redirect ke halaman login
         return redirect()->route('login');
     }
-
 
     public function logout(Request $request)
     {
