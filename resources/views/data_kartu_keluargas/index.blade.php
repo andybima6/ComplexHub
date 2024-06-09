@@ -69,10 +69,10 @@
             </div>
             <div class="mb-4">
               <label for="rt_id" class="block text-sm font-medium text-gray-700">Filter berdasarkan RT:</label>
-              <select id="rt_id" name="rt_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+              <select id="rt_id" name="rt_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" onchange="filterRT()">
                   <option value="">Semua RT</option>
                   @foreach($rts as $rt)
-                      <option value="{{ $rt->rt }}">{{ $rt->rt }}</option>
+                      <option value="{{ $rt->rt_id }}">{{ $rt->rt_id }}</option>
                   @endforeach
               </select>
           </div>
@@ -98,12 +98,12 @@
                     </thead>
                     <tbody id="kk-table">
                         @foreach($data_kartu_keluargas as $kk)
-                            <tr>
+                            <tr data-rt="{{ $kk->rt->rt_id ?? 'N/A' }}"">
                                 <td class="border px-4 py-2 text-center">{{ $kk->id }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $kk->rt->rt ?? 'N/A' }}</td>
+                                <td class="border px-4 py-2 text-center">{{ $kk->rt_id ?? 'N/A' }}</td>
                                 {{-- <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td> --}}
                                 <td class="border px-4 py-2 text-center" style="color: black">
                                     <div class="flex justify-center">
@@ -180,6 +180,18 @@
           });
       });
   });
+
+  function filterRT() {
+      var selectedRT = document.getElementById('rt_id').value;
+      var rows = document.querySelectorAll('#kk-table tr');
+      rows.forEach(function(row) {
+        if (selectedRT === "" || row.getAttribute('data-rt') === selectedRT) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
 
   function confirmDelete(kk_id) {
       Swal.fire({
