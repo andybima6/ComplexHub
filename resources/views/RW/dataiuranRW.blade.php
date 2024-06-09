@@ -94,6 +94,6 @@
     <div class="box">
         Silahkan Lakukan pembayaran pada Kode QR diatas!
     </div>
-    <button class="lanjut-button" onclick="window.location='{{ route('form') }}'">Lanjut</button>
+    <button class="lanjut-button" onclick="window.location='{{ route('formRW') }}'">Lanjut</button>
 </main>
 @endsection

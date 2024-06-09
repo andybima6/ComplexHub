@@ -140,6 +140,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/tolakIzinRW/{id}', [UmkmController::class, 'tolakIzinRW'])->name('tolakIzinRW');
 
         Route::get('/RW/iuranRW', [IuranRWController::class, 'dataiuranRW'])->name('dataiuranRW');
+        Route::get('/RW/form', [IuranWargaController::class, 'form'])->name('formRW');
         Route::get('/RW/historyRW', [IuranRWController::class, 'historyRW'])->name('historyRW');
         Route::get('/RW/cari', [IuranRWController::class, 'cari'])->name('cari');
         Route::get('/RW/{id}/ubah', [IuranRWController::class, 'ubah'])->name('ubah');
