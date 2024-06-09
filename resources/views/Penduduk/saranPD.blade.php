@@ -24,7 +24,6 @@
                     + Tambah
                 </p>
             </div>
-            <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data"
@@ -82,6 +81,7 @@
                     </div>
             </div>
             </form>
+
 
 
 

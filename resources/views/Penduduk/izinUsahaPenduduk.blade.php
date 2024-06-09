@@ -14,18 +14,20 @@
             </div>
             <hr class="mb-6">
             {{-- <p class="mb-6" style="font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 500; color: black;">{{ $breadcrumb->subtitle }}</p> --}}
-            <table class="md:table-fixed w-full">
-                <thead>
+            <div class="overflow-x-auto">
+
+                <table class="table-auto w-full sm:max-w-screen-sm border-collapse border border-gray-300">
+                    <thead>
                     <tr>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status dari RT</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status dari RW</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Lingkup</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">No</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Nama Warga</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Nama Usaha</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Deskripsi</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Status dari RT</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Status dari RW</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Foto Produk</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Lingkup</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +42,7 @@
                             <td class="border px-4 py-2 text-center" style="color: black"><i>{{ $izin->status_rw }}</i></td>
                             <td class="border px-4 py-2 text-center" style="color: black">
                                 <div class="flex justify-center">
-                                    <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}"
+                                    <img class="block mx-auto max-w-xs h-auto" style="max-width: 20%;" src="{{ asset('storage/' . $izin->foto_produk) }}"
                                         alt="">
                                 </div>
                             </td>
@@ -109,6 +111,8 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
         </div>
     </main>
 

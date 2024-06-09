@@ -95,7 +95,6 @@
                         <th class="border px-2 sm:px-4 py-2">Periode</th>
                         <th class="border px-2 sm:px-4 py-2">Total</th>
                         <th class="border px-2 sm:px-4 py-2">Bukti</th>
-                        {{-- <th class="border px-4 py-2">RT</th> --}}
                         <th class="border px-2 sm:px-4 py-2">Status</th>
                         <th class="border px-2 sm:px-4 py-2">Aksi</th>
                     </tr>
@@ -110,7 +109,6 @@
                         <td class="border px-2 sm:px-4 py-2">
                             <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-xs h-auto" style="max-width: 20%;">
                         </td>
-                        {{-- <td class="border px-4 py-2">{{ $ir->rt_id }}</td> --}}
                         <td class="border px-2 sm:px-4 py-2">
                             @if($ir->status == 'diproses')
                                 <button class="bg-gray-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Diproses</button>

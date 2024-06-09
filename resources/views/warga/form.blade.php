@@ -105,11 +105,11 @@
             @csrf
             <div class="form-group">
                 <label for="nama" class="label">Nama:</label>
-                <input type="text" id="nama" name="nama" required class="input">
+                <input type="text" id="nama" name="nama" required class="input" value="{{ auth()->user()->name }}" readonly>
             </div>
             
             <div class="form-group">
-                <label for="periode" class="label">Periode:</label>
+                <label for="periode" class="label">Tanggal Pembayaran:</label>
                 <input type="date" id="periode" name="periode" required class="input">
             </div>
 
@@ -120,7 +120,21 @@
 
             <div class="form-group">
                 <label for="keterangan" class="label">Keterangan:</label>
-                <input type="text" id="keterangan" name="keterangan" required class="input">
+                <select id="keterangan" name="keterangan" required class="input">
+                    <option value="">Pilih bulan</option>
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                    <option value="Maret">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mei">Mei</option>
+                    <option value="Juni">Juni</option>
+                    <option value="Juli">Juli</option>
+                    <option value="Agustus">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="Oktober">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="Desember">Desember</option>
+                </select>
             </div>
 
             <div class="form-group">
