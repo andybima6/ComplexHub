@@ -95,8 +95,8 @@
                         <th class="border px-2 sm:px-4 py-2">Periode</th>
                         <th class="border px-2 sm:px-4 py-2">Total</th>
                         <th class="border px-2 sm:px-4 py-2">Bukti</th>
-                        {{-- <th class="border px-4 py-2">RT</th> --}}
                         <th class="border px-2 sm:px-4 py-2">Status</th>
+                        <th class="border px-2 sm:px-4 py-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,7 +109,6 @@
                         <td class="border px-2 sm:px-4 py-2">
                             <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-xs h-auto" style="max-width: 20%;">
                         </td>
-                        {{-- <td class="border px-4 py-2">{{ $ir->rt_id }}</td> --}}
                         <td class="border px-2 sm:px-4 py-2">
                             @if($ir->status == 'diproses')
                                 <button class="bg-gray-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Diproses</button>
@@ -119,7 +118,17 @@
                                 <button class="bg-red-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Ditolak</button>
                             @endif
                         </td>
-                        
+                        <td class="border px-2 sm:px-4 py-2">
+                            <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-2">
+                                <a href="{{ url('/RT/' . $ir->id . '/edit') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                <form action="{{ url('/RT/' . $ir->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="confirmDelete('{{ $ir->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="delete">Hapus</button>
+                                </form>
+                                <button type="button" class="bg-yellow-400 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" onclick="downloadImage('{{ asset('storage/' . $ir->bukti) }}')">Unduh</button>
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

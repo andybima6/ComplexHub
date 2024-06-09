@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 
         Route::get('/RT/kasIuranRT', [IuranRTController::class, 'kasindexRT'])->name('kasIuranRT');
+        Route::get('/RT/form', [IuranWargaController::class, 'form'])->name('formRT');
         Route::get('/RT/historyRT', [IuranRTController::class, 'historyRT'])->name('historyRT');
         Route::get('/RT/search', [IuranRTController::class, 'search'])->name('search');
         Route::get('/RT/{id}/edit', [IuranRTController::class, 'edit'])->name('edit');
