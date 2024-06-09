@@ -29,6 +29,15 @@ class IuranRWController extends Controller
         return view('RW/historyRW', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 
+    public function form()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Form Input Iuran',
+            'subtitle' => '',
+        ];
+        return view('warga.form', ['breadcrumb' => $breadcrumb]);
+    }
+
     public function cari(Request $request)
     {
         $breadcrumb = (object) [
