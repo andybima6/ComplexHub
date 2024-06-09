@@ -1,17 +1,16 @@
 @extends('layouts.welcome')
 
 @section('content')
-    {{-- Content --}}
     <style>
         /* Table styles */
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 50%;
             margin: 20px auto;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
             text-align: left;
         }
@@ -25,13 +24,26 @@
             background-color: #f9f9f9;
         }
 
-        /* Remove border on the bottom of the table body */
-        .table tbody tr:last-child td {
-            border-bottom: none;
+        /* Form styles */
+        form {
+            margin-top: 20px;
         }
 
-        /* Style for the "Edit" button within the table cell */
-        .btn-warning {
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
             background-color: #007BFF;
             color: #ffffff;
             padding: 10px 20px;
@@ -40,23 +52,7 @@
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
-            text-decoration: none; /* Add this to remove underlines from anchor tags */
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .contain-responsive {
-                padding: 10px;
-            }
-            .p-16 {
-                padding: 8px;
-            }
-            .top-24 {
-                top: 8px;
-            }
-            .left-16 {
-                left: 8px;
-            }
+            text-decoration: none;
         }
     </style>
 
@@ -71,25 +67,35 @@
 
         <div class="rounded-md relative p-10 md:p-16 bg-white mx-4 md:mx-28">
             <p class="mb-10 text-2xl font-semibold" style="font-family: 'Poppins', sans-serif; color: #2A424F;">
-                Data Alternatif Destinasi Wisata:
+                Edit Data Alternatif Destinasi Wisata:
             </p>
 
-            <form action="{{ route('alternatif.update', $alternatif->id) }}" method="POST">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('alternatif.update', $alternatif->id) }}" method="POST" id="updateForm">
                 @csrf
                 @method('PUT')
-                <table class="md:table-fixed w-full">
+                <table>
                     <thead>
                         <tr>
-                            <th class="text-center">Nama</th>
+                            <th>Nama Wisata</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-center"><input type="text" name="jenis" value="{{ $alternatif->nama }}"></td>
+                            <td><input type="text" name="nama" value="{{ old('nama', $alternatif->nama) }}"></td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="submit" class="btn-warning mt-4">Simpan Perubahan</button>
+                <button type="submit">Simpan Perubahan</button>
             </form>
         </div>
     </main>

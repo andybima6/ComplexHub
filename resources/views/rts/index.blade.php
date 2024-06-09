@@ -17,7 +17,10 @@
     <div class="rounded-md relative p-4 sm:p-8 md:p-16 bg-white">
         <div class="card-header mb-4 flex flex-col sm:flex-row justify-between items-center">
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">List Data RT</h2>
+            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2 
+            rounded-md" class="search-button" onclick="window.location.href='{{ route('rts.create') }}'">Tambah Data RT</button>
         </div>
+
         <!-- Search form -->
         <form method="GET" action="{{ route('rts.index') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
             <div class="w-full sm:w-auto">
@@ -42,7 +45,7 @@
             <table class="table-auto w-full border-collapse border border-gray-300">
                 <thead>
                     <tr class="bg-gray-200 text-black font-medium text-center">
-                        <th class="border px-2 sm:px-4 py-2">ID</th>
+                        <th class="border px-2 sm:px-4 py-2">No</th>
                         <th class="border px-2 sm:px-4 py-2">Nama</th>
                         <th class="border px-2 sm:px-4 py-2">RT</th>
                         <th class="border px-2 sm:px-4 py-2">Alamat</th>
@@ -55,7 +58,7 @@
                     <tr class="text-center">
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->id }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->nama }}</td>
-                        <td class="border px-2 sm:px-4 py-2">{{ $rt->rt_id }}</td>
+                        <td class="border px-2 sm:px-4 py-2">{{ $rt->rt }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->alamat }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->nomor_telefon }}</td>
                         <td class="border px-2 sm:px-4 py-2">
@@ -75,7 +78,7 @@
         </div>
     </div>
 </main>
-
+@endsection
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -110,4 +113,4 @@
       document.getElementById('imageModal').style.display = 'none';
   }
 </script>
-@endsection
+

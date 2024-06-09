@@ -24,13 +24,13 @@
 
             <div class="flex flex-col">
                 <label for="nama" class="text-gray-700 font-medium mb-2">Nama</label>
-                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nama" name="nama" value="{{ old('nama') }}" required>
-            </div>
+                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nama" name="nama" pattern="[A-Za-z\s]+" title="Nama hanya boleh mengandung huruf." required>
+            </div>            
 
             <div class="flex flex-col">
                 <label for="nik" class="text-gray-700 font-medium mb-2">NIK</label>
-                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nik" name="nik" value="{{ old('nik') }}" required>
-            </div>
+                <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="nik" name="nik" pattern="[0-9]{16}" title="NIK harus terdiri dari 16 angka." required>
+            </div>            
 
             <div class="flex flex-col">
                 <label for="tanggal_lahir" class="text-gray-700 font-medium mb-2">Tanggal Lahir</label>

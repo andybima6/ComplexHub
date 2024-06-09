@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataKartuKeluarga extends Model
 {
-    protected $fillable = ['kepala_keluarga', 'no_kk', 'rt_id', 'status_ekonomi', 'alamat']; // Add 'alamat' to the fillable array
+    protected $fillable = ['kepala_keluarga', 'no_kk', 'rt_id', 'alamat']; // Add 'alamat' to the fillable array
 
     public function anggotaKeluargas()
     {

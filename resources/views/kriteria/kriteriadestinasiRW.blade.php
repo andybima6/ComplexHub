@@ -39,6 +39,12 @@
                 <form action="{{ route('kriteria.kriteriadestinasiRW') }}" method="GET" class="mb-4">
                     <div class="flex justify-between items-center">
                         <input type="text" name="search" class="form-control" placeholder="Cari Kriteria...">
+                        <select name="jenis" class="form-control">
+                            <option value="">-- Pilih Jenis --</option>
+                            <option value="jenis1">Jenis 1</option>
+                            <option value="jenis2">Jenis 2</option>
+                            <option value="jenis3">Jenis 3</option>
+                        </select>
                         <button type="submit" class="btn btn-primary">Cari</button>
                     </div>
                 </form>

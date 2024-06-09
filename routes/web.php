@@ -30,7 +30,6 @@ use App\Http\Controllers\LandingPageController;
 // use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\DataKartuKeluargaController;
-// use App\Http\Controllers\AnggotaKeluargaController;
 // use App\Http\Controllers\DataRtController;
 // use App\Http\Controllers\MetodeDuaController;
 // use App\Http\Controllers\IuranRTController;
@@ -217,22 +216,23 @@ Route::get('/', [LandingPageController::class, 'index']);
 //pendataan
 Route::resource('rts', RTController::class);
 Route::resource('rws', RWController::class);
+
 Route::resource('data_kartu_keluargas', DataKartuKeluargaController::class);
 Route::get('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas/create', [DataKartuKeluargaController::class, 'createAnggota'])->name('data_kartu_keluargas.create_anggota');
 Route::post('/data_kartu_keluargas/{dataKartuKeluarga}/anggota_keluargas', [DataKartuKeluargaController::class, 'storeAnggota'])->name('data_kartu_keluargas.store_anggota');
 Route::get('/data_kartu_keluargas/{dataKartuKeluarga}', [DataKartuKeluargaController::class, 'show'])->name('data_kartu_keluargas.show');
+Route::post('/data_kartu_keluargas', [DataKartuKeluargaController::class, 'store'])->name('data_kartu_keluargas.store');
+Route::get('/data-kartu-keluargas/search', [DataKartuKeluargaController::class, 'search'])->name('data_kartu_keluargas.search');
+
+Route::post('/data_kartu_keluargas/{dataKartuKeluarga}/anggotaKeluarga', [AnggotaKeluargaController::class, 'storeAnggota'])->name('anggota_keluargas.store');
 
 Route::get('/anggota_keluargas/create/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'create'])->name('createAnggota');
-
-// Route::get('/anggota_keluargas/create/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'create'])->name('createAnggota');
 Route::post('/anggota_keluargas/store/{dataKartuKeluarga}', [AnggotaKeluargaController::class, 'store'])->name('storeAnggota');
 Route::get('/anggota_keluargas/edit/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'edit'])->name('editAnggota');
 Route::put('/anggota_keluargas/update/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'update'])->name('updateAnggota');
 Route::delete('/anggota_keluargas/destroy/{dataKartuKeluarga}/{anggotaKeluarga}', [AnggotaKeluargaController::class, 'destroy'])->name('destroyAnggota');
 Route::post('/anggota_keluargas', [AnggotaKeluargaController::class, 'store'])->name('store_anggota_keluarga');
-Route::post('/data_kartu_keluargas', [DataKartuKeluargaController::class, 'store'])->name('data_kartu_keluargas.store');
 
-Route::post('/data_kartu_keluargas/{dataKartuKeluarga}/anggotaKeluarga', [AnggotaKeluargaController::class, 'storeAnggota'])->name('anggota_keluargas.store');
 
 
 // Route::get('/rt', [DataController::class, 'rtPage'])->name('rt.page');
@@ -363,12 +363,17 @@ Route::group(['prefix' => 'destinasi'], function () {
 
 //spk repici
 Route::get('kriteria/{id}/edit', [KriteriaController::class, 'edit'])->name('kriteria.edit');
+Route::get('kriteria', [KriteriaController::class, 'index'])->name('kriteria.kriteriadestinasiRW');
+Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
+Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('alternatif.update');
+
+
 Route::resource('penilaian', PenilaianController::class);
 Route::put('penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
 Route::get('/saw', [SAWController::class, 'calculateSAW']);
-Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
+// Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
 // Iuran
 // Route::group(['prefix' => 'iuran'], function () {

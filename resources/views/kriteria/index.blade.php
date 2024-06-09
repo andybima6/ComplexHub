@@ -1,6 +1,13 @@
 @extends('layouts.welcome')
 
 @section('content')
+    {{-- Tampilkan pesan sukses --}}
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     {{-- Content --}}
     <style>
         /* Table styles */
@@ -15,7 +22,16 @@
             border: 1px solid #ddd;
             text-align: left;
         }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
 
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
         th {
             background-color: #f2f2f2;
             font-weight: bold;
@@ -27,6 +43,7 @@
 
         /* Remove border on the bottom of the table body */
         .table tbody tr:last-child td {
+            border-bottom: none;
             border-bottom: none;
         }
 

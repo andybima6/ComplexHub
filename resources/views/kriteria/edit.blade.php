@@ -7,7 +7,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            margin: 20px auto;
+            margin: 25px auto;
         }
 
         th, td {
@@ -58,6 +58,41 @@
                 left: 8px;
             }
         }
+
+        /* Form styles */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold; /* Make label text bold */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
     </style>
 
     <main class="mx-auto p-10 md:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
@@ -77,27 +112,28 @@
             <form action="{{ route('kriteria.update', $kriteria->id) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <table class="md:table-fixed w-full">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">Jenis</th>
-                            <th class="text-center">Bobot</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">
-                                <span>{{ $kriteria->nama }}</span>
-                                <input type="hidden" name="nama" value="{{ $kriteria->nama }}">
-                            </td>
-                            <td class="text-center"><input type="text" name="jenis" value="{{ $kriteria->jenis }}"></td>
-                            <td class="text-center"><input type="text" name="bobot" value="{{ $kriteria->bobot }}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="submit" class="btn-warning mt-4">Simpan Perubahan</button>
+            
+                <div>
+                    <label for="nama">Nama Kriteria</label>
+                    <input type="text" id="nama" name="nama" value="{{ $kriteria->nama }}" required readonly>
+                </div>
+            
+                <div>
+                    <label for="jenis">Jenis</label>
+                    <select id="jenis" name="jenis" required>
+                        <option value="benefit" {{ $kriteria->jenis == 'benefit' ? 'selected' : '' }}>Benefit</option>
+                        <option value="cost" {{ $kriteria->jenis == 'cost' ? 'selected' : '' }}>Cost</option>
+                    </select>
+                </div>
+            
+                <div>
+                    <label for="bobot">Bobot</label>
+                    <input type="number" id="bobot" name="bobot" value="{{ $kriteria->bobot }}" step="0.01" required>
+                </div>
+            
+                <button type="submit">Simpan Perubahan</button>
             </form>
+            
         </div>
     </main>
 @endsection

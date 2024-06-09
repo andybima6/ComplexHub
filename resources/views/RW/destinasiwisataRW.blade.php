@@ -36,3 +36,18 @@
     }
 
 </style>
+
+<div id="gambar-container">
+    <img src={{ asset('img/background.png') }} alt="Gambar">
+    <div id="teks-di-gambar">Selamat Datang Administrator, di Sistem Pendukung Keputusan pemilihan Destinasi Wisata </div>
+    <div id="tombol-container">
+        <!-- Menggunakan tag anchor untuk membuat tombol yang mengarahkan ke tampilan HTML -->
+
+        <a href="{{ route('kriteria.index') }}" class="tombol">SAW</a>
+        <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}"class="tombol">MAUT</a>
+
+    </div>
+</div>
+
+</main>
+@endsection

@@ -15,7 +15,7 @@ class PenilaianController extends Controller
 {
     // $user = auth()->user();
         $breadcrumb = (object)[
-            'title' => 'Daftar Penilaian (Metode I)',
+            'title' => 'Daftar Penilaian (Metode SAW)',
             'subtitle' => 'Data Penilaian',
         ];
     $alternatifs = Alternatif::with('nilaiKriteria')->get();
@@ -38,7 +38,7 @@ public function show()
     public function create()
     {
         $breadcrumb = (object)[
-            'title' => 'Daftar Penilaian (Metode I)',
+            'title' => 'Daftar Penilaian (Metode SAW)',
             'subtitle' => 'Pengisian Data Penilaian',
         ];
 

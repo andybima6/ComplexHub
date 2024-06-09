@@ -68,15 +68,19 @@
                     </div>
 
 
-                    <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                        <button type="button" data-close-modal="editActivityModal"
+                    {{-- <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3"> --}}
+                        {{-- <button type="button" data-close-modal="editActivityModal"
                             class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Close
-                        </button>
+                        </button> --}}
                         <button id="editSaveButton" type="submit"
                             class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Save
                         </button>
+                        {{-- <button type="button" data-close-modal="editActivityModal"
+                        class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                        Close
+                    </button> --}}
                     </div>
 
         </div>
@@ -192,7 +196,7 @@
                             {{ $rt->nama }}</option>
                     @endforeach
                 </select>
-                
+
                 </div>
 
 

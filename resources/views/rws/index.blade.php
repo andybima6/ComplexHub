@@ -13,14 +13,12 @@
     }
 </style>
 
-<style>
-  
-</style>
 <main class="mx-auto p-4 sm:p-6 md:p-36" style="min-height: 100vh; background-color: #FBEEC1;">
     <div class="rounded-md relative p-4 sm:p-8 md:p-16 bg-white">
         <div class="card-header mb-4 flex flex-col sm:flex-row justify-between items-center">
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">List Data RT</h2>
-            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md" class="search-button" onclick="window.location.href='{{ route('rws.create') }}'">Tambah Data RT</button>
+            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2 
+            rounded-md" class="search-button" onclick="window.location.href='{{ route('rws.create') }}'">Tambah Data RT</button>
           </div>
 
         <!-- Search form -->
