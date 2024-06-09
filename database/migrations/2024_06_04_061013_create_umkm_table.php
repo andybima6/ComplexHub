@@ -13,17 +13,12 @@ return new class extends Migration
     {
         Schema::create('umkm', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->string('nama_warga');
             $table->string('nama_usaha');
             $table->text('deskripsi')->nullable();
-            $table->string('foto_produk')->nullable();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('penduduk')
-                ->cascadeOnDelete()
-                ->restrictOnUpdate();
-                $table->foreignId('rt_id')->constrained('rts')->onDelete('cascade');
+            $table->string('foto_produk')->nullable();   
+            $table->foreignId('rt_id')->constrained('rts')->onDelete('cascade');
             $table->string('status_rt')->nullable();
             $table->string('status_rw')->nullable();
 

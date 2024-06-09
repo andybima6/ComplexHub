@@ -16,7 +16,7 @@
             {{-- <p class="mb-6" style="font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 500; color: black;">{{ $breadcrumb->subtitle }}</p> --}}
             <div class="overflow-x-auto">
 
-                <table class="table-auto w-full sm:max-w-screen-sm border-collapse border border-gray-300">
+                <table class="md:table-fixed w-full">
                     <thead>
                     <tr>
                         <th class="border px-2 sm:px-4 py-2" style="color: black">No</th>
@@ -131,6 +131,12 @@
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
                         value="{{ auth()->user()->name }}" readonly>
                 </div>
+                <div class="mt-4 mb-4">
+                    <label for="user_id" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                    <input type="text" id="user_id" name="user_id"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                        value="{{ auth()->user()->id }}" readonly>
+                </div>
                 <div class="mb-4">
                     <label for="nama_usaha" class="block text-sm font-medium text-gray-700">Nama Usaha</label>
                     <input type="text" id="nama_usaha" name="nama_usaha"
@@ -148,14 +154,20 @@
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
                         onchange="previewImage()">
                 </div>
+                <div class="mb-4">
+                    <label for="rt_id" class="block text-sm font-medium text-gray-700">Lingkup RT</label>
+                    <input type="text" id="lingkup" name="rt_id"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                        value="{{ auth()->user()->rt_id }}" readonly>
+                </div>
 
-                <select id="lingkup" name="rt_id" class="relative"
+                {{-- <select id="lingkup" name="rt_id" class="relative"
                     style="height: 44px; background-color: #FFFFFF; border: 5px solid #D9D9D9; border-radius: 13px;">
                     @foreach ($rts as $rt)
                         <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} -
                             {{ $rt->nama }}</option>
                     @endforeach
-                </select>
+                </select> --}}
 
                 <div class="text-right">
                     <button type="button" id="closePopupBtn"

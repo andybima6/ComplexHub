@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 1,
                 'rw' => 0,
             ],
             [
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 2,
                 'rw' => 0,
             ],
             [
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 3,
                 'rw' => 0,
             ],
             [
@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 4,
                 'rw' => 0,
             ],
             [
@@ -89,7 +89,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 5,
                 'rw' => 0,
             ],
             [
@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 6,
                 'rw' => 0,
             ],
             [
@@ -111,7 +111,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 7    ,
                 'rw' => 0,
             ],
             [
