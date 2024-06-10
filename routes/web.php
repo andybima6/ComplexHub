@@ -105,8 +105,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/RT/accKegiatanRT/{id}', [ActivityController::class, 'accKegiatanRT'])->name('accKegiatanRT');
         Route::post('/RT/rejectKegiatanRT/{id}', [ActivityController::class, 'rejectKegiatanRT'])->name('rejectKegiatanRT');
 
-        Route::get('/RT/kasIuranRT', [IuranRTController::class, 'kasindexRT'])->name('kasIuranRT');
+        Route::get('/RT/kasIuranRT', [IuranRTController::class, 'dataiuranRT'])->name('kasIuranRT');
         Route::get('/RT/form', [IuranRTController::class, 'form'])->name('formRT');
+        Route::post('/RT/store', [IuranRTController::class, 'store'])->name('storeRT');
         Route::get('/RT/historyRT', [IuranRTController::class, 'historyRT'])->name('historyRT');
         Route::get('/RT/search', [IuranRTController::class, 'search'])->name('search');
         Route::get('/RT/{id}/edit', [IuranRTController::class, 'edit'])->name('edit');
@@ -142,6 +143,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/RW/iuranRW', [IuranRWController::class, 'dataiuranRW'])->name('dataiuranRW');
         Route::get('/RW/form', [IuranRWController::class, 'form'])->name('formRW');
+        Route::post('/RW/store', [IuranWargaController::class, 'store'])->name('storeRW');
         Route::get('/RW/historyRW', [IuranRWController::class, 'historyRW'])->name('historyRW');
         Route::get('/RW/cari', [IuranRWController::class, 'cari'])->name('cari');
         Route::get('/RW/{id}/ubah', [IuranRWController::class, 'ubah'])->name('ubah');

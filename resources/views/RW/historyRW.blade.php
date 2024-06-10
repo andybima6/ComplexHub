@@ -100,9 +100,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($iuran as $ir)
+                    @foreach($iuran as $index => $ir)
                     <tr class="text-center">
-                        <td class="border px-4 py-2">{{ $ir->id }}</td>
+                        <td class="border px-4 py-2" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
                         <td class="border px-4 py-2">{{ $ir->nama }}</td>
                         <td class="border px-4 py-2">{{ $ir->periode }}</td>
                         <td class="border px-4 py-2">{{ $ir->total }}</td>
