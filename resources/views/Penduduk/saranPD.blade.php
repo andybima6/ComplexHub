@@ -11,8 +11,9 @@
                 <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                        01
+                        {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
                     </a>
+
                 </div>
                 </p>
             </div>
