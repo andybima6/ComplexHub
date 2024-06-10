@@ -17,7 +17,7 @@
     <div class="rounded-md relative p-4 sm:p-8 md:p-16 bg-white">
         <div class="card-header mb-4 flex flex-col sm:flex-row justify-between items-center">
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">List Data RT</h2>
-            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2 
+            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2
             rounded-md" class="search-button" onclick="window.location.href='{{ route('rts.create') }}'">Tambah Data RT</button>
         </div>
 
@@ -50,7 +50,7 @@
                         <th class="border px-2 sm:px-4 py-2">RT</th>
                         <th class="border px-2 sm:px-4 py-2">Alamat</th>
                         <th class="border px-2 sm:px-4 py-2">Nomor Telefon</th>
-                        <th class="border px-2 sm:px-4 py-2">Aksi</th>
+                        {{-- <th class="border px-2 sm:px-4 py-2">Aksi</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +61,7 @@
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->rt }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->alamat }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->nomor_telefon }}</td>
-                        <td class="border px-2 sm:px-4 py-2">
+                        {{-- <td class="border px-2 sm:px-4 py-2">
                           <div class="flex justify-center space-x-2">
                               <a href="{{ route('rts.edit', $rt) }}" class="edit-button bg-yellow-300 hover:bg-yellow-500 text-white px-2 py-1 rounded">Edit</a>
                               <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
@@ -70,7 +70,7 @@
                                   <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="delete-button bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded">Delete</button>
                               </form>
                           </div>
-                      </td>
+                      </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

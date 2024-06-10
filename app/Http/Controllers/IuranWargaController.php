@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RT;
 use App\Models\Iuran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -23,7 +24,8 @@ class IuranWargaController extends Controller
             'title' => 'Form Input Iuran',
             'subtitle' => '',
         ];
-        return view('warga.form', ['breadcrumb' => $breadcrumb]);
+        $rts = RT::all();
+        return view('warga.form', ['breadcrumb' => $breadcrumb],compact('rts'));
     }
 
     public function history()

@@ -17,7 +17,7 @@
     <div class="rounded-md relative p-4 sm:p-8 md:p-16 bg-white">
         <div class="card-header mb-4 flex flex-col sm:flex-row justify-between items-center">
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">List Data RT</h2>
-            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2 
+            <button type="button" type="submit" style="top:10%" class="search-button bg-blue-500 text-white px-4 py-2
             rounded-md" class="search-button" onclick="window.location.href='{{ route('rws.create') }}'">Tambah Data RT</button>
           </div>
 
@@ -61,7 +61,7 @@
                   <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->rt_id }}</td>
                   <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->alamat }}</td>
                   <td class="border px-4 py-2 text-center" style="color: black">{{ $rt->nomor_telefon }}</td>
-                  {{-- <td class="border px-4 py-2 text-center">
+                  <td class="border px-4 py-2 text-center">
                     <div class="flex justify-center space-x-2">
                       <a href="{{ route('rts.edit', $rt) }}" class="btn btn-warning px-2 py-1 bg-yellow-500">Edit</a>
                       <form id="delete-form-{{ $rt->id }}" action="{{ route('rts.destroy', $rt) }}" method="POST" style="display: inline-block;">
@@ -70,9 +70,9 @@
                         <button type="button" onclick="confirmDelete('{{ $rt->id }}')" class="btn btn-danger px-2 py-1 bg-red-500">Delete</button>
                       </form>
                     </div>
-                  </td> --}}
-      
-      
+                  </td>
+
+
                 </tr>
                 @endforeach
               </tbody>

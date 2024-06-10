@@ -30,7 +30,7 @@ class SaranController extends Controller
         ];
         $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
         $rts = RT::all();
-        return view('RW.saranRW', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb','rts'));
+        return view('RW.saranRW', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb',''));
     }
     public function indexPD()
     {

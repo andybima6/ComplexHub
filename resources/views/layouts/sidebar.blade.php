@@ -79,7 +79,7 @@
 
                        <a href="{{ auth()->user()->role_id == 1 ? url('rws') : (auth()->user()->role_id == 2 ? url('rts') : url('rts')) }}"
 
-                       <a href="{{ auth()->user()->role_id == 1 ? url('rws') : (auth()->user()->role_id == 2 ? url('rts') : url('dashboardPD')) }}"
+                     
 
                            style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Data
                            RT</a>
@@ -248,7 +248,7 @@
 
                </ul>
            </li>
-           
+
            <li class="pointer mb3">
             <a href= "{{ url('/') }}"class="w-100 flex" href="#logout" style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 24px;">
                    <svg width="34" height="32" viewBox="0 0 34 32" fill="none"

@@ -107,7 +107,7 @@
                 <label for="nama" class="label">Nama:</label>
                 <input type="text" id="nama" name="nama" required class="input" value="{{ auth()->user()->name }}" readonly>
             </div>
-            
+
             <div class="form-group">
                 <label for="periode" class="label">Tanggal Pembayaran:</label>
                 <input type="date" id="periode" name="periode" required class="input">
@@ -120,21 +120,7 @@
 
             <div class="form-group">
                 <label for="keterangan" class="label">Keterangan:</label>
-                <select id="keterangan" name="keterangan" required class="input">
-                    <option value="">Pilih bulan</option>
-                    <option value="Januari">Januari</option>
-                    <option value="Februari">Februari</option>
-                    <option value="Maret">Maret</option>
-                    <option value="April">April</option>
-                    <option value="Mei">Mei</option>
-                    <option value="Juni">Juni</option>
-                    <option value="Juli">Juli</option>
-                    <option value="Agustus">Agustus</option>
-                    <option value="September">September</option>
-                    <option value="Oktober">Oktober</option>
-                    <option value="November">November</option>
-                    <option value="Desember">Desember</option>
-                </select>
+                <textarea id="keterangan" name="keterangan" required class="input" rows="5"></textarea>
             </div>
 
             <div class="form-group">
@@ -144,14 +130,9 @@
 
             <div class="form-group">
                 <label for="rt_id" class="label">RT:</label>
-                <select id="rt_id" name="rt_id" required class="input">
-                    <option value="" disabled selected>Select RT</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <input type="rt_id" id="rt_id" name="name"
+                class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                value="{{ auth()->user()->rt_id }}" readonly>
             </div>
 
             <div class="form-group">
