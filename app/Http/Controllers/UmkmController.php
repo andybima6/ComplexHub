@@ -20,13 +20,15 @@ class UmkmController extends Controller
     }
 
     public function indexDataRW() {
+        $rts = RT::all();
+        $rt_id = auth()->user()->rt_id;
         $izinUsaha = Umkm::all();
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Data Usaha RW',
         ];
 
-        return view('RW.dataUsahaRW', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
+        return view('RW.dataUsahaRW', compact('izinUsaha', 'rts'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function indexIzinRT() {

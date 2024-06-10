@@ -10,10 +10,12 @@
                     RT :
                     <div class="values w-911 h-62 relative md:left-96 top-2 text-center md:text-left"
                         style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                        <select class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
+                        {{-- <label for="rt_id" class="block text-sm font-medium text-gray-700"></label> --}}
+                        <select id="rt_id" name="rt_id" class="bg-transparent border-white outline-none text-white w-full md:w-auto" onchange="filterRT()">
+                            <option value="">0</option>
+                            @foreach($rts as $rt)
+                                <option value="{{ $rt->id }}">{{ $rt->id }}</option>
+                            @endforeach
                             <!-- tambahkan opsi lainnya sesuai kebutuhan -->
                         </select>
                     </div>
@@ -24,7 +26,7 @@
                 <p class="w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
                     style="font-size: 60px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     Total UMKM :
-                    <div class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
+                    <div id="total-umkm" class="w-911 h-62 relative md:left-96 top-12 ml-12 text-center md:text-left"
                         style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                         <selected class="bg-transparent border-white outline-none text-white w-full md:w-auto">
                             <option value="{{ count($izinUsaha) }}">{{ count($izinUsaha) }}</option>
@@ -47,12 +49,13 @@
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Lingkup</th>
                         {{-- <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th> --}}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="umkm-table">
                     @foreach ($izinUsaha as $index => $izin)
-                    <tr>
+                    <tr data-rt="{{ $izin->rt_id }}">
                         <td class="border px-4 py-2 text-center" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
@@ -62,6 +65,7 @@
                                 <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
+                        <td class="border px-4 py-2 text-center" style="color: black">RT {{ $izin->rt_id }}</td>
                         {{-- <td class="border px-4 py-2 text-center" style="color: black">Pending</td> --}}
 
                     </tr>
@@ -72,3 +76,21 @@
 
     </main>
 @endsection
+<script>
+    function filterRT() {
+        var selectedRT = document.getElementById('rt_id').value;
+        var rows = document.querySelectorAll('#umkm-table tr');
+        var totalumkm = 0;
+        for (var i = 0; i < rows.length; i++) { // Mulai dari indeks 1 untuk melewati baris header
+            var rtIdCell = rows[i].getAttribute('data-rt');
+            if (selectedRT === "" || rtIdCell === selectedRT) {
+                rows[i].style.display = "";
+                totalumkm++;
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+        // Update total umkm
+        document.getElementById('total-umkm').innerText = totalumkm;
+    }
+</script>
