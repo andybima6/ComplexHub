@@ -27,26 +27,22 @@
       <div class="flex flex-col">
         <label for="no_kk" class="text-gray-700 font-medium mb-1">No KK</label>
         <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="no_kk" name="no_kk" pattern="[0-9]{16}" title="No KK harus terdiri dari 16 angka." required>
-    </div>    
+    </div>
 
     <div class="flex flex-col">
       <label for="kepala_keluarga" class="text-gray-700 font-medium mb-1">Kepala Keluarga</label>
       <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="kepala_keluarga" name="kepala_keluarga" pattern="[A-Za-z\s]+" title="Kepala Keluarga hanya boleh mengandung huruf." required>
-  </div>  
+  </div>
 
       <div class="flex flex-col">
         <label for="alamat" class="text-gray-700 font-medium mb-1">Alamat</label>
         <input type="text" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" id="alamat" name="alamat" required>
       </div>
 
-      <div class="flex flex-col">
-        <label for="rt_id" class="text-gray-700 font-medium mb-1">RT</label>
-        <select name="rt_id" id="rt_id" class="border rounded-md px-2 py-1 focus:outline-blue-500 focus:ring-1 focus:ring-blue-500" required>
-          @foreach($rts as $rt)
-            <option value="{{ $rt->rt }}">{{ $rt->rt }}</option>
-          @endforeach
-        </select>
-      </div>
+      <div class="mt-4 mb-4">
+        <label for="rt_id" class="block text-sm font-medium text-gray-700">RT</label>
+        <input type="text" id="rt_id" name="rt_id" class="mt-1 p-2 block w-full border-gray-300 rounded-md"  style="background-color: #E6E6E6" value="{{ auth()->user()->rt_id }}" readonly>
+    </div>
 
       {{-- <div class="flex flex-col">
         <label for="status_ekonomi" class="text-gray-700 font-medium mb-1">Status Ekonomi</label>
@@ -87,14 +83,14 @@
            }
        });
    }
- 
+
    function showImageModal(imageSrc) {
        document.getElementById('modalImage').src = imageSrc;
        document.getElementById('imageModal').style.display = 'flex';
    }
- 
+
    function hideImageModal() {
        document.getElementById('imageModal').style.display = 'none';
    }
  </script>
- 
+

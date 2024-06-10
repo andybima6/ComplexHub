@@ -16,10 +16,10 @@ class DataKartuKeluargaController extends Controller
             'title' => 'Data',
             'subtitle' => 'Kartu Keluarga',
         ];
-    
+
         $search = $request->input('search');
         $rt_id = $request->input('rt_id');
-    
+
         $data_kartu_keluargas = DataKartuKeluarga::with('rt')
             ->when($search, function ($query, $search) {
                 return $query->where('kepala_keluarga', 'like', "%{$search}%")
@@ -30,10 +30,10 @@ class DataKartuKeluargaController extends Controller
                 return $query->where('rt_id', $rt_id);
             })
             ->get();
-    
+
         return view('data_kartu_keluargas.index', compact('data_kartu_keluargas', 'breadcrumb', 'search', 'rts', 'rt_id'));
     }
-    
+
 
         public function search(Request $request)
         {

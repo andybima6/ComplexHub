@@ -64,7 +64,7 @@
                 <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
                     <span>Search</span>
                 </label>
-                <input type="text" id="search" name="search" value="{{ request('search') }}" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
+                <input type="text" id="search" name="search" value="{{ request('search') }}" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 placeholder="cari" font size="10px">
             </div>
             <div class="mb-4">
@@ -72,12 +72,12 @@
               <select id="rt_id" name="rt_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" onchange="filterRT()">
                   <option value="">Semua RT</option>
                   @foreach($rts as $rt)
-                      <option value="{{ $rt->rt_id }}">{{ $rt->rt_id }}</option>
+                      <option value="{{ $rt->id }}">{{ $rt->id }}</option>
                   @endforeach
               </select>
           </div>
-          
-          
+
+
         </form>
 
         <div id="no-results" class="hidden">Data tidak ditemukan</div>
@@ -98,7 +98,7 @@
                     </thead>
                     <tbody id="kk-table">
                         @foreach($data_kartu_keluargas as $kk)
-                            <tr data-rt="{{ $kk->rt->rt_id ?? 'N/A' }}"">
+                            <tr data-rt="{{ $kk->rt->id ?? 'N/A' }}">
                                 <td class="border px-4 py-2 text-center">{{ $kk->id }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $kk->no_kk }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $kk->kepala_keluarga }}</td>
@@ -107,18 +107,18 @@
                                 {{-- <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td> --}}
                                 <td class="border px-4 py-2 text-center" style="color: black">
                                     <div class="flex justify-center">
-                                        <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="bg-blue-500 hover:bg-blue-700 
+                                        <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="bg-blue-500 hover:bg-blue-700
                                             text-white font-bold py-2 px-4 rounded flex items-center justify-center">
                                             Lihat
                                         </a>
-                                        <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700 
+                                        <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700
                                             text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">
                                             Edit
                                         </a>
                                         <form id="delete-form-{{ $kk->id }}" action="{{ route('data_kartu_keluargas.destroy', $kk) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 
+                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700
                                             text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">Delete</button>
                                         </form>
                                     </div>
@@ -165,7 +165,7 @@
                                           <form id="delete-form-{{ $kk->id }}" action="{{ route('data_kartu_keluargas.destroy', $kk) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 
+                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700
                                             text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">Delete</button>
                                         </form>
                                       </div>

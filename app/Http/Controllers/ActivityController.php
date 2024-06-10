@@ -36,8 +36,8 @@ class ActivityController extends Controller
             'subtitle' => 'Usulan Kegiatan',
         ];
         $activities = Activity::all(); // Mengambil semua data kegiatan dari model Kegiatan
-
-        return view('RW.usulanKegiatanRW', ['breadcrumb' => $breadcrumb], compact('activities'));
+        $rts = rt::all();
+        return view('RW.usulanKegiatanRW', ['breadcrumb' => $breadcrumb], compact('activities','rts'));
     }
     public function indexPenduduk()
     {

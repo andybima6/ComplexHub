@@ -7,7 +7,7 @@
             Selamat Datang Administrator, di Sistem Pendukung Keputusan pemilihan Destinasi Wisata
         </div>
     </div>
-    
+
     <div id="tombol-container" class="relative mt-4 md:absolute md:bottom-10 md:left-1/2 md:transform md:-translate-x-1/2 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 text-center">
         <a href="{{ route('kriteria.index') }}" class="bg-transparent hover:bg-[#385668] text-[#385668] font-semibold hover:text-white py-2 px-4 border border-[#385668] hover:border-transparent rounded" style="font-size: 24px;">SAW</a>
         <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}" class="bg-transparent hover:bg-[#385668] text-[#385668] font-semibold hover:text-white py-2 px-4 border border-[#385668] hover:border-transparent rounded" style="font-size: 24px;">MAUT</a>
@@ -37,16 +37,6 @@
 
 </style>
 
-<div id="gambar-container">
-    <img src={{ asset('img/background.png') }} alt="Gambar">
-    <div id="teks-di-gambar">Selamat Datang Administrator, di Sistem Pendukung Keputusan pemilihan Destinasi Wisata </div>
-    <div id="tombol-container">
-        <!-- Menggunakan tag anchor untuk membuat tombol yang mengarahkan ke tampilan HTML -->
 
-        <a href="{{ route('kriteria.index') }}" class="tombol">SAW</a>
-        <a href="{{ url('/metode_dua_spk/kriteriadestinasi2') }}"class="tombol">MAUT</a>
-
-    </div>
-</div>
 
 @endsection

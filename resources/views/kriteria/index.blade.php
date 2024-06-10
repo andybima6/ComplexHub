@@ -68,10 +68,29 @@
                 font-size: 14px;
             }
         }
+
+            #navbar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+            #navbar a {
+                padding: 10px 20px;
+                text-decoration: none;
+                font-size: 24px;
+                font-weight: 600;
+                color: #000;
+                transition: color 0.3s;
+            }
+            #navbar a:hover {
+                color: #007BFF;
+            }
+
     </style>
 
     <main class="mx-auto p-8 sm:p-16 md:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-        <nav class="text-center mb-8">
+        <nav id="navbar">
             <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
             <a href="{{ url('/kriteria') }}">Kriteria</a>
             <a href="{{ url('/alternatif') }}">Alternatif</a>
@@ -83,7 +102,7 @@
             <p class="mb-6" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
                 Data Kriteria Destinasi Wisata:
             </p>
-        
+
             <div class="overflow-x-auto">
                 <table class="w-full table">
                     <thead>
