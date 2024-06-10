@@ -23,7 +23,8 @@ class UmkmSeeder extends Seeder
         }
 
         Umkm::create([
-            'nama_warga' => 'aku',
+            'user_id' => 2,
+            'nama_warga' => 'Brian Domani',
             'nama_usaha' => 'Menara Cafe',
             'deskripsi' => 'tempat nongkrong yang seru dan asik bisa buat nugas bareng juga',
             'foto_produk' => 'foto-produk/wHiNCDGnnWZGJ11xUm70xXwhDIhlxvCZrUUg36js.png',
@@ -32,9 +33,10 @@ class UmkmSeeder extends Seeder
             'rt_id' => $rts->random()->id,
         ]);
         Umkm::create([
-            'nama_warga' => 'aku',
+            'user_id' => 2,
+            'nama_warga' => 'Brian Domani',
             'nama_usaha' => 'RS Cafe',
-            'deskripsi' => 'solusi tempat nongkrong yang murah dan 24 jam, kamu bisa ngobrol santai dan melakukan hal seru lainnya bareng temen kamu!',
+            'deskripsi' => 'solusi tempat nongkrong yang murah dan 24 jam, kamu bisa ngobrol santai dan melBrian Domanikan hal seru lainnya bareng temen kamu!',
             'foto_produk' => 'foto-produk/JrCl3bbhFI8pqaF2wfWCnqz0sRTD41WpMjWQNmzv.png',
             'status_rt' => 'izin belum disetujui oleh ketua RT',
             'status_rw' => 'izin belum disetujui oleh ketua RW',
@@ -42,7 +44,8 @@ class UmkmSeeder extends Seeder
 
         ]);
         Umkm::create([
-            'nama_warga' => 'aku',
+            'user_id' => 2,
+            'nama_warga' => 'Brian Domani',
             'nama_usaha' => 'Pangea Castle',
             'deskripsi' => 'bengkel motor custom impian para lelaki',
             'foto_produk' => 'foto-produk/cYv9vA34KmXV3EWOgJHe51em9tbJr7f45X0c55O6.png',

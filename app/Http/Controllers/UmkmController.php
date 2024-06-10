@@ -30,7 +30,8 @@ class UmkmController extends Controller
     }
 
     public function indexIzinRT() {
-        $izinUsaha = Umkm::all();
+        $rt_id = auth()->user()->rt_id;
+        $izinUsaha = Umkm::where('rt_id', $rt_id)->get();
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Izin Usaha RT',
@@ -50,13 +51,14 @@ class UmkmController extends Controller
     }
 
     public function indexIzinPenduduk() {
+        $user = auth()->user()->user_id;
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Izin Usaha Penduduk',
         ];
-        $izinUsaha = Umkm::all(); // Assuming Umkm is the model for your izinUsaha
+        $izinUsaha = Umkm::where('user_id', $user)->get(); // Assuming Umkm is the model for your izinUsaha
         $rts = RT::all();
-        return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha', 'rts', 'breadcrumb'));
+        return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha', 'rts', 'breadcrumb', 'user'));
     }
 
     public function indexDataPenduduk() {
@@ -135,6 +137,7 @@ class UmkmController extends Controller
     public function storeIzin(Request $request) {
         $validatedData = $request->validate([
             'nama_warga' => 'required|string',
+            'user_id' => 'required|int',
             'nama_usaha' => 'required|string',
             'deskripsi' => 'required|string',
             'foto_produk' => 'image|mimes:jpeg,png,jpg',
@@ -151,6 +154,7 @@ class UmkmController extends Controller
         // Simpan data izin usaha ke dalam database menggunakan model Umkm
         Umkm::create([
             'nama_warga' => $validatedData['nama_warga'],
+            'user_id' => $validatedData['user_id'],
             'nama_usaha' => $validatedData['nama_usaha'],
             'deskripsi' => $validatedData['deskripsi'],
             'foto_produk' => $foto_produk, // Simpan nama file gambar jika ada, atau null jika tidak
