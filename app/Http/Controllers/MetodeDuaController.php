@@ -311,11 +311,11 @@ private function calculateRanking($normalizedData, $bobot_kriteria)
                 'score' => 0,
             ];
         }
-        $rankingScores[$data['alternative_id']]['score'] += ($data['tiket']) * 0.2 +
-        ($data['fasilitas']) * 0.3 +
-        ($data['kebersihan']) * 0.2 +
-        ($data['keamanan']) * 0.2 +
-        ($data['akomodasi']) * 0.1;
+        $rankingScores[$data['alternative_id']]['score'] += ($data['tiket']) * ($criteriaWeights['1']) +
+        ($data['fasilitas']) * ($criteriaWeights['2']) +
+        ($data['kebersihan']) * ($criteriaWeights['3']) +
+        ($data['keamanan']) * ($criteriaWeights['4']) +
+        ($data['akomodasi']) * ($criteriaWeights['5']);
     }
     usort($rankingScores, function($a, $b) {
         return $b['score'] <=> $a['score'];
