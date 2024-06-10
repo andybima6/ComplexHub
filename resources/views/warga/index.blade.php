@@ -92,7 +92,8 @@
 <main>
     <img src="{{ asset('images/qr.png') }}" alt="QR Code">
     <div class="box">
-        Silahkan Lakukan pembayaran pada Kode QR diatas!
+        Silahkan Lakukan pembayaran pada Kode QR diatas! <br>
+        Atau langsung lanjut apabila sudah melakukan pembayaran secara offline!
     </div>
     <button class="lanjut-button" onclick="window.location='{{ route('form') }}'">Lanjut</button>
 </main>
