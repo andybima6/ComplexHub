@@ -31,11 +31,11 @@
                 <a href="{{ url('/metode_dua_spk/rankingdestinasi2') }}">Ranking</a>
             </nav>
 
-            <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28">
+            <div class="overflow-x-auto" style="width: 100%;">
                 <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
                     Data Kriteria Destinasi Wisata yang ingin di kunjungi :
                 </p>
-                <table class="md:table-fixed w-full">
+                <table class="table-auto w-full border-collapse border border-gray-300 bg-white">
                     <thead>
                         <tr>
                             <th class="border px-4 py-2 text-center w-1/7">No</th>

@@ -223,7 +223,9 @@
     text-align: center;
 }
 
-
+.bg-custom {
+            background-image: url('{{ asset('img/pemandangan2.jpg') }}');
+        }
 /* Media Query untuk tampilan pada perangkat mobile */
 @media screen and (max-width: 600px) {
     .menu {
@@ -241,30 +243,74 @@
 
 </style>
 
-<header class="px-9 py-10" style="display: flex; align-items: center; justify-content: space-between;">
-    <svg width="52" height="39" viewBox="0 0 52 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="4.12695" y1="19.5" x2="4.12695" y2="38.9925" stroke="#385668" stroke-width="4"/>
-        <line y1="-2" x2="19.3393" y2="-2" transform="matrix(-0.662751 0.74884 -0.737003 -0.67589 14.8945 5.42188)" stroke="#385668" stroke-width="4"/>
-        <line y1="-2" x2="19.356" y2="-2" transform="matrix(-0.625314 0.780373 -0.769364 -0.638811 33.7109 4.36719)" stroke="#385668" stroke-width="4"/>
-        <line y1="-2" x2="21.4848" y2="-2" transform="matrix(0.756985 0.653433 -0.640054 0.76833 32.9785 6.50488)" stroke="#385668" stroke-width="4"/>
-        <line y1="-2" x2="15.2292" y2="-2" transform="matrix(0.7684 0.63997 -0.626481 0.779437 13.8301 6.50488)" stroke="#385668" stroke-width="4"/>
-        <line x1="23.2773" y1="19.5" x2="23.2773" y2="38.9925" stroke="#385668" stroke-width="4"/>
-        <line x1="26.5957" y1="22.915" x2="37.234" y2="22.915" stroke="#385668" stroke-width="4"/>
-        <line x1="41.8945" x2="41.8945" y2="39" stroke="#385668" stroke-width="4"/>
-        <line x1="49.873" y1="19.5" x2="49.873" y2="38.9925" stroke="#385668" stroke-width="4"/>
-        <line y1="36.9922" x2="50" y2="36.9922" stroke="#385668" stroke-width="4"/>
-    </svg>
-    <div class="menu" style="display: flex; justify-content: center; flex-grow: 1;">
-        <a class="active" style="margin: 0 10px; font-size:24px; color: #385668;" href="#container">Beranda</a>
-        <a class="active" style="margin: 0 10px; font-size:24px; color: #385668;" href="#what-is-complexhub">Tentang</a>
-        <a class="active" style="margin: 0 10px; font-size:24px; color: #385668;" href="#umkm">UMKM</a>
+<nav class="fixed w-full z-20 top-0 start-0 border-b border-gray-200" style="background-color: #FBEEC1;">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <svg width="52" height="39" viewBox="0 0 52 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="4.12695" y1="19.5" x2="4.12695" y2="38.9925" stroke="#385668" stroke-width="4"/>
+                <line y1="-2" x2="19.3393" y2="-2" transform="matrix(-0.662751 0.74884 -0.737003 -0.67589 14.8945 5.42188)" stroke="#385668" stroke-width="4"/>
+                <line y1="-2" x2="19.356" y2="-2" transform="matrix(-0.625314 0.780373 -0.769364 -0.638811 33.7109 4.36719)" stroke="#385668" stroke-width="4"/>
+                <line y1="-2" x2="21.4848" y2="-2" transform="matrix(0.756985 0.653433 -0.640054 0.76833 32.9785 6.50488)" stroke="#385668" stroke-width="4"/>
+                <line y1="-2" x2="15.2292" y2="-2" transform="matrix(0.7684 0.63997 -0.626481 0.779437 13.8301 6.50488)" stroke="#385668" stroke-width="4"/>
+                <line x1="23.2773" y1="19.5" x2="23.2773" y2="38.9925" stroke="#385668" stroke-width="4"/>
+                <line x1="26.5957" y1="22.915" x2="37.234" y2="22.915" stroke="#385668" stroke-width="4"/>
+                <line x1="41.8945" x2="41.8945" y2="39" stroke="#385668" stroke-width="4"/>
+                <line x1="49.873" y1="19.5" x2="49.873" y2="38.9925" stroke="#385668" stroke-width="4"/>
+                <line y1="36.9922" x2="50" y2="36.9922" stroke="#385668" stroke-width="4"/>
+            </svg>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900" style="font-family: 'Poppins', sans-serif;">ComplexHub</span>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <a href="{{ route('login') }}">
+                <button id="login-landing" class="text-white bg-[#385668] hover:bg-[#2c4452] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Masuk
+                </button>
+            </a>
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#FBEEC1]">
+                <li>
+                    <a href="#container" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#385668] md:p-0">Beranda</a>
+                </li>
+                <li>
+                    <a href="#what-is-complexhub" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#385668] md:p-0">Tentang</a>
+                </li>
+                <li>
+                    <a href="#umkm" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#385668] md:p-0">UMKM</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="login-landing" class="btn btn-primary">
-        <a href="{{ route('login') }}"><button>Masuk</button></a>
-    </div>
-</header>
+</nav>
+<script>
+            document.querySelector('[data-collapse-toggle]').addEventListener('click', function() {
+            const target = document.getElementById(this.getAttribute('data-collapse-toggle'));
+            target.classList.toggle('hidden');
+        });
+</script>
 <main>
-  <div id="landing-container" class="container">
+    <section class="bg-center bg-no-repeat bg-gray-700 bg-blend-multiply bg-custom">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">ComplexHub - Manajemen Lingkungan</h1>
+            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga.</p>
+            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">ComplexHub adalah sebuah website yang menyediakan sistem manajemen warga online untuk mempermudah pengelolaan informasi dan interaksi antarwarga, memungkinkan untuk dilakukan di mana pun dan kapan pun.</p>
+            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                <a href="{{ route('login') }}" id="mulai-landing2" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                    Mulai Sekarang
+                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+  {{-- <div id="landing-container" class="container">
     <div class="text">
         <h1>ComplexHub - Manajemen Lingkungan</h1>
         <p>Sistem Manajemen untuk mempermudah pengelolaan dalam lingkungan rukun warga</p>
@@ -274,7 +320,7 @@
         </div>
     </div>
     <img class="image" src="{{ asset('img/gambar landingPage.jpg') }}" alt="">
-</div>
+</div> --}}
 
 
     <section id="what-is-complexhub" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 55vh; margin: 40px 20px; text-align: center;">

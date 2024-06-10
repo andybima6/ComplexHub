@@ -99,28 +99,28 @@
 </style>
 
 <main class="mx-auto p-4 sm:p-6 md:p-36" style="min-height: 100vh; background-color: #FBEEC1;">
-    <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-6 text-center">Form Input Iuran</h2>
-        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+    <div class="form-container">
+        <h2>Form Input Iuran</h2>
+        <form action="{{ route('storeRT') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mb-4">
-                <label for="nama" class="block text-gray-700 font-medium">Nama:</label>
-                <input type="text" id="nama" name="nama" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ auth()->user()->name }}" readonly>
+            <div class="form-group">
+                <label for="nama" class="label">Nama:</label>
+                <input type="text" id="nama" name="nama" required class="input" value="{{ auth()->user()->name }}" readonly>
             </div>
             
-            <div class="mb-4">
-                <label for="periode" class="block text-gray-700 font-medium">Tanggal Pembayaran:</label>
-                <input type="date" id="periode" name="periode" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="form-group">
+                <label for="periode" class="label">Tanggal Pembayaran:</label>
+                <input type="date" id="periode" name="periode" required class="input">
             </div>
 
-            <div class="mb-4">
-                <label for="total" class="block text-gray-700 font-medium">Total:</label>
-                <input type="number" id="total" name="total" placeholder="Nominal" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="form-group">
+                <label for="total" class="label">Total:</label>
+                <input type="number" id="total" name="total" placeholder="Nominal" required class="input">
             </div>
 
-            <div class="mb-4">
-                <label for="keterangan" class="block text-gray-700 font-medium">Keterangan:</label>
-                <select id="keterangan" name="keterangan" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="form-group">
+                <label for="keterangan" class="label">Keterangan:</label>
+                <select id="keterangan" name="keterangan" required class="input">
                     <option value="">Pilih bulan</option>
                     <option value="Januari">Januari</option>
                     <option value="Februari">Februari</option>
@@ -137,14 +137,14 @@
                 </select>
             </div>
 
-            <div class="mb-4">
-                <label for="bukti" class="block text-gray-700 font-medium">Bukti:</label>
-                <input type="file" id="bukti" name="bukti" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="form-group">
+                <label for="bukti" class="label">Bukti:</label>
+                <input type="file" id="bukti" name="bukti" required class="input">
             </div>
 
-            <div class="mb-4">
-                <label for="rt_id" class="block text-gray-700 font-medium">RT:</label>
-                <select id="rt_id" name="rt_id" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="form-group">
+                <label for="rt_id" class="label">RT:</label>
+                <select id="rt_id" name="rt_id" required class="input">
                     <option value="" disabled selected>Select RT</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -154,8 +154,8 @@
                 </select>
             </div>
 
-            <div class="text-center">
-                <button type="submit" onclick="return confirmSubmit()" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Kirim</button>
+            <div class="form-group">
+                <button type="submit" onclick="return confirmSubmit()" class="button" id="kirim">Kirim</button>
             </div>
         </form>
     </div>

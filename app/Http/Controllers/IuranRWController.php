@@ -35,7 +35,7 @@ class IuranRWController extends Controller
             'title' => 'Form Input Iuran',
             'subtitle' => '',
         ];
-        return view('warga.form', ['breadcrumb' => $breadcrumb]);
+        return view('RW/formIuran', ['breadcrumb' => $breadcrumb]);
     }
 
     public function store(Request $request)
@@ -69,7 +69,7 @@ class IuranRWController extends Controller
             'rt_id' => $request->rt_id
         ]);
 
-        return redirect('/RW/iuranRW')->with('success', 'Data iuran berhasil disimpan');
+        return view('RW/dataiuranRW');
     }
 
     public function cari(Request $request)

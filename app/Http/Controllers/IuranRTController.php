@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class IuranRTController extends Controller
 {
+    public function dataiuranRT()
+    {
+        $iuran = Iuran::all();
+        $breadcrumb = (object) [
+            'title' => 'Data Iuran RW',
+            'subtitle' => '',
+        ];
+        return view('RT/kasiuranRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
+    }
     public function kasindexRT()
     {
         $user = Auth::user();
@@ -53,7 +63,45 @@ class IuranRTController extends Controller
             'title' => 'Form Input Iuran',
             'subtitle' => '',
         ];
-        return view('warga.form', ['breadcrumb' => $breadcrumb]);
+        return view('RT/formIuran', ['breadcrumb' => $breadcrumb]);
+    }
+
+    public function store(Request $request)
+    {
+        $breadcrumb = (object) [
+            'title' => 'Kas RT',
+            'subtitle' => '',
+        ];
+        $validatedData = $request->validate([
+            'nama' => 'required|string',
+            'periode' => 'required|date',
+            'total' => 'required|numeric',
+            'keterangan' => 'required|string',
+            'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf',
+            'rt_id' => 'required|numeric'
+        ]);
+
+        // Log the validated data
+        Log::info('Validated Data:', $validatedData);
+
+        // Handle file upload
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $fileName, 'public');
+        }
+
+        // Save to the database
+        Iuran::create([
+            'nama' => $request->nama,
+            'periode' => $request->periode,
+            'total' => $request->total,
+            'keterangan' => $request->keterangan,
+            'bukti' => $filePath,
+            'rt_id' => $request->rt_id
+        ]);
+
+        return view('RT/kasiuranRT', ['breadcrumb' => $breadcrumb]);
     }
 
     public function edit(string $id)
