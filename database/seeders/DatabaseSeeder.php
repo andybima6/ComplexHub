@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             AnggotaKeluargaSeeder::class,
 
             IuranSeeder::class,
-            KriteriaSeeder::class,
+            // KriteriaSeeder::class,
             AlternatifSeeder::class,
             SuggestionSeeder::class,
         ]);

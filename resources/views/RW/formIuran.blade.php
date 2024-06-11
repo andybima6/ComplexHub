@@ -103,6 +103,12 @@
         <h2>Form Input Iuran</h2>
         <form action="{{ route('storeRW') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="mt-4 mb-4">
+                <label for="user_id" class="block text-sm font-medium text-gray-700">ID</label>
+                <input type="text" id="user_id" name="user_id"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                    value="{{ auth()->user()->id }}" readonly>
+            </div>
             <div class="form-group">
                 <label for="nama" class="label">Nama:</label>
                 <input type="text" id="nama" name="nama" required class="input" value="{{ auth()->user()->name }}" readonly>
