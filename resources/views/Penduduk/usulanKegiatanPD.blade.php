@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 @section('content')
-    <main style="overflow-y: auto;">
-        <div class="md:justify-between mt-20 py-24 flex">
+<main class="mx-auto p-5 sm:p-10 md:p-2 contain-responsive" style="min-height: 50vh; background-color: #FBEEC1;">
+    <div class="md:justify-between mt-20 py-24 flex flex-col md:flex-row">
             <div class="md:ml-52 mt-4 md:mt-0 relative"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
                 <p class="relative md:right-24 top-6 text-center md:text-left;"
@@ -11,8 +11,6 @@
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
                         01
-
-                        <!-- tambahkan opsi lainnya sesuai kebutuhan -->
                     </a>
                 </div>
                 </p>
@@ -25,6 +23,8 @@
                     + Tambah
                 </p>
             </div>
+    </div>
+            
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
@@ -86,13 +86,6 @@
             </form>
 
         </div>
-        </div>
-        </div>
-
-
-
-
-
 
         <div class="bgusulan relative" style="position: absolute; top: 45%; left: 8%; z-index: 0;">
             <div

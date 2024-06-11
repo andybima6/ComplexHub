@@ -21,6 +21,10 @@ class Iuran extends Model
         'status',
     ];
 
+    protected $attributes = [
+        'status' => 'diproses',
+    ];
+
     public function rt()
     {
         return $this->belongsTo(RT::class, 'rt_id');
