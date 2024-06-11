@@ -2,28 +2,29 @@
 
 @section('content')
     <main style="overflow-y: auto; min-height: 100vh;">
-        <div class="md:justify-between mt-20 py-24 flex">
-            <div class="md:ml-52 mt-4 md:mt-0 relative"
-                style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
-                <p class="relative md:right-24 top-6 text-center md:text-left;"
+        <div class="flex flex-col md:flex-row md:justify-between mt-20 py-24">
+            <div class="mt-4 md:mt-0 relative mx-auto md:ml-52"
+                style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width: 90%; max-width: 350px; height: 275px; border-radius: 13px;">
+                <p class="relative top-6 text-center md:text-left-3"
                     style="font-size: 45px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     RT :
-                <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
+                <div class="values w-full h-62 relative top-2 text-center md:text-left-12"
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                    <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
+                    <a class="bg-transparent border-white outline-none text-white w-full">
                         {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
                     </a>
                 </div>
                 </p>
             </div>
 
-
-            <div id="openModal" class="flex relative w-96 top-24 right-0 items-center justify-center mr-64"
+            <div id="openModal" class="flex relative w-11/12 md:w-96 mt-8 md:mt-24 mx-auto md:mx-0 md:mr-64 items-center justify-center"
                 style="background-color: #2F80ED; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); height: 96px; cursor: pointer;">
-                <p style="font-size: 24px; color: white; font-family: 'Poppins', sans-serif; font-weight: 300;">
+                <p class="text-xl md:text-2xl text-white font-light">
                     + Tambah
                 </p>
             </div>
+        </div>
+
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
@@ -99,29 +100,29 @@
 
 
         {{-- Table Tambah --}}
-        <div class="tabelUsulan absolute inset-x-0  p-16  left-56 bg-white mr-28 rounded-lg " style = "top:45%;width:80%">
-            <p class="mb-10 text-2xl font-semibold text-gray-800">Daftar Izin Kegiatan Penduduk :</p>
-            <table class=" md:table-fixed w-full">
+        <div class="overflow-x-auto">
+            <p class="mb-10 text-xl md:text-2xl font-semibold text-gray-800  ml-24">Daftar Izin Kegiatan Penduduk :</p>
+            <table class="table-auto mx-auto w-4/5 border-collapse border border-gray-300">
                 <thead>
-                    <tr>
-                        <th class="border px-4 py-2 text-center w-1/6">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Nama Lengkap</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Keterangan</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Document</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Status</th>
-                        <th class="border px-4 py-2 text-center w-1/6">Lingkup</th>
-                        <th class="border px-24 py-2 text-center w-1/6">Aksi</th>
+                    <tr class="bg-gray-200 text-black font-medium text-center">
+                        <th class="border px-2 sm:px-4 py-2">No</th>
+                        <th class="border px-2 sm:px-4 py-2">Nama Lengkap</th>
+                        <th class="border px-2 sm:px-4 py-2">Keterangan</th>
+                        <th class="border px-2 sm:px-4 py-2">Document</th>
+                        <th class="border px-2 sm:px-4 py-2">Status</th>
+                        <th class="border px-2 sm:px-4 py-2">Lingkup</th>
+                        <th class="border px-2 sm:px-4 py-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody id="tabelBody">
 
                     @foreach ($activities as $index => $activity)
                         <tr data-id="{{ $activity->id }}">
-                            <td class="border px-4 py-2 text-center" data-number="{{ $index + 1 }}">{{ $index + 1 }}
+                            <td class="border px-4 py-2 text-center bg-white " data-number="{{ $index + 1 }}">{{ $index + 1 }}
                             </td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->name }}</td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->description }}</td>
-                            <td class="border px-4 py-2 text-center">
+                            <td class="border px-4 py-2 text-center bg-white ">{{ $activity->name }}</td>
+                            <td class="border px-4 py-2 text-center bg-white ">{{ $activity->description }}</td>
+                            <td class="border px-4 py-2 text-center bg-white ">
                                 @if ($activity->document)
                                     <a href="{{ $activity->document }}" target="_blank" rel="noopener noreferrer"
                                         class="flex justify-center items-center gap-    2">
@@ -136,10 +137,10 @@
                                     Tidak Ada File
                                 @endif
                             </td>
-                            <td class="border px-4 py-2 text-center">{{ $activity->status }}</td>
-                            <td class="border px-4 py-2 text-center">RT {{ $activity->rt_id }}</td>
+                            <td class="border px-4 py-2 text-center bg-white ">{{ $activity->status }}</td>
+                            <td class="border px-4 py-2 text-center bg-white ">RT {{ $activity->rt_id }}</td>
 
-                            <td class="border px-4 py-2 text-center grid grid-row-4 gap-0">
+                            <td class="border px-4 py-2 text-center bg-white  grid grid-row-4 gap-0">
                                 <a href="{{ route('detailKegiatanPD', ['id' => $activity->id]) }}">
                                     <div>
                                         <button class=""

@@ -28,11 +28,11 @@
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data"
-                class="modal-content absolute inset-0 mt-20 md:mt-56 mx-auto md:w-2/3"
+                class="modal-content absolute inset-0 mx-auto mt-20 md:mt-56 w-11/12 md:w-2/3"
                 style="background-color:#FFFFFF; border-radius: 15px; z-index: 9999;">
                 @csrf
-                <span id="closeModal" class="close">&times;</span>
-                <div class="relative w-fit py-2 text-center"
+                <span id="closeModal" class="close" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
+                <div class="relative w-fit py-3 text-center"
                     style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
                     Tambah Saran Pengaduan
                 </div>
@@ -48,16 +48,13 @@
                     <input type="text" id="user_id" name="user_id" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ auth()->user()->id }}" readonly>
                 </div>
 
+                <input type="hidden" name="id" value="">
                 <div class="flex flex-col gap-4 my-8">
-                    <input type="hidden" name="id" value="">
-                    <input id="editNamaKegiatan" name="tanggal" class="relative p-2 w-full border-2 rounded-lg"
-                        type="date" placeholder="tanggal">
+                    <input id="editNamaKegiatan" name="tanggal" class="relative p-2 w-full border-2 rounded-lg" type="date" placeholder="tanggal">
 
-                    <input id="editKeterangan" name="field" class="relative p-2 w-full border-2 rounded-lg"
-                        type="text" placeholder="Bidang">
+                    <input id="editKeterangan" name="field" class="relative p-2 w-full border-2 rounded-lg" type="text" placeholder="Bidang">
 
-                    <textarea id="editKeterangan" rows="10" name="laporan" class="relative p-2 w-full border-2 rounded-lg"
-                        placeholder="Isi Laporan"></textarea>
+                    <textarea id="editKeterangan" rows="10" name="laporan" class="relative p-2 w-full border-2 rounded-lg" placeholder="Isi Laporan"></textarea>
 
                     <select id="lingkup" name="rt_id" class="relative p-2 w-full border-2 rounded-lg">
                         @foreach ($rts as $rt)
@@ -67,12 +64,10 @@
                 </div>
 
                 <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
-                    <button type="button" data-close-modal="editSaranModal"
-                        class="px-4 py-2 text-center rounded-md bg-gray-600 hover:opacity-80 transition text-base text-white font-medium">
+                    <button type="button" data-close-modal="editSaranModal" class="px-4 py-2 text-center rounded-md bg-gray-600 hover:opacity-80 transition text-base text-white font-medium">
                         Close
                     </button>
-                    <button id="editSaveButton" type="submit"
-                        class="px-4 py-2 text-center rounded-md bg-green-600 hover:opacity-80 transition text-base text-white font-medium">
+                    <button id="editSaveButton" type="submit" class="px-4 py-2 text-center rounded-md bg-green-600 hover:opacity-80 transition text-base text-white font-medium">
                         Save
                     </button>
                 </div>
@@ -80,8 +75,9 @@
         </div>
 
 
+
         <div class="overflow-x-auto">
-            <p class="mb-10 text-xl md:text-2xl font-semibold text-gray-800  ml -24">Daftar Saran Pengajuan Penduduk :</p>
+            <p class="mb-10 text-xl md:text-2xl font-semibold text-gray-800  ml-24">Daftar Saran Pengajuan Penduduk :</p>
             <table class="table-auto mx-auto w-4/5 border-collapse border border-gray-300">
                         <thead>
                             <tr class="bg-gray-200 text-black font-medium text-center">
