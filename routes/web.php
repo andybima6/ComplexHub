@@ -186,7 +186,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/Penduduk/updateSaranPD', [SaranController::class, 'updateSaranPD'])->name('updateSaranPD');
         Route::post('/Penduduk/deleteSaranPD', [SaranController::class, 'deleteSaranPD'])->name('deleteSaranPD');
 
-        Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'showUmkm'])->name('izinUsahaPenduduk');
+        Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'indexIzinPenduduk'])->name('izinUsahaPenduduk');
         Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name('dataUsahaPenduduk');
         Route::get('/Penduduk/detailIzinUsaha/{id}', [UmkmController::class, 'indexDetailIzinPenduduk'])->name('detailIzinUsaha');
         Route::post('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'storeIzin'])->name('storeIzin');
@@ -308,7 +308,7 @@ Route::get('/RW/detailIzinUsahaRW/{id}', [UmkmController::class, 'indexDetailIzi
 Route::get('/RT/dataUsahaRT', [UmkmController::class, 'indexDataRT'])->name('dataUsahaRT');
 Route::get('/RW/izinUsahaRW', [UmkmController::class, 'indexIzinRW'])->name('izinUsahaRW');
 Route::get('/RW/dataUsahaRW', [UmkmController::class, 'indexDataRW'])->name('dataUsahaRW');
-Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'showUmkm'])->name('izinUsahaPenduduk');
+Route::get('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'indexIzinPenduduk'])->name('izinUsahaPenduduk');
 Route::get('/Penduduk/dataUsahaPenduduk', [UmkmController::class, 'indexDataPenduduk'])->name('dataUsahaPenduduk');
 Route::get('/Penduduk/detailIzinUsaha/{id}', [UmkmController::class, 'indexDetailIzinPenduduk'])->name('detailIzinUsaha');
 Route::post('/Penduduk/izinUsahaPenduduk', [UmkmController::class, 'storeIzin'])->name('storeIzin');

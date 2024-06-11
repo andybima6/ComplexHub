@@ -52,16 +52,22 @@ class UmkmController extends Controller
         return view('RW.izinUsahaRW', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
     }
 
-    public function indexIzinPenduduk() {
-        $user = auth()->user()->user_id;
-        $breadcrumb = (object)[
-            'title' => 'UMKM',
-            'subtitle' => 'Izin Usaha Penduduk',
-        ];
-        $izinUsaha = Umkm::where('user_id', $user)->get(); // Assuming Umkm is the model for your izinUsaha
-        $rts = RT::all();
-        return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha', 'rts', 'breadcrumb', 'user'));
-    }
+    public function indexIzinPenduduk()
+{
+    $user = auth()->user();
+    $userId = $user->id; // Mendapatkan user_id dari user yang sedang login
+    $breadcrumb = (object)[
+        'title' => 'UMKM',
+        'subtitle' => 'Izin Usaha Penduduk',
+    ];
+
+    // Mengambil data izinUsaha berdasarkan user_id dari user yang sedang login
+    $izinUsaha = Umkm::where('user_id', $userId)->get(); // Atau gunakan first() jika hanya satu data yang diambil
+    $rts = RT::all();
+
+    return view('Penduduk.izinUsahaPenduduk', compact('izinUsaha', 'rts', 'breadcrumb', 'user'));
+}
+
 
     public function indexDataPenduduk() {
         $izinUsaha = Umkm::all();
