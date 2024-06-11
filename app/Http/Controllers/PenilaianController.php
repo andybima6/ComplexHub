@@ -91,31 +91,35 @@ public function show()
     //     return redirect()->route('penilaian.index');
     // }
 
-    public function edit(Alternatif $alternatif)
+    public function edit($id)
     {
-        $kriterias = Kriteria::all();
-        return view('penilaian.edit', compact('alternatif', 'kriterias'));
+        $breadcrumb = (object)[
+            'title' => 'Edit Penilaian (Metode SAW)',
+            'subtitle' => '',
+        ];
+
+        $alternatif = Alternatif::findOrFail($id);
+        $kriterias = Kriteria::all(); // Asumsikan Anda memiliki model Kriteria
+    
+        return view('penilaian.edit', compact('alternatif', 'kriterias', 'breadcrumb'));
     }
+    
 
 
-    public function update(Request $request, Alternatif $alternatif)
-    {
-        foreach ($request->kriteria_id as $kriteria_id => $nilai) {
-            $nilaiAlternatif = NilaiAlternatif::where('alternatif_id', $alternatif->id)
-                                               ->where('kriteria_id', $kriteria_id)
-                                               ->first();
-            if ($nilaiAlternatif) {
-                $nilaiAlternatif->update(['nilai' => $nilai]);
-            } else {
-                NilaiAlternatif::create([
-                    'alternatif_id' => $alternatif->id,
-                    'kriteria_id' => $kriteria_id,
-                    'nilai' => $nilai
-                ]);
-            }
-        }
-        return redirect()->route('penilaian.index');
+    public function update(Request $request, $id)
+{
+    $alternatif = Alternatif::findOrFail($id);
+
+    foreach ($request->input('nilai') as $kriteriaId => $nilai) {
+        $alternatif->nilaiKriteria()->updateOrCreate(
+            ['kriteria_id' => $kriteriaId],
+            ['nilai' => $nilai]
+        );
     }
+
+    return redirect()->route('penilaian.index')->with('success', 'Penilaian berhasil diperbarui.');
+}
+
 
 }
 

@@ -373,9 +373,9 @@ Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('alternatif.update');
 
-
 Route::resource('penilaian', PenilaianController::class);
-Route::put('penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
+Route::put('/penilaian/{alternatif}', [PenilaianController::class, 'update'])->name('penilaian.update');
+
 Route::get('/saw', [SAWController::class, 'calculateSAW']);
 // Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
