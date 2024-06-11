@@ -109,9 +109,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RT/form', [IuranRTController::class, 'form'])->name('formRT');
         Route::post('/RT/store', [IuranRTController::class, 'store'])->name('storeRT');
         Route::get('/RT/historyRT', [IuranRTController::class, 'historyRT'])->name('historyRT');
+        Route::post('/RT/accIuranRT/{id}', [IuranRTController::class, 'accIuranRT'])->name('accIuranRT');
+        Route::post('/RT/tolakIuranRT/{id}', [IuranRTController::class, 'tolakIuranRT'])->name('tolakIuranRT');
         Route::get('/RT/search', [IuranRTController::class, 'search'])->name('search');
         Route::get('/RT/{id}/edit', [IuranRTController::class, 'edit'])->name('edit');
-        Route::put('/RT/{id}', [IuranRTController::class, 'update'])->name('update');
+        Route::put('/RT/{id}', [IuranRTController::class, 'update'])->name('updateIuran');
         Route::delete('/RT/{id}', [IuranRTController::class, 'destroy'])->name('destroy');
 
 
