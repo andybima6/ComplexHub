@@ -14,11 +14,11 @@ class KriteriaSeeder extends Seeder
     public function run(): void
 {
     DB::table('kriterias')->insert([
-        ['kriteria' => 'biaya tiket masuk', 'jenis' => 'benefit', 'bobot' => 0.3],
-        ['kriteria' => 'fasilitas', 'jenis' => 'cost', 'bobot' => 0.2],
-        ['kriteria' => 'kebersihan', 'jenis' => 'benefit', 'bobot' => 0.2],
-        ['kriteria' => 'keamanan', 'jenis' => 'cost', 'bobot' => 0.2],
-        ['kriteria' => 'biaya akomodasi', 'jenis' => 'benefit', 'bobot' => 0.1],
+        ['nama' => 'biaya tiket masuk', 'jenis' => 'benefit', 'bobot' => 0.3],
+        ['nama' => 'fasilitas', 'jenis' => 'cost', 'bobot' => 0.2],
+        ['nama' => 'kebersihan', 'jenis' => 'benefit', 'bobot' => 0.2],
+        ['nama' => 'keamanan', 'jenis' => 'cost', 'bobot' => 0.2],
+        ['nama' => 'biaya akomodasi', 'jenis' => 'benefit', 'bobot' => 0.1],
     ]);
 }
 
