@@ -29,14 +29,6 @@ class KriteriaController extends Controller
         return view('kriteria.index', compact('kriterias', 'breadcrumb'));
     }
 
-    public function create()
-    {
-        $breadcrumb = (object)[
-            'title' => 'Kriteria (Metode SAW)',
-            'subtitle' => '',
-        ];
-        return view('kriteria.create', compact('breadcrumb'));
-    }
 
     public function store(Request $request)
     {
@@ -54,23 +46,37 @@ class KriteriaController extends Controller
         return view('kriteria.edit', compact('breadcrumb', 'kriteria'));
     }
 
-    public function update(Request $request, Kriteria $kriteria)
-{
-    $request->validate([
-        'nama' => 'required|string',
-        'jenis' => 'required|string',
-        'bobot' => 'required|numeric',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'jenis' => 'required|in:benefit,cost',
+            'bobot' => 'required|numeric|min:0',
+        ]);
 
-    $kriteria->update([
-        'nama' => $request->nama,
-        'jenis' => $request->jenis,
-        'bobot' => $request->bobot,
-    ]);
+        $Kriteria = Kriteria::findOrFail($id);
 
-    return redirect()->route('kriteria.index')->with('success', 'Kriteria berhasil diperbarui.');
-}
+        // Hitung total bobot saat ini tanpa kriteria yang sedang diupdate
+        $currentTotalBobot = Kriteria::where('id', '!=', $id)->sum('bobot');
 
+        // Hitung total bobot baru jika update sukses
+        $newTotalBobot = $currentTotalBobot - $Kriteria->bobot + $request->bobot;
+
+        // Periksa apakah total bobot baru melebihi 1
+        if ($newTotalBobot > 1) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['bobot' => 'Total bobot tidak boleh kurang ataupun lebih dari 1.']);
+        }
+
+        // Lakukan update hanya jika total bobot baru tidak melebihi 1
+        $Kriteria->update([
+            'jenis' => $request->jenis,
+            'bobot' => $request->bobot,
+        ]);
+
+        return redirect()->route('kriteria.index')
+            ->with('success', 'Kriteria berhasil di perbarui');
+    }
     public function destroy(Kriteria $kriteria)
     {
         $kriteria->delete();

@@ -103,7 +103,7 @@
                   <thead>
                       <tr>
                           <th class="text-center">No</th>
-                          <th class="text-center">Nama Wisata</th>
+                          <th class="text-center">Nama Kriteria</th>
                           <th class="text-center">Jenis</th>
                           <th class="text-center">Bobot</th>
                           <th class="text-center">Aksi</th>

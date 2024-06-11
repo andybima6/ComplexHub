@@ -365,11 +365,11 @@ Route::group(['prefix' => 'destinasi'], function () {
 
 //Route::get('/saw', [SAWController::class, 'index']);
 
-//spk repici
-Route::get('kriteria/{id}/edit', [KriteriaController::class, 'edit'])->name('kriteria.edit');
+//spk SAW revisi
 Route::get('kriteria', [KriteriaController::class, 'index'])->name('kriteria.kriteriadestinasiRW');
 Route::put('/kriteria/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
 Route::resource('kriteria', KriteriaController::class);
+
 Route::resource('alternatif', AlternatifController::class);
 Route::put('/alternatif/{id}', [AlternatifController::class, 'update'])->name('alternatif.update');
 

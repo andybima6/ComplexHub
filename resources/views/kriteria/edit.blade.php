@@ -125,11 +125,15 @@
                         <option value="cost" {{ $kriteria->jenis == 'cost' ? 'selected' : '' }}>Cost</option>
                     </select>
                 </div>
-            
-                <div>
-                    <label for="bobot">Bobot</label>
-                    <input type="number" id="bobot" name="bobot" value="{{ $kriteria->bobot }}" step="0.01" required>
+
+                <div class="mb-4">
+                    <label for="bobot" class="block text-lg font-bold text-gray-700">Bobot :</label>
+                    <input type="number" name="bobot" id="bobot" class="form-control" value="{{ $kriteria->bobot }}" step="0.01" min="0" max="1" required>
                 </div>
+                
+                @error('bobot')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             
                 <button type="submit">Simpan Perubahan</button>
             </form>

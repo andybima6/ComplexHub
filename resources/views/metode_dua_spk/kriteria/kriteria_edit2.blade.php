@@ -3,7 +3,7 @@
 @section('content')
     <main class="detail h-dvh w-3/4 mx-auto relative top-36">
         <div class="relative p-12 bg-white rounded-lg top-36">
-            <p class="text-start font-semibold text-xl mb-4">Edit Criteria</p>
+            <p class="text-start font-semibold text-xl mb-4">Edit Kriteria</p>
             <hr class="mb-4 mr-6">
 
             @if ($errors->any())
