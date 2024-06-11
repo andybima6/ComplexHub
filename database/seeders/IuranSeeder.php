@@ -16,6 +16,7 @@ class IuranSeeder extends Seeder
     {
         Iuran::insert([
             [
+                'user_id' => 1,
                 'nama' => 'Andy',
                 'periode' => '2024-10-19',
                 'total' => 100000,
@@ -25,6 +26,7 @@ class IuranSeeder extends Seeder
                 'status' => 'diproses',
             ],
             [
+                'user_id' => 2,
                 'nama' => 'Arya',
                 'periode' => '2024-10-19',
                 'total' => 150000,
@@ -34,6 +36,7 @@ class IuranSeeder extends Seeder
                 'status' => 'ditolak',
             ],
             [
+                'user_id' => 3,
                 'nama' => 'Kinata',
                 'periode' => '2024-10-19',
                 'total' => 200000,
@@ -43,6 +46,7 @@ class IuranSeeder extends Seeder
                 'status' => 'disetujui',
             ],
             [
+                'user_id' => 4,
                 'nama' => 'Ellois',
                 'periode' => '2024-10-19',
                 'total' => 250000,
@@ -52,6 +56,7 @@ class IuranSeeder extends Seeder
                 'status' => 'ditolak',
             ],
             [
+                'user_id' => 5,
                 'nama' => 'Sovy',
                 'periode' => '2024-10-19',
                 'total' => 300000,
@@ -61,6 +66,7 @@ class IuranSeeder extends Seeder
                 'status' => 'disetujui',
             ],
             [
+                'user_id' => 6,
                 'nama' => 'Andy',
                 'periode' => '2024-10-19',
                 'total' => 100000,

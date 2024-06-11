@@ -12,6 +12,7 @@ class Iuran extends Model
     protected $table = 'iuran';
 
     protected $fillable = [
+        'user_id',
         'nama',
         'periode',
         'total',
@@ -19,6 +20,10 @@ class Iuran extends Model
         'bukti',
         'rt_id',
         'status',
+    ];
+
+    protected $attributes = [
+        'status' => 'diproses',
     ];
 
     public function rt()

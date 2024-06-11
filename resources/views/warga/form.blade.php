@@ -103,6 +103,12 @@
         <h2>Form Input Iuran</h2>
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="mt-4 mb-4">
+                <label for="user_id" class="block text-sm font-medium text-gray-700">ID</label>
+                <input type="text" id="user_id" name="user_id"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                    value="{{ auth()->user()->id }}" readonly>
+            </div>
             <div class="form-group">
                 <label for="nama" class="label">Nama:</label>
                 <input type="text" id="nama" name="nama" required class="input" value="{{ auth()->user()->name }}" readonly>
@@ -120,7 +126,21 @@
 
             <div class="form-group">
                 <label for="keterangan" class="label">Keterangan:</label>
-                <textarea id="keterangan" name="keterangan" required class="input" rows="5"></textarea>
+                <select id="keterangan" name="keterangan" required class="input">
+                    <option value="">Pilih bulan</option>
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                    <option value="Maret">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mei">Mei</option>
+                    <option value="Juni">Juni</option>
+                    <option value="Juli">Juli</option>
+                    <option value="Agustus">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="Oktober">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="Desember">Desember</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -130,7 +150,7 @@
 
             <div class="form-group">
                 <label for="rt_id" class="label">RT:</label>
-                <input type="rt_id" id="rt_id" name="name"
+                <input type="rt_id" id="rt_id" name="rt_id"
                 class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
                 value="{{ auth()->user()->rt_id }}" readonly>
             </div>
