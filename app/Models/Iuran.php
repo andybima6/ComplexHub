@@ -12,6 +12,7 @@ class Iuran extends Model
     protected $table = 'iuran';
 
     protected $fillable = [
+        'user_id',
         'nama',
         'periode',
         'total',

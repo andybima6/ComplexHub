@@ -41,6 +41,7 @@ class IuranRWController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'user_id' => 'required|int',
             'nama' => 'required|string',
             'periode' => 'required|date',
             'total' => 'required|numeric',
@@ -61,6 +62,7 @@ class IuranRWController extends Controller
 
         // Save to the database
         Iuran::create([
+            'user_id' => $request->user_id,
             'nama' => $request->nama,
             'periode' => $request->periode,
             'total' => $request->total,

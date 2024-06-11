@@ -30,17 +30,21 @@ class IuranWargaController extends Controller
 
     public function history()
     {
+        $user = auth()->user();
+        $userId = $user->id;
         $iuran = Iuran::all();
         $breadcrumb = (object) [
             'title' => 'History',
             'subtitle' => '',
         ];
+        $iuran = Iuran::where('user_id', $userId)->get();
         return view('warga.history', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'user_id' => 'required|int',
             'nama' => 'required|string',
             'periode' => 'required|date',
             'total' => 'required|numeric',
@@ -61,6 +65,7 @@ class IuranWargaController extends Controller
 
         // Save to the database
         Iuran::create([
+            'user_id' => $request->user_id,
             'nama' => $request->nama,
             'periode' => $request->periode,
             'total' => $request->total,

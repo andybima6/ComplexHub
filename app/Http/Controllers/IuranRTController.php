@@ -34,12 +34,14 @@ class IuranRTController extends Controller
 
     public function historyRT()
     {
-        $user = Auth::user();
-        $iuran = Iuran::where('rt_id', $user->rt)->get();
+        $user = auth()->user();
+        $userId = $user->id;
+        // $iuran = Iuran::where('rt_id', $user->rt)->get();
         $breadcrumb = (object) [
             'title' => 'History Kas RT',
             'subtitle' => '',
         ];
+        $iuran = Iuran::where('user_id', $userId)->get();
         return view('RT/historyRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 
@@ -73,6 +75,7 @@ class IuranRTController extends Controller
             'subtitle' => '',
         ];
         $validatedData = $request->validate([
+            'user_id' => 'required|int',
             'nama' => 'required|string',
             'periode' => 'required|date',
             'total' => 'required|numeric',
@@ -93,6 +96,7 @@ class IuranRTController extends Controller
 
         // Save to the database
         Iuran::create([
+            'user_id' => $request->user_id,
             'nama' => $request->nama,
             'periode' => $request->periode,
             'total' => $request->total,

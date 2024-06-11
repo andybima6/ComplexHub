@@ -10,6 +10,7 @@ class CreateIuranTable extends Migration
     {
         Schema::create('iuran', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->string('nama');
             $table->date('periode');
             $table->decimal('total', 8, 2);
