@@ -100,9 +100,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($iuran as $ir)
+                    @foreach($iuran as $index => $ir)
                     <tr class="text-center">
-                        <td class="border px-2 sm:px-4 py-2">{{ $ir->id }}</td>
+                        <td class="border px-2 sm:px-4 py-2" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->nama }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->periode }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->total }}</td>
@@ -111,11 +111,11 @@
                         </td>
                         <td class="border px-2 sm:px-4 py-2">
                             @if($ir->status == 'diproses')
-                                <button class="bg-gray-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Diproses</button>
+                                <p class="text-gray-500 font-bold py-2 px-2 sm:px-4 rounded">Diproses</p>
                             @elseif($ir->status == 'disetujui')
-                                <button class="bg-green-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Disetujui</button>
+                                <p class="text-green-500 font-bold py-2 px-2 sm:px-4 rounded">Disetujui</p>
                             @elseif($ir->status == 'ditolak')
-                                <button class="bg-red-500 text-white font-bold py-2 px-2 sm:px-4 rounded">Ditolak</button>
+                                <p class="text-red-500 font-bold py-2 px-2 sm:px-4 rounded">Ditolak</p>
                             @endif
                         </td>
                         <td class="border px-2 sm:px-4 py-2">

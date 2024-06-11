@@ -36,6 +36,7 @@
     .buttonJudul:hover, .lanjut-button:hover {
         background-color: #385668;
     }
+
     img {
         max-width: 100%;
         height: auto;
@@ -47,9 +48,10 @@
         padding: 15px;
         background-color: #f9f9f9;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: #385668;
         font-family: 'Poppins', sans-serif;
         text-align: center;
+        font-size: 18px; /* Default font size */
     }
 
     /* Medium devices (tablets, 768px and up) */
@@ -61,6 +63,7 @@
 
         .box {
             padding: 12px;
+            font-size: 16px; /* Smaller font size */
         }
     }
 
@@ -73,6 +76,8 @@
 
         .box {
             padding: 10px;
+            font-size: 14px; /* Smaller font size */
+            max-width: 80%;
         }
     }
 
@@ -80,11 +85,13 @@
     @media (max-width: 480px) {
         .buttonJudul, .lanjut-button {
             padding: 8px 15px;
-            font-size: 14px;
+            font-size: 10px;
         }
 
         .box {
             padding: 8px;
+            font-size: 10px; /* Smaller font size */
+            max-width: 80%;
         }
     }
 </style>
