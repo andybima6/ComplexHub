@@ -15,26 +15,35 @@ class dashboardController extends Controller
 {
     public function indexRT()
     {
-        $izinUsaha = Umkm::all();
-        $breadcrumb = (object) [
-            'title' => 'Dashboard',
-            'subtitle' => '',
-        ];
-        return view('dashboardRT', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
-    }
-    public function indexRW()
-    {
         $user = auth()->user();
+        $users = User::all();
         $izinUsaha = Umkm::all();
         $suggestions = suggestion::all();
         $activities = Activity::all();
+        $iuran = Iuran::sum('total');
         // $datapenduduk = DataPenduduk::all();
         $anggotaKeluarga = AnggotaKeluarga::all();
         $breadcrumb = (object)[
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('dashboardRW', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb'));
+        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users', 'iuran'));
+    }
+    public function indexRW()
+    {
+        $user = auth()->user();
+        $users = User::all();
+        $izinUsaha = Umkm::all();
+        $suggestions = suggestion::all();
+        $activities = Activity::all();
+        $iuran = Iuran::sum('total');
+        // $datapenduduk = DataPenduduk::all();
+        $anggotaKeluarga = AnggotaKeluarga::all();
+        $breadcrumb = (object)[
+            'title' => 'Daftar dashboard',
+            'subtitle' => '',
+        ];
+        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users', 'iuran'));
     }
     public function indexPD()
     {

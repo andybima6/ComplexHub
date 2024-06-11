@@ -25,25 +25,36 @@ class SuggestionSeeder extends Seeder
         // Data suggestion
         $suggestions = [
             [
+                'user_id' => 9,
                 'tanggal' => '2024-01-01',
                 'field' => 'Field 1',
-                'name' => 'aku',
+                'name' => 'Andy',
                 'laporan' => 'Laporan 1',
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 2,
             ],
             [
+                'user_id' => 9,
                 'tanggal' => '2024-01-02',
                 'field' => 'Field 2',
-                'name' => 'aku',
+                'name' => 'andy',
                 'laporan' => 'Laporan 2',
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 2,
             ],
             [
+                'user_id' => 9,
                 'tanggal' => '2024-01-03',
                 'field' => 'Field 3',
-                'name' => 'aku',
+                'name' => 'andy',
                 'laporan' => 'Laporan 3',
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 2,
+            ],
+            [
+                'user_id' => 10,
+                'tanggal' => '2024-01-03',
+                'field' => 'Field 3',
+                'name' => 'bejo',
+                'laporan' => 'Laporan 3',
+                'rt_id' => 3,
             ],
             // Tambahkan data suggestion lainnya sesuai kebutuhan
         ];

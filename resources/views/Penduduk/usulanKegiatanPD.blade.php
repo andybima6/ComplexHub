@@ -10,14 +10,25 @@
                 <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                        01
+                        {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
 
                         <!-- tambahkan opsi lainnya sesuai kebutuhan -->
                     </a>
                 </div>
                 </p>
-            </div>
 
+                <a href="{{ route('tambahEditKegiatanPD') }}">
+                    <button class="Btn mt-20 ml-14">
+                        SKIP
+                        <svg viewBox="0 0 320 512" class="svg">
+                            <path
+                                d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z">
+                            </path>
+                        </svg>
+                    </button>
+
+            </div>
+            </a>
 
             <div id="openModal" class="flex relative w-96 top-24 right-0 items-center justify-center mr-64"
                 style="background-color: #2F80ED; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); height: 96px; cursor: pointer;">
@@ -25,6 +36,9 @@
                     + Tambah
                 </p>
             </div>
+
+
+
             <!-- Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
@@ -44,6 +58,13 @@
                         <input type="text" id="name" name="name"
                             class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
                             value="{{ auth()->user()->name }}" readonly>
+
+                            <div class="mt-4 mb-4">
+                                <label for="user_id" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                                <input type="text" id="user_id" name="user_id"
+                                class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                                value="{{ auth()->user()->id }}" readonly>
+                                </div>
 
                         <textarea id="editKeterangan" rows="10" name="description" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
@@ -72,14 +93,16 @@
                     <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
 
                         <button type="button" id="closePopupBtn"
-                        class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
-                        Close
-                    </button>
+                            class="px-4 py-2 text-center rounded-md bg-[#777777] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
+                            Close
+                        </button>
 
+                        <a href="{{ route('tambahEditKegiatanPD') }}">
                         <button id="editSaveButton" type="submit"
                             class="px-4 py-2 text-center rounded-md bg-[#27AE60] hover:opacity-80 transition flex items-center justify-center text-base text-white font-medium">
                             Save
                         </button>
+                    </a>
                     </div>
 
             </div>
@@ -95,8 +118,7 @@
 
 
         <div class="bgusulan relative" style="position: absolute; top: 45%; left: 8%; z-index: 0;">
-            <div
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 36px; opacity: 0.4;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 36px; opacity: 0.4;">
             </div>
             <img src="{{ asset('img/background.png') }}" class="justify-center items-center m-0 ]"
                 style="overflow: scroll; height: 950px; border-radius: 16px; width: 100%; margin-bottom: 0px;"></img>

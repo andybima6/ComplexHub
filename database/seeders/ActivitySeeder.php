@@ -24,21 +24,21 @@ class ActivitySeeder extends Seeder
             return;
         }
             Activity::create([
-                'name' => 'aku',
+                'user_id' => 10,
+                'name' => 'bejo',
                 'description' => 'Keterangan kegiatan 1',
                 'document' => 'path/to/document1.jpg',
-
                 'status' => 'pending',
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 1,
             ]);
 
             Activity::create([
-                'name' => 'aku',
+                'user_id' => 9,
+                'name' => 'andy',
                 'description' => 'Keterangan kegiatan 2',
                 'document' => 'path/to/document2.jpg',
-
                 'status' => 'pending',
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 1,
             ]);
 
             // Tambahkan data kegiatan lainnya sesuai kebutuhan

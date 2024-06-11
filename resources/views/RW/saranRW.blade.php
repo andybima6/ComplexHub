@@ -70,7 +70,7 @@
                 </div>
                 </p>
             </div>
-        </div>  
+        </div>
 
 
         <div class="rounded-md relative p-16 top-48 left-16" style="background-color: white">

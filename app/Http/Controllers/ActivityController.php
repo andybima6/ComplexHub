@@ -13,15 +13,19 @@
     {
         public function indexRT()
         {
-            $user = auth()->user();
+            // Mendapatkan rt_id pengguna yang sedang login
+            $rt_id = auth()->user()->rt_id;
 
             $breadcrumb = (object)[
                 'title' => 'Daftar Kegiatan',
                 'subtitle' => 'Usulan Kegiatan',
             ];
-            $activities = Activity::all(); // Mengambil semua data kegiatan dari model Kegiatan
 
-            return view('RT.usulanKegiatanRT', ['breadcrumb' => $breadcrumb], compact('activities'));
+            // Mengambil data kegiatan berdasarkan rt_id pengguna
+            $activities = Activity::where('rt_id', $rt_id)->get();
+            $rts = RT::where('id', $rt_id)->get();
+
+            return view('RT.usulanKegiatanRT', compact('activities', 'breadcrumb','rts'));
         }
 
         // Metode lainnya...
@@ -42,14 +46,14 @@
         public function indexPenduduk()
         {
             $user = auth()->user();
-
+            $userid = $user->id;
             $breadcrumb = (object)[
                 'title' => 'Daftar Kegiatan',
                 'subtitle' => 'Usulan Kegiatan',
             ];
             $rts = RT::all();
-            $activities = Activity::all();
-            return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb], compact('rts', 'activities'));
+            $activities = Activity::where('user_id', $userid)->get();
+            return view('Penduduk.usulanKegiatanPD', ['breadcrumb' => $breadcrumb], compact('rts', 'activities','user','breadcrumb'));
         }
 
         public function indexDetailIzinRT($id)
@@ -90,24 +94,21 @@
         // Show
         public function indexTambahIzinPenduduk(Request $request)
         {
+            $user = auth()->user();
+            $userid = $user->id;
             $breadcrumb = (object)[
-                'title' => 'Kegiatan',
+                'title' => 'Daftar Kegiatan',
                 'subtitle' => 'Usulan Kegiatan',
             ];
-
-            // $rtId = 1;
-            // $rt = RT::with(['activities'])->findOrFail($rtId);
-            // $activities = $rt->activities;
-            $activities = Activity::all();
             $rts = RT::all();
-            // $rt = $request->user()->rt
-
-            return view('Penduduk.tambahEditKegiatanPD', compact('activities', 'breadcrumb', 'rts'));
+            $activities = Activity::where('user_id', $userid)->get();
+            return view('Penduduk.tambahEditKegiatanPD', ['breadcrumb' => $breadcrumb], compact('rts', 'activities','user','breadcrumb'));
         }
 
         public function storeKegiatan(Request $request)
         {
             $request->validate([
+                'user_id' => 'required|int',
                 'name' => 'required|string',
                 'description' => 'required|string',
                 'rt_id' => 'required|exists:rts,id',
@@ -126,6 +127,7 @@
         public function updateKegiatan(Request $request)
         {
             $request->validate([
+                'user_id' => 'required|int',
                 'name' => 'required|string',
                 'description' => 'required|string',
                 'rt_id' => 'required|exists:rts,id',

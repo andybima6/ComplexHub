@@ -10,16 +10,23 @@ class SaranController extends Controller
 {
     public function indexRT()
     {
-        $user = auth()->user();
+        // Mendapatkan rt_id pengguna yang sedang login
+        $rt_id = auth()->user()->rt_id;
 
         $breadcrumb = (object)[
             'title' => 'Saran dan Pengaduan',
             'subtitle' => '',
         ];
-        $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
 
-        return view('RT.saranRT', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb'));
+        // Mengambil data pengaduan berdasarkan rt_id pengguna
+        $suggestions = Suggestion::where('rt_id', $rt_id)->get();
+
+        // Mengambil data RT yang sesuai dengan rt_id pengguna
+        $rts = RT::where('id', $rt_id)->get();
+
+        return view('RT.saranRT', compact('suggestions', 'breadcrumb', 'rts'));
     }
+
     public function indexRW()
     {
         $user = auth()->user();
@@ -30,20 +37,21 @@ class SaranController extends Controller
         ];
         $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
         $rts = RT::all();
-        return view('RW.saranRW', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb',''));
+        return view('RW.saranRW', ['breadcrumb' => $breadcrumb], compact('suggestions','breadcrumb','rts'));
     }
     public function indexPD()
     {
         $user = auth()->user();
-
+        $userId = $user->id;
         $breadcrumb = (object)[
             'title' => 'Saran dan Pengaduan',
             'subtitle' => '',
         ];
-        $suggestions = Suggestion::all(); // Mengambil semua data kegiatan dari model Kegiatan
+
+        $suggestions = Suggestion::where('user_id', $userId)->get();
         $rts = RT::all(); // Assuming you have a model named RT and you want to fetch all RT records
 
-        return view('Penduduk.saranPD', ['breadcrumb' => $breadcrumb], compact('suggestions', 'breadcrumb', 'rts'));
+        return view('Penduduk.saranPD', ['breadcrumb' => $breadcrumb], compact('suggestions', 'breadcrumb', 'rts','user'));
     }
     // public function tanggapanPage()
     // {
@@ -63,6 +71,7 @@ class SaranController extends Controller
         // Validasi input pengguna
         $validated = $request->validate([
             'tanggal' => 'required|date',
+            'user_id' => 'required|int',
             'name' => 'required|string|max:255',
             'field' => 'required|string|max:255',
             'laporan' => 'required|string',
@@ -94,6 +103,7 @@ class SaranController extends Controller
         $request->validate([
 
             'name' => 'required|string',
+            'user_id' => 'required|int',
             'tanggal' => 'required|date',
             'field' => 'required|string',
             'laporan' => 'required|string',

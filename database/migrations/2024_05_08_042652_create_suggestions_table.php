@@ -13,6 +13,7 @@ class CreateSuggestionsTable extends Migration
     {
         Schema::create('suggestions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
             $table->date('tanggal');
             $table->string('field');
             $table->string('name');

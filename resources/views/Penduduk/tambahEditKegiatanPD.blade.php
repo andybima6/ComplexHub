@@ -11,7 +11,7 @@
                 <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                        01
+                        {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
                     </a>
                 </div>
                 </p>
@@ -43,6 +43,13 @@
                         <input type="text" id="name" name="name"
                             class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
                             value="{{ auth()->user()->name }}" readonly>
+
+                            <div class="mt-4 mb-4">
+                                <label for="user_id" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                                <input type="text" id="user_id" name="user_id"
+                                class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                                value="{{ auth()->user()->id }}" readonly>
+                                </div>
 
                         <textarea id="editKeterangan" rows="10" name="description" class="relative"
                             style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"
@@ -178,6 +185,13 @@
                     <input type="text" id="name" name="name"
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
                         value="{{ auth()->user()->name }}" readonly>
+
+                        <div class="mt-4 mb-4">
+                            <label for="user_id" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                            <input type="text" id="user_id" name="user_id"
+                            class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6"
+                            value="{{ auth()->user()->id }}" readonly>
+                            </div>
 
                     <textarea id="editKeterangan" rows="10" name="description" class="relative"
                         style="background-color: #FFFFFF; border: 5px solid #D9D9D9;border-radius:13px; text-align: left; vertical-align: top;"

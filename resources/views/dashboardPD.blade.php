@@ -268,7 +268,7 @@
 </style>
 
 <main class="mx-auto" style="min-height: 15%; background-color: #FBEEC1; padding: 36px; contain: responsive;">
-    
+
     <div style="height: 60px;"></div>
     <div id="wrapkotak">
         <div id="kotak">
@@ -312,7 +312,7 @@
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="40px" height="40px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                            <g>
-                               <path fill="#FFFFFF" d="M256,0C114.625,0,0,114.625,0,256s114.625,256,256,256c141.406,0,256-114.625,256-256S397.406,0,256,0z 
+                               <path fill="#FFFFFF" d="M256,0C114.625,0,0,114.625,0,256s114.625,256,256,256c141.406,0,256-114.625,256-256S397.406,0,256,0z
                                    M325.812,354.844c-12.594,14.125-30.78,22.438-54.562,24.938V416h-30.313v-36.031c-39.656-4.062-64.188-27.125-73.656-69.125
                                    l46.875-12.219c4.344,26.406,18.719,39.594,43.125,39.594c11.406,0,19.844-2.812,25.219-8.469s8.062-12.469,8.062-20.469
                                    c0-8.281-2.688-14.563-8.062-18.813c-5.375-4.28-17.344-9.688-35.875-16.25c-16.656-5.78-29.688-11.469-39.063-17.155
@@ -350,7 +350,7 @@
 
     <br><br><br><br>
 
-    
+
     <div class="charts" style="display: flex; justify-content: center;">
         <div class="chart md:max-w-lg">
             <h2 style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">Jumlah Warga</h2>
@@ -358,6 +358,7 @@
             <div id="chart" style="max-width: 800px; margin: 0 auto;"></div>
         </div>
     </div>
+
     <br><br><br><br><br>
     <div class="charts2">
         <div class="chart2">
@@ -365,7 +366,7 @@
             <p>Chart Iuran Warga setiap bulan</p>
             <div id="chartIuran"></div>
         </div>
-    
+
         <div class="carouselUMKM">
             <h2>UMKM WARGA</h2>
             <p>Informasi UMKM yang blabla</p>
@@ -380,7 +381,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="wrapkotak2" style="padding: 40px; border-radius: 12px; position: relative; top: 32px; left: 16px;">
         <div id="kotak" style="display: flex; flex-wrap: wrap; justify-content: center;">
             <div class="kotak-item">
@@ -406,7 +407,7 @@
                         <path style="fill:#ffffff;" d="M63,55.382c-0.042-0.039-0.078-0.084-0.12-0.122c-1.42-1.26-3.16-2.16-5.07-2.56l-9.139-1.927
                             L38,56.593V61h25V55.382z M56,59H43v-3h13V59z"/>
                     </svg>
-                        <h5>Saran dan pengaduan : 6</h5>
+                        <h5>Saran dan pengaduan : {{ count($suggestions) }}</h5>
                     </div>
                 </div>
             </div>
@@ -433,7 +434,7 @@
                                         C136.846,336.007,144.002,343.163,144.002,352.007z M344.002,40.007h-24v-8h24V40.007z M264.002,32.007h24v24h-24V32.007z"/>
                             </g>
                             </svg>
-                        <h5>UMKM : 4</h5>
+                        <h5>UMKM : {{ count($izinUsaha) }}</h5>
                     </div>
                 </div>
             </div>
@@ -672,7 +673,7 @@
         colors: ["#304758"]
       }
     },
-    
+
     xaxis: {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       position: 'top',
@@ -711,7 +712,7 @@
           return val + "%";
         }
       }
-    
+
     },
     title: {
       text: 'Iuran Warga',
