@@ -35,7 +35,8 @@ class UserSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'rw' => 1,
-                'rt_id' => $rts->random()->id,
+                'rt_id' => null
+                // 'rt_id' => $rts->random()->id,
             ],
             [
                 'name' => 'Brian Domani',
@@ -122,7 +123,7 @@ class UserSeeder extends Seeder
                 'role_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' => 2,
                 'rw' => 0,
             ],
             [
@@ -133,7 +134,7 @@ class UserSeeder extends Seeder
                 'role_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'rt_id' => $rts->random()->id,
+                'rt_id' =>3,
                 'rw' => 0,
             ],
             // [

@@ -1,44 +1,42 @@
 @extends('layouts.welcome')
 @section('content')
+<style>
+
+</style>
 <main class="mx-auto p-5 sm:p-10 md:p-2 contain-responsive" style="min-height: 50vh; background-color: #FBEEC1;">
-    <div class="md:justify-between mt-20 py-24 flex flex-col md:flex-row">
-            <div class="md:ml-52 mt-4 md:mt-0 relative"
-                style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
-                <p class="relative md:right-24 top-6 text-center md:text-left;"
-                    style="font-size: 45px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                    RT :
-                <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
-                    style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                    <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-
-                        {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
-
-                        <!-- tambahkan opsi lainnya sesuai kebutuhan -->
-
-                    </a>
-                </div>
-                </p>
-
-                <a href="{{ route('tambahEditKegiatanPD') }}">
-                    <button class="Btn mt-20 ml-14">
-                        SKIP
-                        <svg viewBox="0 0 320 512" class="svg">
-                            <path
-                                d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z">
-                            </path>
-                        </svg>
-                    </button>
-
+    <div class="md:justify-between mt-20 py-24 flex flex-col md:flex-row gap-8">
+        <div class="md:ml-52 mt-4 md:mt-0 relative"
+             style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
+            <p class="relative md:right md:left-4 top-6 text-center md:text-left"
+               style="font-size: 45px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
+                RT :
+            </p>
+            <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
+                 style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
+                <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
+                    {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
+                    <!-- tambahkan opsi lainnya sesuai kebutuhan -->
+                </a>
             </div>
+
+            <a href="{{ route('tambahEditKegiatanPD') }}">
+                <button class="Btn mt-20 ml-14">
+                    SKIP
+                    <svg viewBox="0 0 320 512" class="svg">
+                        <path
+                            d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z">
+                        </path>
+                    </svg>
+                </button>
             </a>
+        </div>
 
-            <div id="openModal" class="flex relative w-96 top-24 right-0 items-center justify-center mr-64"
-                style="background-color: #2F80ED; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); height: 96px; cursor: pointer;">
-                <p style="font-size: 24px; color: white; font-family: 'Poppins', sans-serif; font-weight: 300;">
-                    + Tambah
-                </p>
-            </div>
-
+        <div id="openModal" class="flex relative w-96 top-24 md:top-0 md:right-0 items-center justify-center md:mr-64"
+             style="background-color: #2F80ED; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); height: 96px; cursor: pointer;">
+            <p style="font-size: 24px; color: white; font-family: 'Poppins', sans-serif; font-weight: 300;">
+                + Tambah
+            </p>
+        </div>
     </div>
 
 

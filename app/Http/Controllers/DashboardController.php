@@ -48,17 +48,21 @@ class dashboardController extends Controller
     public function indexPD()
     {
         $user = auth()->user();
-        $users = User::all();
-        $izinUsaha = Umkm::all();
-        $suggestions = suggestion::all();
-        $activities = Activity::all();
+        $users = User::where('rt_id', $user->rt_id)->get();
+
+        $izinUsaha = Umkm::where('user_id', $user->id)->get();
+        $suggestions = suggestion::where('user_id', $user->id)->get();
+        $activities = Activity::where('user_id', $user->id)->get();
         $iuran = Iuran::sum('total');
         // $datapenduduk = DataPenduduk::all();
-        $anggotaKeluarga = AnggotaKeluarga::all();
+
+        // $datapenduduk = DataPenduduk::where('user_id', $user->id)->get();
+        // $anggotaKeluarga = AnggotaKeluarga::where('user_id', $user->id)->get();
         $breadcrumb = (object)[
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users', 'iuran'));
+        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users','iuran'));
     }
+
 }
