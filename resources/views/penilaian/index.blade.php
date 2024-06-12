@@ -45,16 +45,16 @@
     }
 
     #navbar {
-        text-align: center;
-    }
-
-    #navbar a {
-        display: inline-block;
-        padding: 10px 20px;
-        text-decoration: none;
-        font-size: 24px;
-        font-weight: 600;
-    }
+         text-align: center;
+        }
+    
+        #navbar a {
+          display: inline-block;
+          padding: 10px 20px;
+          text-decoration: none;
+          font-size: 24px;
+          font-weight: 600;
+        }
 
     /* Responsive styles */
     @media screen and (max-width: 600px) {
@@ -75,40 +75,46 @@
             font-size: 14px;
         }
     }
+
+    .relative {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
 </style>
 
-<main class="mx-auto p-8 sm:p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+<main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+    <div style="height: 110px;"></div>
+        <nav id="navbar">
+            <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
+            <a href="{{ url('/kriteria') }}">Kriteria</a>
+            <a href="{{ url('/alternatif') }}">Alternatif</a>
+            <a href="{{ url('/penilaian') }}">Penilaian</a>
+            <a href="{{ url('/saw') }}">Ranking</a>
+        </nav>
 
-    <nav id="navbar">
-        <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
-        <a href="{{ url('/kriteria') }}">Kriteria</a>
-        <a href="{{ url('/alternatif') }}">Alternatif</a>
-        <a href="{{ url('/penilaian') }}">Penilaian</a>
-        <a href="{{ url('/saw') }}">Ranking</a>
-    </nav>
-
-    <div class="rounded-md relative p-8 sm:p-16 top-12 sm:top-24 left-4 sm:left-16 bg-white mr-4 sm:mr-28 mb-6 sm:mb-10">
-        <p class="mb-6 sm:mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
+        <div class="relative overflow-x-auto bg-white" style="max-width: 95%;">
+            <p class="mb-6 sm:mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
             Penilaian Matriks Keputusan :
         </p>
 
         <a href="{{ route('penilaian.create') }}" class="btn btn-primary">Isi Penilaian</a>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Alternatif</th>
+        <table class="w-full text-sm text-left text-gray-700 bg-white border border-gray-200" style="align-items:center">
+            <thead class="text-xs uppercase bg-gray-50 text-gray-700">
+                <tr>
+                <th scope="col" class="px-6 py-3 border-b border-gray-200">No</th>
+                <th scope="col" class="px-6 py-3 border-b border-gray-200">Nama Alternatif</th>
                 @foreach($kriterias as $kriteria)
-                    <th>{{ $kriteria->nama }}</th>
+                    <th scope="col" class="px-6 py-3 border-b border-gray-200">{{ $kriteria->nama }}</th>
                 @endforeach
-                <th>Aksi</th>
+                <th scope="col" class="px-6 py-3 border-b border-gray-200">Aksi</th>
             </tr>
             </thead>
             <tbody>
             @foreach($alternatifs as $alternatif)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
+            <tr class="bg-white border-b border-gray-200">
+                <td>{{ $loop->iteration }}</td>
                     <td>{{ $alternatif->nama }}</td>
                     @foreach($kriterias as $kriteria)
                         <td>{{ $alternatif->nilaiKriteria->where('kriteria_id', $kriteria->id)->first()->nilai ?? '0' }}</td>
