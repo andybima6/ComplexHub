@@ -11,6 +11,7 @@
     <link rel="stylesheet" href = "{{ asset('css/iuran.css') }}">
     <link rel="stylesheet" href = "{{ asset('css/metode2.css') }}">
     <link rel="stylesheet" href = "{{ asset('css/button.css') }}">
+    <link rel="stylesheet" href = "{{ asset('css/dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
 
 
