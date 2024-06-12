@@ -30,9 +30,10 @@
                 <thead>
                     <tr class="bg-gray-200 text-black font-medium text-center">
                         <th class="border px-2 sm:px-4 py-2">No</th>
-                        <th class="border px-2 sm:px-4 py-2">Nama</th>                       
+                        <th class="border px-2 sm:px-4 py-2">Nama</th>
                         <th class="border px-2 sm:px-4 py-2">Periode</th>
                         <th class="border px-2 sm:px-4 py-2">Total</th>
+                        <th class="border px-2 sm:px-4 py-2">Keterangan</th>
                         <th class="border px-2 sm:px-4 py-2">Bukti</th>
                         <th class="border px-2 sm:px-4 py-2">Status</th>
                     </tr>
@@ -44,6 +45,7 @@
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->nama }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->periode }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $ir->total }}</td>
+                        <td class="border px-2 sm:px-4 py-2">{{ $ir->keterangan }}</td>
                         <td class="border px-2 sm:px-4 py-2">
                             <a href="{{ asset('storage/' . $ir->bukti) }}" download>
                                 <img src="{{ asset('storage/' . $ir->bukti) }}" alt="Bukti" class="block mx-auto max-w-xs h-auto" style="max-width: 20%;">

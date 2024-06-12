@@ -46,7 +46,6 @@ class IuranWargaController extends Controller
         $validatedData = $request->validate([
             'user_id' => 'required|int',
             'nama' => 'required|string',
-            'periode' => 'required|date',
             'total' => 'required|numeric',
             'keterangan' => 'required|string',
             'bukti' => 'required|file|mimes:jpg,jpeg,png,pdf',
@@ -63,11 +62,14 @@ class IuranWargaController extends Controller
             $filePath = $file->storeAs('uploads', $fileName, 'public');
         }
 
+        // Get current date for periode
+        $currentDate = now()->toDateString();
+
         // Save to the database
         Iuran::create([
             'user_id' => $request->user_id,
             'nama' => $request->nama,
-            'periode' => $request->periode,
+            'periode' => $currentDate,
             'total' => $request->total,
             'keterangan' => $request->keterangan,
             'bukti' => $filePath,
@@ -76,4 +78,5 @@ class IuranWargaController extends Controller
 
         return redirect('/warga/iuran')->with('success', 'Data iuran berhasil disimpan');
     }
+
 }

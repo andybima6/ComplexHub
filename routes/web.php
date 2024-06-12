@@ -122,6 +122,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
         Route::get('/get-chart-data-rt', [DashboardController::class, 'getChartDataRT']);
+        // routes/web.php or routes/api.php
+Route::middleware('auth')->get('/get-iuran-data-rt', [DashboardController::class, 'getIuranDataRT']);
+
 
     });
 
@@ -212,6 +215,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('dashboardPD', [DashboardController::class, 'indexPD'])->name('dashboardPD');
         Route::get('/get-chart-data', [DashboardController::class, 'getChartDataPD']);
+
+       // routes/web.php or routes/api.php
+Route::middleware('auth')->get('/get-iuran-data-pd', [DashboardController::class, 'getIuranDataPD']);
+
 
     });
 

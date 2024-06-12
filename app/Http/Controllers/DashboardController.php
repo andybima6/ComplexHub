@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\suggestion;
-use App\Models\Activity;
-use App\Models\DataPenduduk;
 use App\Models\Umkm;
-use App\Models\AnggotaKeluarga;
-use App\Models\Iuran;
 use App\Models\User;
+use App\Models\Iuran;
+use App\Models\Activity;
+use App\Models\suggestion;
+use App\Models\DataPenduduk;
+use Illuminate\Http\Request;
+use App\Models\AnggotaKeluarga;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class dashboardController extends Controller
 {
@@ -110,5 +112,67 @@ class dashboardController extends Controller
 
         return response()->json($data);
     }
+    public function getIuranDataPD(Request $request)
+    {
+        $userId = Auth::id(); // Get the ID of the authenticated user
+        Log::info('User ID: ' . $userId);
+
+        // Mengambil data iuran dari database untuk user_id tertentu
+        $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
+                     ->where('user_id', $userId)
+                     ->groupBy('month')
+                     ->get()
+                     ->pluck('total', 'month')
+                     ->toArray();
+
+        Log::info('Iuran Data: ' . json_encode($data));
+
+        // Menghitung total keseluruhan iuran
+        $totalIuran = array_sum($data);
+        Log::info('Total Iuran: ' . $totalIuran);
+
+        // Menghitung persentase per bulan
+        $dataPersentase = [];
+        foreach ($data as $month => $total) {
+            $dataPersentase[$month] = ($total / $totalIuran) * 100;
+        }
+
+        Log::info('Data Persentase: ' . json_encode($dataPersentase));
+
+        return response()->json($dataPersentase);
+    }
+
+
+public function getIuranDataRT(Request $request)
+{
+    $user = Auth::user(); // Get the authenticated user
+    $rtId = $user->rt_id; // Assume rt_id is a column in the users table
+
+    Log::info('RT ID: ' . $rtId);
+
+    // Mengambil data iuran dari database untuk rt_id tertentu
+    $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
+                 ->where('rt_id', $rtId)
+                 ->groupBy('month')
+                 ->get()
+                 ->pluck('total', 'month')
+                 ->toArray();
+
+    Log::info('Iuran Data: ' . json_encode($data));
+
+    // Menghitung total keseluruhan iuran
+    $totalIuran = array_sum($data);
+    Log::info('Total Iuran: ' . $totalIuran);
+
+    // Menghitung persentase per bulan
+    $dataPersentase = [];
+    foreach ($data as $month => $total) {
+        $dataPersentase[$month] = ($total / $totalIuran) * 100;
+    }
+
+    Log::info('Data Persentase: ' . json_encode($dataPersentase));
+
+    return response()->json($dataPersentase);
+}
 
 }
