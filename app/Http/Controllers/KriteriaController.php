@@ -49,7 +49,7 @@ class KriteriaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'jenis' => 'required|in:benefit,cost',
+            'jenis' => 'required|in:Benefit,Cost',
             'bobot' => 'required|numeric|min:0',
         ]);
 

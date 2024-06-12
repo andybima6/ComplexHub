@@ -79,7 +79,7 @@
                                        c10.25,5.844,18.406,13.938,24.531,24.219c6.094,10.313,9.155,22.345,9.155,36.126C344.719,323.125,338.406,340.75,325.812,354.844z" />
                                 </g>
                             </svg>
-                            <h5>Iuran : {{ number_format($iuran, 2) }}</h5>
+                            <h5>Iuran : Rp.{{ number_format($iuran, 2) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -137,8 +137,8 @@
                     @foreach ($izinUsaha as $izin)
                         <div class="carousel-item">
                             <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" class="rounded-box">
-                            <h3>{{ $izin->nama_usaha }}</h3>
-                            <p>{{ $izin->deskripsi }}</p>
+                            {{-- <h3>{{ $izin->nama_usaha }}</h3> --}}
+                            {{-- <p>{{ $izin->deskripsi }}</p> --}}
                         </div>
                     @endforeach
                 </div>

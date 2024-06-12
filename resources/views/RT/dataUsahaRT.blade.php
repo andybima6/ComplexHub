@@ -1,24 +1,39 @@
 @extends('layouts.welcome')
 @section('content')
+
+<style>
+    @media only screen and (max-width: 768px) {
+    #bungkusKotak {
+        max-width: 90%;
+        margin-left: 20px;
+        max-height: 70%;
+    }
+    .p-teks {
+        font-size: 40px; /* Ukuran teks yang diperkecil */
+    }
+}
+
+</style>
     {{-- Content --}}
     <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div class="opsi flex flex-col md:flex-row md:justify-between mt-20">
             <div class="md:w-2/5 h-96 rounded-md md:ml-16 mt-4 md:mt-0"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
-                <p class="values w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
+                <p class="values w-911 h-62 relative md:left-20 top-16 text-center md:text-left p-teks"
                     style="font-size: 80px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                     RT :
-                    <div class="values w-911 h-62 relative md:left-96 top-2 text-center md:text-left"
+                    <div class="values w-911 h-62 relative md:left-96 top-2 text-center md:text-left p-teks"
                         style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                         <selected class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                            <option value="01">01</option>
+                            <option value="{{ auth()->user()->rt_id }}">{{ auth()->user()->rt_id }}</option>
                             {{-- <option value="02">02</option>
                             <option value="03">03</option> --}}
                         </selected>
                     </div>
                 </p>
+
             </div>
-            <div class="md:w-2/5 h-96 rounded-md md:relative md:mr-16 mt-8 md:mt-0"
+            <div id="kotak2" class="md:w-2/5 h-96 rounded-md md:relative md:mr-16 mt-8 md:mt-0"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
                 <p class="w-911 h-62 relative md:left-20 top-16 text-center md:text-left"
                     style="font-size: 60px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
@@ -34,6 +49,7 @@
                 </p>
             </div>
         </div>
+        
 
 
 

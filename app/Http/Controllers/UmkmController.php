@@ -10,13 +10,15 @@ use Intervention\Image\Facades\Image;
 class UmkmController extends Controller
 {
     public function indexDataRT() {
-        $izinUsaha = Umkm::all();
+        $rts = RT::all();
+        $rt_id = auth()->user()->rt_id;
+        $izinUsaha = Umkm::where('rt_id', $rt_id)->get();
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Data Usaha RT',
         ];
 
-        return view('RT.dataUsahaRT', compact('izinUsaha'), ['breadcrumb' => $breadcrumb]);
+        return view('RT.dataUsahaRT', compact('izinUsaha', 'rts'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function indexDataRW() {
