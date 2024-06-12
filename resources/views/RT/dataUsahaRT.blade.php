@@ -16,13 +16,8 @@
 </style>
     {{-- Content --}}
     <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-<<<<<<< HEAD
-        <div id="bungkusKotak" class="opsi flex flex-col md:flex-row md:justify-between mt-20">
-            <div id="kotak1" class="md:w-2/5 h-96 rounded-md md:ml-16 mt-4 md:mt-0"
-=======
         <div class="opsi flex flex-col md:flex-row md:justify-between mt-20">
             <div class="md:w-2/5 h-96 rounded-md md:ml-16 mt-4 md:mt-0"
->>>>>>> 4d7137c09167fe75024e5e20408005d64712a0db
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
                 <p class="values w-911 h-62 relative md:left-20 top-16 text-center md:text-left p-teks"
                     style="font-size: 80px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">

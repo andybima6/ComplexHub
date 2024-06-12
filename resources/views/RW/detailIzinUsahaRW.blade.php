@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="fotoProduk" class="block text-lg font-bold text-gray-700">Foto Produk :</label>
-                    <img src="{{ asset('storage/' . $izinUsaha->foto_produk) }}" alt="">
+                    <img class="ml-0" src="{{ asset('storage/' . $izinUsaha->foto_produk) }}" alt="">
                 </div>
                 <div class="absolute right-16 bottom-4">
                     <a href="{{ route('izinUsahaRW') }}" style="text-decoration:none"><button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-2">Kembali</button></a>
