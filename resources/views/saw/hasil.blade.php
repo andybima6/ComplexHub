@@ -39,12 +39,13 @@
         <a href="{{ url('/saw') }}">Ranking</a>
     </nav>
 
-        <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28 mb-10">
-          <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
+    <!-- Tabel Normalisasi -->
+    <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28 mb-10">
+        <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
             Tabel Normalisasi :
-          </p>
-          <p>Masing-masing alternatif dihitung dengan menjumlahkan produk antara nilai yang telah dinormalisasi dan bobot dari setiap kriteria.</p>
-        <!-- Tabel Normalisasi -->
+        </p>
+        <p>Masing-masing alternatif dihitung dengan menjumlahkan produk antara nilai yang telah dinormalisasi dan bobot dari setiap kriteria.</p>
+        
         <table>
             <thead>
                 <tr>
@@ -67,14 +68,15 @@
                 @endforeach
             </tbody>
         </table>
-        </div>
+    </div>
 
-        <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28 mb-10">
-          <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
+    <!-- Tabel Hasil SAW -->
+    <div class="rounded-md relative p-16 top-24 left-16 bg-white mr-28 mb-10">
+        <p class="mb-10" style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
             Tabel Hasil Akhir :
-          </p>
-          <p>Hasil dibawah ini hanyalah sistem pendukung keputusan, keputusan akhir tetap di Anda!</p>
-        <!-- Tabel Hasil SAW -->
+        </p>
+        <p>Hasil dibawah ini hanyalah sistem pendukung keputusan, keputusan akhir tetap di Anda!</p>
+        
         <table>
             <thead>
                 <tr>
@@ -99,8 +101,7 @@
                 @endforeach
             </tbody>
         </table>
-        </div>
-
     </div>
+
 </main>
 @endsection
