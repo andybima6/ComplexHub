@@ -226,29 +226,33 @@ class UmkmController extends Controller
     public function update(Request $request, $id) {
         $request->validate([
             'nama_warga' => 'required',
+            'user_id' => 'required',
             'nama_usaha' => 'required',
             'deskripsi' => 'required',
-            'foto_produk' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // pastikan untuk validasi file gambar
+            'foto_produk' => 'image|mimes:jpeg,png,jpg', // pastikan untuk validasi file gambar
+            'rt_id' => 'required'
         ]);
 
         // Cek apakah ada file gambar yang diunggah
         if ($request->hasFile('foto_produk')) {
             // Simpan file gambar yang diunggah ke penyimpanan yang diinginkan
-            $imagePath = $request->file('foto_produk')->store('public/images');
+            $imagePath = $request->file('foto_produk')->store('foto-produk');
 
             // Mengambil nama file gambar untuk disimpan di database
-            $fileName = basename($imagePath);
+            $filePath = $imagePath;
         } else {
             // Jika tidak ada file gambar yang diunggah, gunakan nama file gambar yang lama
-            $fileName = $request->oldFotoProduk;
+            $filePath = $request->foto_produk;
         }
 
         // Update data Umkm
         $umkm = Umkm::findOrFail($id);
         $umkm->nama_warga = $request->nama_warga;
+        $umkm->user_id = $request->user_id;
         $umkm->nama_usaha = $request->nama_usaha;
         $umkm->deskripsi = $request->deskripsi;
-        $umkm->foto_produk = $fileName; // nama file gambar yang baru atau yang lama
+        $umkm->foto_produk = $filePath; // nama file gambar yang baru atau yang lama
+        $umkm->rt_id = $request->rt_id;
         $umkm->save();
 
         // Redirect kembali ke halaman izinUsahaPenduduk dengan pesan sukses

@@ -1,7 +1,14 @@
 @extends('layouts.welcome')
 @section('content')
+<style>
+    @media (max-width: 414px) {
+        .relative overflow-x-auto {
+        max-width: 90%;
+        }
+    }
+</style>
     {{-- Content --}}
-    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+    <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div class="opsi flex flex-col md:flex-row md:justify-between mt-20">
             <div class="md:w-2/5 h-96 rounded-md md:ml-16 mt-4 md:mt-0"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
@@ -39,33 +46,33 @@
 
 
 
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
-            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
-            <table class="md:table-fixed w-full">
+        <div class="rounded-md relative p-16 top-32 left-16 bg-white mr-28 overflow-x-auto">
+            <p class="mb-10 text-xl md:text-2xl font-semibold text-gray-800 ml-24"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead>
-                    <tr>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Deskripsi</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Lingkup</th>
+                    <tr class="bg-gray-200 text-black font-medium text-center">
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">No</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Nama Warga</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Nama Usaha</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Deskripsi</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Foto Produk</th>
+                        <th class="border px-2 sm:px-4 py-2" style="color: black">Lingkup</th>
                         {{-- <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th> --}}
                     </tr>
                 </thead>
                 <tbody id="umkm-table">
                     @foreach ($izinUsaha as $index => $izin)
                     <tr data-rt="{{ $izin->rt_id }}">
-                        <td class="border px-4 py-2 text-center" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
-                        <td class="border px-4 py-2 text-center" style="color: black">
+                        <td class="border px-4 py-2 text-center bg-white" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
+                        <td class="border px-4 py-2 text-center bg-white" style="color: black">{{ $izin->nama_warga }}</td>
+                        <td class="border px-4 py-2 text-center bg-white" style="color: black">{{ $izin->nama_usaha }}</td>
+                        <td class="border px-4 py-2 text-center bg-white" style="color: black">{{ $izin->deskripsi }}</td>
+                        <td class="border px-4 py-2 text-center bg-white" style="color: black">
                             <div class="flex justify-center">
                                 <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
-                        <td class="border px-4 py-2 text-center" style="color: black">RT {{ $izin->rt_id }}</td>
+                        <td class="border px-4 py-2 text-center bg-white" style="color: black">RT {{ $izin->rt_id }}</td>
                         {{-- <td class="border px-4 py-2 text-center" style="color: black">Pending</td> --}}
 
                     </tr>

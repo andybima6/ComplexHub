@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 @section('content')
     {{-- Content --}}
-    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+    <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div class="opsi flex flex-col md:flex-row md:justify-between mt-20">
             <div class="md:w-2/5 h-96 rounded-md md:ml-16 mt-4 md:mt-0"
                 style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25));">
@@ -38,11 +38,11 @@
 
 
 
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
+        <div class="rounded-md relative p-16 top-32 left-16 bg-white mr-28 overflow-x-auto">
             <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
             <table class="md:table-fixed w-full">
                 <thead>
-                    <tr>
+                    <tr class="bg-gray-200 text-black font-medium text-center">
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
@@ -60,7 +60,7 @@
                         <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
                         <td class="border px-4 py-2 text-center" style="color: black">
                             <div class="flex justify-center">
-                                <img src="{{ asset($izin->foto_produk) }}" alt="">
+                                <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="">
                             </div>
                         </td>
                         <td class="border px-4 py-2 text-center" style="color: black">Izin telah di setujui</td>

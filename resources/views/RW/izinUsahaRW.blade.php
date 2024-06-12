@@ -1,13 +1,20 @@
 @extends('layouts.welcome')
 @section('content')
+<style>
+    /* @media (max-width: 414px) {
+        relative overflow-x-auto {
+            max-width: 90%;
+        }
+    } */
+</style>
     {{-- Content --}}
-    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
-            <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT:</p>
+    <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+        <div class="rounded-md relative p-16 top-40 left-16 bg-white mr-28 overflow-x-auto">
+            <p class="mb-10 mt-10 ml-5"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT:</p>
             <hr>
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead>
-                    <tr>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-white-700 uppercase bg-white-50 dark:bg-white-700 dark:text-white-400">
+                    <tr class="bg-gray-200 text-black font-medium text-center">
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>
@@ -21,18 +28,18 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($izinUsaha  as $index => $izin)
                     <tr>
-    <td class="border px-4 py-2 text-center" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
-    <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_warga }}</td>
-    <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->nama_usaha }}</td>
-    <td class="border px-4 py-2 text-center" style="color: black">{{ $izin->deskripsi }}</td>
-    <td class="border px-4 py-2 text-center relative" style="color: black;">
+    <td class="border px-4 py-2 text-center bg-white" style="color: black" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
+    <td class="border px-4 py-2 text-center bg-white" style="color: black">{{ $izin->nama_warga }}</td>
+    <td class="border px-4 py-2 text-center bg-white" style="color: black">{{ $izin->nama_usaha }}</td>
+    <td class="border px-4 py-2 text-center bg-white" style="color: black">{{ $izin->deskripsi }}</td>
+    <td class="border px-4 py-2 text-center relative bg-white" style="color: black;">
         <div class="flex justify-center items-center" style="height: 100%;">
             <img style="padding-right: 45%" src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" style="max-width: 100%; height: auto;">
         </div>
     </td>
-    <td class="border py-2 text-center" style="color: black"><i>RT {{ $izin->rt_id }}</i></td>                        
-    <td class="border px-4 py-2 text-center" style="color: black"><i>{{ $izin->status_rt }}</i></td>
-    <td class="border px-4 py-2 text-center" style="color: black">
+    <td class="border py-2 text-center bg-white" style="color: black"><i>RT {{ $izin->rt_id }}</i></td>                        
+    <td class="border px-4 py-2 text-center bg-white" style="color: black"><i>{{ $izin->status_rt }}</i></td>
+    <td class="border px-4 py-2 text-center bg-white" style="color: black">
         <div class="flex justify-center items-center gap-2">
             <a href="{{ route('detailIzinUsahaRW', ['id' => $izin->id]) }}">
                 <button class="btn-detail bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" style="border-radius: 10px">
