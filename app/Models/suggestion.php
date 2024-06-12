@@ -9,6 +9,7 @@ class Suggestion extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'tanggal',
         'name',
         'field',
@@ -24,6 +25,10 @@ class Suggestion extends Model
     public function rt()
     {
         return $this->belongsTo(RT::class, 'rt_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
 

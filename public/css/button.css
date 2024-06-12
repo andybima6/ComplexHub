@@ -1,0 +1,44 @@
+.Btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 260px;
+    height: 60px;
+    border: none;
+    padding: 0px 20px;
+    background: linear-gradient(to right, #8be3fc, #576bff);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 2px 20px 30px -7px rgba(97, 118, 238, 0.5);
+    transition-duration: 0.3s;
+  }
+
+  .svg {
+    width: 12px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    fill: white;
+    transition-duration: 0.3s;
+  }
+
+  .Btn:hover {
+    color: transparent;
+  }
+
+  .Btn:hover svg {
+    right: 43%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition-duration: 0.3s;
+  }
+
+  .Btn:active {
+    transform: translate(3px, 3px);
+    transition-duration: 0.3s;
+  }

@@ -56,7 +56,7 @@
                 <tbody>
                     @foreach($rts as $rt)
                     <tr class="text-center">
-                        <td class="border px-2 sm:px-4 py-2">{{ $rt->id }}</td>
+                        <td style="background-color:white;"class="border px-2 sm:px-4 py-2">{{ $rt->id }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->nama }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->rt }}</td>
                         <td class="border px-2 sm:px-4 py-2">{{ $rt->alamat }}</td>

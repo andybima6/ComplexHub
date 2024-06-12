@@ -1,182 +1,184 @@
 @extends('layouts.welcome')
 
 @section('content')
-<style>
-    
-</style>
-<main class="mx-auto p-5 sm:p-10 md:p-2 contain-responsive" style="min-height: 50vh; background-color: #FBEEC1;">
-    <div class="md:justify-between mt-20 py-24 flex flex-col md:flex-row">
-        <div class="md:ml-52 mt-4 md:mt-0 relative"
-            style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width:350px;height:275px;border-radius:13px">
-            <p class="relative md:right-24 top-6 text-center md:text-left;"
-                style="font-size: 45px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                RT :
-                <div class="values w-911 h-62 relative md:left-32 top-2 text-center md:text-left"
+    <main class="overflow-y-auto min-h-screen">
+        <div class="flex flex-col md:flex-row md:justify-between mt-20 py-24">
+            <div class="mt-4 md:mt-0 relative mx-auto md:ml-52"
+                style="background-color: #659DBD; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); width: 90%; max-width: 350px; height: 275px; border-radius: 13px;">
+                <p class="relative top-6 text-center md:text-left-3"
+                    style="font-size: 45px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
+                    RT :
+                <div class="values w-full h-62 relative top-2 text-center md:text-left-12"
                     style="font-size: 120px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
-                    <a class="bg-transparent border-white outline-none text-white w-full md:w-auto">
+                    <a class="bg-transparent border-white outline-none text-white w-full">
                         {{ str_pad(auth()->user()->rt_id, 2, '0', STR_PAD_LEFT) }}
                     </a>
                 </div>
-            </p>
-        </div>
-    
-        <div id="openModal" class="flex relative mt-4 md:mt-0 w-full md:w-96 items-center justify-center md:mr-64"
-            style="background-color: #2F80ED; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); height: 96px; cursor: pointer;">
-            <p style="font-size: 24px; color: white; font-family: 'Poppins', sans-serif; font-weight: 300;">
-                + Tambah
-            </p>
-        </div>
-    </div>
-
-    
-
-    <div id="myModal" tabindex="-1" aria-hidden="true" class="modal">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-300">
-                <h3 class="text-lg font-semibold text-gray-900">
-                    Tambah Saran Pengaduan
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="crud-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
+                </p>
             </div>
-            <!-- Modal body -->
-            <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data" class="p-4 md:p-5">
+
+            <div id="openModal" class="flex relative w-11/12 md:w-96 mt-8 md:mt-24 mx-auto md:mx-0 md:mr-64 items-center justify-center"
+                style="background-color: #2F80ED; filter: drop-shadow(12px 13px 4px rgba(2, 109, 124, 0.25)); height: 96px; cursor: pointer;">
+                <p class="text-xl md:text-2xl text-white font-light">
+                    + Tambah
+                </p>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <form method="POST" action="{{ route('tambahSaranPD') }}" enctype="multipart/form-data"
+                class="modal-content absolute inset-0 mx-auto mt-20 md:mt-56 w-11/12 md:w-2/3"
+                style="background-color:#FFFFFF; border-radius: 15px; z-index: 9999;">
                 @csrf
-                <div class="grid gap-4 mb-4 grid-cols-2">
-                    <input type="hidden" name="id" value="">
-                    <input id="editNamaKegiatan" name="tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="date" placeholder="tanggal">
+                <span id="closeModal" class="close" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
+                <div class="relative w-fit py-3 text-center"
+                    style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
+                    Tambah Saran Pengaduan
+                </div>
+                <hr class="relative" style="border-width: 3px;">
 
-                    <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="{{ auth()->user()->name }}" readonly>
-                    </div>
+                <div class="mt-4 mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
+                </div>
 
-                    <input id="editKeterangan" name="field" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="text" placeholder="Bidang">
+                <div class="mt-4 mb-4">
+                    <label for="user_id" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                    <input type="text" id="user_id" name="user_id" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ auth()->user()->id }}" readonly>
+                </div>
 
-                    <textarea id="editKeterangan" rows="4" name="laporan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Isi Laporan"></textarea>                    
+                <input type="hidden" name="id" value="">
+                <div class="flex flex-col gap-4 my-8">
+                    <input id="editNamaKegiatan" name="tanggal" class="relative p-2 w-full border-2 rounded-lg" type="date" placeholder="tanggal">
 
-                    <select id="lingkup" name="rt_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                    <input id="editKeterangan" name="field" class="relative p-2 w-full border-2 rounded-lg" type="text" placeholder="Bidang">
+
+                    <textarea id="editKeterangan" rows="10" name="laporan" class="relative p-2 w-full border-2 rounded-lg" placeholder="Isi Laporan"></textarea>
+
+                    <select id="lingkup" name="rt_id" class="relative p-2 w-full border-2 rounded-lg">
                         @foreach ($rts as $rt)
                             <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} - {{ $rt->nama }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="flex items-center justify-end">
-                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-28 h-10 ms-auto inline-flex justify-center items-center" data-modal-toggle="crud-modal">
+
+                <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
+                    <button type="button" data-close-modal="editSaranModal" class="px-4 py-2 text-center rounded-md bg-gray-600 hover:opacity-80 transition text-base text-white font-medium">
                         Close
                     </button>
-                    <button id="editSaveButton" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    <button id="editSaveButton" type="submit" class="px-4 py-2 text-center rounded-md bg-green-600 hover:opacity-80 transition text-base text-white font-medium">
                         Save
                     </button>
                 </div>
             </form>
         </div>
-    </div>
-</div>
 
 
 
-
-
-            {{-- Table Tambah --}}
-            <div class="relative overflow-x-auto mx-auto" style="max-width:90%; background-color: #FFFFFF;">
-                <p class="mb-10 text-2xl text-left text-black" style="font-family: 'Poppins', sans-serif;">Daftar Saran Pengajuan Penduduk :</p>
-                <table class="w-full text-sm text-left rtl:text-right text-black">
-                    <thead class="text-xs uppercase bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">No</th>
-                            <th scope="col" class="px-6 py-3">Tanggal</th>
-                            <th scope="col" class="px-6 py-3">Nama</th>
-                            <th scope="col" class="px-6 py-3">Bidang</th>
-                            <th scope="col" class="px-6 py-3">Laporan</th>
-                            <th scope="col" class="px-6 py-3">Lingkup</th>
-                            <th scope="col" class="px-6 py-3">Status</th>
-                            <th scope="col" class="px-6 py-3">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($suggestions as $index => $suggestion)
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-4 text-center">{{ $index + 1 }}</td>
-                            <td class="px-6 py-4 text-center">{{ $suggestion->tanggal }}</td>
-                            <td class="px-6 py-4 text-center">{{ $suggestion->name }}</td>
-                            <td class="px-6 py-4 text-center">{{ $suggestion->field }}</td>
-                            <td class="px-6 py-4 text-center">{{ $suggestion->laporan }}</td>
-                            <td class="px-6 py-4 text-center">RT {{ $suggestion->rt_id }}</td>
-                            <td class="px-6 py-4 text-center">{{ $suggestion->status }}</td>
-                            <td class="px-6 py-4 text-center">
-                                <div class="flex justify-center space-x-2">
-                                    <a href="{{ route('detailSaranPD', ['id' => $suggestion->id]) }}" class="btn-action bg-blue-500 text-white px-3 py-1 rounded">Show</a>
-                                    <button class="btn-action bg-yellow-500 text-white px-3 py-1 rounded" data-edit='{{ getSaranDetailJson($suggestion) }}'>Edit</button>
-                                    <button class="btn-action bg-red-500 text-white px-3 py-1 rounded" onclick="deleteSaran({{ $suggestion->id }}, {{ $index + 1 }})">Delete</button>
-                                </div>
+        <div class="overflow-x-auto">
+            <p class="mb-10 text-xl md:text-2xl font-semibold text-gray-800  ml-24">Daftar Saran Pengajuan Penduduk :</p>
+            <table class="table-auto mx-auto w-4/5 border-collapse border border-gray-300">
+                        <thead>
+                            <tr class="bg-gray-200 text-black font-medium text-center">
+                                <th class="border px-2 sm:px-4 py-2">No</th>
+                                <th class="border px-2 sm:px-4 py-2">Tanggal</th>
+                                <th class="border px-2 sm:px-4 py-2">Nama</th>
+                                <th class="border px-2 sm:px-4 py-2">Bidang</th>
+                                <th class="border px-2 sm:px-4 py-2">Laporan</th>
+                                <th class="border px-2 sm:px-4 py-2">Lingkup</th>
+                                <th class="border px-2 sm:px-4 py-2">Status</th>
+                                <th class="border px-2 sm:px-4 py-2">Aksi</th>
+                            </tr>
+                        </thead>
+                <tbody id="tabelBody">
+                    @foreach ($suggestions as $index => $suggestion)
+                        <tr data-id="{{ $suggestion->id }}">
+                            <td class="border px-4 py-2 text-center bg-white ">{{ $index + 1 }}</td>
+                            <td class="border px-4 py-2 text-center bg-white">{{ $suggestion->tanggal }}</td>
+                            <td class="border px-4 py-2 text-center bg-white">{{ $suggestion->name }}</td>
+                            <td class="border px-4 py-2 text-center bg-white">{{ $suggestion->field }}</td>
+                            <td class="border px-4 py-2 text-center bg-white">{{ $suggestion->laporan }}</td>
+                            <td class="border px-4 py-2 text-center bg-white">RT {{ $suggestion->rt_id }}</td>
+                            <td class="border px-4 py-2 text-center bg-white">{{ $suggestion->status }}</td>
+                            <td class="border px-6 py-2 text-center  bg-white grid-row-4 gap-1">
+                                <a href="{{ route('detailSaranPD', ['id' => $suggestion->id]) }}">
+                                    <button class="px-2 py-1 bg-blue-600 text-white rounded-lg text-sm">
+                                        Show
+                                    </button>
+                                </a>
+                                <button data-edit='{{ getSaranDetailJson($suggestion) }}'
+                                    class="px-2 py-1 bg-yellow-600 text-white rounded-lg text-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteSaran({{ $suggestion->id }})"
+                                    class="px-2 py-1 bg-red-600 text-white rounded-lg text-sm">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            
-            
-            
-            
-
-        <form id="editSaranModal" class="modal" action="{{ route('updateSaranPD') }}" method="post" enctype="multipart/form-data" style="display: none">
-    <!-- Modal content -->
-    @csrf
-    <div class="modal-content relative bg-white rounded-lg shadow" style="max-width: 28rem;">
-        <!-- Modal header -->
-        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-            <h3 class="text-lg font-semibold text-gray-900">
-                Edit Saran Pengaduan
-            </h3>
-            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-close-modal="editSaranModal">
-                &times;
-                <span class="sr-only">Close modal</span>
-            </button>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-        <!-- Modal body -->
-        <form method="POST" action="{{ route('updateSaranPD') }}" enctype="multipart/form-data" class="p-4 md:p-5">
-            @csrf
-            <div class="grid gap-4 mb-4 grid-cols-2">
-                <input type="hidden" name="id" value="">
-                <input id="editNamaKegiatan" name="tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="date" placeholder="Tanggal">
 
-                <div class="col-span-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                    <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" value="{{ auth()->user()->name }}" readonly>
+        <form id="editSaranModal" class="modal" action="{{ route('updateSaranPD') }}" method="post"
+            enctype="multipart/form-data" style="display: none">
+            @csrf
+            <div class="modal-content absolute inset-0 mx-auto mt-20 md:mt-56 w-11/12 md:w-2/3"
+                style="background-color:#FFFFFF; border-radius: 15px;">
+                <span data-close-modal="editSaranModal" class="close"
+                    style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; line-height: 0;">&times;</span>
+                <div class="relative w-fit py-3 text-center"
+                    style="font-size: 24px; color: #000000; font-family: 'Poppins', sans-serif; font-weight: 100;">
+                    Edit Saran Pengaduan
+                </div>
+                <hr class="relative" style="border-width: 3px;">
+
+                <div class="mt-4 mb-4">
+                    <label for="editNama" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="editNama" name="name" class="mt-1 p-2 block w-full border-gray-300 rounded-md"
+                        style="background-color: #E6E6E6" value="{{ auth()->user()->name }}" readonly>
                 </div>
 
-                <input id="editKeterangan" name="field" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" type="text" placeholder="Bidang">
+                <div class="mt-4 mb-4">
+                    <label for="editUserId" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                    <input type="text" id="editUserId" name="user_id" class="mt-1 p-2 block w-full border-gray-300 rounded-md"
+                        style="background-color: #E6E6E6" value="{{ auth()->user()->id }}" readonly>
+                </div>
 
-                <textarea id="editKeterangan" rows="4" name="laporan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Isi Laporan"></textarea>
+                <input type="hidden" name="id" value="">
+                <div class="flex flex-col gap-4 my-8">
+                    <input id="editTanggal" name="tanggal" class="relative p-2 w-full border-2 rounded-lg"
+                        type="date" placeholder="Tanggal">
 
-                <select id="lingkup" name="rt_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                    @foreach ($rts as $rt)
-                        <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} - {{ $rt->nama }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="flex items-center justify-end">
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-28 h-10 ms-auto inline-flex justify-center items-center" data-close-modal="editSaranModal">
-                    Close
-                </button>
-                <button id="editSaveButton" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
-                    Save
-                </button>
+                    <input id="editBidang" name="field" class="relative p-2 w-full border-2 rounded-lg"
+                        type="text" placeholder="Bidang">
+
+                    <textarea id="editIsiLaporan" rows="10" name="laporan" class="relative p-2 w-full border-2 rounded-lg"
+                        placeholder="Isi Laporan"></textarea>
+
+                    <select id="editRt" name="rt_id" class="relative p-2 w-full border-2 rounded-lg">
+                        @foreach ($rts as $rt)
+                            <option value="{{ $rt->id }}">RT {{ str_pad($rt->id, 3, '0', STR_PAD_LEFT) }} - {{ $rt->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="absolute right-8 bottom-8 flex flex-row items-center gap-3">
+                    <button type="button" data-close-modal="editSaranModal"
+                        class="px-4 py-2 text-center rounded-md bg-gray-600 hover:opacity-80 transition text-base text-white font-medium">
+                        Close
+                    </button>
+                    <button id="editSaveButton" type="submit"
+                        class="px-4 py-2 text-center rounded-md bg-green-600 hover:opacity-80 transition text-base text-white font-medium">
+                        Save
+                    </button>
+                </div>
             </div>
         </form>
-    </div>
-</form>
-
     </main>
+
 
     <script>
         // Event listener untuk tombol "Save"

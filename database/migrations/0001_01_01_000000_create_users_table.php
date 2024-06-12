@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('role_id');
             $table->integer('rw');
-            $table->unsignedBigInteger('rt_id'); // Add this line for rt_id
+            $table->unsignedBigInteger('rt_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

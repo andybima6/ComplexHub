@@ -35,13 +35,13 @@ class IuranRTController extends Controller
     public function historyRT()
     {
         $user = auth()->user();
-        $userId = $user->id;
+        $userId = $user->rt_id;
         // $iuran = Iuran::where('rt_id', $user->rt)->get();
         $breadcrumb = (object) [
             'title' => 'History Kas RT',
             'subtitle' => '',
         ];
-        $iuran = Iuran::where('user_id', $userId)->get();
+        $iuran = Iuran::where('rt_id', $userId)->get();
         return view('RT/historyRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 
@@ -125,13 +125,15 @@ class IuranRTController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'user_id' => 'required|int',
             'nama' => 'required|string',
             'periode' => 'required|date',
             'total' => 'required|numeric',
             'keterangan' => 'required|string',
             'bukti' => 'nullable|file|mimes:jpg,jpeg,png',
             'rt_id' => 'required|exists:data_rt,id',
-            'status' => 'required|string',
+            'status' => 'required|string|in:diproses,disetujui,ditolak',
+
         ]);
 
         $iuran = Iuran::find($id);
@@ -139,6 +141,7 @@ class IuranRTController extends Controller
             return redirect('/RT/kasIuranRT')->with('error', 'Data iuran tidak ditemukan');
         }
 
+        $iuran->user_id = $request->user_id;
         $iuran->nama = $request->nama;
         $iuran->periode = $request->periode;
         $iuran->total = $request->total;
@@ -166,9 +169,27 @@ class IuranRTController extends Controller
 
         try {
             Iuran::destroy($id);
-            return redirect('/RT/kasIuranRT')->with('success', 'Data iuran berhasil dihapus');
+            return redirect('/RT/historyRT')->with('success', 'Data iuran berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('/RT/kasIuranRT')->with('error', 'Data iuran gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+            return redirect('/RT/historyRT')->with('error', 'Data iuran gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
+    }
+
+    public function accIuranRT($id)
+    {
+        $iuran = Iuran::find($id);
+
+        $iuran->status = 'disetujui';
+        $iuran->save();
+        return redirect(route('historyRT'));
+    }
+
+    public function tolakIuranRT($id)
+    {
+        $iuran = Iuran::find($id);
+
+        $iuran->status = 'ditolak';
+        $iuran->save();
+        return redirect(route('historyRT'));
     }
 }

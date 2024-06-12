@@ -48,6 +48,7 @@
             content: attr(data-label);
         }
     }
+
 </style>
 
 <main class="mx-auto p-8 sm:p- md:p-40 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
@@ -105,24 +106,24 @@
                                 <td class="border px-4 py-2 text-center">{{ $kk->alamat }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $kk->rt_id ?? 'N/A' }}</td>
                                 {{-- <td class="border px-4 py-2 text-center">{{ $kk->status_ekonomi }}</td> --}}
-                                <td class="border px-4 py-2 text-center" style="color: black">
-                                    <div class="flex justify-center">
-                                        <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="bg-blue-500 hover:bg-blue-700
-                                            text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                                <td class="border px-4 py-4 text-center" style="color: black">
+                                    <div class="flex justify-center space-x-2">
+                                        <a href="{{ route('data_kartu_keluargas.show', $kk->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
                                             Lihat
                                         </a>
-                                        <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700
-                                            text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">
+                                        <a href="{{ route('data_kartu_keluargas.edit', $kk->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
                                             Edit
                                         </a>
-                                        <form id="delete-form-{{ $kk->id }}" action="{{ route('data_kartu_keluargas.destroy', $kk) }}" method="POST" style="display: inline-block;">
+                                        <form id="delete-form-{{ $kk->id }}" action="{{ route('data_kartu_keluargas.destroy', $kk->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700
-                                            text-white font-bold py-2 px-4 rounded flex items-center justify-center ml-2">Delete</button>
+                                            <button type="button" onclick="confirmDelete('{{ $kk->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                                                Delete
+                                            </button>
                                         </form>
                                     </div>
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>

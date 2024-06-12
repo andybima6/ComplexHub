@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     protected $fillable = [
+        'user_id',
         'name',
         'description',
         'document',
@@ -18,5 +19,8 @@ class Activity extends Model
     {
         return $this->belongsTo(RT::class, 'rt_id');
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
