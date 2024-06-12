@@ -367,7 +367,7 @@
 
 
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/get-chart-data') // Endpoint to get the chart data
+            fetch('/get-chart-data-rt') // Endpoint to get the chart data
                 .then(response => response.json())
                 .then(data => {
                     // Prepare seriesData and labels

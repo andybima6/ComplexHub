@@ -121,7 +121,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/RT/iuranRT', [IuranController::class, 'dataiuranRT'])->name('dataiuranRT');
 
         Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
-        Route::get('/get-chart-data', [DashboardController::class, 'getChartData']);
+        Route::get('/get-chart-data-rt', [DashboardController::class, 'getChartDataRT']);
 
     });
 
@@ -173,7 +173,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/ranking', [MetodeDuaController::class, 'indexRanking'])->name('ranking');
 
-        
+        Route::get('dashboardRW', [DashboardController::class, 'indexRW'])->name('dashboardRW');
+        Route::get('/get-chart-data-rw', [DashboardController::class, 'getChartDataRW']);
+
 
     });
 
@@ -209,7 +211,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/warga/history', [IuranWargaController::class, 'history'])->name('history');
 
         Route::get('dashboardPD', [DashboardController::class, 'indexPD'])->name('dashboardPD');
-        Route::get('/get-chart-data', [DashboardController::class, 'getChartData']);
+        Route::get('/get-chart-data', [DashboardController::class, 'getChartDataPD']);
 
     });
 

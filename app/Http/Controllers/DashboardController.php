@@ -73,13 +73,38 @@ class dashboardController extends Controller
         return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users', 'iuran'));
     }
 
-    public function getChartData()
+    public function getChartDataPD()
     {
         // Ambil data user_id dan rt_id dari database, dan filter out rt_id = 0
-        $users = User::where('rt_id', '!=', 0)->select('id', 'rt_id')->get();
+        $keluarga = AnggotaKeluarga::where('kk_id', '!=', 0)->select('id', 'kk_id')->get();
 
         // Kelompokkan user_id berdasarkan rt_id
-        $data = $users->groupBy('rt_id')->map(function ($group) {
+        $data = $keluarga->groupBy('kk_id')->map(function ($group) {
+            return $group->count();
+        });
+
+        return response()->json($data);
+    }
+
+    public function getChartDataRT()
+    {
+        // Ambil data user_id dan rt_id dari database, dan filter out rt_id = 0
+        $keluarga = AnggotaKeluarga::where('kk_id', '!=', 0)->select('id', 'kk_id')->get();
+
+        // Kelompokkan user_id berdasarkan rt_id
+        $data = $keluarga->groupBy('kk_id')->map(function ($group) {
+            return $group->count();
+        });
+
+        return response()->json($data);
+    }
+    public function getChartDataRW()
+    {
+        // Ambil data user_id dan rt_id dari database, dan filter out rt_id = 0
+        $keluarga = AnggotaKeluarga::where('kk_id', '!=', 0)->select('id', 'kk_id')->get();
+
+        // Kelompokkan user_id berdasarkan rt_id
+        $data = $keluarga->groupBy('kk_id')->map(function ($group) {
             return $group->count();
         });
 

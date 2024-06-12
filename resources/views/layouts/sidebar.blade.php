@@ -77,9 +77,9 @@
                                fill="#2A424F" />
                        </svg>
 
-                       <a href="{{ auth()->user()->role_id == 1 ? url('rws') : (auth()->user()->role_id == 2 ? url('rts') : url('rts')) }}"
+                       <a href="{{ auth()->user()->role_id == 1 ? url('rts') : (auth()->user()->role_id == 2 ? url('rws') : url('rts')) }}"
 
-                     
+
 
                            style="color: #2A424F; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 18px; margin-left: 7px;">Data
                            RT</a>
