@@ -373,8 +373,8 @@
                 @foreach ($izinUsaha as $izin)
                     <div class="carousel-item">
                         <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" class="rounded-box">
-                        <h3>{{ $izin->nama_usaha }}</h3>
-                        <p>{{ $izin->deskripsi }}</p>
+                        {{-- <h3>{{ $izin->nama_usaha }}</h3> --}}
+                        {{-- <p>{{ $izin->deskripsi }}</p> --}}
                     </div>
                 @endforeach
             </div>

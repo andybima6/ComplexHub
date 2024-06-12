@@ -1,14 +1,14 @@
 @extends('layouts.welcome')
 @section('content')
     {{-- Content --}}
-    <main class="mx-auto p-36 contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
-        <div class="rounded-md relative p-16 top-32 left-16" style="background-color: white">
+    <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
+        <div class="rounded-md relative p-16 top-40 left-16 bg-white mr-28 overflow-x-auto">
             <p class="mb-10"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT :</p>
             <hr class="mb-6">
             {{-- <p class="mb-6" style="font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 500; color: black;">{{ $breadcrumb->subtitle }}</p> --}}
             <table class="md:table-fixed w-full">
                 <thead>
-                    <tr>
+                    <tr class="bg-gray-200 text-black font-medium text-center">
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">No</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Warga</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Nama Usaha</th>

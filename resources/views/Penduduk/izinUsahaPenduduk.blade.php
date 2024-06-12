@@ -18,7 +18,7 @@
 
                 <table class="md:table-fixed w-full">
                     <thead>
-                    <tr>
+                    <tr class="bg-gray-200 text-black font-medium text-center">
                         <th class="border px-2 sm:px-4 py-2" style="color: black">No</th>
                         <th class="border px-2 sm:px-4 py-2" style="color: black">Nama Warga</th>
                         <th class="border px-2 sm:px-4 py-2" style="color: black">Nama Usaha</th>
@@ -48,6 +48,7 @@
                             </td>
                             <td class="border px-4 py-2 text-center" style="color: black"><i>RT {{ $izin->rt_id }}</i></td>
                             <td class="border px-4 py-2 text-center" style="color: black">
+                                <div class="flex justify-center items-center gap-2"class="flex justify-center items-center gap-2">
                                 <a href="{{ route('detailIzinUsaha', ['id' => $izin->id]) }}"><button
                                         class="btn-detail bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded"
                                         style="border-radius: 10px">
@@ -106,6 +107,7 @@
                                         </svg>
                                     </button>
                                 </a>
+                            </div>
                             </td>
                         </tr>
                     @endforeach

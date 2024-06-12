@@ -1,7 +1,7 @@
 @extends('layouts.welcome')
 @section('content')
 <div id="popupForm" class="fixed top-20 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white rounded-md p-8" style="border-radius: 16px; width: 400px;">
+    <div class="bg-white mt-12 rounded-md p-8" style="border-radius: 16px; width: 400px;">
         <h2 class="text-lg font-semibold mb-4">Form Edit Izin Usaha</h2>
         <hr>
         <form id="editIzinForm" action="{{ route('updateIzin', $umkm->id) }}" method="POST" enctype="multipart/form-data">
@@ -10,7 +10,12 @@
 
             <div class="mt-4 mb-4">
                 <label for="nama_warga" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                <input type="text" id="nama_warga" name="nama_warga" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ $umkm->nama_warga }}">
+                <input type="text" id="nama_warga" name="nama_warga" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ $umkm->nama_warga }}" readonly>
+            </div>
+
+            <div class="mt-4 mb-4">
+                <label for="user_id" class="block text-sm font-medium text-gray-700">ID Warga</label>
+                <input type="text" id="user_id" name="user_id" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ $umkm->user_id }}" readonly>
             </div>
 
             <div class="mb-4">
@@ -27,6 +32,11 @@
                 <label for="foto_produk" class="block text-sm font-medium text-gray-700">Foto Produk</label>
                 <img style="padding-right: 45%" class="img-preview img-fluid mb-3 col-sm-5" src="{{ asset('storage/' . $umkm->foto_produk) }}" alt="Foto Produk">
                 <input type="file" id="foto_produk" name="foto_produk" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" onchange="previewImage()">
+            </div>
+
+            <div class="mt-4 mb-4">
+                <label for="rt_id" class="block text-sm font-medium text-gray-700">RT</label>
+                <input type="text" id="rt_id" name="rt_id" class="mt-1 p-2 block w-full border-gray-300 rounded-md" style="background-color: #E6E6E6" value="{{ $umkm->rt_id }}" readonly>
             </div>
 
             <div class="text-right">
