@@ -1,0 +1,256 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Main container for charts */
+.charts2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 16px;
+}
+
+/* Individual chart containers */
+.chart2, .carouselUMKM {
+    flex: 1;
+    margin: 16px;
+}
+
+/* Chart and UMKM container specific styles */
+.chart2 {
+    align-items: flex-start;
+}
+
+.carouselUMKM {
+    align-items: flex-end;
+}
+
+/* Chart Iuran specific styles */
+#chartIuran {
+    max-width: 50%;
+    width: auto;
+    height: auto;
+    float: left;
+}
+
+/* Carousel styles */
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 16px;
+}
+
+.carouselUMKM {
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.carousel-item:hover,
+.carousel-item:focus {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.carousel::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.carousel {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+/* Kotak styles */
+#wrapkotak {
+    background-color: #FBEEC1;
+    padding: 16px;
+    border-radius: 8px;
+    position: relative;
+    top: 32px;
+    left: 16px;
+    max-width: 100%;
+}
+
+#kotak {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.kotak-item {
+    flex: 1 1 25%;
+    max-width: 25%;
+    padding: 16px;
+}
+
+.kotak-content {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.text-container h5 {
+    font-weight: 600;
+    color: white;
+    margin-left: 10px;
+}
+
+/* Kotak responsiveness */
+@media (max-width: 768px) {
+    .kotak-item {
+        flex: 1 1 50%;
+        max-width: 50%;
+    }
+
+    .charts2 {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .kotak-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .charts2 {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.charts {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}    .charts {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.chart {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 36px;
+    color: #385668;
+    font-weight: 600;
+}
+
+p {
+    font-size: 20px;
+    color: grey;
+}
+
+#chart {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .charts2 {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .chart {
+        max-width: 100%;
+    }
+
+    #chart {
+        max-width: 100%;
+    }
+}
+
+/* Hover effect for kotakBiru */
+.kotak-content {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.kotak-content:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.kotak-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.kotak-content:hover::before {
+    opacity: 1;
+}
+
+.kotak-content h5 {
+    transition: color 0.3s ease;
+}
+
+.kotak-content:hover h5 {
+    color:; /* Mengubah warna teks saat hover */
+}
+
+.iconly-boldShop, .iconly-boldMessage {
+    display: block;
+    margin-bottom: 16px;
+}
