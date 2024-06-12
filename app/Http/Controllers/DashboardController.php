@@ -21,7 +21,7 @@ class dashboardController extends Controller
         $izinUsaha = Umkm::all();
         $suggestions = suggestion::where('user_id', $user->id)->get();
         $activities = Activity::where('user_id', $user->id)->get();
-        $iuran = Iuran::sum('total');
+        $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
         // $datapenduduk = DataPenduduk::all();
 
         // $datapenduduk = DataPenduduk::where('user_id', $user->id)->get();
