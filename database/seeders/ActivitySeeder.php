@@ -29,7 +29,7 @@ class ActivitySeeder extends Seeder
                 'description' => 'Keterangan kegiatan 1',
                 'document' => 'path/to/document1.jpg',
                 'status' => 'pending',
-                'rt_id' => 1,
+                'rt_id' => 3,
             ]);
 
             Activity::create([
@@ -38,7 +38,7 @@ class ActivitySeeder extends Seeder
                 'description' => 'Keterangan kegiatan 2',
                 'document' => 'path/to/document2.jpg',
                 'status' => 'pending',
-                'rt_id' => 1,
+                'rt_id' => 2,
             ]);
 
             // Tambahkan data kegiatan lainnya sesuai kebutuhan

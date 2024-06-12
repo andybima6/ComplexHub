@@ -10,14 +10,14 @@ class AnggotaKeluarga extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama',
-        'nik', 
-        'alamat', 
+        'kk_id',        'nama',
+        'nik',
+        'alamat',
         'tanggal_lahir',
-        'hubungan_keluarga', 
+        'hubungan_keluarga',
         'status_perkawinan',
-        'jenis_kelamin', 
-        'golongan_darah', 
+        'jenis_kelamin',
+        'golongan_darah',
     ];
 
     public function dataKartuKeluarga()
