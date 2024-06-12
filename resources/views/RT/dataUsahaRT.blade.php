@@ -11,7 +11,7 @@
                     <div class="values w-911 h-62 relative md:left-96 top-2 text-center md:text-left"
                         style="font-size: 146px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #FFFEFE;">
                         <selected class="bg-transparent border-white outline-none text-white w-full md:w-auto">
-                            <option value="01">01</option>
+                            <option value="{{ auth()->user()->rt_id }}">{{ auth()->user()->rt_id }}</option>
                             {{-- <option value="02">02</option>
                             <option value="03">03</option> --}}
                         </selected>
