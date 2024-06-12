@@ -52,7 +52,7 @@
                 style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">Daftar
                 Izin
                 Kegiatan RT :</p>
-            <table  class="md:table-fixed w-full">>
+            <table  class="md:table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-200 text-black font-medium text-center">
                         <th class="border px-2 sm:px-4 py-2">No</th>

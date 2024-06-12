@@ -51,6 +51,7 @@
                   <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">RT</th>
                   <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Alamat</th>
                   <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Nomor Telefon</th>
+                  <th class="border px-2 sm:px-4 py-2 text-center" style="color: black">Aksi</th>
                 </tr>
               </thead>
               <tbody>
