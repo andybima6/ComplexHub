@@ -13,6 +13,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconly@2.3.0/dist/iconly.min.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+    <style>
+        .carousel-item img {
+            width: 100%; /* Mengisi lebar kontainer */
+            height: 100%; /* Mengisi tinggi kontainer */
+            object-fit: cover; /* Memastikan gambar diisi ke dalam kontainer tanpa merubah aspek rasio */
+        }
+
+        .carouselUMKM {
+            justify-content: center; /* Mengatur konten agar berada di tengah */
+            overflow: hidden; /* Mengatur overflow agar konten tidak terlalu membesar */
+        }
+
+    </style>
+
 
     <main class="mx-auto" style="min-height: 15%; background-color: #FBEEC1; padding: 36px; contain: responsive;">
 
