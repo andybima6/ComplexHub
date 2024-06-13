@@ -10,7 +10,7 @@
     {{-- Content --}}
     <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div class="rounded-md relative p-16 top-40 left-16 bg-white mr-28 overflow-x-auto">
-            <p class="mb-10 mt-10 ml-5"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RT:</p>
+            <p class="mb-10 mt-10 ml-5"  style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: black;">Daftar Izin Usaha RW:</p>
             <hr>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-white-700 uppercase bg-white-50 dark:bg-white-700 dark:text-white-400">
@@ -22,7 +22,7 @@
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Foto Produk</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Lingkup</th>
                         <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status dari RT</th>
-                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Status</th>
+                        <th class="border px-4 py-2 text-center w-1/6" style="color: black">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -51,23 +51,25 @@
                     </svg>
                 </button>
             </a>
-            <form action="{{ route('tolakIzinRW', ['id' => $izin->id]) }}" method="POST" style="display: inline;">
+            @if ($izin->status_rw == 'izin belum disetujui oleh ketua RW')
+            <form action="{{ route('tolakIzinRW', ['id' => $izin->id]) }}" method="POST">
                 @csrf
-                <button class="btn-tolak bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded ml-2" style="border-radius: 10px" type="submit">
-                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#EB5757">
+                    <svg style="margin-left: 10px" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5 6L6.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6.5 6L18.5 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </form>
-            <form action="{{ route('accIzinRW', ['id' => $izin->id]) }}" method="POST" style="display: inline;">
+            <form action="{{ route('accIzinRW', ['id' => $izin->id]) }}" method="POST">
                 @csrf
-                <button class="btn-acc bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded ml-2" style="border-radius: 10px" type="submit">
-                    <svg width="25" height="24" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <button type="submit" style="width:45px;height:34px;border-radius:10px;background-color:#27AE60">
+                    <svg style="margin-left: 10px" width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.5 1L6.5 12L1.5 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </form>
+        @endif
         </div>
     </td>
 </tr>
