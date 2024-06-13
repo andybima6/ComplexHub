@@ -37,8 +37,8 @@ class dashboardController extends Controller
         'subtitle' => '',
     ];
 
-    return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga', 'iuran'));
-}
+        return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga','iuran'));
+    }
 
 
     public function indexRW(Request $request)
@@ -61,12 +61,12 @@ class dashboardController extends Controller
         ->get();
 
         // Get suggestions based on the selected rt_id
-        $suggestions = suggestion::whereHas('user', function($query) use ($selectedRtId) {
+        $suggestions = suggestion::whereHas('user', function ($query) use ($selectedRtId) {
             $query->where('rt_id', $selectedRtId);
         })->get();
 
         // Get activities based on the selected rt_id
-        $activities = Activity::whereHas('user', function($query) use ($selectedRtId) {
+        $activities = Activity::whereHas('user', function ($query) use ($selectedRtId) {
             $query->where('rt_id', $selectedRtId);
         })->get();
 
@@ -85,11 +85,10 @@ class dashboardController extends Controller
 
 
 
-
     public function indexPD()
     {
         $user = auth()->user();
-    
+
         // Mengambil jumlah warga berdasarkan rt_id
         $jumlahWarga = AnggotaKeluarga::join('data_kartu_keluargas', 'anggota_keluargas.kk_id', '=', 'data_kartu_keluargas.id')
                             ->where('data_kartu_keluargas.rt_id', $user->rt_id)
@@ -101,15 +100,14 @@ class dashboardController extends Controller
         $suggestions = Suggestion::where('user_id', $user->id)->get();
         $activities = Activity::where('user_id', $user->id)->get();
         $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
-        
+
         $breadcrumb = (object)[
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-    
-        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga', 'iuran'));
-    }
 
+        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga', 'iuran'));
+}
     public function getChartDataPD()
     {
         // Ambil data user_id dan rt_id dari database, dan filter out rt_id = 0
@@ -154,7 +152,73 @@ class dashboardController extends Controller
 
         // Mengambil data iuran dari database untuk user_id tertentu
         $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
-                     ->where('user_id', $userId)
+            ->where('user_id', $userId)
+            ->groupBy('month')
+            ->get()
+            ->pluck('total', 'month')
+            ->toArray();
+
+        Log::info('Iuran Data: ' . json_encode($data));
+
+        // Menghitung total keseluruhan iuran
+        $totalIuran = array_sum($data);
+        Log::info('Total Iuran: ' . $totalIuran);
+
+        // Menghitung persentase per bulan
+        $dataPersentase = [];
+        foreach ($data as $month => $total) {
+            $dataPersentase[$month] = ($total / $totalIuran) * 100;
+        }
+
+        Log::info('Data Persentase: ' . json_encode($dataPersentase));
+
+        return response()->json($dataPersentase);
+    }
+
+
+    public function getIuranDataRT(Request $request)
+    {
+        $user = Auth::user(); // Get the authenticated user
+        $rtId = $user->rt_id; // Assume rt_id is a column in the users table
+
+        Log::info('RT ID: ' . $rtId);
+
+        // Mengambil data iuran dari database untuk rt_id tertentu
+        $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
+            ->where('rt_id', $rtId)
+            ->groupBy('month')
+            ->get()
+            ->pluck('total', 'month')
+            ->toArray();
+
+        Log::info('Iuran Data: ' . json_encode($data));
+
+        // Menghitung total keseluruhan iuran
+        $totalIuran = array_sum($data);
+        Log::info('Total Iuran: ' . $totalIuran);
+
+        // Menghitung persentase per bulan
+        $dataPersentase = [];
+        foreach ($data as $month => $total) {
+            $dataPersentase[$month] = ($total / $totalIuran) * 100;
+        }
+
+        Log::info('Data Persentase: ' . json_encode($dataPersentase));
+
+        return response()->json($dataPersentase);
+    }
+    public function getIuranDataRW(Request $request)
+    {
+        $rtId = $request->input('rt_id'); // Mendapatkan rt_id dari permintaan
+
+        // Validasi rtId sesuai dengan kebutuhan aplikasi Anda
+        // Misalnya, pastikan rt_id adalah integer atau ada di basis data
+
+        Log::info('RT ID: ' . $rtId);
+
+        // Mengambil data iuran dari database untuk rt_id tertentu
+        $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
+                     ->where('rt_id', $rtId)
                      ->groupBy('month')
                      ->get()
                      ->pluck('total', 'month')
@@ -176,71 +240,5 @@ class dashboardController extends Controller
 
         return response()->json($dataPersentase);
     }
-
-
-public function getIuranDataRT(Request $request)
-{
-    $user = Auth::user(); // Get the authenticated user
-    $rtId = $user->rt_id; // Assume rt_id is a column in the users table
-
-    Log::info('RT ID: ' . $rtId);
-
-    // Mengambil data iuran dari database untuk rt_id tertentu
-    $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
-                 ->where('rt_id', $rtId)
-                 ->groupBy('month')
-                 ->get()
-                 ->pluck('total', 'month')
-                 ->toArray();
-
-    Log::info('Iuran Data: ' . json_encode($data));
-
-    // Menghitung total keseluruhan iuran
-    $totalIuran = array_sum($data);
-    Log::info('Total Iuran: ' . $totalIuran);
-
-    // Menghitung persentase per bulan
-    $dataPersentase = [];
-    foreach ($data as $month => $total) {
-        $dataPersentase[$month] = ($total / $totalIuran) * 100;
-    }
-
-    Log::info('Data Persentase: ' . json_encode($dataPersentase));
-
-    return response()->json($dataPersentase);
-}
-public function getIuranDataRW(Request $request)
-{
-    $rtId = $request->input('rt_id'); // Mendapatkan rt_id dari permintaan
-
-    // Validasi rt_id di sini sesuai dengan kebutuhan aplikasi Anda
-    // Misalnya, Anda dapat memastikan rt_id adalah integer atau ada di basis data
-
-    Log::info('RT ID: ' . $rtId);
-
-    // Mengambil data iuran dari database untuk rt_id tertentu
-    $data = Iuran::selectRaw('MONTH(periode) as month, SUM(total) as total')
-                 ->where('rt_id', $rtId)
-                 ->groupBy('month')
-                 ->get()
-                 ->pluck('total', 'month')
-                 ->toArray();
-
-    Log::info('Iuran Data: ' . json_encode($data));
-
-    // Menghitung total keseluruhan iuran
-    $totalIuran = array_sum($data);
-    Log::info('Total Iuran: ' . $totalIuran);
-
-    // Menghitung persentase per bulan
-    $dataPersentase = [];
-    foreach ($data as $month => $total) {
-        $dataPersentase[$month] = ($total / $totalIuran) * 100;
-    }
-
-    Log::info('Data Persentase: ' . json_encode($dataPersentase));
-
-    return response()->json($dataPersentase);
-}
 
 }

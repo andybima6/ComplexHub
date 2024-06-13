@@ -15,28 +15,33 @@
 
     <style>
         .carousel-item img {
-            width: 100%; /* Mengisi lebar kontainer */
-            height: 100%; /* Mengisi tinggi kontainer */
-            object-fit: cover; /* Memastikan gambar diisi ke dalam kontainer tanpa merubah aspek rasio */
+            width: 100%;
+            /* Mengisi lebar kontainer */
+            height: 100%;
+            /* Mengisi tinggi kontainer */
+            object-fit: cover;
+            /* Memastikan gambar diisi ke dalam kontainer tanpa merubah aspek rasio */
         }
 
         .carouselUMKM {
-            justify-content: center; /* Mengatur konten agar berada di tengah */
-            overflow: hidden; /* Mengatur overflow agar konten tidak terlalu membesar */
+            justify-content: center;
+            /* Mengatur konten agar berada di tengah */
+            overflow: hidden;
+            /* Mengatur overflow agar konten tidak terlalu membesar */
         }
-
     </style>
 
 
     <main class="mx-auto" style="min-height: 15%; background-color: #FBEEC1; padding: 36px; contain: responsive;">
-
         <div style="height: 60px;"></div>
         <div id="wrapkotak">
             <form method="GET" action="{{ route('dashboardRW') }}" class="mb-4">
                 <label for="rt_id" class="block text-gray-700 text-sm font-bold mb-2">Select RT ID:</label>
-                <select name="rt_id" id="rt_id" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                    @foreach($allRts as $rtId)
-                        <option value="{{ $rtId }}" {{ $rtId == $selectedRtId ? 'selected' : '' }}>{{ $rtId }}</option>
+                <select name="rt_id" id="rt_id"
+                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    @foreach ($allRts as $rtId)
+                        <option value="{{ $rtId }}" {{ $rtId == $selectedRtId ? 'selected' : '' }}>
+                            {{ $rtId }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -51,7 +56,8 @@
                             <i class="iconly-boldShop text-white text-4xl"></i>
                         </div>
                         <div class="text-container mt-2">
-                            <svg id="Icons_User" overflow="hidden" version="1.1" viewBox="0 0 96 96" width="40" height="40">
+                            <svg id="Icons_User" overflow="hidden" version="1.1" viewBox="0 0 96 96" width="40"
+                                height="40">
                                 <g fill="white">
                                     <circle cx="48" cy="30" r="16" />
                                     <path
@@ -96,14 +102,14 @@
                                 <g>
                                     <path fill="#FFFFFF"
                                         d="M256,0C114.625,0,0,114.625,0,256s114.625,256,256,256c141.406,0,256-114.625,256-256S397.406,0,256,0z
-                                       M325.812,354.844c-12.594,14.125-30.78,22.438-54.562,24.938V416h-30.313v-36.031c-39.656-4.062-64.188-27.125-73.656-69.125
-                                       l46.875-12.219c4.344,26.406,18.719,39.594,43.125,39.594c11.406,0,19.844-2.812,25.219-8.469s8.062-12.469,8.062-20.469
-                                       c0-8.281-2.688-14.563-8.062-18.813c-5.375-4.28-17.344-9.688-35.875-16.25c-16.656-5.78-29.688-11.469-39.063-17.155
-                                       c-9.375-5.625-17-13.531-22.844-23.688c-5.844-10.188-8.781-22.063-8.781-35.563c0-17.719,5.25-33.688,15.688-47.875
-                                       c10.438-14.156,26.875-22.813,49.313-25.969V96h30.313v27.969c33.875,4.063,55.813,23.219,65.781,57.5l-41.75,17.125
-                                       c-8.156-23.5-20.72-35.25-37.781-35.25c-8.563,0-15.438,2.625-20.594,7.875c-5.188,5.25-7.781,11.625-7.781,19.094
-                                       c0,7.625,2.5,13.469,7.5,17.563c4.969,4.063,15.688,9.094,32.063,15.125c18,6.563,32.125,12.781,42.344,18.625
-                                       c10.25,5.844,18.406,13.938,24.531,24.219c6.094,10.313,9.155,22.345,9.155,36.126C344.719,323.125,338.406,340.75,325.812,354.844z" />
+                                           M325.812,354.844c-12.594,14.125-30.78,22.438-54.562,24.938V416h-30.313v-36.031c-39.656-4.062-64.188-27.125-73.656-69.125
+                                           l46.875-12.219c4.344,26.406,18.719,39.594,43.125,39.594c11.406,0,19.844-2.812,25.219-8.469s8.062-12.469,8.062-20.469
+                                           c0-8.281-2.688-14.563-8.062-18.813c-5.375-4.28-17.344-9.688-35.875-16.25c-16.656-5.78-29.688-11.469-39.063-17.155
+                                           c-9.375-5.625-17-13.531-22.844-23.688c-5.844-10.188-8.781-22.063-8.781-35.563c0-17.719,5.25-33.688,15.688-47.875
+                                           c10.438-14.156,26.875-22.813,49.313-25.969V96h30.313v27.969c33.875,4.063,55.813,23.219,65.781,57.5l-41.75,17.125
+                                           c-8.156-23.5-20.72-35.25-37.781-35.25c-8.563,0-15.438,2.625-20.594,7.875c-5.188,5.25-7.781,11.625-7.781,19.094
+                                           c0,7.625,2.5,13.469,7.5,17.563c4.969,4.063,15.688,9.094,32.063,15.125c18,6.563,32.125,12.781,42.344,18.625
+                                           c10.25,5.844,18.406,13.938,24.531,24.219c6.094,10.313,9.155,22.345,9.155,36.126C344.719,323.125,338.406,340.75,325.812,354.844z" />
                                 </g>
                             </svg>
                             <h5>Iuran : Rp.{{ number_format($iuran, 2) }}</h5>
@@ -186,21 +192,21 @@
                                 <path style="fill:#ffffff;"
                                     d="M57,21h-2v8h2c2.209,0,4-1.791,4-4v0C61,22.791,59.209,21,57,21z" />
                                 <path style="fill:#ffffff;" d="M45,44.12c-2.41,1.2-5.12,1.88-8,1.88s-5.59-0.68-8-1.88c-5.36-2.66-9.2-7.91-9.89-14.12h35.78
-                                C54.2,36.21,50.36,41.46,45,44.12z" />
+                                    C54.2,36.21,50.36,41.46,45,44.12z" />
                                 <path style="fill:#ffffff;"
                                     d="M55,20v1c-3.31,0-6-2.69-6-6v-1H21.21c-0.33,0-0.67-0.03-0.99-0.08c-0.05-0.01-0.1-0.01-0.14-0.02
-                                c-2.54-0.46-4.65-2.42-5.02-5.03c-0.48-3.42,1.93-6.38,5.14-6.81C20.63,3.19,21.72,4,23,4h16C47.84,4,55,11.16,55,20z" />
+                                    c-2.54-0.46-4.65-2.42-5.02-5.03c-0.48-3.42,1.93-6.38,5.14-6.81C20.63,3.19,21.72,4,23,4h16C47.84,4,55,11.16,55,20z" />
                                 <circle style="fill:#ffffff;" cx="30" cy="25" r="2" />
                                 <circle style="fill:#ffffff;" cx="44" cy="25" r="2" />
                                 <path style="fill:#ffffff;" d="M37,54.861l9.363-5.107C45.523,49.011,45,47.936,45,46.75v-0.425C42.549,47.396,39.846,48,37,48
-                                s-5.549-0.604-8-1.675v0.425c0,1.186-0.523,2.261-1.363,3.004L37,54.861z" />
+                                    s-5.549-0.604-8-1.675v0.425c0,1.186-0.523,2.261-1.363,3.004L37,54.861z" />
                                 <polygon style="fill:#ffffff;"
                                     points="25.329,50.773 23.714,51.114 19,55.828 19,61 36,61 36,56.593 " />
                                 <path style="fill:#ffffff;"
                                     d="M3,35c1.105,0,2,0.895,2,2c0-1.105,0.895-2,2-2s2,0.895,2,2c0-1.105,0.895-2,2-2s2,0.895,2,2V27
-                                c0-1.105,0.895-2,2-2s2,0.895,2,2v19h1v-2c0-2.209,1.791-4,4-4v10l-5,5v6H1V37C1,35.895,1.895,35,3,35z" />
+                                    c0-1.105,0.895-2,2-2s2,0.895,2,2v19h1v-2c0-2.209,1.791-4,4-4v10l-5,5v6H1V37C1,35.895,1.895,35,3,35z" />
                                 <path style="fill:#ffffff;" d="M63,55.382c-0.042-0.039-0.078-0.084-0.12-0.122c-1.42-1.26-3.16-2.16-5.07-2.56l-9.139-1.927
-                                L38,56.593V61h25V55.382z M56,59H43v-3h13V59z" />
+                                    L38,56.593V61h25V55.382z M56,59H43v-3h13V59z" />
                             </svg>
                             <h5>Saran dan pengaduan : {{ count($suggestions) }}</h5>
                         </div>
@@ -219,17 +225,17 @@
                                 <g fill="white">
                                     <path
                                         d="M31.972,256.007c10.344,0,20.469-5,26.656-14.25l6.875-10.313c3.438,13.969,15.469,24.563,30.5,24.563
-                                            c17.688,0,32-14.313,32-32c0,17.688,14.313,32,32,32s32-14.313,32-32c0,17.688,14.313,32,32,32s32-14.313,32-32
-                                            c0,17.688,14.312,32,32,32c17.687,0,32-14.313,32-32c0,17.688,14.312,32,32,32s32-14.313,32-32c0,17.688,14.312,32,32,32
-                                            c15.062,0,27.062-10.594,30.5-24.563l6.875,10.313c6.156,9.25,16.312,14.25,26.656,14.25c6.094,0,12.25-1.75,17.719-5.375
-                                            c14.719-9.813,18.688-29.688,8.875-44.375l-58.625-78.25h-128v-32h32c17.688,0,32-14.313,32-32v-32c0-17.688-14.312-32-32-32h-192
-                                            c-17.688,0-32,14.313-32,32v32c0,17.688,14.313,32,32,32h32v32h-128l-58.625,78.25c-9.813,14.688-5.813,34.563,8.875,44.375
-                                            C19.69,254.257,25.877,256.007,31.972,256.007z M312.002,24.007h40v24h-32v16h-8V24.007z M256.002,24.007h40v40h-40V24.007z
-                                            M208.002,24.007h8v16h16v-16h8v40h-8v-16h-16v16h-8V24.007z M160.002,64.007v-8h24v-8h-24v-24h32v8h-24v8h24v24H160.002z
-                                            M224.002,96.007h64v32h-64V96.007z M512.002,512.007h-512c0-26.5,21.5-48,48-48h416
-                                            C490.502,464.007,512.002,485.507,512.002,512.007z M96.002,272.007h-32v144v32h384v-32v-144h-32H96.002z M96.002,416.007v-112h96
-                                            v112H96.002z M224.002,416.007v-112h192v112H224.002z M144.002,352.007c0,8.844-7.156,16-16,16s-16-7.156-16-16s7.156-16,16-16
-                                            C136.846,336.007,144.002,343.163,144.002,352.007z M344.002,40.007h-24v-8h24V40.007z M264.002,32.007h24v24h-24V32.007z" />
+                                                c17.688,0,32-14.313,32-32c0,17.688,14.313,32,32,32s32-14.313,32-32c0,17.688,14.313,32,32,32s32-14.313,32-32
+                                                c0,17.688,14.312,32,32,32c17.687,0,32-14.313,32-32c0,17.688,14.312,32,32,32s32-14.313,32-32c0,17.688,14.312,32,32,32
+                                                c15.062,0,27.062-10.594,30.5-24.563l6.875,10.313c6.156,9.25,16.312,14.25,26.656,14.25c6.094,0,12.25-1.75,17.719-5.375
+                                                c14.719-9.813,18.688-29.688,8.875-44.375l-58.625-78.25h-128v-32h32c17.688,0,32-14.313,32-32v-32c0-17.688-14.312-32-32-32h-192
+                                                c-17.688,0-32,14.313-32,32v32c0,17.688,14.313,32,32,32h32v32h-128l-58.625,78.25c-9.813,14.688-5.813,34.563,8.875,44.375
+                                                C19.69,254.257,25.877,256.007,31.972,256.007z M312.002,24.007h40v24h-32v16h-8V24.007z M256.002,24.007h40v40h-40V24.007z
+                                                M208.002,24.007h8v16h16v-16h8v40h-8v-16h-16v16h-8V24.007z M160.002,64.007v-8h24v-8h-24v-24h32v8h-24v8h24v24H160.002z
+                                                M224.002,96.007h64v32h-64V96.007z M512.002,512.007h-512c0-26.5,21.5-48,48-48h416
+                                                C490.502,464.007,512.002,485.507,512.002,512.007z M96.002,272.007h-32v144v32h384v-32v-144h-32H96.002z M96.002,416.007v-112h96
+                                                v112H96.002z M224.002,416.007v-112h192v112H224.002z M144.002,352.007c0,8.844-7.156,16-16,16s-16-7.156-16-16s7.156-16,16-16
+                                                C136.846,336.007,144.002,343.163,144.002,352.007z M344.002,40.007h-24v-8h24V40.007z M264.002,32.007h24v24h-24V32.007z" />
                                 </g>
                             </svg>
                             <h5>UMKM : {{ count($izinUsaha) }}</h5>
@@ -450,112 +456,118 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/get-iuran-data-rw')
-                .then(response => {
-                    if (!response.ok) {
-                        console.error('Network response was not ok:', response.statusText);
-                        return;
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Data received:', data);
+    // Ganti dengan cara mendapatkan rt_id yang dipilih dari form atau dari konteks aplikasi Anda
+    const rtId = 1; // Contoh: Anda harus mengganti ini dengan cara yang benar
 
-                    // Menyiapkan data series dan kategori
-                    const seriesData = [];
-                    const categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    fetch(`/get-iuran-data-rw?rt_id=${rtId}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error('Network response was not ok:', response.statusText);
+                return;
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data received:', data);
 
-                    // Inisialisasi seriesData dengan nilai 0 untuk semua bulan
-                    for (let i = 1; i <= 12; i++) {
-                        seriesData.push(data[i] || 0);
-                    }
+            // Menyiapkan data series dan kategori
+            const seriesData = [];
+            const categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+                "Nov", "Dec"
+            ];
 
-                    var options = {
-                        series: [{
-                            name: 'Presentase',
-                            data: seriesData
-                        }],
-                        chart: {
-                            height: 300, // Adjusted height
-                            width: 500, // Added width
-                            type: 'bar',
-                        },
-                        plotOptions: {
-                            bar: {
-                                borderRadius: 10,
-                                dataLabels: {
-                                    position: 'top', // top, center, bottom
-                                },
-                            }
-                        },
+            // Inisialisasi seriesData dengan nilai 0 untuk semua bulan
+            for (let i = 1; i <= 12; i++) {
+                seriesData.push(data[i] || 0);
+            }
+
+            var options = {
+                series: [{
+                    name: 'Presentase',
+                    data: seriesData
+                }],
+                chart: {
+                    height: 300, // Adjusted height
+                    width: 500, // Added width
+                    type: 'bar',
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 10,
                         dataLabels: {
-                            enabled: true,
-                            formatter: function(val) {
-                                return val.toFixed(2) + "%"; // Menampilkan nilai dengan dua desimal
-                            },
-                            offsetY: -20,
-                            style: {
-                                fontSize: '12px',
-                                colors: ["#304758"]
-                            }
+                            position: 'top', // top, center, bottom
                         },
-                        xaxis: {
-                            categories: categories,
-                            position: 'top',
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            },
-                            crosshairs: {
-                                fill: {
-                                    type: 'gradient',
-                                    gradient: {
-                                        colorFrom: '#D8E3F0',
-                                        colorTo: '#BED1E6',
-                                        stops: [0, 100],
-                                        opacityFrom: 0.4,
-                                        opacityTo: 0.5,
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                enabled: true,
-                            }
-                        },
-                        yaxis: {
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false,
-                            },
-                            labels: {
-                                show: false,
-                                formatter: function(val) {
-                                    return val + "%";
-                                }
-                            }
-                        },
-                        title: {
-                            text: 'Iuran Warga',
-                            floating: true,
-                            offsetY: 530, // Adjusted offsetY based on the new height
-                            align: 'center',
-                            style: {
-                                color: '#444'
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: function(val) {
+                        return val.toFixed(2) + "%"; // Menampilkan nilai dengan dua desimal
+                    },
+                    offsetY: -20,
+                    style: {
+                        fontSize: '12px',
+                        colors: ["#304758"]
+                    }
+                },
+                xaxis: {
+                    categories: categories,
+                    position: 'top',
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    crosshairs: {
+                        fill: {
+                            type: 'gradient',
+                            gradient: {
+                                colorFrom: '#D8E3F0',
+                                colorTo: '#BED1E6',
+                                stops: [0, 100],
+                                opacityFrom: 0.4,
+                                opacityTo: 0.5,
                             }
                         }
-                    };
+                    },
+                    tooltip: {
+                        enabled: true,
+                    }
+                },
+                yaxis: {
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false,
+                    },
+                    labels: {
+                        show: false,
+                        formatter: function(val) {
+                            return val + "%";
+                        }
+                    }
+                },
+                title: {
+                    text: 'Iuran Warga',
+                    floating: true,
+                    offsetY: 530, // Adjusted offsetY based on the new height
+                    align: 'center',
+                    style: {
+                        color: '#444'
+                    }
+                }
+            };
 
-                    var chart = new ApexCharts(document.querySelector("#chartIuran"), options);
-                    chart.render();
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
+            var chart = new ApexCharts(document.querySelector("#chartIuran"), options);
+            chart.render();
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
         });
-    </script>
+});
+
+
     </script>
 @endsection
