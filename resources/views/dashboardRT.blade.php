@@ -436,90 +436,113 @@
                 });
         });
 
-        var options = {
-            series: [{
-                name: 'RT',
-                data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
-            }],
-            chart: {
-                height: 300, // Adjusted height
-                width: 500, // Added width
-                type: 'bar',
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 10,
-                    dataLabels: {
-                        position: 'top', // top, center, bottom
-                    },
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function(val) {
-                    return val + "%";
-                },
-                offsetY: -20,
-                style: {
-                    fontSize: '12px',
-                    colors: ["#304758"]
-                }
-            },
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/get-iuran-data-rt')
+                .then(response => {
+                    if (!response.ok) {
+                        console.error('Network response was not ok:', response.statusText);
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data received:', data);
 
-            xaxis: {
-                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                position: 'top',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                },
-                crosshairs: {
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            colorFrom: '#D8E3F0',
-                            colorTo: '#BED1E6',
-                            stops: [0, 100],
-                            opacityFrom: 0.4,
-                            opacityTo: 0.5,
+                    // Menyiapkan data series dan kategori
+                    const seriesData = [];
+                    const categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+                    // Inisialisasi seriesData dengan nilai 0 untuk semua bulan
+                    for (let i = 1; i <= 12; i++) {
+                        seriesData.push(data[i] || 0);
+                    }
+
+                    var options = {
+                        series: [{
+                            name: 'Presentase',
+                            data: seriesData
+                        }],
+                        chart: {
+                            height: 300, // Adjusted height
+                            width: 500, // Added width
+                            type: 'bar',
+                        },
+                        plotOptions: {
+                            bar: {
+                                borderRadius: 10,
+                                dataLabels: {
+                                    position: 'top', // top, center, bottom
+                                },
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function(val) {
+                                return val.toFixed(2) + "%"; // Menampilkan nilai dengan dua desimal
+                            },
+                            offsetY: -20,
+                            style: {
+                                fontSize: '12px',
+                                colors: ["#304758"]
+                            }
+                        },
+                        xaxis: {
+                            categories: categories,
+                            position: 'top',
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            crosshairs: {
+                                fill: {
+                                    type: 'gradient',
+                                    gradient: {
+                                        colorFrom: '#D8E3F0',
+                                        colorTo: '#BED1E6',
+                                        stops: [0, 100],
+                                        opacityFrom: 0.4,
+                                        opacityTo: 0.5,
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                            }
+                        },
+                        yaxis: {
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false,
+                            },
+                            labels: {
+                                show: false,
+                                formatter: function(val) {
+                                    return val + "%";
+                                }
+                            }
+                        },
+                        title: {
+                            text: 'Iuran Warga',
+                            floating: true,
+                            offsetY: 530, // Adjusted offsetY based on the new height
+                            align: 'center',
+                            style: {
+                                color: '#444'
+                            }
                         }
-                    }
-                },
-                tooltip: {
-                    enabled: true,
-                }
-            },
-            yaxis: {
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false,
-                },
-                labels: {
-                    show: false,
-                    formatter: function(val) {
-                        return val + "%";
-                    }
-                }
+                    };
 
-            },
-            title: {
-                text: 'Iuran Warga',
-                floating: true,
-                offsetY: 530, // Adjusted offsetY based on the new height
-                align: 'center',
-                style: {
-                    color: '#444'
-                }
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chartIuran"), options);
-        chart.render();
-        const carousel = new Carousel(document.getElementById('default-carousel'));
-        carousel.init();
+                    var chart = new ApexCharts(document.querySelector("#chartIuran"), options);
+                    chart.render();
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
     </script>
 @endsection

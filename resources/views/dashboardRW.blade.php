@@ -131,7 +131,7 @@
                     style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">
                     Jumlah Warga</h2>
                 <p style="font-size: 20px; text-align:center; color: grey;">Informasi Total Jumlah Warga Setiap RTnya</p>
-                <br>
+                <br>    
                 <div id="chart" style="max-width: 800px; margin: 0 auto;"></div>
             </div>
         </div>

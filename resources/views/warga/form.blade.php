@@ -126,21 +126,7 @@
 
             <div class="form-group">
                 <label for="keterangan" class="label">Keterangan:</label>
-                <select id="keterangan" name="keterangan" required class="input">
-                    <option value="">Pilih bulan</option>
-                    <option value="Januari">Januari</option>
-                    <option value="Februari">Februari</option>
-                    <option value="Maret">Maret</option>
-                    <option value="April">April</option>
-                    <option value="Mei">Mei</option>
-                    <option value="Juni">Juni</option>
-                    <option value="Juli">Juli</option>
-                    <option value="Agustus">Agustus</option>
-                    <option value="September">September</option>
-                    <option value="Oktober">Oktober</option>
-                    <option value="November">November</option>
-                    <option value="Desember">Desember</option>
-                </select>
+                <textarea id="keterangan" name="keterangan" required class="input" rows="4" cols="50"></textarea>
             </div>
 
             <div class="form-group">
@@ -206,6 +192,12 @@
                 }
             });
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('periode');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
     });
 </script>
 @endsection

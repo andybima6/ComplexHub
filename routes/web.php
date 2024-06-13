@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RT/historyRT', [IuranRTController::class, 'historyRT'])->name('historyRT');
         Route::post('/RT/accIuranRT/{id}', [IuranRTController::class, 'accIuranRT'])->name('accIuranRT');
         Route::post('/RT/tolakIuranRT/{id}', [IuranRTController::class, 'tolakIuranRT'])->name('tolakIuranRT');
-        Route::get('/RT/search', [IuranRTController::class, 'search'])->name('search');
+        Route::get('/RT/historyRT/search', [IuranRTController::class, 'filter'])->name('historyRT.search');
         Route::get('/RT/{id}/edit', [IuranRTController::class, 'edit'])->name('edit');
         Route::put('/RT/{id}', [IuranRTController::class, 'update'])->name('updateIuran');
         Route::delete('/RT/{id}', [IuranRTController::class, 'destroy'])->name('destroy');
@@ -122,6 +122,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('dashboardRT', [DashboardController::class, 'indexRT'])->name('dashboardRT');
         Route::get('/get-chart-data-rt', [DashboardController::class, 'getChartDataRT']);
+        // routes/web.php or routes/api.php
+Route::middleware('auth')->get('/get-iuran-data-rt', [DashboardController::class, 'getIuranDataRT']);
+
 
     });
 
@@ -148,6 +151,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/RW/form', [IuranRWController::class, 'form'])->name('formRW');
         Route::post('/RW/store', [IuranWargaController::class, 'store'])->name('storeRW');
         Route::get('/RW/historyRW', [IuranRWController::class, 'historyRW'])->name('historyRW');
+        Route::get('/RW/historyRW/search', [IuranRWController::class, 'search'])->name('historyRW.search');
         Route::get('/RW/cari', [IuranRWController::class, 'cari'])->name('cari');
         Route::get('/RW/{id}/ubah', [IuranRWController::class, 'ubah'])->name('ubah');
         Route::put('/RW/{id}', [IuranRWController::class, 'perbarui'])->name('perbarui');
@@ -212,6 +216,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('dashboardPD', [DashboardController::class, 'indexPD'])->name('dashboardPD');
         Route::get('/get-chart-data', [DashboardController::class, 'getChartDataPD']);
+
+       // routes/web.php or routes/api.php
+Route::middleware('auth')->get('/get-iuran-data-pd', [DashboardController::class, 'getIuranDataPD']);
+
 
     });
 

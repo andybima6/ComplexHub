@@ -76,7 +76,6 @@
       </style>
     <main class="mx-auto contain-responsive" style="min-height: 100vh; background-color: #FBEEC1;">
         <div style="height: 110px;"></div>
-        <body>
             <nav id="navbar">
                 <a href="{{ url('destinasi/RW/destinasiwisataRW') }}">Beranda</a>
                 <a href="{{ url('/kriteria') }}">Kriteria</a>
@@ -84,6 +83,7 @@
                 <a href="{{ url('/penilaian') }}">Penilaian</a>
                 <a href="{{ url('/saw') }}">Ranking</a>
             </nav>
+            
             <div class="relative overflow-x-auto bg-white" style="max-width: 95%;">
                 <p class="mb-10"
                     style="font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A424F;">
@@ -106,13 +106,13 @@
                     <tbody>
                         @foreach($alternatifs as $index => $alternatif)
                         <tr class="bg-white border-b border-gray-200">
-                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-black">
                                 {{ $index + 1 }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                            <td class="px-6 py-4 whitespace-nowrap text-black">
                                 {{ $alternatif->nama }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                            <td class="px-6 py-4 whitespace-nowrap text-black">
                                 <a href="{{ route('alternatif.edit', $alternatif->id) }}"
                                     class="bg-yellow-400 hover:bg-yellow-200 text-white py-2 px-4 rounded-md hover:text-white">Edit</a>
                             </td>
@@ -122,7 +122,6 @@
                 </table>
             </div>
             
-        </body>
         </html>
     </main>
 @endsection
