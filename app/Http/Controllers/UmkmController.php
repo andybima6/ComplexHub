@@ -72,7 +72,9 @@ class UmkmController extends Controller
 
 
     public function indexDataPenduduk() {
-        $izinUsaha = Umkm::all();
+        $izinUsaha = Umkm::where('status_rt', 'disetujui')
+        ->where('status_rw', 'disetujui')
+        ->get();
         $breadcrumb = (object)[
             'title' => 'UMKM',
             'subtitle' => 'Data Usaha Penduduk',

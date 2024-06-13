@@ -507,7 +507,7 @@
             }, 2000);
         }
 
-        cloneItems();
+        // cloneItems();
         startScrolling();
     });
 </script>
