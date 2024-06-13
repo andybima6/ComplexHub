@@ -68,14 +68,14 @@
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Data Iuran Warga RT :</h2>
         </div>
 
-        <form method="GET" action="{{ route('search') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
-            <div>
-                <label for="rt_search" class="block text-sm font-medium text-gray-700 mb-1">
-                    <span class="text-blue-600">Search</span>
+        <form method="GET" action="{{ route('historyRT') }}" class="flex items-end mb-6 space-x-4">
+            <div class="mb-4">
+                <label for="search" class="block text-sm font-medium text-gray-700 mb-1">
+                    <span>Search</span>
                 </label>
-                <input type="text" id="rt_search" name="rt_search" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
+                <input type="text" id="search" name="search" value="{{ request('historyRT.search') }}" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="cari" font size="10px">
             </div>
-            <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Cari</button>
         </form>
 
         <div class="card-body">
@@ -99,7 +99,7 @@
                         <th class="border px-2 sm:px-4 py-2">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="iuran-table">
                     @foreach($iuran as $index => $ir)
                     <tr class="text-center">
                         <td class="border px-2 sm:px-4 py-2" data-number="{{ $index + 1 }}">{{ $index + 1 }}</td>
@@ -182,6 +182,46 @@
                 }
             });
         });
+    });
+
+    $('#search').on('input', function() {
+          let query = $(this).val();
+
+          $.ajax({
+              url: "{{ route('historyRT.search') }}",
+              type: "GET",
+              data: {'search': query},
+              success: function(data) {
+                  $('#iuran-table').html('');
+                  if (data.length > 0) {
+                      $('#no-results').addClass('hidden');
+                      data.forEach(function(item) {
+                          $('#iuran-table').append(`
+                            <tr class="text-center">
+                                 <td class="border px-4 py-2 text-center">${item.id}</td>
+                                <td class="border px-4 py-2">${ item.nama }</td>
+                                <td class="border px-4 py-2">${ item.periode }</td>
+                                <td class="border px-4 py-2">Rp.${ item.total }</td>
+                                <td class="border px-4 py-2">
+                                    <a href="/storage/${item.bukti}" download>
+                                        <img src="/storage/${item.bukti}" alt="Bukti" class="block mx-auto max-w-xs h-auto" style="max-width: 20%;">
+                                    </a>
+                                </td>
+                                <td class="border px-4 py-2">${item.rt_id}</td>
+                                <td class="border px-4 py-2">
+                                    ${item.status === 'diproses' ? '<button class="bg-gray-500 text-white font-bold py-2 px-4 rounded">Diproses</button>' : ''}
+                                    ${item.status === 'disetujui' ? '<button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Disetujui</button>' : ''}
+                                    ${item.status === 'ditolak' ? '<button class="bg-red-500 text-white font-bold py-2 px-4 rounded">Ditolak</button>' : ''}
+                                </td>
+                            </tr>
+                          `);
+                      });
+                  } else {
+                      $('#no-results').removeClass('hidden');
+                  }
+              }
+          });
+      });
     });
 
     function showImageModal(imageSrc) {

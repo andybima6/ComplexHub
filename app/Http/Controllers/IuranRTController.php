@@ -32,7 +32,7 @@ class IuranRTController extends Controller
         return view('RT/kasIuranRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 
-    public function historyRT()
+    public function historyRT(Request $request)
     {
         $user = auth()->user();
         $userId = $user->rt_id;
@@ -41,8 +41,41 @@ class IuranRTController extends Controller
             'title' => 'History Kas RT',
             'subtitle' => '',
         ];
-        $iuran = Iuran::where('rt_id', $userId)->get();
-        return view('RT/historyRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
+
+        $search = $request->input('search');
+        $nama = $request->input('nama');
+
+        // $iuran = Iuran::where('rt_id', $userId)->get();
+
+        $iuran = Iuran::with('rt')
+            ->where('rt_id', $userId) // Menambahkan where untuk rt_id pengguna yang login
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($query) use ($search) {
+                    $query->where('nama', 'like', "%{$search}%")
+                        ->orWhere('periode', 'like', "%{$search}%")
+                        ->orWhere('keterangan', 'like', "%{$search}%");
+                });
+            })
+            ->when($nama, function ($query, $nama) {
+                return $query->where('nama', $nama);
+            })
+            ->get();
+
+        return view('RT/historyRT', compact('iuran', 'search'), ['breadcrumb' => $breadcrumb]);
+    }
+
+    public function filter(Request $request)
+    {
+        $search = $request->input('search');
+        $iurans = Iuran::with('rt')
+            ->when($search, function ($query, $search) {
+                return $query->where('nama', 'like', "%{$search}%")
+                    ->orWhere('periode', 'like', "%{$search}%")
+                    ->orWhere('keterangan', 'like', "%{$search}%");
+            })
+            ->get();
+
+        return response()->json($iurans);
     }
 
     public function search(Request $request)
@@ -59,6 +92,7 @@ class IuranRTController extends Controller
 
         return view('RT/kasIuranRT', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
+    
     public function form()
     {
         $breadcrumb = (object) [
