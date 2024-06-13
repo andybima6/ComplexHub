@@ -18,26 +18,38 @@
 
         <div style="height: 60px;"></div>
         <div id="wrapkotak">
-            <div id="kotak">
-                <div class="kotak-item">
-                    <div class="kotak-content" style="background-color: #4A90E2;">
+            <form method="GET" action="{{ route('dashboardRW') }}" class="mb-4">
+                <label for="rt_id" class="block text-gray-700 text-sm font-bold mb-2">Select RT ID:</label>
+                <select name="rt_id" id="rt_id" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    @foreach($allRts as $rtId)
+                        <option value="{{ $rtId }}" {{ $rtId == $selectedRtId ? 'selected' : '' }}>{{ $rtId }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Submit
+                </button>
+            </form>
+
+            <div id="kotak" class="flex flex-wrap justify-center">
+                <div class="kotak-item m-4">
+                    <div class="kotak-content p-4 rounded-lg" style="background-color: #4A90E2;">
                         <div class="icon-container">
-                            <i class="iconly-boldShop" style="font-size: 40px; color: white;"></i>
+                            <i class="iconly-boldShop text-white text-4xl"></i>
                         </div>
-                        <div class="text-container">
-                            <svg id="Icons_User" overflow="hidden" version="1.1" viewBox="0 0 96 96"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40"
-                                height="40">
+                        <div class="text-container mt-2">
+                            <svg id="Icons_User" overflow="hidden" version="1.1" viewBox="0 0 96 96" width="40" height="40">
                                 <g fill="white">
                                     <circle cx="48" cy="30" r="16" />
                                     <path
                                         d="M 80 82 L 80 66 C 80 63.6 78.8 61.2 76.8 59.6 C 72.4 56 66.8 53.6 61.2 52 C 57.2 50.8 52.8 50 48 50 C 43.6 50 39.2 50.8 34.8 52 C 29.2 53.6 23.6 56.4 19.2 59.6 C 17.2 61.2 16 63.6 16 66 L 16 82 L 80 82 Z" />
                                 </g>
                             </svg>
-                            <h5>RT : {{ $user->rt_id }}</h5>
+                            <h5 class="text-white">RT : {{ $selectedRtId }}</h5>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="kotak-item">
                     <div class="kotak-content" style="background-color: #50E3C2;">
                         <div class="icon-container">
@@ -53,10 +65,11 @@
                                         d="M77.993,30.884c-2.692,0-4.878,2.185-4.878,4.868c0,2.685,2.186,4.867,4.878,4.867c2.683,0,4.867-2.183,4.867-4.867C82.86,33.069,80.675,30.884,77.993,30.884z M8.005,30.884c-2.692,0-4.878,2.185-4.878,4.868c0,2.685,2.186,4.867,4.878,4.867c2.685,0,4.87-2.183,4.87-4.867C12.875,33.069,10.69,30.884,8.005,30.884z M63.504,22.03c-3.997,0-7.239,3.25-7.239,7.25c0,3.992,3.242,7.236,7.239,7.236c3.998,0,7.25-3.244,7.25-7.236C70.754,25.284,67.502,22.03,63.504,22.03z M85.988,66.088h-8.254V50.896c0-2.61-0.767-5.033-1.999-7.146c0.726-0.212,1.471-0.363,2.258-0.363c4.401,0,7.995,3.594,7.995,8.006V66.088z M22.483,22.03c-4,0-7.25,3.25-7.25,7.25c0,3.992,3.25,7.236,7.25,7.236c3.987,0,7.237-3.244,7.237-7.236C29.72,25.284,26.471,22.03,22.483,22.03z M8.005,43.387c0.787,0,1.522,0.15,2.25,0.363c-1.245,2.113-1.999,4.536-1.999,7.146v15.192H0V51.393C0,46.98,3.596,43.387,8.005,43.387z M42.986,7.555c-5.9,0-10.71,4.805-10.71,10.711c0,5.905,4.805,10.716,10.71,10.716c5.906,0,10.717-4.811,10.717-10.716C53.708,12.359,48.892,7.555,42.986,7.555z M75.083,71.742H62.438V48.627c0-3.179-0.839-6.136-2.195-8.787c1.035-0.306,2.123-0.523,3.262-0.523c6.38,0,11.578,5.188,11.578,11.579V71.742z M23.537,48.627v23.115H10.908V50.896c0-6.385,5.191-11.579,11.581-11.579c1.139,0,2.216,0.217,3.249,0.523C24.381,42.491,23.537,45.448,23.537,48.627z M26.188,78.433h33.598V48.627c0-9.264-7.539-16.798-16.801-16.798c-9.269,0-16.797,7.534-16.797,16.798V78.433z" />
                                 </g>
                             </svg>
-                            <h5>Jumlah Warga : {{ count($users) }}</h5>
+                            <h5>Jumlah Warga : {{ count($dataPenduduk) }}</h5>
                         </div>
                     </div>
                 </div>
+
                 <div class="kotak-item">
                     <div class="kotak-content" style="background-color: #E94E77;">
                         <div class="icon-container">
@@ -79,7 +92,7 @@
                                        c10.25,5.844,18.406,13.938,24.531,24.219c6.094,10.313,9.155,22.345,9.155,36.126C344.719,323.125,338.406,340.75,325.812,354.844z" />
                                 </g>
                             </svg>
-                            <h5>Iuran : {{ number_format($iuran, 2) }}</h5>
+                            <h5>Iuran : Rp.{{ number_format($iuran, 2) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -117,7 +130,7 @@
                     style="font-size: 36px; color: #385668; font-weight: 600; font-family: 'Poppins', sans-serif; text-align: center;">
                     Jumlah Warga</h2>
                 <p style="font-size: 20px; text-align:center; color: grey;">Informasi Total Jumlah Warga Setiap RTnya</p>
-                <br>    
+                <br>
                 <div id="chart" style="max-width: 800px; margin: 0 auto;"></div>
             </div>
         </div>
@@ -137,8 +150,8 @@
                     @foreach ($izinUsaha as $izin)
                         <div class="carousel-item">
                             <img src="{{ asset('storage/' . $izin->foto_produk) }}" alt="" class="rounded-box">
-                            <h3>{{ $izin->nama_usaha }}</h3>
-                            <p>{{ $izin->deskripsi }}</p>
+                            {{-- <h3>{{ $izin->nama_usaha }}</h3> --}}
+                            {{-- <p>{{ $izin->deskripsi }}</p> --}}
                         </div>
                     @endforeach
                 </div>
@@ -422,90 +435,113 @@
                 });
         });
 
-        var options = {
-            series: [{
-                name: 'RT',
-                data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
-            }],
-            chart: {
-                height: 300, // Adjusted height
-                width: 500, // Added width
-                type: 'bar',
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 10,
-                    dataLabels: {
-                        position: 'top', // top, center, bottom
-                    },
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function(val) {
-                    return val + "%";
-                },
-                offsetY: -20,
-                style: {
-                    fontSize: '12px',
-                    colors: ["#304758"]
-                }
-            },
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/get-iuran-data-rw')
+                .then(response => {
+                    if (!response.ok) {
+                        console.error('Network response was not ok:', response.statusText);
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data received:', data);
 
-            xaxis: {
-                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                position: 'top',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                },
-                crosshairs: {
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            colorFrom: '#D8E3F0',
-                            colorTo: '#BED1E6',
-                            stops: [0, 100],
-                            opacityFrom: 0.4,
-                            opacityTo: 0.5,
+                    // Menyiapkan data series dan kategori
+                    const seriesData = [];
+                    const categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+                    // Inisialisasi seriesData dengan nilai 0 untuk semua bulan
+                    for (let i = 1; i <= 12; i++) {
+                        seriesData.push(data[i] || 0);
+                    }
+
+                    var options = {
+                        series: [{
+                            name: 'Presentase',
+                            data: seriesData
+                        }],
+                        chart: {
+                            height: 300, // Adjusted height
+                            width: 500, // Added width
+                            type: 'bar',
+                        },
+                        plotOptions: {
+                            bar: {
+                                borderRadius: 10,
+                                dataLabels: {
+                                    position: 'top', // top, center, bottom
+                                },
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function(val) {
+                                return val.toFixed(2) + "%"; // Menampilkan nilai dengan dua desimal
+                            },
+                            offsetY: -20,
+                            style: {
+                                fontSize: '12px',
+                                colors: ["#304758"]
+                            }
+                        },
+                        xaxis: {
+                            categories: categories,
+                            position: 'top',
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            },
+                            crosshairs: {
+                                fill: {
+                                    type: 'gradient',
+                                    gradient: {
+                                        colorFrom: '#D8E3F0',
+                                        colorTo: '#BED1E6',
+                                        stops: [0, 100],
+                                        opacityFrom: 0.4,
+                                        opacityTo: 0.5,
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                            }
+                        },
+                        yaxis: {
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false,
+                            },
+                            labels: {
+                                show: false,
+                                formatter: function(val) {
+                                    return val + "%";
+                                }
+                            }
+                        },
+                        title: {
+                            text: 'Iuran Warga',
+                            floating: true,
+                            offsetY: 530, // Adjusted offsetY based on the new height
+                            align: 'center',
+                            style: {
+                                color: '#444'
+                            }
                         }
-                    }
-                },
-                tooltip: {
-                    enabled: true,
-                }
-            },
-            yaxis: {
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false,
-                },
-                labels: {
-                    show: false,
-                    formatter: function(val) {
-                        return val + "%";
-                    }
-                }
+                    };
 
-            },
-            title: {
-                text: 'Iuran Warga',
-                floating: true,
-                offsetY: 530, // Adjusted offsetY based on the new height
-                align: 'center',
-                style: {
-                    color: '#444'
-                }
-            }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chartIuran"), options);
-        chart.render();
-        const carousel = new Carousel(document.getElementById('default-carousel'));
-        carousel.init();
+                    var chart = new ApexCharts(document.querySelector("#chartIuran"), options);
+                    chart.render();
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
     </script>
 @endsection

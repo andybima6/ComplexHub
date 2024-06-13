@@ -30,4 +30,14 @@ class Iuran extends Model
     {
         return $this->belongsTo(RT::class, 'rt_id');
     }
+    // Iuran.php (Iuran model)
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function scopeAccepted($query)
+    {
+        return $query->where('status', 'accepted');
+    }
 }

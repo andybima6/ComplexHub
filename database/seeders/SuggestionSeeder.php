@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\suggestion;
 use App\Models\RT;
+use App\Models\Suggestion;
 use Illuminate\Database\Seeder;
 
 class SuggestionSeeder extends Seeder
@@ -61,7 +61,7 @@ class SuggestionSeeder extends Seeder
 
         // Insert data suggestions
         foreach ($suggestions as $suggestion) {
-            suggestion::create($suggestion);
+            Suggestion::create($suggestion);
         }
     }
 }

@@ -10,7 +10,8 @@ class AnggotaKeluarga extends Model
     use HasFactory;
 
     protected $fillable = [
-        'kk_id',        'nama',
+        'kk_id',
+        'nama',
         'nik',
         'alamat',
         'tanggal_lahir',
