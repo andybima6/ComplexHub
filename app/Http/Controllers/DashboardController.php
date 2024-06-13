@@ -17,24 +17,28 @@ use App\Http\Controllers\Controller;
 class dashboardController extends Controller
 {
     public function indexRT()
-    {
-        $user = auth()->user();
-        $users = User::where('rt_id', $user->rt_id)->get();
+{
+    $user = auth()->user();
+    
+    // Mengambil jumlah warga berdasarkan rt_id
+    $jumlahWarga = AnggotaKeluarga::join('data_kartu_keluargas', 'anggota_keluargas.kk_id', '=', 'data_kartu_keluargas.id')
+                        ->where('data_kartu_keluargas.rt_id', $user->rt_id)
+                        ->count();
+    
+    $izinUsaha = Umkm::all();
+    $suggestions = Suggestion::where('user_id', $user->id)->get();
+    $activities = Activity::where('user_id', $user->id)->get();
+    $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
+    
+    $breadcrumb = (object)[
+        'title' => 'Daftar dashboard',
+        'subtitle' => '',
+    ];
 
-        $izinUsaha = Umkm::all();
-        $suggestions = suggestion::where('user_id', $user->id)->get();
-        $activities = Activity::where('user_id', $user->id)->get();
-        $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
-        // $datapenduduk = DataPenduduk::all();
+    return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga', 'iuran'));
+}
 
-        // $datapenduduk = DataPenduduk::where('user_id', $user->id)->get();
-        // $anggotaKeluarga = AnggotaKeluarga::where('user_id', $user->id)->get();
-        $breadcrumb = (object)[
-            'title' => 'Daftar dashboard',
-            'subtitle' => '',
-        ];
-        return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users', 'iuran'));
-    }
+
     public function indexRW(Request $request)
     {
         $user = auth()->user();
@@ -81,21 +85,23 @@ class dashboardController extends Controller
     public function indexPD()
     {
         $user = auth()->user();
-        $users = User::where('rt_id', $user->rt_id)->get();
-
-        $izinUsaha = Umkm::where('user_id', $user->id)->get();
-        $suggestions = suggestion::where('user_id', $user->id)->get();
+    
+        // Mengambil jumlah warga berdasarkan rt_id
+        $jumlahWarga = AnggotaKeluarga::join('data_kartu_keluargas', 'anggota_keluargas.kk_id', '=', 'data_kartu_keluargas.id')
+                            ->where('data_kartu_keluargas.rt_id', $user->rt_id)
+                            ->count();
+        
+        $izinUsaha = Umkm::all();
+        $suggestions = Suggestion::where('user_id', $user->id)->get();
         $activities = Activity::where('user_id', $user->id)->get();
-        $iuran = Iuran::where('user_id', $user->id)->sum('total');
-        // $datapenduduk = DataPenduduk::all();
-
-        // $datapenduduk = DataPenduduk::where('user_id', $user->id)->get();
-        // $anggotaKeluarga = AnggotaKeluarga::where('user_id', $user->id)->get();
+        $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
+        
         $breadcrumb = (object)[
             'title' => 'Daftar dashboard',
             'subtitle' => '',
         ];
-        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'users', 'iuran'));
+    
+        return view('dashboardPD', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga', 'iuran'));
     }
 
     public function getChartDataPD()
