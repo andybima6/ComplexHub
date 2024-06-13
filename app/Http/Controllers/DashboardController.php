@@ -17,23 +17,25 @@ use App\Http\Controllers\Controller;
 class dashboardController extends Controller
 {
     public function indexRT()
-    {
-        $user = auth()->user();
-
-        // Mengambil jumlah warga berdasarkan rt_id
-        $jumlahWarga = AnggotaKeluarga::join('data_kartu_keluargas', 'anggota_keluargas.kk_id', '=', 'data_kartu_keluargas.id')
-                            ->where('data_kartu_keluargas.rt_id', $user->rt_id)
-                            ->count();
-
-        $izinUsaha = Umkm::all();
-        $suggestions = Suggestion::where('rt_id', $user->rt_id)->get();
-        $activities = Activity::where('rt_id', $user->rt_id)->get();
-        $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
-
-        $breadcrumb = (object)[
-            'title' => 'Daftar dashboard',
-            'subtitle' => '',
-        ];
+{
+    $user = auth()->user();
+    
+    // Mengambil jumlah warga berdasarkan rt_id
+    $jumlahWarga = AnggotaKeluarga::join('data_kartu_keluargas', 'anggota_keluargas.kk_id', '=', 'data_kartu_keluargas.id')
+                        ->where('data_kartu_keluargas.rt_id', $user->rt_id)
+                        ->count();
+    
+    $izinUsaha = Umkm::where('status_rt', 'disetujui')
+    ->where('status_rw', 'disetujui')
+    ->get();
+    $suggestions = Suggestion::where('user_id', $user->id)->get();
+    $activities = Activity::where('user_id', $user->id)->get();
+    $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');
+    
+    $breadcrumb = (object)[
+        'title' => 'Daftar dashboard',
+        'subtitle' => '',
+    ];
 
         return view('dashboardRT', compact('izinUsaha', 'suggestions', 'activities', 'breadcrumb', 'user', 'jumlahWarga','iuran'));
     }
@@ -54,7 +56,9 @@ class dashboardController extends Controller
         $dataPenduduk = AnggotaKeluarga::where('kk_id', $selectedRtId)->get();
 
         // Get izin usaha based on the selected rt_id
-        $izinUsaha = Umkm::all();
+        $izinUsaha = Umkm::where('status_rt', 'disetujui')
+        ->where('status_rw', 'disetujui')
+        ->get();
 
         // Get suggestions based on the selected rt_id
         $suggestions = suggestion::whereHas('user', function ($query) use ($selectedRtId) {
@@ -89,8 +93,10 @@ class dashboardController extends Controller
         $jumlahWarga = AnggotaKeluarga::join('data_kartu_keluargas', 'anggota_keluargas.kk_id', '=', 'data_kartu_keluargas.id')
                             ->where('data_kartu_keluargas.rt_id', $user->rt_id)
                             ->count();
-
-        $izinUsaha = Umkm::all();
+        
+        $izinUsaha = Umkm::where('status_rt', 'disetujui')
+        ->where('status_rw', 'disetujui')
+        ->get();
         $suggestions = Suggestion::where('user_id', $user->id)->get();
         $activities = Activity::where('user_id', $user->id)->get();
         $iuran = Iuran::where('rt_id', $user->rt_id)->sum('total');

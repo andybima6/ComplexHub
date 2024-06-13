@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class LandingPageController extends Controller
 {
     public function index() {
-        $izinUsaha = Umkm::all();
+        $izinUsaha = Umkm::where('status_rt', 'disetujui')
+        ->where('status_rw', 'disetujui')
+        ->get();
         $breadcrumb = (object)[
             'title' => 'Landing Page',
             'subtitle' => '',

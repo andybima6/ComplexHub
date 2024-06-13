@@ -581,8 +581,8 @@
                 }, 2000);
             }
 
-            cloneItems();
-            startScrolling();
-        });
-    </script>
+        // cloneItems();
+        startScrolling();
+    });
+</script>
 </main>
