@@ -19,14 +19,29 @@ class IuranRWController extends Controller
         return view('RW/dataiuranRW', compact('iuran'), ['breadcrumb' => $breadcrumb]);
     }
 
-    public function historyRW()
+    public function historyRW(Request $request)
     {
-        $iuran = Iuran::all();
+        // $iuran = Iuran::all();
         $breadcrumb = (object) [
             'title' => 'History Iuran RW',
             'subtitle' => '',
         ];
-        return view('RW/historyRW', compact('iuran'), ['breadcrumb' => $breadcrumb]);
+
+        $search = $request->input('search');
+        $nama = $request->input('nama');
+
+        $iuran = Iuran::with('rt')
+            ->when($search, function ($query, $search) {
+                return $query->where('nama', 'like', "%{$search}%")
+                    ->orWhere('periode', 'like', "%{$search}%")
+                    ->orWhere('keterangan', 'like', "%{$search}%");
+            })
+            ->when($nama, function ($query, $nama) {
+                return $query->where('nama', $nama);
+            })
+            ->get();
+
+        return view('RW/historyRW', compact('iuran', 'search'), ['breadcrumb' => $breadcrumb]);
     }
 
     public function form()
@@ -155,6 +170,20 @@ class IuranRWController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/RW/dataiuranRW')->with('error', 'Data iuran gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $iurans = Iuran::with('rt')
+            ->when($search, function ($query, $search) {
+                return $query->where('nama', 'like', "%{$search}%")
+                    ->orWhere('periode', 'like', "%{$search}%")
+                    ->orWhere('keterangan', 'like', "%{$search}%");
+            })
+            ->get();
+
+        return response()->json($iurans);
     }
 }
 

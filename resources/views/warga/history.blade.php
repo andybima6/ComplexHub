@@ -7,7 +7,7 @@
             <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Data Iuran Warga</h2>
         </div>
 
-        <form method="GET" action="{{ route('search') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
+        {{-- <form method="GET" action="{{ route('search') }}" class="flex flex-col sm:flex-row items-start sm:items-end mb-6 space-y-4 sm:space-y-0 sm:space-x-4">
             <div class="w-full sm:w-auto">
                 <label for="rt_search" class="block text-sm font-medium text-gray-700 mb-1">
                     <span class="text-blue-600">Search</span>
@@ -15,7 +15,7 @@
                 <input type="text" id="rt_search" name="rt_search" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan Nama">
             </div>
             <button type="submit" class="search-button bg-blue-500 text-white px-4 py-2 rounded-md">Cari</button>
-        </form>
+        </form> --}}
 
         <div class="card-body">
             @if(session('success'))
@@ -55,11 +55,11 @@
                         </td>
                         <td class="border px-2 sm:px-4 py-2">
                             @if($ir->status == 'diproses')
-                                <button class="bg-gray-500 text-white font-bold py-1 sm:py-2 px-2 sm:px-4 rounded">Diproses</button>
+                                <p class="text-gray-500 font-bold py-2 px-2 sm:px-4 rounded">Diproses</p>
                             @elseif($ir->status == 'disetujui')
-                                <button class="bg-green-500 text-white font-bold py-1 sm:py-2 px-2 sm:px-4 rounded">Disetujui</button>
+                                <p class="text-green-500 font-bold py-2 px-2 sm:px-4 rounded">Disetujui</p>
                             @elseif($ir->status == 'ditolak')
-                                <button class="bg-red-500 text-white font-bold py-1 sm:py-2 px-2 sm:px-4 rounded">Ditolak</button>
+                                <p class="text-red-500 font-bold py-2 px-2 sm:px-4 rounded">Ditolak</p>
                             @endif
                         </td>
                     </tr>
